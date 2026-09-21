@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IVA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+        form {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        input, select, button {
+            padding: 6px;
+        }
+        #error {
+            color: red;
+            font-weight: bold;
+            margin: 0;
+        }
+        p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        El id de cada elemento nos sirve como "etiqueta" para localizarlo con
+        document.getElementById() desde JS. Sin id no hay forma cómoda de referirse a él.
+    -->
+    <form>
+        <!-- <label for="..."> vincula el texto con su campo: al hacer clic en el texto se enfoca el input/select -->
+        <label for="producto">Producto</label>
+        <!-- select = lista desplegable. El <option> seleccionado devuelve su valor en una cadena -->
+        <select id="producto" name="producto">
+            <option value="">Selecciona un producto...</option>
+            <!-- <optgroup> agrupa los productos por categoría; su atributo label es la cadena "Frutas", "Dulces"...
+                 que luego usaremos en JS para saber a qué categoría pertenece el producto seleccionado -->
+            <optgroup label="Frutas">
+                <option value="Manzana">Manzana</option>
+                <option value="Plátano">Plátano</option>
+                <option value="Naranja">Naranja</option>
+            </optgroup>
+            <optgroup label="Dulces">
+                <option value="Chocolate">Chocolate</option>
+                <option value="Caramelo">Caramelo</option>
+                <option value="Galletas">Galletas</option>
+            </optgroup>
+            <optgroup label="Bebidas">
+                <option value="Agua">Agua</option>
+                <option value="Refresco">Refresco</option>
+                <option value="Zumo">Zumo</option>
+            </optgroup>
+        </select>
+
+        <label for="precio-base">Precio base</label>
+        <!-- type="number" → el navegador solo deja escribir números; min=0 y step=0.01 permiten decimales de céntimos -->
+        <input type="number" id="precio-base" name="precio-base" min="0" step="0.01" required>
+
+        <label for="tipo-iva">Tipo de IVA</label>
+        <!-- El value de cada option es el porcentaje numérico que aplicaremos en el cálculo -->
+        <select id="tipo-iva" name="tipo-iva">
+            <option value="21">21% (general)</option>
+            <option value="10">10% (reducido)</option>
+            <option value="4">4% (superreducido)</option>
+        </select>
+
+        <!-- type="button" evita que el botón envíe el formulario y recargue la página;
+             así el cálculo se hace solo con JS sin recargar -->
+        <button type="button" id="calcular">Calcular</button>
+
+        <!-- <p> = párrafo para el resultado. error va oculto (hidden) hasta que ocurra una validación fallida -->
+        <p id="error" hidden></p>
+        <p id="desglose"></p>
+    </form>
+
+    <script>
+        /*
+            Guardamos en constantes las referencias a los elementos del DOM.
+            Se llama a cada una con su id porque es lo único que los identifica de forma única
+            dentro del documento. Así no repetimos getElementById cada vez que queremos leer el valor.
+        */
+        const productoSelect = document.getElementById('producto');
+        const precioInput = document.getElementById('precio-base');
+        const ivaSelect = document.getElementById('tipo-iva');
+        const errorMsg = document.getElementById('error');
+        const desglose = document.getElementById('desglose');
+
+        /*
+            addEventListener registra una "función de respuesta" (callback) que se ejecutará
+            cada vez que ocurra el evento 'click' sobre el botón Calcular.
+            Es la forma moderna de conectar comportamiento a un elemento del DOM.
+        */
+        document.getElementById('calcular').addEventListener('click', () => {
+            // debugger: detiene la ejecución en la consola (F12, pestaña Sources) para inspeccionar variables paso a paso
+            debugger;
+
+            // .value devuelve SIEMPRE una cadena de texto: 'Manzana', '100'...
+            const producto = productoSelect.value;
+            console.log('Producto seleccionado:', producto);
+
+            // Number() convierte la cadena en número real, porque el cálculo necesita números, no texto
+            const base = Number(precioInput.value);
+            console.log('Precio base leído:', base);
+
+            // Limpiamos el estado del error en cada clic para que no queden avisos antiguos
+            errorMsg.hidden = true;
+            errorMsg.textContent = '';
+
+            // Number.isFinite descarta NaN, Infinity y valores no numéricos; base <= 0 rechaza 0 y negativos
+            if (!Number.isFinite(base) || base <= 0) {
+                console.log('Validación fallida: precio no es número válido > 0');
+                errorMsg.textContent = 'Introduce un precio válido mayor que 0.';
+                errorMsg.hidden = false;          // mostramos el aviso en rojo
+                desglose.textContent = '';         // quitamos cualquier resultado anterior
+                return;                             // return corta aquí: no calcula nada
+            }
+
+            const tipo = Number(ivaSelect.value);
+            console.log('Tipo de IVA seleccionado:', tipo, '%');
+
+            // selectedOptions[0] → option elegida; parentElement → el <optgroup> padre; .label → "Frutas"/"Dulces"/"Bebidas".
+            // El '?' (optional chaining) evita el error si no hubiera ninguna opción seleccionada.
+            const categoria = productoSelect.selectedOptions[0]?.parentElement?.label;
+            console.log('Categoría del producto:', categoria);
+
+            // Regla de negocio: los dulces van siempre al 21%. Si no se cumple, mostramos error y no calculamos.
+            if (categoria === 'Dulces' && tipo !== 21) {
+                console.log('Validación fallida: los dulces siempre llevan IVA 21%');
+                errorMsg.textContent = 'Los productos de dulces llevan siempre un IVA del 21%.';
+                errorMsg.hidden = false;
+                desglose.textContent = '';
+                return;
+            }
+
+            // Cálculos intermedios: primera el IVA y luego el total (base + IVA)
+            const iva = base * tipo / 100;
+            console.log('Importe IVA:', iva);
+            const total = base + iva;
+            console.log('Precio final:', total);
+            // fmt formatea con 2 decimales y coma decimal española: 12.5 → "12,50 €"
+            const fmt = (n) => n.toFixed(2).replace('.', ',') + ' €';
+
+            // Si no hay producto elegido, mostramos "Producto" a secas (|| = valor por defecto)
+            const nombreProducto = producto || 'Producto';
+            // textContent inyecta el resultado dentro del <p id="desglose"> SIN recargar la página
+            desglose.textContent = `${nombreProducto} \u00b7 Base: ${fmt(base)} \u00b7 IVA (${tipo}%): ${fmt(iva)} \u00b7 Total: ${fmt(total)}`;
+        });
+    </script>
+</body>
+</html>
