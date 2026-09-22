@@ -80,8 +80,6 @@ Las **soft skills** más repetidas: trabajo en equipo, comunicación, autonomía
 - Cumplo: la titulación de FP (en curso), conocimientos básicos de los lenguajes, capacidad de trabajo en equipo.
 - Me falta habitualmente: experiencia profesional previa y dominio de un framework (React/Vue/Laravel). Mitigación: hacer proyectos propios, contribuir a repositorios y trabajar con Git en solitario para tener portfolio.
 
-**c)** *(no aparece en el enunciado original)*
-
 **d) Condiciones más repetidas y mi opinión.**
 - Lo más común: jornada completa, contrato indefinido tras periodo de prueba y sueldos de 18.000–26.000 € para perfiles junior.
 - **¿Las aceptaría?** Sí, la jornada completa la asumo sin problema. Los salarios de entrada (18.000–22.000) los aceptaría los primeros 1–2 años como toma de contacto y aprendizaje, siempre que haya formación y crecimiento claro. Aspiración salarial a medio plazo: en torno a 25.000–30.000 €/año en Cádiz, más si surgen oportunidades de remoto para empresas de fuera de la provincia.
