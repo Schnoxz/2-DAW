@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 1: Consumo de CPU/RAM en Cliente (Prueba)</title>
+
+  <!-- ============================================================
+       BLOQUE 0: APUNTES SOBRE ARQUITECTURAS (TEMA 1)
+       ------------------------------------------------------------
+       Este documento es una COPIA comentada de catalogo.html que
+       demuestra el modelo de ejecución "código en el cliente":
+
+       * El front-end (HTML + CSS + JS) se ejecuta en el NAVEGADOR
+         del usuario: los 3 pilares son HTML (estructura), CSS
+         (presentación) y JavaScript (lógica interactiva).
+       * Todo código de cliente es PÚBLICO: se puede ver y modificar
+         con F12 / DevTools. Jamás deben ponerse claves, contraseñas
+         ni operaciones contables en el cliente.
+       * Aquí el trabajo pesado (generar, ordenar, filtrar) se hace en
+         la RAM y CPU del dispositivo del usuario, NO en el servidor.
+       ============================================================ -->
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      line-height: 1.5;
+    }
+    .panel {
+      max-width: 600px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #f9f9f9;
+    }
+    button {
+      padding: 10px 15px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      background-color: #0056b3;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    button:hover {
+      background-color: #003d80;
+    }
+    #consolaVisual {
+      margin-top: 15px;
+      padding: 12px;
+      background: #222;
+      color: #00ff66;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 13px;
+      border-radius: 4px;
+      min-height: 80px;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="panel">
+    <h2>Auditoría de Rendimiento en el Cliente (Front-end)</h2>
+    <p>Pulsa los botones y abre las <strong>Herramientas de Desarrollador (F12)</strong> para ver las etiquetas temporales de la CPU del navegador.</p>
+
+    <!-- ============================================================
+         BLOQUE 1: INTERFAZ DE USUARIO
+         Los 3 botones disparan los 3 tipos de procesamiento local.
+         (Modificación guiada M3: el texto del botón pasa a 500.000)
+         ============================================================ -->
+    <button id="btnGenerar">1. Generar 500.000 Productos</button>
+    <button id="btnOrdenar">2. Ordenar por Precio</button>
+    <button id="btnFiltrar">3. Filtrar Telefonía</button>
+
+    <div id="consolaVisual">Esperando interacción del usuario...</div>
+  </div>
+
+  <script>
+    // ============================================================
+    // BLOQUE 2: ÁMBITO GLOBAL DEL CLIENTE
+    // Definimos la variable global que retiene la carga en la RAM
+    // del navegador. Mientras viva el objeto catalogoProductos, la
+    // memoria RAM del dispositivo queda ocupada (consumo real).
+    // ============================================================
+    let catalogoProductos = [];
+
+    const categoriasDisponibles = ["Informática", "Telefonía", "Hogar", "Audio", "Oficina"];
+    const salida = document.getElementById("consolaVisual");
+
+    // ============================================================
+    // BLOQUE 3: GENERACIÓN DE DATOS
+    // Carga en memoria RAM del dispositivo cliente.
+    //
+    // MODIFICACIÓN GUIADA M3 (prueba de estrés):
+    //   TOTAL_REGISTROS pasa de 150.000 a 500.000 registros.
+    //   Al pulsar "Generar" el navegador crea 500.000 objetos en su
+    //   memoria: detecta el aumento de consumo de RAM y CPU local.
+    // ============================================================
+    document.getElementById("btnGenerar").addEventListener("click", () => {
+      salida.textContent = "Generando 500.000 registros en la RAM del cliente...";
+
+      // ============================================================
+      // BREAKPOINT 1 (depuración con F12 → pestaña "Sources"):
+      //   Con las DevTools abiertas y este botón pulsado, la ejecución
+      //   se DETIENE aquí. Ahora puedes:
+      //     - Pasar el ratón sobre `catalogoProductos` → está vacío `[]`.
+      //     - Pulsar F10 (Paso por encima) para ver cómo el bucle va
+      //       llenando la RAM registro a registro.
+      //     - Pulsar F11 (Paso a paso) para ENTRAR dentro del push().
+      //   Se exige este breakpoint para "ver los pasos" del proceso.
+      // ============================================================
+      debugger;
+
+      // Iniciamos el cronómetro de la consola
+      console.time("Tiempo de generación en RAM");
+
+      catalogoProductos = [];
+      const TOTAL_REGISTROS = 500000;
+
+      for (let i = 1; i <= TOTAL_REGISTROS; i++) {
+        catalogoProductos.push({
+          id: i,
+          nombre: `Producto ${i}`,
+          precio: parseFloat((Math.random() * 900 + 10).toFixed(2)),
+          categoria: categoriasDisponibles[Math.floor(Math.random() * categoriasDisponibles.length)]
+        });
+      }
+
+      // Detenemos el cronómetro
+      console.timeEnd("Tiempo de generación en RAM");
+
+      salida.textContent = `Generados ${TOTAL_REGISTROS.toLocaleString()} productos en memoria RAM local.\nRevisa la consola (F12) para ver el tiempo exacto.`;
+    });
+
+    // ============================================================
+    // BLOQUE 4: ORDENACIÓN EN CLIENTE
+    // Consumo intensivo de CPU local (algoritmo sort del navegador).
+    //
+    // MODIFICACIÓN GUIADA M1 (invertir criterio):
+    //   Antes:  catalogoProductos.sort((a, b) => a.precio - b.precio)
+    //           (ascendente: de más barato a más caro)
+    //   Ahora:  catalogoProductos.sort((a, b) => b.precio - a.precio)
+    //           (descendente: de más caro a más barato)
+    // El mensaje de salida se ajusta para mostrar primero el artículo
+    // MÁS CARO y después el MÁS BARATO.
+    // ============================================================
+    document.getElementById("btnOrdenar").addEventListener("click", () => {
+      if (catalogoProductos.length === 0) {
+        salida.textContent = "Primero genera los productos.";
+        return;
+      }
+
+      salida.textContent = "Ordenando catálogo por precio mediante la CPU del navegador...";
+
+      // ============================================================
+      // BREAKPOINT 2 (ordenación):
+      //   La ejecución se detiene AQUÍ, antes de ordenar (sin recargar
+      //   el navegador). Comprueba con el ratón que `catalogoProductos`
+      //   está lleno con 500.000 objetos. Pulsa F10 para ejecutar el
+      //   `.sort()` de una vez, o F11 para entrar a los tecnicismos del
+      //   algoritmo interno del navegador.
+      // ============================================================
+      debugger;
+
+      // Medición con timer
+      console.time("Tiempo de ordenación (CPU Cliente)");
+
+      // Algoritmo de ordenación con predicado (INVERTIDO: descendente)
+      catalogoProductos.sort((a, b) => b.precio - a.precio);
+
+      console.timeEnd("Tiempo de ordenación (CPU Cliente)");
+
+      salida.textContent = `Ordenación completada.\n- Producto más caro: ${catalogoProductos[0].precio} €\n- Producto más barato: ${catalogoProductos[catalogoProductos.length - 1].precio} €\n(Consumo de cómputo transferido con éxito del servidor al cliente).`;
+    });
+
+    // ============================================================
+    // BLOQUE 5: FILTRADO DECLARATIVO
+    // Procesamiento y asignación de nueva memoria.
+    //
+    // MODIFICACIÓN GUIADA M2 (cambiar categoría del filtro):
+    //   Antes:  prod.categoria === "Informática"
+    //   Ahora:  prod.categoria === "Telefonía"
+    // Solo se quedan los productos de la categoría "Telefonía".
+    // El servidor no ejecuta ninguna consulta SQL: todo se filtra
+    // en la memoria y CPU del cliente.
+    // ============================================================
+    document.getElementById("btnFiltrar").addEventListener("click", () => {
+      if (catalogoProductos.length === 0) {
+        salida.textContent = "Primero genera los productos.";
+        return;
+      }
+
+      salida.textContent = "Filtrando productos de la categoría 'Telefonía'...";
+
+      // ============================================================
+      // BREAKPOINT 3 (filtrado):
+      //   Pausa aquí. Inspecciona la variable `catalogoProductos`
+      //   (500.000 objetos en memoria). Pulsa F8 / ▶ para continuar
+      //   hasta el final, o F10 para ejecutar el `.filter()` completo.
+      //   Después, escribe en la consola (F12):
+      //     productosFiltrados         → Array con los de "Telefonía"
+      //     productosFiltrados.length  → nº de registros encontrados
+      // ============================================================
+      debugger;
+
+      // Medición con timer
+      console.time("Tiempo de filtrado (.filter)");
+
+      const productosFiltrados = catalogoProductos.filter(prod => prod.categoria === "Telefonía");
+
+      console.timeEnd("Tiempo de filtrado (.filter)");
+
+      salida.textContent = `Filtrado completado con éxito.\n- Registros encontrados: ${productosFiltrados.length.toLocaleString()}\nEl servidor no ha tenido que ejecutar ninguna consulta SQL ni consumir hilos de procesamiento.`;
+    });
+  </script>
+</body>
+</html>

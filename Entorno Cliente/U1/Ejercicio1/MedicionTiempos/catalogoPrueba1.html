@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>catalogoPrueba1: Medición de tiempos (Cuestión 1)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      line-height: 1.5;
+    }
+    .panel {
+      max-width: 640px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #f9f9f9;
+    }
+    button {
+      padding: 10px 15px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      background-color: #0056b3;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    button:hover {
+      background-color: #003d80;
+    }
+    #btnLimpiar {
+      background-color: #c0392b;
+    }
+    #btnLimpiar:hover {
+      background-color: #992d22;
+    }
+    #consolaVisual {
+      margin-top: 15px;
+      padding: 12px;
+      background: #222;
+      color: #00ff66;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 13px;
+      border-radius: 4px;
+      min-height: 80px;
+      white-space: pre-line;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+    th, td {
+      border: 1px solid #999;
+      padding: 5px 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #0056b3;
+      color: white;
+    }
+    #estadoCarga {
+      font-weight: bold;
+      color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="panel">
+    <h2>Auditoría de Tiempos en el Cliente (Cuestión 1)</h2>
+    <p>Genera, ordena o filtra distintos tamaños y anota los tiempos en ms.<br>
+    <strong>Consejo:</strong> repite cada tamaño 2-3 veces y anota el <em>menor</em> tiempo (evita el warm-up del motor y el recolector de basura).</p>
+
+    <h3>Fase 1 · Generar en RAM (resetea la memoria previa)</h3>
+    <button id="btn150">Generar 150.000</button>
+    <button id="btn200">Generar 200.000</button>
+    <button id="btn250">Generar 250.000</button>
+    <button id="btn500">Generar 500.000</button>
+
+    <h3>Fase 2 · Procesar (sobre el array cargado)</h3>
+    <button id="btnOrdenar">Ordenar por Precio</button>
+    <button id="btnFiltrar">Filtrar Telefonía</button>
+
+    <h3>Mantenimiento</h3>
+    <button id="btnLimpiar">Limpiar memoria / RAM</button>
+
+    <div>
+      <span id="estadoCarga">Memoria: vacía (no hay array cargado)</span>
+    </div>
+
+    <h3>Registro de mediciones</h3>
+    <table id="tablaTiempos">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Operación</th>
+          <th>Tamaño</th>
+          <th>Tiempo (ms)</th>
+        </tr>
+      </thead>
+      <tbody id="cuerpoTabla"></tbody>
+    </table>
+
+    <div id="consolaVisual">Esperando interacción del usuario...</div>
+  </div>
+
+  <script>
+    // ============================================================
+    // VARIABLES GLOBALES
+    // catalogoProductos retiene la carga en la RAM del cliente.
+    // ============================================================
+    let catalogoProductos = [];
+    let tamanoCargado = 0;
+
+    const categoriasDisponibles = ["Informática", "Telefonía", "Hogar", "Audio", "Oficina"];
+    const salida = document.getElementById("consolaVisual");
+    const estadoCarga = document.getElementById("estadoCarga");
+    const cuerpoTabla = document.getElementById("cuerpoTabla");
+    let contadorMedidas = 0;
+
+    // Funciones auxiliares -------------------------------------------------
+
+    // Actualiza el indicador de tamaño cargado en RAM
+    function actualizarEstado() {
+      estadoCarga.textContent = `Memoria: ${tamanoCargado.toLocaleString()} registros cargados en RAM (${catalogoProductos.length.toLocaleString()} objetos)`;
+    }
+
+    // Añade una fila al registro de mediciones
+    function registrar(operacion, tamano, ms) {
+      contadorMedidas++;
+      const fila = document.createElement("tr");
+      fila.innerHTML = `<td>${contadorMedidas}</td><td>${operacion}</td><td>${tamano.toLocaleString()}</td><td>${ms.toFixed(2)}</td>`;
+      cuerpoTabla.appendChild(fila);
+    }
+
+    // ============================================================
+    // FASE 1: GENERACIÓN DE DATOS
+    // Cada botón RESETEA el array (libera la RAM previa) antes de
+    // rellenar N registros. Solo cronometra la generación.
+    // ============================================================
+    function generar(totalRegistros) {
+      salida.textContent = `Generando ${totalRegistros.toLocaleString()} registros en la RAM del cliente...`;
+
+      // Libera la memoria del array anterior ANTES de medir:
+      // si no se reseteara, el 200k se ejecutaría "encima" del 150k
+      // y el tiempo y la RAM saldrían inflados (mide mal la proporción).
+      catalogoProductos = [];
+
+      const inicio = performance.now();
+      for (let i = 1; i <= totalRegistros; i++) {
+        catalogoProductos.push({
+          id: i,
+          nombre: `Producto ${i}`,
+          precio: parseFloat((Math.random() * 900 + 10).toFixed(2)),
+          categoria: categoriasDisponibles[Math.floor(Math.random() * categoriasDisponibles.length)]
+        });
+      }
+      const fin = performance.now();
+      const ms = fin - inicio;
+
+      tamanoCargado = totalRegistros;
+      actualizarEstado();
+      registrar("Generación", totalRegistros, ms);
+
+      salida.textContent =
+        `Generados ${totalRegistros.toLocaleString()} registros en RAM.\n` +
+        `Tiempo de generación: ${ms.toFixed(2)} ms\n` +
+        `(anótalo en la tabla: fila ${contadorMedidas})`;
+    }
+
+    document.getElementById("btn150").addEventListener("click", () => generar(150000));
+    document.getElementById("btn200").addEventListener("click", () => generar(200000));
+    document.getElementById("btn250").addEventListener("click", () => generar(250000));
+    document.getElementById("btn500").addEventListener("click", () => generar(500000));
+
+    // ============================================================
+    // FASE 2: ORDENACIÓN EN CLIENTE (CPU intensiva)
+    // Ordena el array que esté cargado. Orden descendente (M1):
+    // de más caro a más barato.
+    // ============================================================
+    document.getElementById("btnOrdenar").addEventListener("click", () => {
+      if (catalogoProductos.length === 0) {
+        salida.textContent = "Primero genera los productos (Fase 1).";
+        return;
+      }
+
+      salida.textContent = "Ordenando por precio (descendente)...";
+
+      const inicio = performance.now();
+      catalogoProductos.sort((a, b) => b.precio - a.precio);
+      const fin = performance.now();
+      const ms = fin - inicio;
+
+      registrar("Ordenación", tamanoCargado, ms);
+
+      salida.textContent =
+        `Ordenación completada (${tamanoCargado.toLocaleString()} registros).\n` +
+        `Tiempo de ordenación: ${ms.toFixed(2)} ms\n` +
+        `- Producto más caro: ${catalogoProductos[0].precio} €\n` +
+        `- Producto más barato: ${catalogoProductos[catalogoProductos.length - 1].precio} €`;
+    });
+
+    // ============================================================
+    // FASE 2: FILTRADO DECLARATIVO
+    // Filtra el array cargado quedándose con la categoría "Telefonía".
+    // ============================================================
+    document.getElementById("btnFiltrar").addEventListener("click", () => {
+      if (catalogoProductos.length === 0) {
+        salida.textContent = "Primero genera los productos (Fase 1).";
+        return;
+      }
+
+      salida.textContent = "Filtrando productos de la categoría 'Telefonía'...";
+
+      const inicio = performance.now();
+      const productosFiltrados = catalogoProductos.filter(prod => prod.categoria === "Telefonía");
+      const fin = performance.now();
+      const ms = fin - inicio;
+
+      registrar("Filtrado", tamanoCargado, ms);
+
+      salida.textContent =
+        `Filtrado completado (${tamanoCargado.toLocaleString()} registros).\n` +
+        `Tiempo de filtrado: ${ms.toFixed(2)} ms\n` +
+        `- Registros de "Telefonía" encontrados: ${productosFiltrados.length.toLocaleString()}`;
+    });
+
+    // ============================================================
+    // MANTENIMIENTO: LIMPIAR MEMORIA / RAM
+    // Vacía el array global y pide al recolector que libere RAM.
+    // Útil entre mediciones para no contaminar los tiempos.
+    // ============================================================
+    document.getElementById("btnLimpiar").addEventListener("click", () => {
+      catalogoProductos = [];
+      tamanoCargado = 0;
+      actualizarEstado();
+
+      // Sugerencia no bloqueante de recogida de basura (best effort).
+      // La RAM se libera de verdad en el siguiente ciclo del GC.
+      if (window.gc) window.gc();
+
+      salida.textContent =
+        "Memoria limpiada: array vaciado y lista para una nueva medición.\n" +
+        "(El GC del navegador libera la RAM en el siguiente ciclo).";
+    });
+  </script>
+</body>
+</html>

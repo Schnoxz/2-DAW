@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 1: Debug con JS externo (script.js)</title>
+
+  <!-- ============================================================
+       VERSIÓN CON JAVASCRIPT SEPARADO (script.js)
+       ------------------------------------------------------------
+       Igual que catalogoPrueba.html, pero con el JS en un archivo
+       EXTERNO. Ventaja para depurar: en F12 → pestaña "Sources"
+       verás el archivo script.js y podrás marcar breakpoints
+       haciendo clic en los números de línea (sin depender solo
+       de las sentencias `debugger;`).
+       ============================================================ -->
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      line-height: 1.5;
+    }
+    .panel {
+      max-width: 600px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #f9f9f9;
+    }
+    button {
+      padding: 10px 15px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      background-color: #0056b3;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    button:hover {
+      background-color: #003d80;
+    }
+    #consolaVisual {
+      margin-top: 15px;
+      padding: 12px;
+      background: #222;
+      color: #00ff66;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 13px;
+      border-radius: 4px;
+      min-height: 80px;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="panel">
+    <h2>Auditoría de Rendimiento en el Cliente (Front-end)</h2>
+    <p>Pulsa los botones y abre las <strong>Herramientas de Desarrollador (F12) → Sources</strong> para ver los breakpoints de <code>script.js</code>.</p>
+
+    <button id="btnGenerar">1. Generar 500.000 Productos</button>
+    <button id="btnOrdenar">2. Ordenar por Precio</button>
+    <button id="btnFiltrar">3. Filtrar Telefonía</button>
+
+    <div id="consolaVisual">Esperando interacción del usuario...</div>
+  </div>
+
+  <!-- El JS vive fuera: script.js (se carga al final del body) -->
+  <script src="script.js"></script>
+</body>
+</html>
