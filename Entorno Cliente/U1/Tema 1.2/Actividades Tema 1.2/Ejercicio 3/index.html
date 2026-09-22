@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 3 - Modal con window.alert()</title>
+</head>
+<body>
+
+  <!--
+    ficha: modificación del ejercicio 2. En vez de escribir en un párrafo
+    o en la consola, se muestra una ventana de aviso EMERGENTE MODAL.
+  -->
+  <h1>Aviso emergente modal</h1>
+  <p>Pulsa el botón; en lugar de escribir en un párrafo se muestra una ventana de aviso.</p>
+
+  <button type="button" id="btn">Mostrar aviso</button>
+
+  <script>
+    // Misma técnica que el ejercicio 2: listener sobre el evento clic.
+    document.getElementById('btn').addEventListener('click', function () {
+      // window.alert() abre un cuadro MODAL: bloquea la interacción con la
+      // página hasta que el usuario lo confirma. window es global, así que
+      // también valdría escribir simplemente alert(...).
+      window.alert('Clic capturado: se muestra una ventana emergente modal.');
+    });
+  </script>
+
+</body>
+</html>

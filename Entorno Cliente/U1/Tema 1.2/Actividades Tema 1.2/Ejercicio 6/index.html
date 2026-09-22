@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 6 - Saludos multidioma con document.write()</title>
+</head>
+<body>
+
+  <!--
+    ficha: transformación del ejercicio de los saludos (4→5→6). Ahora los
+    textos NO se escriben en un párrafo ni en la consola: se generan
+    directamente EN EL FLUJO DE LA PÁGINA mediante document.write().
+  -->
+  <h1>Generación directa en el flujo de la página</h1>
+
+  <!--
+    AVISO: document.write() tras la carga reemplaza TODO el documento,
+    por eso este párrafo desaparece al pulsar un botón. Es el
+    comportamiento original de este método (solo debería usarse en
+    scripts inline, no se recomienda en producción).
+  -->
+  <p>Transformación del ejercicio de saludos: al pulsar un botón, <code>document.write()</code> genera el saludo directamente en el flujo del documento.</p>
+
+  <button type="button" onclick="saludar('ru')">Ruso</button>
+  <button type="button" onclick="saludar('es')">Español</button>
+  <button type="button" onclick="saludar('en')">Inglés</button>
+
+  <script>
+    // Tabla de saludos SIN color: con document.write solo generamos texto.
+    const saludos = {
+      ru: 'Привет!',
+      es: '¡Hola!',
+      en: 'Hello!'
+    };
+
+    // document.write() escribe HTML directamente en el documento.
+    // Como la página ya está cargada, reabre el flujo y SUSTITUYE
+    // todo el contenido actual por el texto generado.
+    function saludar(idioma) {
+      document.write('<h1>' + saludos[idioma] + '</h1>');
+    }
+  </script>
+
+</body>
+</html>

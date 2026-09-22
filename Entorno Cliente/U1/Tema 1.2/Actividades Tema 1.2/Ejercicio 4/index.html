@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 4 - Saludo multidioma con color</title>
+  <style>
+    button {
+      margin-right: 8px;
+      padding: 6px 14px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!--
+    ficha: tres botones (ruso, español, inglés). Al pulsar uno, el párrafo
+    muestra el saludo en ese idioma y cambia su color de fuente con
+    .style.color (color diferente para cada idioma).
+  -->
+  <h1>Saludo en tu idioma</h1>
+
+  <!-- Párrafo destino: aqui se escribirá el saludo y se le aplicará el color -->
+  <p id="saludo">Elige un idioma.</p>
+
+  <!-- Cada botón llama a saludar() con el código corto del idioma -->
+  <button type="button" onclick="saludar('ru')">Ruso</button>
+  <button type="button" onclick="saludar('es')">Español</button>
+  <button type="button" onclick="saludar('en')">Inglés</button>
+
+  <script>
+    // Tabla de saludos: por cada idioma guardamos el texto y su color CSS.
+    const saludos = {
+      ru: { texto: 'Привет!', color: 'purple' },
+      es: { texto: '¡Hola!', color: 'green' },
+      en: { texto: 'Hello!', color: 'blue' }
+    };
+
+    // Recibe el código del idioma ('ru', 'es' o 'en') y actualiza el párrafo.
+    function saludar(idioma) {
+      const p = document.getElementById('saludo'); // localizamos el nodo
+      p.innerHTML = saludos[idioma].texto;         // cambiamos su contenido
+      p.style.color = saludos[idioma].color;       // aplicamos el color de fuente
+    }
+  </script>
+
+</body>
+</html>

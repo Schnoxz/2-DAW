@@ -112,7 +112,7 @@ El beneficio clave es **descargar el servidor**:
 - **Escala horizontal ilimitada:** cuantos más usuarios, más CPUs "gratuitas" aportan sus propios navegadores.
 - El servidor queda libre para tareas que sí le corresponden: seguridad, cobros y consultas que no deban ir al cliente.
 
-### Cuestión 3 — Límite arquitectónico y necesidad de paginación
+### Cuestión 4 — Límite arquitectónico y necesidad de paginación
 > Si el inventario contara con 8 millones de registros, ¿sería viable descargarlos todos en un solo array en el navegador para que el cliente los ordene? ¿Qué solución propondrías?
 
 **Respuesta: NO es viable.** Enviar 8 millones de registros al navegador provocaría:
@@ -133,14 +133,21 @@ Con esto, el peso donde corresponde: cómputo y filtrado SQL en el servidor, y e
 ## 4. Estructura de archivos
 
 ```
-Entorno Cliente\Ejercicio1\
-├── Ejercicio1.md                        ← este documento (análisis y cuestionario)
-├── PracticaDepuracion\                  ← la práctica guiada con breakpoints para ver los pasos
-│   ├── catalogoPrueba.html              ← copia comentada con JS inline
-│   ├── catalogoPruebaSeparado.html      ← versión con JS externo (Sources → script.js)
-│   └── script.js                        ← JS externo con los 3 `debugger;`
-└── MedicionTiempos\                     ← pruebas para medir tiempos a mano (Cuestión 1)
-    └── catalogoPrueba1.html             ← botones 150k/200k/250k/500k + ordenar/filtrar + limpiar RAM
+2-DAW\Entorno Cliente\U1\Tema 1\Ejercicio 1\
+├── Ejercicio1.md                    ← este documento (análisis y cuestionario)
+├── Ejercicio1_Entrega.md            ← documento de entrega del alumno
+├── Ejercicio1_Entrega.pdf           ← versión PDF de la entrega
+├── Original\catalogo.html           ← código base sin modificar (los apuntes)
+├── PracticaDepuracion\              ← práctica guiada con breakpoints para ver los pasos
+│   ├── catalogoPrueba.html          ← copia comentada con JS inline
+│   ├── catalogoPruebaSeparado.html  ← versión con JS externo (Sources → script.js)
+│   └── script.js                    ← JS externo con los 3 `debugger;`
+├── MedicionTiempos\                 ← pruebas para medir tiempos a mano (Cuestión 1)
+│   └── catalogoPrueba1.html         ← botones 150k/200k/250k/500k + ordenar/filtrar + limpiar RAM
+└── WebPrueba\                       ← banco de pruebas (calculadora) usado para practicar la depuración
+    ├── index.html                   ← primera versión de la calculadora
+    ├── indexV2.html                 ← segunda versión con la depuración corregida
+    └── pruebaDebugger.png           ← captura de prueba del depurador
 ```
 
 - `PracticaDepuracion/catalogoPrueba.html` y `catalogoPruebaSeparado.html` — HTML interactivos comentados por partes (generación, ordenación descendente, filtrado Telefonía) que ejecutan el procesamiento en la CPU/RAM del navegador e incluyen `debugger;` para auditar paso a paso con F12.

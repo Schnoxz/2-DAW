@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 1 - Segundo botón que modifica el &lt;h1&gt;</title>
+</head>
+<body>
+
+  <!--
+    ficha: Modificación del ejemplo base de los apuntes.
+    Añade un SEGUNDO botón: al pulsarlo, no solo cambia el párrafo,
+    sino también el texto del encabezado h1.
+  -->
+
+  <!-- El h1 necesita un id para poder localizarlo desde JavaScript -->
+  <h1 id="titulo">Modificando el código HTML</h1>
+  <p id="prueba">Modificando el contenido.</p>
+
+  <!-- Botón original (ya lo traía el ejemplo): modifica el párrafo -->
+  <button type="button"
+    onclick="document.getElementById('prueba').innerHTML = 'CAMBIANDO el contenido!'">
+    ¡Dale! (párrafo)
+  </button>
+
+  <!-- Botón nuevo pedido por el ejercicio: modifica el encabezado <h1> -->
+  <button type="button"
+    onclick="document.getElementById('titulo').innerHTML = '¡TÍTULO cambiado!'">
+    ¡Dale! (encabezado)
+  </button>
+
+</body>
+</html>

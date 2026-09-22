@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 9 - Secuencia cíclica de imágenes</title>
+  <style>
+    img {
+      border: 2px solid #333;
+      cursor: pointer;      /* indica que la imagen es clicable */
+      display: block;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!--
+    ficha: secuencia CÍCLICA de al menos 4 imágenes (fotograma a fotograma).
+    Al hacer clic sobre la imagen, el script comprueba cuál se está mostrando
+    y reasigna el atributo .src para mostrar la siguiente (con contador
+    de array + módulo, para que el bucle nunca salga del rango).
+  -->
+  <h1>Fotogramas en bucle</h1>
+  <p>Haz clic sobre la imagen para avanzar al siguiente fotograma.</p>
+
+  <!-- La imagen cuya .src iremos reasignando en cada clic -->
+  <img id="foto" alt="Fotograma">
+  <p id="pie">Fotograma 1 de 4</p>
+
+  <script>
+    // Definimos las imágenes como SVG en formato data: (autocontenidas,
+    // no hace falta archivos externos para que el ejercicio funcione).
+    const colores = ['red', 'green', 'blue', 'orange'];
+    const imagenes = colores.map(function (color, i) {
+      // Cada imagen es un SVG con el número del fotograma dibujado.
+      return 'data:image/svg+xml;utf8,' + encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="240" height="150">' +
+        '<rect width="240" height="150" fill="' + color + '"/>' +
+        '<text x="120" y="85" font-size="40" fill="white" text-anchor="middle">' + (i + 1) + '</text>' +
+        '</svg>'
+      );
+    });
+
+    // Contador que recorre el array (permite saber cuál se está viendo).
+    let indice = 0;
+
+    // Referencias a los elementos que vamos a modificar.
+    const foto = document.getElementById('foto');
+    const pie = document.getElementById('pie');
+    foto.src = imagenes[0];   // mostramos el primer fotograma al cargar
+
+    // Avanza un paso en la secuencia y vuelve al principio al llegar al final.
+    // El operador % (módulo) mantiene índices 0→1→2→3→0... (bucle infinito).
+    function siguiente() {
+      indice = (indice + 1) % imagenes.length;
+      foto.src = imagenes[indice];                    // reasignamos .src
+      pie.innerHTML = 'Fotograma ' + (indice + 1) + ' de ' + imagenes.length;
+    }
+
+    // Al hacer clic sobre la imagen se ejecuta siguiente().
+    foto.addEventListener('click', siguiente);
+  </script>
+
+</body>
+</html>

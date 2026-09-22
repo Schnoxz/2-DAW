@@ -5,7 +5,7 @@
 //  CÓMO DEPURAR PASO A PASO:
 //   1. Abre el HTML en el navegador y pulsa F12.
 //   2. Ve a la pestaña "Sources" → selecciona "script.js" (arriba).
-//   3. Haz clic en los NÚMEROS DE LÍNEA (115, 166, 207) para poner
+//   3. Haz clic en los NÚMEROS DE LÍNEA (44, 86, 120) para poner
 //      un breakpoint visible (marcador azul) → no hace falta el
 //      `debugger;` del código, pero se deja para forzar la pausa.
 //   4. Pulsa el botón correspondiente en la página → el código se
@@ -35,7 +35,7 @@ document.getElementById("btnGenerar").addEventListener("click", () => {
   salida.textContent = "Generando 500.000 registros en la RAM del cliente...";
 
   // ============================================================
-  // BREAKPOINT 1 (línea aprox. 115):
+  // BREAKPOINT 1 (línea 44 de script.js):
   //   Al pausar aquí puedes:
   //     - Ratón sobre `catalogoProductos` → está vacío [].
   //     - F10 → el bucle llena la RAM registro a registro.
@@ -79,7 +79,7 @@ document.getElementById("btnOrdenar").addEventListener("click", () => {
   salida.textContent = "Ordenando catálogo por precio mediante la CPU del navegador...";
 
   // ============================================================
-  // BREAKPOINT 2 (línea aprox. 166):
+  // BREAKPOINT 2 (línea 86 de script.js):
   //   Pausa ANTES de ordenar. Comprueba que `catalogoProductos`
   //   tiene 500.000 objetos. F10 ejecuta el .sort() completo.
   // ============================================================
@@ -112,7 +112,7 @@ document.getElementById("btnFiltrar").addEventListener("click", () => {
   salida.textContent = "Filtrando productos de la categoría 'Telefonía'...";
 
   // ============================================================
-  // BREAKPOINT 3 (línea aprox. 207):
+  // BREAKPOINT 3 (línea 120 de script.js):
   //   Inspecciona `catalogoProductos` (500.000 objetos). Después de
   //   F8 escribe en la consola:
   //     productosFiltrados.length  → nº de registros "Telefonía"

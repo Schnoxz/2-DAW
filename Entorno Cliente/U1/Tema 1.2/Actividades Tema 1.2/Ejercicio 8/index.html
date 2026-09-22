@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 8 - Test interactivo de Verdadero/Falso</title>
+  <style>
+    .pregunta {
+      margin-bottom: 18px;
+      padding: 8px;
+    }
+    .pregunta p {
+      margin: 0 0 6px 0;
+    }
+    button {
+      margin-right: 6px;
+      padding: 4px 12px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!--
+    ficha: test interactivo de SIETE preguntas con botones Verdadero/Falso.
+    Al pulsar, el script evalúa el acierto y colorea la respuesta:
+      .style.color = "green"  → acierto
+      .style.color = "red"    → error
+  -->
+  <h1>Test: Verdadero o Falso</h1>
+
+  <!-- Pregunta 1 (verdadera) -->
+  <div class="pregunta" id="pregunta1">
+    <p>1. JavaScript se ejecuta en el navegador del cliente.</p>
+    <button type="button" onclick="responder(1, true)">Verdadero</button>
+    <button type="button" onclick="responder(1, false)">Falso</button>
+  </div>
+
+  <!-- Pregunta 2 (falsa: el código de cliente es público) -->
+  <div class="pregunta" id="pregunta2">
+    <p>2. El código de cliente es totalmente privado e invisible para el usuario.</p>
+    <button type="button" onclick="responder(2, true)">Verdadero</button>
+    <button type="button" onclick="responder(2, false)">Falso</button>
+  </div>
+
+  <!-- Pregunta 3 (verdadera) -->
+  <div class="pregunta" id="pregunta3">
+    <p>3. innerHTML permite modificar el contenido HTML de un elemento.</p>
+    <button type="button" onclick="responder(3, true)">Verdadero</button>
+    <button type="button" onclick="responder(3, false)">Falso</button>
+  </div>
+
+  <!-- Pregunta 4 (verdadera) -->
+  <div class="pregunta" id="pregunta4">
+    <p>4. document.getElementById() localiza un elemento por su atributo id.</p>
+    <button type="button" onclick="responder(4, true)">Verdadero</button>
+    <button type="button" onclick="responder(4, false)">Falso</button>
+  </div>
+
+  <!-- Pregunta 5 (verdadera) -->
+  <div class="pregunta" id="pregunta5">
+    <p>5. window.alert() muestra una ventana emergente modal.</p>
+    <button type="button" onclick="responder(5, true)">Verdadero</button>
+    <button type="button" onclick="responder(5, false)">Falso</button>
+  </div>
+
+  <!-- Pregunta 6 (verdadera) -->
+  <div class="pregunta" id="pregunta6">
+    <p>6. console.log() permite ver trazas en las herramientas de desarrollo del navegador.</p>
+    <button type="button" onclick="responder(6, true)">Verdadero</button>
+    <button type="button" onclick="responder(6, false)">Falso</button>
+  </div>
+
+  <!-- Pregunta 7 (verdadera) -->
+  <div class="pregunta" id="pregunta7">
+    <p>7. document.write() genera texto directamente en el flujo de la página.</p>
+    <button type="button" onclick="responder(7, true)">Verdadero</button>
+    <button type="button" onclick="responder(7, false)">Falso</button>
+  </div>
+
+  <script>
+    // Solución correcta de las 7 preguntas (en el mismo orden que el HTML).
+    const respuestas = [true, false, true, true, true, true, true];
+
+    // responder(numero, ganaBoton):
+    //   - numero     → 1..7 (número de la pregunta)
+    //   - ganaBoton  → true si se pulsó "Verdadero", false si "Falso"
+    function responder(numero, ganaBoton) {
+      // Comparamos con la solución: hay acierto si coinciden.
+      const esAcierto = (respuestas[numero - 1] === ganaBoton);
+      // Localizamos el div de esa pregunta y coloreamos todo su bloque.
+      const div = document.getElementById('pregunta' + numero);
+      div.style.color = esAcierto ? 'green' : 'red';  // evaluación en el cliente
+    }
+  </script>
+
+</body>
+</html>
