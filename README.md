@@ -2,7 +2,6 @@
 
 # 📚 2º DAW — Materiales de clase
 
-### 🎓 I.E.S. Kursaal · Cádiz · Ciclo Formativo de Grado Superior en Desarrollo de Aplicaciones Web
 
 [![Curso](https://img.shields.io/badge/curso-2%C2%BA%20DAW-4c51bf?style=for-the-badge)](#)
 [![Ciclo](https://img.shields.io/badge/GS-Desarrollo%20de%20Aplicaciones%20Web-2ea44f?style=for-the-badge)](#)
