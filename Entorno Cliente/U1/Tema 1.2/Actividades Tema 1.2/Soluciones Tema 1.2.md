@@ -1,7 +1,6 @@
 # Ejercicios Tema 1.2 — Navegadores Web: capacidades y mecanismos de ejecución
 
 > Materia: Desarrollo Web en Entorno Cliente (2º DAW)
-> Autor: Javier Jiménez Alonso — I.E.S. Kursaal
 > Fecha: 22/09/2026
 > Base: Actividades Prácticas y de Consolidación del tema 1.2 (sección J del temario)
 
