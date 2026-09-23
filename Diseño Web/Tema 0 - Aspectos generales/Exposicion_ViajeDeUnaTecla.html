@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El recorrido de una tecla · Tema 0 · Diseño de Interfaces Web</title>
+<style>
+  :root{
+    --bg:#0e1120;
+    --bg2:#151a30;
+    --card:#1a2040;
+    --text:#e9ecff;
+    --muted:#9aa3d0;
+    --accent:#4fd1c5;
+    --accent2:#a78bfa;
+    --warn:#f6ad55;
+    --pink:#f687b3;
+    --mono:Consolas,"Courier New",monospace;
+    --sans:"Segoe UI",system-ui,-apple-system,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    overflow:hidden;
+  }
+
+  /* ---------- Barra de progreso ---------- */
+  #progress{
+    position:fixed;top:0;left:0;height:4px;width:0%;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    z-index:100;transition:width .35s ease;
+  }
+
+  /* ---------- Diapositivas ---------- */
+  .slide{
+    position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;
+    opacity:0;visibility:hidden;pointer-events:none;
+    transform:translateX(40px);
+    transition:opacity .4s ease,transform .4s ease,visibility .4s;
+    padding:5vh 7vw;
+  }
+  .slide.active{
+    opacity:1;visibility:visible;pointer-events:auto;transform:translateX(0);
+  }
+  .slide.prev{transform:translateX(-40px)}
+  .inner{width:100%;max-width:1100px}
+
+  /* ---------- Tipografía ---------- */
+  .eyebrow{
+    display:inline-block;
+    font-size:.85rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:1.1rem;font-weight:600;
+  }
+  h1{font-size:clamp(2.4rem,5.5vw,4.2rem);line-height:1.08;font-weight:800}
+  h2{font-size:clamp(1.7rem,3.4vw,2.6rem);line-height:1.15;margin-bottom:1.6rem;font-weight:750}
+  h3{font-size:1.05rem;color:var(--accent2);margin-bottom:.5rem}
+  p,li{font-size:clamp(1rem,1.5vw,1.2rem);line-height:1.55;color:var(--text)}
+  .muted{color:var(--muted)}
+  .grad{
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  strong{color:var(--accent);font-weight:700}
+  code{font-family:var(--mono);background:#0a0d1c;border:1px solid #2a3160;
+    padding:.08em .4em;border-radius:6px;font-size:.92em;color:var(--warn)}
+
+  /* ---------- Portada ---------- */
+  .cover{
+    position:relative;text-align:left;
+  }
+  .cover::before,.cover::after{
+    content:"";position:absolute;border-radius:50%;
+    filter:blur(90px);opacity:.5;pointer-events:none;z-index:-1;
+  }
+  .cover::before{
+    width:420px;height:420px;background:#4fd1c540;
+    top:-140px;right:-80px;
+  }
+  .cover::after{
+    width:360px;height:360px;background:#a78bfa40;
+    bottom:-140px;left:-100px;
+  }
+  .cover-grid{
+    display:grid;grid-template-columns:1.35fr 1fr;
+    gap:2.5rem;align-items:center;
+  }
+  @media (max-width:900px){.cover-grid{grid-template-columns:1fr}}
+  .cover .hint{
+    margin-top:2.4rem;color:var(--muted);font-size:.95rem;
+    display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;
+  }
+  kbd{
+    font-family:var(--mono);background:var(--card);border:1px solid #3a4280;
+    border-bottom-width:3px;border-radius:6px;padding:.15em .5em;font-size:.9em;
+  }
+  .keys-anim{display:inline-flex;gap:.4rem;align-items:center}
+  .key-press{animation:keyPress 1.6s ease-in-out infinite}
+  @keyframes keyPress{
+    0%,100%{transform:translateY(0);border-bottom-width:3px}
+    15%{transform:translateY(3px);border-bottom-width:1px}
+    30%{transform:translateY(0);border-bottom-width:3px}
+  }
+  .cover p.big-q{max-width:34rem}
+  .cover-meta{
+    margin-top:2.6rem;display:flex;gap:2.5rem;flex-wrap:wrap;
+    color:var(--muted);font-size:.95rem;
+    border-top:1px solid #2b3262;padding-top:1.2rem;
+  }
+  .cover-meta b{display:block;color:var(--text);font-size:1.02rem;font-weight:600}
+
+  /* Elemento visual de la portada */
+  .cover-art{
+    display:flex;flex-direction:column;align-items:center;gap:.9rem;
+    padding:2rem 1rem;
+  }
+  .art-chip{
+    display:flex;align-items:center;justify-content:center;gap:.7rem;
+    background:var(--card);border:1px solid #2b3262;border-radius:14px;
+    padding:.6rem 1rem;font-size:.85rem;color:var(--muted);
+  }
+  .art-chip code{font-size:.85em}
+  .kb-big{
+    width:110px;height:110px;border-radius:20px;
+    background:linear-gradient(145deg,#242b5c,#161a3a);
+    border:1px solid #3a4280;border-bottom:6px solid #0d1130;
+    display:flex;align-items:center;justify-content:center;flex-direction:column;
+    animation:keyPress 2.4s ease-in-out infinite;gap:.2rem;
+  }
+  .kb-big span{font-size:2.4rem;font-weight:800;color:var(--text);line-height:1}
+  .kb-big small{font-size:.68rem;color:var(--muted);font-family:var(--mono)}
+  .art-line{display:flex;align-items:center;gap:.6rem;color:var(--muted);font-size:.8rem}
+  .art-line .zap{color:var(--warn);font-size:1.4rem;animation:zap 1.4s ease-in-out infinite}
+  .screen-vis{
+    background:#0a0d1c;border:2px solid #3a4280;border-radius:12px;
+    padding:.7rem 1rem;font-family:var(--mono);font-size:1.5rem;
+    color:var(--text);min-width:230px;text-align:center;
+    position:relative;
+  }
+  .screen-vis::before{
+    content:"nav · " ;color:#5b639c;font-size:.8rem;position:absolute;left:1rem;top:50%;transform:translateY(-50%);
+  }
+  .screen-vis .cursor{display:inline-block;width:.6ch;height:1.2em;background:var(--accent);
+    margin-left:2px;animation:blink 1s steps(1) infinite;vertical-align:text-bottom}
+
+  /* ---------- Mapa del viaje ---------- */
+  .journey{
+    display:flex;align-items:stretch;gap:0;margin-top:2rem;
+    list-style:none;flex-wrap:wrap;row-gap:1.2rem;
+  }
+  .journey li{
+    flex:1;min-width:150px;position:relative;
+    background:var(--card);border:1px solid #2b3262;border-radius:14px;
+    padding:1rem .9rem .9rem;margin-right:1.4rem;
+  }
+  .journey li:last-child{margin-right:0}
+  .journey li::after{
+    content:"➜";position:absolute;right:-1.25rem;top:50%;
+    transform:translateY(-50%);color:var(--accent2);font-size:1.1rem;
+  }
+  .journey li:last-child::after{content:none}
+  .journey .num{
+    position:absolute;top:-0.85rem;left:.9rem;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    color:#0e1120;font-weight:800;font-size:.8rem;
+    width:1.6rem;height:1.6rem;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .journey h4{font-size:.92rem;margin:.2rem 0 .35rem;color:var(--text)}
+  .journey p{font-size:.8rem;color:var(--muted);line-height:1.4}
+
+  /* ---------- Tarjetas / columnas ---------- */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;align-items:start}
+  .cols-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.2rem}
+  @media (max-width:820px){
+    .cols,.cols-3{grid-template-columns:1fr}
+    .journey li{margin-right:0}
+    .journey li::after{content:none}
+  }
+  .card{
+    background:var(--card);border:1px solid #2b3262;
+    border-radius:16px;padding:1.3rem 1.4rem;
+  }
+  .card.accent{border-color:#2dd4bf55}
+  .card ul{margin-left:1.1rem}
+  .card li{margin-bottom:.45rem;font-size:1.02rem}
+  .intro{margin-bottom:1.2rem;color:var(--muted)}
+  .big-q{
+    font-size:clamp(1.4rem,2.4vw,1.8rem);font-weight:550;line-height:1.4;
+    margin:.9rem 0 0;color:var(--text);
+  }
+
+  /* ---------- Diagramas ---------- */
+  .flow{
+    display:flex;align-items:center;justify-content:center;
+    gap:.5rem;flex-wrap:wrap;margin:1.4rem 0;
+  }
+  .node{
+    background:var(--card);border:1px solid #3a4280;border-radius:12px;
+    padding:.75rem 1rem;text-align:center;min-width:120px;
+    font-size:.95rem;font-weight:600;position:relative;
+  }
+  .node small{display:block;font-weight:400;color:var(--muted);font-size:.78rem;margin-top:.2rem}
+  .node.cpu{border-color:var(--accent);box-shadow:0 0 18px #4fd1c533}
+  .node.so{border-color:var(--accent2);box-shadow:0 0 18px #a78bfa33}
+  .node.hot{border-color:var(--warn);box-shadow:0 0 18px #f6ad5533}
+  .arrow{color:var(--accent2);font-size:1.3rem;font-weight:700}
+  .arrow.zap{color:var(--warn);animation:zap 1.4s ease-in-out infinite}
+  @keyframes zap{0%,100%{opacity:.45;transform:translateX(0)}50%{opacity:1;transform:translateX(4px)}}
+
+  /* Pasos numerados */
+  .steps{display:flex;flex-direction:column;gap:.7rem;margin-top:.8rem;counter-reset:step}
+  .step{
+    display:flex;gap:.9rem;align-items:flex-start;
+    background:var(--card);border:1px solid #2b3262;border-radius:12px;
+    padding:.75rem 1rem;
+  }
+  .step::before{
+    counter-increment:step;content:counter(step);
+    flex:0 0 1.7rem;height:1.7rem;border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    color:#0e1120;font-weight:800;font-size:.9rem;
+    display:flex;align-items:center;justify-content:center;margin-top:.1rem;
+  }
+  .step p{font-size:.98rem}
+  .step b{color:var(--text)}
+
+  /* Bucle CPU */
+  .cpu-loop{
+    display:flex;align-items:center;justify-content:center;gap:.7rem;
+    flex-wrap:wrap;margin:1.2rem 0 .4rem;
+  }
+  .loop-back{
+    width:100%;text-align:center;color:var(--muted);font-size:.9rem;
+    margin-top:.3rem;
+  }
+  .loop-back span{color:var(--accent);font-size:1.1rem}
+
+  /* Línea de tiempo reloj */
+  .timeline{
+    position:relative;background:var(--card);border:1px solid #2b3262;
+    border-radius:14px;padding:1.4rem 1rem 1rem;margin-top:1.2rem;
+  }
+  .ticks{display:flex;gap:0;align-items:flex-end;height:70px;justify-content:space-between}
+  .tick{
+    flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+    height:100%;border-left:1px dashed #3a428088;position:relative;
+  }
+  .tick:first-child{border-left:none}
+  .tick .chip{
+    font-size:.72rem;font-weight:700;padding:.25em .6em;border-radius:6px;
+    margin-bottom:.35rem;color:#0e1120;
+  }
+  .chip.a{background:var(--accent)}
+  .chip.b{background:var(--accent2)}
+  .chip.c{background:var(--pink)}
+  .tick .t{font-size:.68rem;color:var(--muted);position:absolute;bottom:-1.15rem}
+  .tick .beam{width:2px;height:18px;background:var(--warn);position:absolute;top:0;opacity:.8}
+  .timeline .cap{text-align:center;font-size:.82rem;color:var(--muted);margin-top:1.6rem}
+
+  /* Tabla memoria */
+  table.mem{
+    width:100%;border-collapse:collapse;margin-top:1rem;font-size:.95rem;
+    background:var(--card);border-radius:14px;overflow:hidden;
+  }
+  table.mem th,table.mem td{
+    padding:.6rem .9rem;text-align:left;border-bottom:1px solid #2b3262;
+  }
+  table.mem th{
+    background:#12173a;color:var(--accent);font-size:.85rem;
+    text-transform:uppercase;letter-spacing:.06em;
+  }
+  table.mem tr:last-child td{border-bottom:none}
+  table.mem td:first-child{font-weight:700}
+  .fast{color:var(--accent)}
+  .slow{color:var(--pink)}
+
+  /* Recuadro destacado */
+  .callout{
+    margin-top:1.3rem;padding:1rem 1.2rem;border-radius:12px;
+    background:#12173a;border-left:4px solid var(--warn);
+    font-size:1rem;line-height:1.5;
+  }
+  .callout.violet{border-left-color:var(--accent2)}
+  .callout.teal{border-left-color:var(--accent)}
+
+  /* Demo final */
+  .pixel-demo{
+    display:flex;align-items:center;justify-content:center;gap:1.2rem;
+    background:var(--card);border:1px solid #2b3262;border-radius:16px;
+    padding:1.4rem;margin-top:1.2rem;
+  }
+  .kb-key{
+    width:64px;height:64px;border-radius:12px;
+    background:#232a55;border:1px solid #3a4280;border-bottom:4px solid #14183a;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.6rem;font-weight:800;color:var(--text);
+    animation:keyPress 2.2s ease-in-out infinite;
+  }
+  .screen{
+    background:#0a0d1c;border:2px solid #3a4280;border-radius:10px;
+    min-width:220px;height:64px;display:flex;align-items:center;
+    padding:0 1rem;font-family:var(--mono);font-size:1.4rem;
+  }
+  .cursor{display:inline-block;width:.6ch;height:1.2em;background:var(--accent);
+    margin-left:2px;animation:blink 1s steps(1) infinite;vertical-align:text-bottom}
+  @keyframes blink{50%{opacity:0}}
+
+  /* Cierre */
+  .why{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.2rem;margin-top:1.6rem}
+  @media (max-width:820px){.why{grid-template-columns:1fr}}
+  .why .card p{font-size:.95rem;color:var(--muted);margin-top:.4rem}
+  .end{margin-top:2rem;font-size:1.3rem;font-weight:700}
+
+  /* ---------- Navegación ---------- */
+  #nav{
+    position:fixed;bottom:1.1rem;right:1.4rem;z-index:100;
+    display:flex;gap:.5rem;align-items:center;
+  }
+  #nav button{
+    background:var(--card);color:var(--text);border:1px solid #3a4280;
+    width:2.4rem;height:2.4rem;border-radius:10px;font-size:1.1rem;
+    cursor:pointer;transition:.15s;
+  }
+  #nav button:hover{border-color:var(--accent);color:var(--accent)}
+  #counter{
+    color:var(--muted);font-family:var(--mono);font-size:.85rem;
+    margin-right:.6rem;
+  }
+  #brand{
+    position:fixed;bottom:1.25rem;left:1.4rem;z-index:100;
+    color:#5b639c;font-size:.78rem;letter-spacing:.05em;
+  }
+  .click-zone{position:fixed;top:0;bottom:0;width:12vw;z-index:50;cursor:pointer}
+  #zoneL{left:0}#zoneR{right:0}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+<div class="click-zone" id="zoneL" title="Anterior"></div>
+<div class="click-zone" id="zoneR" title="Siguiente"></div>
+<div id="brand">TEMA 0 · DISEÑO DE INTERFACES WEB</div>
+
+<nav id="nav">
+  <span id="counter">1 / 11</span>
+  <button id="btnPrev" title="Anterior (←)">←</button>
+  <button id="btnNext" title="Siguiente (→)">→</button>
+</nav>
+
+<!-- ══════════════ 1 · PORTADA ══════════════ -->
+<section class="slide active">
+  <div class="inner cover">
+    <div class="cover-grid">
+      <div>
+        <span class="eyebrow">Tema 0 · Aspectos generales · 2º DAW</span>
+        <h1>El recorrido de<br><span class="grad">una tecla</span></h1>
+        <p class="big-q muted">Cómo se procesa una pulsación de teclado
+          desde que se pulsa la tecla hasta que el carácter aparece en pantalla.</p>
+        <div class="cover-meta">
+          <div><b>Exposición</b>Javier Jiménez Alonso</div>
+          <div><b>Módulo</b>Diseño de Interfaces Web</div>
+        </div>
+        <div class="hint">
+          Navega con
+          <span class="keys-anim">
+            <kbd class="key-press">←</kbd><kbd class="key-press">→</kbd>
+          </span>
+          o con los botones / clic en los laterales
+        </div>
+      </div>
+
+      <div class="cover-art">
+        <div class="kb-big"><span>A</span><small>scancode</small></div>
+        <div class="art-line"><span class="zap">⚡</span> IRQ → aceptación → rutina SO</div>
+        <div class="screen-vis"><span class="cursor"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 2 · INTRODUCCIÓN ══════════════ -->
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">Introducción</span>
+    <h2>Qué vamos a ver<br>y por qué</h2>
+
+    <p class="muted" style="margin-bottom:1.2rem">En este tema se explican la arquitectura
+      del computador y los sistemas operativos. Esta exposición los une en un caso práctico:
+      <strong>qué ocurre dentro del ordenador cuando se pulsa una tecla</strong>.</p>
+
+    <div class="cols">
+      <div class="card accent">
+        <h3>Qué vamos a ver</h3>
+        <ul>
+          <li>Cómo funciona una <strong>interrupción</strong> de un periférico.</li>
+          <li>El <strong>ciclo de funcionamiento</strong> del procesador.</li>
+          <li>Cómo el sistema operativo <strong>gestiona</strong> procesos y memoria.</li>
+          <li>Cómo el <strong>reloj</strong> reparte el tiempo de CPU.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Por qué</h3>
+        <p>Las aplicaciones que se desarrollan se ejecutan sobre esta base:
+        procesador, memoria y sistema operativo.</p>
+        <p style="margin:.7rem 0">Entenderla permite <strong>saber por qué una aplicación
+        responde rápido o lento</strong>, y por qué el sistema operativo gestiona
+        los recursos de la forma en que lo hace.</p>
+        <p>Sirve además de introducción práctica a los conceptos que se usarán
+        después en el módulo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 3 · ÍNDICE / MAPA ══════════════ -->
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">Índice de la exposición</span>
+    <h2>El recorrido de una pulsación de teclado</h2>
+    <p class="muted">Al pulsar una tecla se coordinan el teclado, el procesador,
+      la memoria y el sistema operativo. Estos son los pasos que vamos a ver:</p>
+
+    <ol class="journey">
+      <li><span class="num">1</span>
+        <h4>La interrupción</h4>
+        <p>El teclado avisa al procesador con una señal</p></li>
+      <li><span class="num">2</span>
+        <h4>Ciclo de aceptación</h4>
+        <p>La CPU guarda el estado y pasa a modo núcleo</p></li>
+      <li><span class="num">3</span>
+        <h4>Tratamiento</h4>
+        <p>El SO lee el código de la tecla y lo entrega al proceso del navegador</p></li>
+      <li><span class="num">4</span>
+        <h4>Planificación</h4>
+        <p>El reloj reparte el tiempo de CPU entre procesos</p></li>
+      <li><span class="num">5</span>
+        <h4>RETI</h4>
+        <p>Vuelta a modo usuario y el navegador muestra el carácter</p></li>
+    </ol>
+
+    <div class="callout">El recorrido completo dura unos pocos milisegundos.
+      Vamos a verlo paso a paso.</div>
+  </div>
+</section>
+
+<!-- ══════════════ 3 · PARADA 1 · INTERRUPCIÓN ══════════════ -->
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">Parada 1 · La interrupción</span>
+    <h2>El teclado se comunica<br>mediante <span class="grad">interrupciones</span></h2>
+
+    <p class="intro">En primer lugar, hay que responder a una pregunta:
+      si la CPU está ejecutando un programa, ¿cómo se entera el teclado de que se ha pulsado una tecla?</p>
+
+    <div class="cols">
+      <div class="card accent">
+        <h3>Qué es una interrupción</h3>
+        <p>Una interrupción es una <strong>señal</strong> que un componente
+        (teclado, disco, reloj…) envía a la <strong>unidad de control</strong>
+        cuando necesita que se ejecute un programa que le dé servicio.</p>
+        <ul style="margin-top:.8rem">
+          <li>Es <strong>asíncrona</strong>: no depende de la instrucción que se esté ejecutando.</li>
+          <li>Cada línea de solicitud tiene una <strong>prioridad</strong>;
+            si llegan varias a la vez, se atiende la más prioritaria.</li>
+          <li>Solo se atiende si está <strong>habilitada</strong> (no inhibida).</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Qué hace el proceso al recibirla</h3>
+        <p>El teclado <strong>activa su línea de interrupción</strong> (IRQ).
+        Al terminar la instrucción en curso, la unidad de control inicia el
+        <strong>ciclo de aceptación</strong>, que vemos en la siguiente diapositiva.</p>
+        <div class="flow">
+          <div class="node hot">⌨ Teclado<small>activa su línea IRQ</small></div>
+          <span class="arrow zap">⚡</span>
+          <div class="node cpu">CPU<small>ejecutando el programa del usuario</small></div>
+        </div>
+        <div class="callout violet" style="margin-top:.6rem">
+          El teclado no espera a que la CPU le pregunte:
+          <strong>avisa cuando necesita ser atendido</strong>.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 4 · PARADA 2 · CICLO DE ACEPTACIÓN ══════════════ -->
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">Parada 2 · Ciclo de aceptación</span>
+    <h2>El ciclo de aceptación<br>de la interrupción</h2>
+
+    <p class="intro">Si la interrupción está habilitada, al terminar la instrucción
+      en curso la unidad de control realiza estos pasos:</p>
+
+    <div class="cols">
+      <div>
+        <div class="steps">
+          <div class="step"><p><b>Guarda</b> el contador de programa (PC) y el
+            registro de estado en la <b>pila de sistema</b>.</p></div>
+          <div class="step"><p><b>Cambia el modo de ejecución</b> a
+            <b>núcleo</b> (modo privilegiado).</p></div>
+          <div class="step"><p><b>Salta a la rutina</b> que atiende la interrupción.
+            En la interrupción <b>vectorizada</b>, la dirección de esa rutina se obtiene
+            de la <b>tabla de interrupciones (IDT)</b> y se carga en el PC.</p></div>
+          <div class="step"><p>En muchos procesadores, <b>inhibe las interrupciones</b>
+            mientras se atiende la actual.</p></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Por qué interviene el sistema operativo</h3>
+        <p>La rutina de tratamiento se ejecuta en <strong>modo privilegiado</strong>.
+        Si un programa de usuario pudiera manejarla, tendría acceso ilimitado a los
+        datos y programas de todos los usuarios del sistema.</p>
+        <div class="callout" style="margin-top:1rem">
+          Por eso ese código lo <strong>controla el sistema operativo</strong>:
+          proteger el tratamiento de interrupciones es una de sus funciones esenciales.
+        </div>
+        <div class="flow" style="margin-top:1.2rem">
+          <div class="node">Pila<small>PC + estado guardados</small></div>
+          <span class="arrow">→</span>
+          <div class="node cpu">Modo núcleo</div>
+          <span class="arrow">→</span>
+          <div class="node so">IDT → rutina del SO</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 5 · PARADA 3 · CICLO DE LA CPU ══════════════ -->
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">Parada 3 · El ciclo de la CPU</span>
+    <h2>La unidad de control repite<br>siempre el mismo <span class="grad">bucle</span></h2>
+
+    <div class="cpu-loop">
+      <div class="node cpu">① Leer la instrucción<small>apuntada por el <b>PC</b></small></div>
+      <span class="arrow">→</span>
+      <div class="node cpu">② Incrementar el PC<small>apunta a la siguiente</small></div>
+      <span class="arrow">→</span>
+      <div class="node cpu">③ Interpretar y ejecutar<small>la instrucción se guarda en el <b>RI</b></small></div>
+      <span class="arrow">↩</span>
+      <div class="loop-back">La secuencia es <span>lineal</span> y se repite sin parar,
+        miles de millones de veces por segundo</div>
+    </div>
+
+    <div class="cols" style="margin-top:.6rem">
+      <div class="card">
+        <h3>Cómo se altera esa secuencia</h3>
+        <ul>
+          <li><strong>Saltos o bifurcaciones</strong>: modifican el PC dentro del propio programa.</li>
+          <li><strong>Interrupciones</strong>: fuerzan el salto a otro programa,
+            normalmente el sistema operativo.</li>
+          <li><strong>Llamadas al sistema</strong> (<code>TRAP</code>, <code>INT</code>, <code>SC</code>):
+            el programa solicita un servicio al sistema operativo.</li>
+        </ul>
+      </div>
+      <div class="card accent">
+        <h3>Qué ocurre con el programa del usuario</h3>
+        <p>Cuando llega la interrupción, el PC y el registro de estado del proceso
+        quedan <strong>guardados en la pila</strong>. El programa se queda en pausa:
+        la CPU atiende la interrupción y después <strong>lo reanuda donde estaba</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 6 · PARADA 4 · TRATAMIENTO ══════════════ -->
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">Parada 4 · El tratamiento de la interrupción</span>
+    <h2>Del código de la tecla<br>al proceso del <span class="grad">navegador</span></h2>
+
+    <div class="cols">
+      <div class="card">
+        <h3>La rutina de tratamiento</h3>
+        <p class="muted" style="margin-bottom:.6rem">Es un programa del sistema operativo
+        que se ejecuta en modo núcleo y hace lo siguiente:</p>
+        <ul>
+          <li><strong>Lee</strong> del teclado el código de la tecla pulsada (<strong>scancode</strong>).</li>
+          <li>Interpreta ese código y lo añade a la <strong>cola de eventos</strong>
+            del proceso destinatario, en este caso el proceso del navegador.</li>
+          <li>Restablece los registros de inhibición para volver a admitir interrupciones.</li>
+          <li>Termina con la instrucción <code>RETI</code> (lo vemos en la Parada 7).</li>
+        </ul>
+      </div>
+      <div class="card accent">
+        <h3>La diferencia entre programa y proceso</h3>
+        <p>Entregar la tecla al navegador requiere distinguir dos conceptos:</p>
+        <ul style="margin-top:.6rem">
+          <li><strong>Programa</strong>: un fichero ejecutable,
+            código estático que permanece en disco.</li>
+          <li><strong>Proceso</strong>: un programa en ejecución.
+            Tiene registros, imagen de memoria y un <strong>bloque de control de proceso
+            (BCP)</strong> donde el sistema operativo guarda sus datos y recursos.</li>
+        </ul>
+        <div class="callout teal" style="margin-top:.9rem">
+          Varios procesos pueden ejecutar <strong>el mismo programa</strong>,
+          como varias pestañas de un mismo navegador.
+          El programa es el código; el proceso, su ejecución.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 7 · PARADA 5 · RELOJ Y PLANIFICACIÓN ══════════════ -->
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">Parada 5 · El reloj y la planificación</span>
+    <h2>El tiempo de CPU<br>se reparte en <span class="grad">turnos</span></h2>
+
+    <p class="intro">En el computador conviven muchos procesos a la vez
+      (editor, música, navegador…). Como la CPU solo ejecuta una cosa en cada instante,
+      el sistema operativo las alterna:</p>
+
+    <div class="cols-3">
+      <div class="card">
+        <h3>Temporizador</h3>
+        <p>El <strong>reloj</strong> genera una <strong>interrupción periódica</strong>
+        (el <em>tic</em>) cada 1–100&nbsp;ms.</p>
+      </div>
+      <div class="card">
+        <h3>Planificador</h3>
+        <p>Cada tic interrumpe el proceso en curso y el <strong>planificador</strong>
+        decide qué proceso pasa a ejecutarse.</p>
+      </div>
+      <div class="card">
+        <h3>Multiprogramación</h3>
+        <p>Los procesos se <strong>alternan</strong> tan rápido que parece
+        que todos se ejecutan a la vez.</p>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="ticks">
+        <div class="tick"><span class="beam"></span><span class="chip a">Navegador</span><span class="t">tic</span></div>
+        <div class="tick"><span class="beam"></span><span class="chip b">Editor</span><span class="t">tic</span></div>
+        <div class="tick"><span class="beam"></span><span class="chip a">Navegador</span><span class="t">tic</span></div>
+        <div class="tick"><span class="beam"></span><span class="chip c">Música</span><span class="t">tic</span></div>
+        <div class="tick"><span class="beam"></span><span class="chip a">Navegador</span><span class="t">tic</span></div>
+        <div class="tick"><span class="beam"></span><span class="chip b">Editor</span><span class="t">tic</span></div>
+        <div class="tick"><span class="beam"></span><span class="chip a">Navegador</span><span class="t">tic</span></div>
+      </div>
+      <div class="cap">Cada bloque de color es un turno de CPU de un proceso,
+        entre un tic del reloj y el siguiente. El navegador avanza un poco en cada turno
+        hasta que le llega el turno de procesar la tecla.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 8 · PARADA 6 · MEMORIA ══════════════ -->
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">Parada 6 · La memoria</span>
+    <h2>Cada dato del recorrido<br>se guarda en un nivel de <span class="grad">memoria</span></h2>
+
+    <p class="intro">Durante el recorrido se tocan datos y programas que están
+      en distintos niveles de memoria, de más rápida a más lenta:</p>
+
+    <table class="mem">
+      <thead>
+        <tr><th>Nivel</th><th>Capacidad típica</th><th>Acceso</th><th>En este recorrido</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="fast">Registros</td><td>64 B – 1 KiB</td><td class="fast">~0,25 ns</td><td>PC, RI, bits de estado: lo que se guarda y restaura</td></tr>
+        <tr><td class="fast">Caché</td><td>8 KiB – 8 MiB</td><td class="fast">~1–20 ns</td><td>Partes del código que se usan con frecuencia</td></tr>
+        <tr><td>Memoria principal</td><td>128 MiB – 64 GiB</td><td>60–200 ns</td><td>El código y los datos del proceso en ejecución</td></tr>
+        <tr><td class="slow">SSD</td><td>128 GiB – 1 TiB</td><td class="slow">~50 µs</td><td>Programas y archivos; aquí vive el navegador en disco</td></tr>
+        <tr><td class="slow">Disco magnético</td><td>256 GiB – 4 TiB</td><td class="slow">5–30 ms</td><td>Almacenamiento masivo y zona de intercambio (swap)</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      La información se copia <strong>de lo lento a lo rápido</strong> cuando se necesita
+      (principio de <strong>localidad</strong>) y se vuelve a guardar en disco cuando se modifica.
+      La <strong>caché</strong> es una memoria de apoyo que guarda lo usado recientemente;
+      la gestiona el hardware. La <strong>memoria virtual</strong>, que permite usar el disco
+      como extensión de la RAM, la gestiona el sistema operativo con ayuda de la <strong>MMU</strong>.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 9 · PARADA 7 · RETI ══════════════ -->
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">Parada 7 · El retorno</span>
+    <h2><code>RETI</code>: se restaura el estado<br>y el proceso <span class="grad">continúa</span></h2>
+
+    <div class="cols">
+      <div class="card">
+        <div class="steps">
+          <div class="step"><p>La rutina de tratamiento termina con la instrucción
+            <b><code>RETI</code></b> (retorno de interrupción).</p></div>
+          <div class="step"><p><b>RETI restaura</b> el PC y el registro de estado
+            que se habían guardado en el ciclo de aceptación.</p></div>
+          <div class="step"><p>El estado restaurado tiene el bit de modo en
+            <b>usuario</b>: el procesador <b>vuelve a modo usuario</b>.</p></div>
+          <div class="step"><p>El proceso del navegador <b>continúa donde estaba</b>
+            y procesa el evento de teclado; la interfaz se actualiza
+            y <b>aparece el carácter</b>.</p></div>
+        </div>
+      </div>
+      <div class="card accent">
+        <h3>Cómo se ve el resultado</h3>
+        <div class="pixel-demo">
+          <div class="kb-key">A</div>
+          <span class="arrow zap">⚡</span>
+          <div class="screen">Hola<span class="cursor"></span></div>
+        </div>
+        <div class="callout violet" style="margin-top:1rem">
+          Entre pulsar la tecla y ver el carácter han intervenido: una interrupción,
+          el ciclo de aceptación, la rutina del sistema operativo, varios turnos de
+          planificación y accesos a los distintos niveles de memoria.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 10 · RESUMEN ══════════════ -->
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">Resumen</span>
+    <h2>El recorrido completo</h2>
+
+    <ol class="journey" style="margin-top:1rem">
+      <li><span class="num">1</span>
+        <h4>Interrupción</h4>
+        <p>El teclado activa su línea de interrupción (IRQ)</p></li>
+      <li><span class="num">2</span>
+        <h4>Aceptación</h4>
+        <p>La CPU guarda el estado, pasa a modo núcleo y salta vía IDT</p></li>
+      <li><span class="num">3</span>
+        <h4>Tratamiento</h4>
+        <p>El SO lee el scancode y lo entrega al proceso del navegador</p></li>
+      <li><span class="num">4</span>
+        <h4>Planificación</h4>
+        <p>El temporizador asigna turnos de CPU; el navegador se ejecuta</p></li>
+      <li><span class="num">5</span>
+        <h4>RETI</h4>
+        <p>Vuelta a modo usuario; el carácter aparece en pantalla</p></li>
+    </ol>
+
+    <div class="callout" style="margin-top:1.6rem;text-align:center">
+      Todo este mecanismo es automático y lo coordina el sistema operativo.
+      Se repite con cada pulsación, cada clic y cada movimiento del ratón.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 11 · CIERRE ══════════════ -->
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">Cierre</span>
+    <h2>Por qué interesa<br>en <span class="grad">diseño de interfaces</span></h2>
+
+    <div class="why">
+      <div class="card accent">
+        <h3>Rendimiento</h3>
+        <p>Entender cómo se gestionan el procesador, la memoria y los procesos
+        ayuda a explicar cuándo y por qué una aplicación se vuelve lenta,
+        y cómo evitarlo.</p>
+      </div>
+      <div class="card accent">
+        <h3>Eventos</h3>
+        <p>Cada interacción (tecla, clic, scroll) sigue este mismo recorrido.
+        Menos trabajo por evento se traduce en interfaces más fluidas.</p>
+      </div>
+      <div class="card accent">
+        <h3>Base del sistema</h3>
+        <p>El sistema operativo gestiona procesos, memoria y seguridad:
+        es el entorno donde se ejecutan las aplicaciones que se desarrollan.</p>
+      </div>
+    </div>
+
+    <p class="end">Gracias por la atención. ¿Preguntas?</p>
+    <p class="muted" style="margin-top:.6rem;font-size:.9rem">Fuente: Tema 0 · Aspectos generales —
+      Arquitectura del computador e introducción a los sistemas operativos.</p>
+  </div>
+</section>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  const progress=document.getElementById('progress');
+  const counter=document.getElementById('counter');
+  let i=0;
+
+  function show(n){
+    if(n<0||n>=slides.length) return;
+    slides[i].classList.remove('active');
+    slides[i].classList.toggle('prev',n<i);
+    i=n;
+    slides[i].classList.remove('prev');
+    slides[i].classList.add('active');
+    progress.style.width=((i+1)/slides.length*100)+'%';
+    counter.textContent=(i+1)+' / '+slides.length;
+  }
+
+  const next=()=>show(i+1);
+  const prev=()=>show(i-1);
+
+  document.getElementById('btnNext').onclick=next;
+  document.getElementById('btnPrev').onclick=prev;
+  document.getElementById('zoneR').onclick=next;
+  document.getElementById('zoneL').onclick=prev;
+
+  document.addEventListener('keydown',e=>{
+    if(['ArrowRight','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();next();}
+    else if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){e.preventDefault();prev();}
+    else if(e.key==='Home')show(0);
+    else if(e.key==='End')show(slides.length-1);
+  });
+
+  let tx=null;
+  document.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(tx===null)return;
+    const dx=e.changedTouches[0].clientX-tx;
+    if(Math.abs(dx)>60)(dx<0?next:prev)();
+    tx=null;
+  },{passive:true});
+
+  show(0);
+})();
+</script>
+</body>
+</html>
