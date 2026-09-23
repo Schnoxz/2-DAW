@@ -1,9 +1,5 @@
 # Tarea 3 - Repaso de conceptos
 
-> Curso: IPE II · Unidad Didáctica 1: La búsqueda de empleo
-> Apertura: viernes, 18/09/2026 · Cierre: viernes, 25/09/2026
-> Entrega: en la libreta (responde las 10 cuestiones)
-
 ## Enunciado (original)
 
 Repaso de conceptos. En la libreta contesta las siguientes cuestiones:
@@ -131,7 +127,3 @@ La **autocandidatura** (o candidatura espontánea) es presentarse voluntariament
 - Hacer seguimiento: confirmar recepción y mantener el contacto.
 
 Ventajas: accedes al **mercado oculto**, demuestras iniciativa y llegas antes que la competencia. Recomendable acompañarla con networking (una recomendación interna aumenta mucho el éxito).
-
----
-
-**Rúbrica orientativa (1 punto por cuestión):** se valora responder a la pregunta y justificar/describir correctamente el concepto.
