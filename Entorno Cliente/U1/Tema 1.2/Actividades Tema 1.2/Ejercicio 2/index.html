@@ -6,21 +6,15 @@
 </head>
 <body>
 
-  <!--
-    ficha: capturar el evento clic de un botón y emitir una traza
-    informativa en las herramientas de desarrollo (F12 → Console).
-  -->
   <h1>Traza informativa</h1>
   <p>Abre las herramientas de desarrollo (F12) y pulsa el botón.</p>
 
   <button type="button" id="btn">Emitir traza</button>
 
   <script>
-    // Registramos un LISTENER sobre el botón: cuando ocurra el evento "click",
-    // se ejecutará la función indicada (addEventListener, mejor que onclick: 
-    // separa el comportamiento del HTML y admite múltiples escuchas).
+    // addEventListener separa el comportamiento del HTML y admite varias escuchas.
     document.getElementById('btn').addEventListener('click', function () {
-      // console.log solo escribe en la consola; no altera la página.
+      // console.log() solo escribe en la consola; no altera la página.
       console.log('Se ha capturado el evento clic del botón.');
     });
   </script>

@@ -6,7 +6,7 @@
   <style>
     img {
       border: 2px solid #333;
-      cursor: pointer;      /* indica que la imagen es clicable */
+      cursor: pointer; /* indica que la imagen es clicable */
       display: block;
       margin-bottom: 10px;
     }
@@ -14,25 +14,16 @@
 </head>
 <body>
 
-  <!--
-    ficha: secuencia CÍCLICA de al menos 4 imágenes (fotograma a fotograma).
-    Al hacer clic sobre la imagen, el script comprueba cuál se está mostrando
-    y reasigna el atributo .src para mostrar la siguiente (con contador
-    de array + módulo, para que el bucle nunca salga del rango).
-  -->
   <h1>Fotogramas en bucle</h1>
   <p>Haz clic sobre la imagen para avanzar al siguiente fotograma.</p>
 
-  <!-- La imagen cuya .src iremos reasignando en cada clic -->
   <img id="foto" alt="Fotograma">
   <p id="pie">Fotograma 1 de 4</p>
 
   <script>
-    // Definimos las imágenes como SVG en formato data: (autocontenidas,
-    // no hace falta archivos externos para que el ejercicio funcione).
+    // Imágenes en formato data: (SVG autocontenido, sin archivos externos).
     const colores = ['red', 'green', 'blue', 'orange'];
     const imagenes = colores.map(function (color, i) {
-      // Cada imagen es un SVG con el número del fotograma dibujado.
       return 'data:image/svg+xml;utf8,' + encodeURIComponent(
         '<svg xmlns="http://www.w3.org/2000/svg" width="240" height="150">' +
         '<rect width="240" height="150" fill="' + color + '"/>' +
@@ -41,23 +32,19 @@
       );
     });
 
-    // Contador que recorre el array (permite saber cuál se está viendo).
     let indice = 0;
-
-    // Referencias a los elementos que vamos a modificar.
     const foto = document.getElementById('foto');
     const pie = document.getElementById('pie');
-    foto.src = imagenes[0];   // mostramos el primer fotograma al cargar
+    foto.src = imagenes[0]; // primer fotograma al cargar
 
-    // Avanza un paso en la secuencia y vuelve al principio al llegar al final.
-    // El operador % (módulo) mantiene índices 0→1→2→3→0... (bucle infinito).
+    // Reasigna .src al siguiente fotograma; % vuelve al inicio (bucle).
     function siguiente() {
       indice = (indice + 1) % imagenes.length;
-      foto.src = imagenes[indice];                    // reasignamos .src
+      foto.src = imagenes[indice];
       pie.innerHTML = 'Fotograma ' + (indice + 1) + ' de ' + imagenes.length;
+      console.log('[Ej9] Fotograma ' + (indice + 1) + ' de ' + imagenes.length + ' · índice: ' + indice);
     }
 
-    // Al hacer clic sobre la imagen se ejecuta siguiente().
     foto.addEventListener('click', siguiente);
   </script>
 

@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Ejercicio 7 - Tres botones (Consola / Estilo / Alerta)</title>
   <style>
-    /* Pequeño estilo para distinguir el párrafo de estado del resto */
     p#estado {
       padding: 10px;
       border: 1px solid #ccc;
@@ -18,15 +17,9 @@
 </head>
 <body>
 
-  <!--
-    ficha: interfaz con un h1, un párrafo de estado y tres botones.
-    1º Consola → traza con la hora del sistema.
-    2º Estilo  → fondo verde y texto "Sistema Activo".
-    3º Alerta  → ventana modal avisando del fin del proceso.
-  -->
   <h1>Panel de sistema</h1>
 
-  <!-- Párrafo de estado: texto y fondo los modificaremos desde JavaScript -->
+  <!-- El estado se modifica desde JavaScript (texto y fondo) -->
   <p id="estado">Sistema en espera</p>
 
   <button type="button" onclick="consola()">Botón 1 (Consola)</button>
@@ -34,19 +27,17 @@
   <button type="button" onclick="alerta()">Botón 3 (Alerta)</button>
 
   <script>
-    // Referencia al párrafo de estado (se usa en "estilo").
     const estado = document.getElementById('estado');
 
-    // Botón 1: traza informativa con la hora actual del sistema.
+    // Botón 1: traza con la hora del sistema.
     function consola() {
-      // toLocaleTimeString() formatea la hora según la región del usuario.
       console.log('Hora del sistema: ' + new Date().toLocaleTimeString());
     }
 
-    // Botón 2: modifica el contenido y el fondo del párrafo de estado.
+    // Botón 2: cambia el texto y el fondo del párrafo de estado.
     function estilo() {
-      estado.innerHTML = 'Sistema Activo';            // cambia el texto
-      estado.style.backgroundColor = 'green';         // cambia el fondo (camelCase)
+      estado.innerHTML = 'Sistema Activo';            // contenido
+      estado.style.backgroundColor = 'green';         // fondo (camelCase)
     }
 
     // Botón 3: ventana emergente modal de aviso.

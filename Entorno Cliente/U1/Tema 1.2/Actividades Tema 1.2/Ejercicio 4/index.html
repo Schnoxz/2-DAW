@@ -13,34 +13,28 @@
 </head>
 <body>
 
-  <!--
-    ficha: tres botones (ruso, español, inglés). Al pulsar uno, el párrafo
-    muestra el saludo en ese idioma y cambia su color de fuente con
-    .style.color (color diferente para cada idioma).
-  -->
   <h1>Saludo en tu idioma</h1>
 
-  <!-- Párrafo destino: aqui se escribirá el saludo y se le aplicará el color -->
+  <!-- El párrafo destino mostrará el saludo con su color -->
   <p id="saludo">Elige un idioma.</p>
 
-  <!-- Cada botón llama a saludar() con el código corto del idioma -->
   <button type="button" onclick="saludar('ru')">Ruso</button>
   <button type="button" onclick="saludar('es')">Español</button>
   <button type="button" onclick="saludar('en')">Inglés</button>
 
   <script>
-    // Tabla de saludos: por cada idioma guardamos el texto y su color CSS.
+    // Tabla de saludos: texto y color CSS para cada idioma.
     const saludos = {
       ru: { texto: 'Привет!', color: 'purple' },
       es: { texto: '¡Hola!', color: 'green' },
       en: { texto: 'Hello!', color: 'blue' }
     };
 
-    // Recibe el código del idioma ('ru', 'es' o 'en') y actualiza el párrafo.
     function saludar(idioma) {
-      const p = document.getElementById('saludo'); // localizamos el nodo
-      p.innerHTML = saludos[idioma].texto;         // cambiamos su contenido
-      p.style.color = saludos[idioma].color;       // aplicamos el color de fuente
+      const p = document.getElementById('saludo');
+      p.innerHTML = saludos[idioma].texto;   // contenido del párrafo
+      p.style.color = saludos[idioma].color; // color de fuente en línea
+      console.log('[Ej4] Idioma: ' + idioma + ' · saludo: ' + saludos[idioma].texto + ' · color: ' + saludos[idioma].color);
     }
   </script>
 

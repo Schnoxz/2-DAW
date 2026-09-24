@@ -6,10 +6,6 @@
 </head>
 <body>
 
-  <!--
-    ficha: adaptación del ejercicio 4. Ahora las salidas en los tres idiomas
-    NO modifican la página: se imprimen únicamente por la consola (F12).
-  -->
   <h1>Saludo en tu idioma (solo consola)</h1>
   <p>Abre la consola (F12) y pulsa los botones; la salida no modifica la página.</p>
 
@@ -18,15 +14,13 @@
   <button type="button" onclick="saludar('en')">Inglés</button>
 
   <script>
-    // Misma tabla de saludos que en el ejercicio 4.
     const saludos = {
       ru: { texto: 'Привет!', color: 'purple' },
       es: { texto: '¡Hola!', color: 'green' },
       en: { texto: 'Hello!', color: 'blue' }
     };
 
-    // Igual que en el ejercicio 4, PERO sin tocar el DOM:
-    // console.log escribe el saludo (y su color) solo en la consola.
+    // Solo consola: no modifica el DOM, escribe el saludo y su color en F12.
     function saludar(idioma) {
       const s = saludos[idioma];
       console.log(s.texto + ' (color sugerido: ' + s.color + ')');
