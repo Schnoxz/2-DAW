@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<!--
+Ejercicio 4:
+Construir una web con tres botones ("Ruso", "Español", "Inglés") que alteren un párrafo (<p>) mostrando un saludo en el idioma elegido y aplicando a dicho párrafo un color de fuente CSS diferente para cada idioma mediante .style.color.
+-->
+<html>
+<body>
+  <h1>Saludo en tu idioma</h1>
+  <!-- El párrafo saludo muestra el texto elegido -->
+  <p id="saludo">Elige un idioma.</p>
+  <!-- Al hacer clic, document.getElementById localiza el párrafo, cambia su texto con innerHTML y su color con style.color -->
+  <button type="button" onclick="document.getElementById('saludo').innerHTML = 'Привет!';console.log(document.getElementById('saludo').innerHTML); document.getElementById('saludo').style.color = 'red'">Ruso</button>
+  <button type="button" onclick="document.getElementById('saludo').innerHTML = '¡Hola!';console.log(document.getElementById('saludo').innerHTML); document.getElementById('saludo').style.color = 'green'">Español</button>
+  <button type="button" onclick="document.getElementById('saludo').innerHTML = 'Hello!';console.log(document.getElementById('saludo').innerHTML); document.getElementById('saludo').style.color = 'blue'">Inglés</button>
+</body>
+</html>

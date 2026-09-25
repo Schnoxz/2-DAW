@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--
+Ejercicio 9:
+Crear una secuencia cíclica de al menos 4 imágenes, fotograma a fotograma. Al hacer clic sobre la imagen, el script comprueba cuál se está visualizando, mediante una condición o un contador de un array, y reasigna el atributo .src para mostrar la siguiente imagen.
+-->
+<html>
+<body>
+  <h1>Fotogramas en bucle</h1>
+  <p>Haz clic sobre la imagen para avanzar.</p>
+  <!-- Imagen con id para que vayan pasando al hacer clic y un id pie para mostrar el fotograma actual-->
+  <img id="foto" onclick="siguiente()">
+  <p id="pie">Fotograma 1 de 4</p>
+
+  <script>
+    // Tengo una carpeta con las 4 imágenes que recorté y las meto en un array para que se puedan recorrer
+    const imagenes = ['Imagenes/Recortadas/1.jpg','Imagenes/Recortadas/2.jpg','Imagenes/Recortadas/3.jpg','Imagenes/Recortadas/4.jpg'];
+    // Se localiza la imagen y el pie para que se puedan modificar
+    const foto = document.getElementById('foto');
+    const pie = document.getElementById('pie');
+    // Mostramos la primera imagen al cargar
+    foto.src = imagenes[0];
+    // indice guarda qué fotograma se está mostrando
+    var indice = 0;
+
+    // Una función que ya hemos visto con Java como un contador en un array, creando un bucle que recorra las imágenes y vuelva a la primera cuando llegue al final
+      function siguiente() {
+      indice++; // Se incrementa el contador
+      if (indice == imagenes.length) indice = 0; // Si el índice llega al final del array, vuelve a 0
+      foto.src = imagenes[indice]; // Se cambia la imagen
+      pie.innerHTML = 'Fotograma ' + (indice + 1) + ' de ' + imagenes.length; // Se suma 1 al contador y muestra la frase con el fotograma actual y el total de fotogramas  que seria el tamaño del array
+    }
+  </script>
+</body>
+</html>
