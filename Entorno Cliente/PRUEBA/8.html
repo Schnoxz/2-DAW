@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+Ejercicio 8:
+Desarrollar un test interactivo de siete preguntas con botones "Verdadero" y "Falso". Cuando el usuario hace clic, el script evalúa el acierto y modifica la propiedad de estilo .style.color = "green" para el acierto o .style.color = "red" para el error.
+-->
+<html>
+<body>
+  <h1>Test: Verdadero o Falso</h1>
+
+  <!-- Cada pregunta tiene un id para poder cambiar el color de todo el bloque. -->
+  <div id="pregunta1">
+    <p>1. JavaScript se ejecuta en el navegador del cliente.</p>
+    <button type="button" onclick="responder(1, verdadero)">Verdadero</button>
+    <button type="button" onclick="responder(1, falso)">Falso</button>
+  </div>
+
+  <div id="pregunta2">
+    <p>2. El código de cliente es totalmente privado e invisible para el usuario.</p>
+    <button type="button" onclick="responder(2, verdadero)">Verdadero</button>
+    <button type="button" onclick="responder(2, falso)">Falso</button>
+  </div>
+
+  <div id="pregunta3">
+    <p>3. innerHTML permite modificar el contenido HTML de un elemento.</p>
+    <button type="button" onclick="responder(3, verdadero)">Verdadero</button>
+    <button type="button" onclick="responder(3, falso)">Falso</button>
+  </div>
+
+  <div id="pregunta4">
+    <p>4. document.getElementById() localiza un elemento por su atributo id.</p>
+    <button type="button" onclick="responder(4, verdadero)">Verdadero</button>
+    <button type="button" onclick="responder(4, falso)">Falso</button>
+  </div>
+
+  <div id="pregunta5">
+    <p>5. window.alert() muestra una ventana emergente modal.</p>
+    <button type="button" onclick="responder(5, verdadero)">Verdadero</button>
+    <button type="button" onclick="responder(5, falso)">Falso</button>
+  </div>
+
+  <div id="pregunta6">
+    <p>6. console.log() permite ver trazas en las herramientas de desarrollo del navegador.</p>
+    <button type="button" onclick="responder(6, verdadero)">Verdadero</button>
+    <button type="button" onclick="responder(6, falso)">Falso</button>
+  </div>
+
+  <div id="pregunta7">
+    <p>7. document.write() genera texto directamente en el flujo de la página.</p>
+    <button type="button" onclick="responder(7, verdadero)">Verdadero</button>
+    <button type="button" onclick="responder(7, falso)">Falso</button>
+  </div>
+  <!-- Como ya se habló en clase, el intento de introducir el test con uso de dos variables para las respuestas y una función para comprobar si el usuario acierta, consultando con la IA era buena idea crear un array y luego comprobar con un ternario la respuesta -->
+  <script>
+    // Estas dos variables me sirven para no escribir true y false muchas veces además como son constantes no van a pioder cambiarse luego
+    const verdadero = true;
+    const falso = false;
+
+    // Guardo aquí la respuesta correcta de cada pregunta en un array en orden, la primera es verdadera, la segunda es falsa, etc...
+    const respuestas = [verdadero, falso, verdadero, verdadero, verdadero, verdadero, verdadero];
+    // Con esta función se comprueba pasandole por parametro el número de la pregunta y la respuesta, verdadera o falsa
+    function responder(numero, respuestaElegida) {
+      // Con la variable de pregunta se consulta el id de la pregunta y su número
+      const pregunta = document.getElementById('pregunta' + numero);
+      // Esta variable actua como un booleano para comprobar en el array es la respuesta correcta (0,1)
+      const esAcierto = respuestas[numero - 1] === respuestaElegida;
+      // Cuando ya tiene el resultado, se usa como un ternario. si es acierto, el color del bloque de la pregunta se pone verde, si no, rojo
+      pregunta.style.color = esAcierto ? 'green' : 'red';
+    }
+  </script>
+</body>
+</html>

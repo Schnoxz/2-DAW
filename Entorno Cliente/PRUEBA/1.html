@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<!--
+Eercicio 1:
+Añadir un segundo botón al ejemplo de los apuntes. Al pulsarlo, no solo debe alterar el párrafo, sino que debe cambiar también el texto del encabezado <h1> mediante document.getElementById() e innerHTML.
+-->
+<html>
+<body>
+  <h1 id="Titulo">Modificando el código HTML</h1>
+  <p id="prueba">Modificando el contenido.</p>
+  <!-- Al hacer clic, document.getElementById localiza el nodo y cambia su texto interno -->
+  <button type="button" onclick="document.getElementById('prueba').innerHTML = 'CAMBIANDO el contenido!'; console.log('Contenido cambiado.')">¡Dale!</button>
+    <button type="button" onclick="document.getElementById('Titulo').innerHTML = 'CAMBIANDO el titulo!'; console.log('Titulo cambiado.')">Cambiar el titulo</button>
+</body>
+</html>

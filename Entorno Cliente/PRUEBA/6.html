@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--
+Ejercicio 6:
+Transformar el código para generar los textos directamente en el flujo de la página mediante el método document.write().
+-->
+<html>
+<body>
+  <!-- Cada botón pasa un saludo a la función para que document.write() lo muestre en la página. -->
+  <h1>Saludos en tu idioma</h1>
+
+  <button type="button" onclick="escribir('Привет!')">Ruso</button>
+  <button type="button" onclick="escribir('¡Hola!')">Español</button>
+  <button type="button" onclick="escribir('Hello!')">Inglés</button>
+
+  <script>
+    // Se define una funcion que se le pasa por parametro de entrada "texto", que será el saludo según el botón pulsado
+    function escribir(texto) {
+      // Con el document.write() se reemplaza el contenido por el nuevo del botón y se vuelve a escribir con el saludo en ese idioma
+      // el ${texto} es una cadena de texto que sirve para concatenar el saludo en el idioma correspondiente sin necesidad de usar la +
+      document.write(`<h1>Saludos en tu idioma</h1> <h2>${texto}</h2> 
+        <button type="button" onclick="escribir('Привет!')">Ruso</button>
+        <button type="button" onclick="escribir('¡Hola!')">Español</button>
+        <button type="button" onclick="escribir('Hello!')">Inglés</button>`); }
+  </script>
+</body>
+</html>

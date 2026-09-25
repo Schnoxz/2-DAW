@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Documentación ejercicios Tema 1.2</title>
+  <style>
+    @page { size: A4 landscape; margin: 10mm; }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: #171717; font-family: Arial, Helvetica, sans-serif; }
+    .exercise { break-after: page; page-break-after: always; }
+    .exercise:last-child { break-after: auto; page-break-after: auto; }
+    h1 { margin: 0 0 2mm; font-size: 18pt; }
+    .label { margin: 0 0 1mm; color: #555; font-size: 9pt; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .statement { margin: 0 0 3mm; padding: 3mm 4mm; border-left: 1.2mm solid #3b82f6; background: #f1f5f9; font-size: 10.5pt; line-height: 1.35; }
+    figure { margin: 0; }
+    img { display: block; width: 100%; max-height: 151mm; object-fit: contain; border: .25mm solid #94a3b8; }
+  </style>
+</head>
+<body>
+  <section class="exercise">
+    <h1>Ejercicio 1</h1>
+    <p class="label">Enunciado</p>
+    <p class="statement">Añadir un segundo botón al ejemplo de los apuntes. Al pulsarlo, no solo debe alterar el párrafo, sino que debe cambiar también el texto del encabezado &lt;h1&gt; mediante document.getElementById() e innerHTML.</p>
+    <figure><img src="Imagenes/1.png" alt="Captura comprobada del ejercicio 1"></figure>
+  </section>
+  <section class="exercise">
+    <h1>Ejercicio 2</h1>
+    <p class="label">Enunciado</p>
+    <p class="statement">Implementar una página que capture el evento clic de un botón para emitir una traza informativa a las herramientas de desarrollo mediante console.log().</p>
+    <figure><img src="Imagenes/2.png" alt="Captura comprobada del ejercicio 2"></figure>
+  </section>
+  <section class="exercise">
+    <h1>Ejercicio 3</h1>
+    <p class="label">Enunciado</p>
+    <p class="statement">Modificar el ejercicio anterior sustituyendo la escritura en el párrafo por ventanas de aviso emergentes modales, utilizando el método window.alert() o alert().</p>
+    <figure><img src="Imagenes/3.png" alt="Captura comprobada del ejercicio 3"></figure>
+  </section>
+  <section class="exercise">
+    <h1>Ejercicio 4</h1>
+    <p class="label">Enunciado</p>
+    <p class="statement">Construir una web con tres botones ("Ruso", "Español", "Inglés") que alteren un párrafo (&lt;p&gt;) mostrando un saludo en el idioma elegido y aplicando a dicho párrafo un color de fuente CSS diferente para cada idioma mediante .style.color.</p>
+    <figure><img src="Imagenes/4.png" alt="Captura comprobada del ejercicio 4"></figure>
+  </section>
+  <section class="exercise">
+    <h1>Ejercicio 5</h1>
+    <p class="label">Enunciado</p>
+    <p class="statement">Adaptar el mismo ejercicio para que las salidas en los tres idiomas se impriman únicamente a través de la consola del desarrollador.</p>
+    <figure><img src="Imagenes/5.png" alt="Captura comprobada del ejercicio 5"></figure>
+  </section>
+  <section class="exercise">
+    <h1>Ejercicio 6</h1>
+    <p class="label">Enunciado</p>
+    <p class="statement">Transformar el código para generar los textos directamente en el flujo de la página mediante el método document.write().</p>
+    <figure><img src="Imagenes/6.png" alt="Captura comprobada del ejercicio 6"></figure>
+  </section>
+  <section class="exercise">
+    <h1>Ejercicio 7</h1>
+    <p class="label">Enunciado</p>
+    <p class="statement">Diseñar una interfaz compuesta por un titular &lt;h1&gt;, un párrafo &lt;p id="estado"&gt;Sistema en espera&lt;/p&gt; y tres botones: <strong>Consola</strong>, para emitir una traza mediante console.log() indicando la hora del sistema; <strong>Estilo</strong>, para modificar el color de fondo del párrafo a verde y su texto a "Sistema Activo" mediante innerHTML y .style.backgroundColor; y <strong>Alerta</strong>, para lanzar un cuadro modal mediante window.alert() avisando de que el proceso ha concluido.</p>
+    <figure><img src="Imagenes/7.png" alt="Captura comprobada del ejercicio 7"></figure>
+  </section>
+  <section class="exercise">
+    <h1>Ejercicio 8</h1>
+    <p class="label">Enunciado</p>
+    <p class="statement">Desarrollar un test interactivo de siete preguntas con botones "Verdadero" y "Falso". Cuando el usuario hace clic, el script evalúa el acierto y modifica la propiedad de estilo .style.color = "green" para el acierto o .style.color = "red" para el error.</p>
+    <figure><img src="Imagenes/8.png" alt="Captura comprobada del ejercicio 8"></figure>
+  </section>
+  <section class="exercise">
+    <h1>Ejercicio 9</h1>
+    <p class="label">Enunciado</p>
+    <p class="statement">Crear una secuencia cíclica de al menos 4 imágenes, fotograma a fotograma. Al hacer clic sobre la imagen, el script comprueba cuál se está visualizando, mediante una condición o un contador de un array, y reasigna el atributo .src para mostrar la siguiente imagen.</p>
+    <figure><img src="Imagenes/9.png" alt="Captura comprobada del ejercicio 9"></figure>
+  </section>
+</body>
+</html>
