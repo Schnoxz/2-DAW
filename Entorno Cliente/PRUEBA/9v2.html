@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+Ejercicio 9:
+Crear una secuencia cíclica de al menos 4 imágenes, fotograma a fotograma. Con dos botones ("Anterior" y "Siguiente")
+se recorre la secuencia en ambos sentidos y, al llegar a un extremo, se vuelve al otro mediante el operador módulo (%).
+-->
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+  <h1>Fotogramas en bucle</h1>
+  <p>Usa los botones para avanzar o retroceder.</p>
+
+  <!-- La imagen ya no cambia al hacer clic, solo con los botones -->
+  <img id="foto">
+  <p id="pie">Fotograma 1 de 4</p>
+
+  <button type="button" onclick="anterior()">◀ Anterior</button>
+  <button type="button" onclick="siguiente()">Siguiente ▶</button>
+
+  <script>
+    // Tengo una carpeta con las 4 imágenes que recorté y las meto en un array para que se puedan recorrer
+    const imagenes = ['Imagenes/Recortadas/1.jpg','Imagenes/Recortadas/2.jpg','Imagenes/Recortadas/3.jpg','Imagenes/Recortadas/4.jpg'];
+    // Se localiza la imagen y el pie para que se puedan modificar
+    const foto = document.getElementById('foto');
+    const pie = document.getElementById('pie');
+    // Mostramos la primera imagen al cargar
+    foto.src = imagenes[0];
+    // indice guarda qué fotograma se está mostrando
+    var indice = 0;
+
+    // Botón Siguiente: el módulo hace que al pasar del último fotograma vuelva al primero
+    function siguiente() {
+      indice = (indice + 1) % imagenes.length;
+      mostrar();
+    }
+
+    // Botón Anterior: al restar 1 antes de la primera imagen se suma la longitud del array
+    // para que el resultado nunca sea negativo (si no, -1 % 4 daría -1 y la imagen no existiría)
+    function anterior() {
+      indice = (indice - 1 + imagenes.length) % imagenes.length;
+      mostrar();
+    }
+
+    // Función que aplica el cambio, reutilizada por los dos botones para no repetir código
+    function mostrar() {
+      foto.src = imagenes[indice];
+      // Se suma 1 al índice porque los fotogramas empiezan a numerarse en 1 y el array en 0
+      pie.innerHTML = 'Fotograma ' + (indice + 1) + ' de ' + imagenes.length;
+    }
+  </script>
+</body>
+</html>
