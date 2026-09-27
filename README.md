@@ -17,13 +17,14 @@
 
 | # | Módulo | Unidades | Contenido |
 |---|--------|----------|-----------|
-| 1️⃣ | **Desarrollo web en entorno cliente** | Unidad 1 | Arquitecturas y tecnologías sobre clientes web · Tarea 1.1 |
-| 2️⃣ | **Desarrollo web en entorno servidor** | UT1 · UT2 | Arquitecturas de desarrollo web · PHP e inserción de código en páginas web |
-| 3️⃣ | **Diseño de interfaces Web** | Tema 0 · Tema 1 | Contexto de los sistemas informáticos · Principios de diseño de interfaces |
-| 4️⃣ | **Itinerario Personal para la Empleabilidad II** | U.D. 1 | La búsqueda de empleo · Tareas 1 a 3 resueltas |
-| 5️⃣ | **Inglés** | — | Prueba inicial de nivel |
-| 6️⃣ | **Proyecto** | — | *(próximamente)* |
-| 7️⃣ | **Wordpress** | — | *(próximamente)* |
+| 1️⃣ | **Desarrollo web en entorno cliente** | Unidad 1 | Arquitecturas y tecnologías sobre clientes web · Temas 1, 1.2 y 1.3 con sus entregas |
+| 2️⃣ | **Desarrollo web en entorno servidor** | UT1 · UT2 | Arquitecturas de desarrollo web · PHP e inserción de código · ejercicios opcionales |
+| 3️⃣ | **Diseño de interfaces Web** | Tema 0 · Tema 1 · Tema 2 | Contexto de los sistemas informáticos · Principios de diseño · HTML y CSS |
+| 4️⃣ | **Despliegue de aplicaciones web** | Unidad 1 | Implantación de arquitecturas web · cuestionario de investigación |
+| 5️⃣ | **Itinerario Personal para la Empleabilidad II** | U.D. 1 | La búsqueda de empleo · Tareas 1 a 5 resueltas · cuestionario de caracterización inicial |
+| 6️⃣ | **Inglés** | Unit 1 | Prueba inicial de nivel · Verb Tenses |
+| 7️⃣ | **Wordpress** | UD0 · UD1 | Evaluación inicial · Introducción al CMS y CDMON |
+| 8️⃣ | **Proyecto** | — | *(próximamente)* |
 
 
 ⭐ *Repositorio de estudio — materiales descargados de la plataforma Moodle Centros*
