@@ -1,127 +1,65 @@
-# 🎬 Guion — Video Currículum (≈2:30 min)
+# 🎬 Guion — Video Currículum
 
-> IPE II · Unidad Didáctica 1 · Entrega: 25/09/2026
+> IPE II · Unidad Didáctica 1: La búsqueda de empleo · Entrega: 25/09/2026
+> Duración objetivo: 2:30 – 3:00 minutos
 > Plano medio, cámara a la altura de los ojos, luz frontal, fondo limpio y neutro.
 
 ---
 
-## Tabla resumen
+## Guion completo (leer seguido)
 
-| Bloque | Tiempo | Qué dices | Gestos / acción |
-|--------|--------|-----------|-----------------|
-| 1. Saludo e intro | 0:00–0:20 | Quién eres y qué quieres | Sonríe, saluda con la mano, mirar a cámara |
-| 2. Formación | 0:20–0:50 | Ciclo DAW + tecnologías | Manos abiertas, enumerar con dedos |
-| 3. Proyectos | 0:50–1:30 | Muestras de trabajo | Cambio de plano / pantalla compartida |
-| 4. Fortalezas | 1:30–2:00 | Qué te diferencia | Enumerar con la mano (1, 2, 3) |
-| 5. Empleo que buscas | 2:00–2:20 | Puesto y disponibilidad | Señal hacia adelante, mirada firme |
-| 6. Cierre | 2:20–2:30 | Despedida y contacto | Sonríe, asiente, despedida con la mano |
+Hola, me llamo Javier, soy Técnico Superior en Desarrollo de Aplicaciones Web, y en los próximos dos minutos quiero contarte quién soy, qué sé hacer y qué tipo de trabajo busco.
 
----
+*(Pausa. Sonrisa. Saludo breve con la mano.)*
 
-## Bloque 1 — Saludo e introducción (0:00 – 0:20)
+Vengo de terminar el Grado Superior aquí en Cádiz. Durante el ciclo he trabajado con HTML, CSS y JavaScript por el lado del cliente, y con PHP, MySQL y Git por el lado del servidor. El Git es lo que más me gusta, porque obliga a trabajar de forma ordenada y a poder volver atrás si algo se rompe. Y aparte del temario, por mi cuenta me he metido con React, porque es lo que más se está pidiendo ahora mismo en las ofertas.
 
-> Subtítulo: "Hola, soy Javier · Técnico Superior en DAW" · icono ✋
+*(Pausa. Baja un poco el tono y el ritmo.)*
 
-**Texto:**
+Voy a ser sincero: mi título es nuevo, pero no soy el primero en pisar un puesto de trabajo. Antes de estudiar esto he currado en hostelería y en atención al cliente, y ahí es donde he aprendido a tratar con gente de todo tipo, a mantener la calma cuando algo sale mal, y a cuidar el detalle.
 
-"Hola, soy **[Javier]**, Técnico Superior en Desarrollo de Aplicaciones Web. Hoy quería contarles por qué soy la persona adecuada para la oferta de **desarrollador web junior** que han publicado."
+*(Pausa de 1,5 segundos. Marca "a cuidar el detalle". Mira a cámara.)*
 
-**Gestos y dirección:**
-- Empieza sonriendo 1 segundo antes de hablar (da naturalidad).
-- Saludo breve con la mano a cámara.
-- Manos visibles, relajadas; no las metas en los bolsillos.
-- Mira al objetivo de la cámara (no a la pantalla).
+Y eso, en mi sector, es exactamente lo mismo. Si una pantalla se ve bien, es porque alguien se ha tomado la molestia de revisarla. La diferencia es que cuando algo falla, el que se equivoca no es un pedido mal cobrado: es código que no funciona. Y la solución es la de siempre: lo miras, lo pruebas, lo arreglas y lo dejas bien.
 
----
+*(Pausa. Tono normal otra vez.)*
 
-## Bloque 2 — Formación (0:20 – 0:50)
+Si tuviera que resumir en tres qué aporto a un equipo, serían estas.
 
-> Iconos: 🎓 🏫 · Subtítulo: "Grado Superior DAW · IES Kursaal"
+*(Enumera con los dedos. Medio segundo entre cada punto.)*
 
-**Texto:**
+**Primera: aprendo rápido.** React no me lo enseñó nadie en clase, me lo enseñé yo en ratos. Y sé pedir ayuda cuando la necesito, que eso también es una competencia.
 
-"Acabo de terminar el grado superior de DAW en el IES Kursaal de Cádiz. Durante el ciclo he trabajado con HTML, CSS, JavaScript, PHP, bases de datos MySQL y Git. Además, por mi cuenta me he formado en **React**, porque sé que es lo que más piden hoy las empresas."
+**Segunda: trabajo en equipo y sé comunicar.** En hostelería, en un servicio, no puedes esconderte: si algo falla lo dices, y si alguien te pregunta le explicas lo que pasa. Es literalmente lo mismo que trabajar con un compañero que te pregunta por qué una cosa no le hace caso.
 
-**Gestos y dirección:**
-- Manos abiertas a la altura del pecho al enumerar tecnologías.
-- En "React" haz una pequeña pausa y enfatiza la palabra; puedes levantar un dedo.
-- Ligera inclinación del torso hacia delante al hablar de tu esfuerzo personal.
+**Tercera: soy constante y de fiar.** Llego a la hora, termino lo que empiezo, y aviso cuando no puedo. Que eso, al final, es la mitad de ser un buen compañero.
+
+*(Pausa. Mirada firme, sin sonreír.)*
+
+Lo que busco es un puesto de desarrollador junior en un equipo donde pueda aportar desde el primer día y seguir aprendiendo, y donde la gente se hable, que para mí es lo más importante. Estoy disponible para jornada completa, presencial o en remoto, y con muchas ganas de empezar.
+
+*(Pausa. Sonríe. Asiente con la cabeza.)*
+
+Os dejo mi currículum y mi portfolio aquí debajo. Muchas gracias por ver el vídeo, y si creéis que encajo, me encantaría hablar con vosotros. ¡Un saludo!
 
 ---
 
-## Bloque 3 — Experiencia y proyectos (0:50 – 1:30)
+## Notas de grabación
 
-> Iconos: 💻 ⭐ · Pantalla compartida o recuadro con tu portfolio/GitHub
+- **Subtítulos** en todo el vídeo. Las palabras clave (los nombres de las tecnologías y las tres fortalezas) en negrita o con otro color, para que destaquen.
+- **Icono o efecto** al inicio de cada bloque, con transición limpia: fundido o corte en seco.
+- **Un solo corte de plano** en todo el vídeo, cuando cambies del bloque de formación al de experiencia. Nada más, porque muchos cortes matan la sensación de espontaneidad.
+- Tono de voz natural, como si hablaras con alguien al otro lado de una mesa. Si te trabas, haz una pausa corta y sigue: no pasa nada.
+- Mira a la cámara, no a la pantalla. En la frase "es exactamente lo mismo", asiente: es el momento bisagra del vídeo.
+- Enumera con los dedos los tres puntos, a la altura del pecho, sin subir las manos.
 
-**Texto:**
+## Antes de grabar
 
-"No tengo una larga trayectoria profesional porque acabo de salir del ciclo, pero en su lugar le enseño lo que sí puedo demostrar: mis proyectos. Este es **[proyecto 1]**, una web real hecha con React y una API REST. Y este es **[proyecto 2]**, un CRUD completo con PHP y MySQL. El código está publicado en mi GitHub, cualquier persona puede revisarlo."
-
-**Gestos y dirección:**
-- Al nombrar cada proyecto, señala la pantalla/muestra el recuadro (edición: cambia a grabación de pantalla o imagen).
-- Aprieta ligeramente los labios y asiente al decirlo: transmite seguridad.
-- Si hablas de GitHub, haz un gesto de "abrir" con las manos.
-
----
-
-## Bloque 4 — Fortalezas (1:30 – 2:00)
-
-> Iconos: ⚡ 💪 · Subtítulo: "3 razones para elegirme"
-
-**Texto:**
-
-"¿Qué me diferencia del resto de candidatos? Primero, que **aprendo rápido**: en tres meses aprendí React por mi cuenta. Segundo, que me gusta el trabajo bien hecho: reviso el código, escribo pruebas y documento lo que hago. Y tercero, que soy constante: si no sé algo, lo busco, lo pruebo y lo soluciono."
-
-**Gestos y dirección:**
-- Enumerar con los dedos: 1 → 2 → 3 (a la altura del pecho, sin subir las manos).
-- En "primero/segundo/tercero" haz micro-pausas entre cada punto.
-- Mantén el ritmo, no aceleres; si te trabas, pausa y retoma.
-
----
-
-## Bloque 5 — Empleo que buscas (2:00 – 2:20)
-
-> Icono: 🎯
-
-**Texto:**
-
-"Lo que busco es una oportunidad como **desarrollador front-end junior** en una empresa donde pueda aportar desde el primer día y seguir creciendo. Estoy disponible para jornada completa, presencial o en remoto, y con muchísimas ganas de incorporarme."
-
-**Gestos y dirección:**
-- Mirada firme al objetivo de la cámara.
-- Gestos amplios pero controlados: manos que acompañan cada idea.
-- En "muchísimas ganas" esboza una sonrisa amplia (es el momento más humano).
-
----
-
-## Bloque 6 — Cierre (2:20 – 2:30)
-
-> Subtítulo: "Gracias por verme" · 👋
-
-**Texto:**
-
-"Muchas gracias por su tiempo. Les dejo mi currículum y mi portfolio para que puedan conocerme mejor. Estaré encantado de contarles más en una entrevista. ¡Un saludo!"
-
-**Gestos y dirección:**
-- Asiente con la cabeza al empezar.
-- Despedida natural con la mano, manteniendo la sonrisa.
-- No cortes la grabación en seco: deja 1 segundo más después de terminar.
-
----
-
-## Notas técnicas de edición
-
-- **Subtítulos** en todo el vídeo (rúbrica: creatividad).
-- **Icono/efecto** al inicio de cada bloque (rúbrica: creatividad).
-- **Transición limpia**: fundido o corte en seco entre bloques.
-- Si usas pantalla compartida, que sea un recuadro pequeño con tu cara siempre visible.
-
-## Checklist antes de grabar
-
-- [ ] Luz frontal, nunca a contraluz; cámara/móvil a la altura de los ojos.
-- [ ] Fondo limpio (pared neutra o librería ordenada).
-- [ ] Ropa de entrevista: camisa o polo liso sin logos.
-- [ ] Grabar con auriculares para mejor sonido.
-- [ ] Ensayar 2-3 veces cronometrado: objetivo **2:00–3:00**.
+- [ ] Luz frontal, nunca a contraluz; cámara o móvil a la altura de los ojos.
+- [ ] Fondo limpio (pared neutra o estantería ordenada).
+- [ ] Ropa de entrevista: camisa o polo liso, sin logos.
+- [ ] Auriculares y cámara fija; prueba de sonido de 15 s.
+- [ ] Ensaya 2 o 3 veces cronometrado: objetivo 2:30–3:00.
 - [ ] Sin muletillas ("eeeh", "esto", "bueno"); pausa corta en su lugar.
-- [ ] Mirar a cámara, sonreír al saludar y al despedir.
+- [ ] Sonríe al saludar y al despedir.
+- [ ] Comprueba que el enlace del currículum y del portfolio funciona.
