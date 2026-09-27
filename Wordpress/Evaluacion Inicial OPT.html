@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación Inicial - Módulo Optativo de WordPress</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .info-box {
+            background-color: #e8f4fc;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .info-item {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .info-item input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+        }
+        
+        .instructions {
+            background-color: #fff8e6;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin-bottom: 25px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section-title {
+            color: #3498db;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 15px;
+        }
+        
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            resize: vertical;
+            min-height: 80px;
+            margin-top: 8px;
+        }
+        
+        .code-area {
+            font-family: 'Courier New', monospace;
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        
+        .btn {
+            display: block;
+            width: 200px;
+            margin: 30px auto;
+            padding: 12px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-download {
+            background-color: #2ecc71;
+        }
+        
+        .btn-download:hover {
+            background-color: #27ae60;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            background-color: #2ecc71;
+            color: white;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 1000;
+        }
+
+        .download-instructions {
+            background-color: #e8f6f3;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #2ecc71;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Evaluación Inicial</h1>
+            <h2>Módulo Optativo de WordPress</h2>
+            <p>2º Curso - Desarrollo de Aplicaciones Web</p>
+        </header>
+        
+        <div class="info-box">
+            <div class="info-item">
+                <p><strong>Nombre:</strong></p>
+                <input type="text" id="student-name" required>
+            </div>
+            <div class="info-item">
+                <p><strong>Email:</strong></p>
+                <input type="email" id="student-email" required>
+            </div>
+            <div class="info-item">
+                <p><strong>Fecha:</strong></p>
+                <input type="date" id="evaluation-date" required>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h3>Instrucciones</h3>
+            <p>Esta evaluación tiene como objetivo conocer tu nivel de partida en los contenidos del módulo. No tiene calificación numérica.</p>
+            <p>Responde de forma clara y concisa a todas las preguntas. Si no sabes una respuesta, es igualmente importante que lo indiques.</p>
+            <p>Al finalizar, haz clic en "Generar archivo" para descargar un archivo de texto con tus respuestas que deberás subir a Classroom.</p>
+        </div>
+        
+        <form id="evaluation-form">
+            <!-- SECCIÓN 1: CONCEPTOS BÁSICOS DE WORDPRESS -->
+            <div class="section">
+                <h3 class="section-title">Conceptos básicos de WordPress</h3>
+                
+                <div class="question">
+                    <p>1. ¿Qué es WordPress y para qué se utiliza principalmente?</p>
+                    <textarea name="q1"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>2. Explica la diferencia entre WordPress.com y WordPress.org.</p>
+                    <textarea name="q2"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>3. ¿Qué es un CMS y por qué WordPress es considerado uno de los más populares?</p>
+                    <textarea name="q3"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>4. Nombra al menos tres tipos de contenidos que se pueden gestionar en WordPress.</p>
+                    <textarea name="q4"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>5. ¿Qué ventajas ofrece WordPress frente a desarrollar un sitio web desde cero?</p>
+                    <textarea name="q5"></textarea>
+                </div>
+            </div>
+            
+            <!-- SECCIÓN 2: INSTALACIÓN Y CONFIGURACIÓN -->
+            <div class="section">
+                <h3 class="section-title">Instalación y configuración</h3>
+                
+                <div class="question">
+                    <p>6. ¿Cuáles son los requisitos mínimos para instalar WordPress?</p>
+                    <textarea name="q6"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>7. Explica brevemente el proceso de instalación de WordPress.</p>
+                    <textarea name="q7"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>8. ¿Qué información se necesita para conectar WordPress a una base de datos?</p>
+                    <textarea name="q8"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>9. ¿Qué es el archivo wp-config.php y para qué se utiliza?</p>
+                    <textarea name="q9"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>10. Menciona tres ajustes importantes que deberías configurar después de instalar WordPress.</p>
+                    <textarea name="q10"></textarea>
+                </div>
+            </div>
+            
+            <!-- SECCIÓN 3: ADMINISTRACIÓN Y CONTENIDO -->
+            <div class="section">
+                <h3 class="section-title">Administración y gestión de contenido</h3>
+                
+                <div class="question">
+                    <p>11. Explica la diferencia entre entradas (posts) y páginas (pages) en WordPress.</p>
+                    <textarea name="q11"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>12. ¿Qué son las categorías y etiquetas en WordPress y cómo se utilizan?</p>
+                    <textarea name="q12"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>13. Describe el proceso para crear y publicar una nueva entrada en WordPress.</p>
+                    <textarea name="q13"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>14. ¿Qué es el editor Gutenberg y en qué se diferencia del editor clásico?</p>
+                    <textarea name="q14"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>15. ¿Cómo se gestionan los comentarios en WordPress y por qué es importante moderarlos?</p>
+                    <textarea name="q15"></textarea>
+                </div>
+            </div>
+            
+            <!-- SECCIÓN 4: APARIENCIA Y TEMAS -->
+            <div class="section">
+                <h3 class="section-title">Apariencia y temas</h3>
+                
+                <div class="question">
+                    <p>16. ¿Qué es un tema de WordPress y qué funcionalidades proporciona?</p>
+                    <textarea name="q16"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>17. Explica cómo instalar y activar un nuevo tema en WordPress.</p>
+                    <textarea name="q17"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>18. ¿Qué es un tema hijo (child theme) y por qué se utiliza?</p>
+                    <textarea name="q18"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>19. Menciona tres elementos que se pueden personalizar generalmente desde el personalizador de WordPress.</p>
+                    <textarea name="q19"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>20. ¿Qué consideraciones deberías tener al elegir un tema para un sitio web?</p>
+                    <textarea name="q20"></textarea>
+                </div>
+            </div>
+            
+            <!-- SECCIÓN 5: PLUGINS Y FUNCIONALIDAD -->
+            <div class="section">
+                <h3 class="section-title">Plugins y funcionalidad extendida</h3>
+                
+                <div class="question">
+                    <p>21. ¿Qué es un plugin de WordPress y para qué se utiliza?</p>
+                    <textarea name="q21"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>22. Explica cómo instalar y activar un plugin en WordPress.</p>
+                    <textarea name="q22"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>23. Menciona tres tipos de funcionalidades que se pueden añadir mediante plugins.</p>
+                    <textarea name="q23"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>24. ¿Qué precauciones se deben tomar al instalar plugins de terceros?</p>
+                    <textarea name="q24"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>25. Nombra tres plugins populares de WordPress y describe brevemente su función.</p>
+                    <textarea name="q25"></textarea>
+                </div>
+            </div>
+            
+            <!-- SECCIÓN 6: PERSONALIZACIÓN Y DESARROLLO -->
+            <div class="section">
+                <h3 class="section-title">Personalización y desarrollo</h3>
+                
+                <div class="question">
+                    <p>26. ¿Qué son los shortcodes en WordPress y para qué se utilizan?</p>
+                    <textarea name="q26"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>27. Explica qué es y para qué sirve el archivo functions.php de un tema.</p>
+                    <textarea name="q27"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>28. ¿Qué son los Custom Post Types y cuándo deberías utilizarlos?</p>
+                    <textarea name="q28"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>29. Describe brevemente cómo se crea un menú personalizado en WordPress.</p>
+                    <textarea name="q29"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>30. ¿Qué es el Loop de WordPress y para qué se utiliza?</p>
+                    <textarea name="q30"></textarea>
+                </div>
+            </div>
+            
+            <!-- SECCIÓN 7: SEGURIDAD Y MANTENIMIENTO -->
+            <div class="section">
+                <h3 class="section-title">Seguridad y mantenimiento</h3>
+                
+                <div class="question">
+                    <p>31. Menciona tres medidas básicas de seguridad para un sitio WordPress.</p>
+                    <textarea name="q31"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>32. ¿Por qué es importante mantener WordPress, temas y plugins actualizados?</p>
+                    <textarea name="q32"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>33. Explica la importancia de realizar copias de seguridad periódicas.</p>
+                    <textarea name="q33"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>34. ¿Qué hacer si olvidas la contraseña de administrador de WordPress?</p>
+                    <textarea name="q34"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>35. ¿Cómo puedes mejorar el rendimiento de un sitio WordPress?</p>
+                    <textarea name="q35"></textarea>
+                </div>
+            </div>
+            
+            <!-- SECCIÓN 8: SEO Y OPTIMIZACIÓN -->
+            <div class="section">
+                <h3 class="section-title">SEO y optimización</h3>
+                
+                <div class="question">
+                    <p>36. ¿Qué es el SEO y por qué es importante para un sitio web?</p>
+                    <textarea name="q36"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>37. Menciona tres prácticas básicas de SEO que se pueden implementar en WordPress.</p>
+                    <textarea name="q37"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>38. ¿Qué plugins recomendarías para mejorar el SEO de un sitio WordPress?</p>
+                    <textarea name="q38"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>39. Explica la importancia de los permalinks en WordPress para el SEO.</p>
+                    <textarea name="q39"></textarea>
+                </div>
+                
+                <div class="question">
+                    <p>40. ¿Qué es la optimización para móviles y por qué es crucial para el SEO actual?</p>
+                    <textarea name="q40"></textarea>
+                </div>
+            </div>
+            
+            <button type="button" class="btn" id="generate-btn">Generar archivo</button>
+        </form>
+        
+        <div class="download-instructions" id="download-section" style="display: none;">
+            <h3>¡Evaluación completada!</h3>
+            <p>Haz clic en el botón de abajo para descargar un archivo con tus respuestas. Sube este archivo a Classroom.</p>
+            <button class="btn btn-download" id="download-btn">Descargar archivo</button>
+        </div>
+        
+        <footer>
+            <p>Módulo Optativo: WordPress - Daniel Ocaña Aguilera - Ciclo Formativo Grado Superior DAW</p>
+        </footer>
+    </div>
+
+    <div class="notification" id="notification">
+        Archivo generado correctamente
+    </div>
+
+    <script>
+        document.getElementById('generate-btn').addEventListener('click', function() {
+            // Obtener datos del estudiante
+            const studentName = document.getElementById('student-name').value;
+            const studentEmail = document.getElementById('student-email').value;
+            const evaluationDate = document.getElementById('evaluation-date').value;
+            
+            // Validar campos obligatorios
+            if (!studentName || !studentEmail || !evaluationDate) {
+                alert('Por favor, completa todos los campos obligatorios');
+                return;
+            }
+            
+            // Mostrar sección de descarga
+            document.getElementById('download-section').style.display = 'block';
+            
+            // Configurar botón de descarga
+            document.getElementById('download-btn').onclick = function() {
+                // Recopilar todas las respuestas
+                const formData = new FormData(document.getElementById('evaluation-form'));
+                const answers = {};
+                
+                for (let [key, value] of formData.entries()) {
+                    answers[key] = value;
+                }
+                
+                // Construir el contenido del archivo
+                let fileContent = `EVALUACIÓN INICIAL - MÓDULO OPTATIVO DE WORDPRESS
+=======================================================
+
+Nombre: ${studentName}
+Email: ${studentEmail}
+Fecha: ${evaluationDate}
+
+RESPUESTAS:
+===========
+
+`;
+                
+                // Agregar todas las preguntas y respuestas
+                for (let i = 1; i <= 40; i++) {
+                    const questionElement = document.querySelector(`textarea[name="q${i}"]`);
+                    if (questionElement) {
+                        // Obtener texto de la pregunta (párrafo anterior al textarea)
+                        let questionText = questionElement.previousElementSibling.textContent.trim();
+                        
+                        // Eliminar posibles duplicados de número
+                        questionText = questionText.replace(/^(\d+)\.\s*\1\.\s*/, "$1. ");
+                        
+                        fileContent += `${questionText}\n`;
+                        fileContent += `${answers[`q${i}`] || 'Sin respuesta'}\n\n`;
+                    }
+                }
+                
+                // Crear archivo de texto para descargar
+                const blob = new Blob([fileContent], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `evaluacion_wordpress_${studentName.replace(/\s+/g, '_')}.txt`;
+                document.body.appendChild(a);
+                a.click();
+                
+                // Limpiar
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                }, 100);
+                
+                // Mostrar notificación
+                const notification = document.getElementById('notification');
+                notification.style.display = 'block';
+                
+                // Ocultar notificación después de 3 segundos
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 3000);
+            };
+        });
+        
+        // Establecer fecha actual por defecto
+        document.getElementById('evaluation-date').valueAsDate = new Date();
+    </script>
+</body>
+</html>
