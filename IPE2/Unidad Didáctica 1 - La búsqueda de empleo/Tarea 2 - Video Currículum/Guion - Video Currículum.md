@@ -8,35 +8,22 @@
 
 ## Guion completo (leer seguido)
 
-Hola, me llamo Javier, soy Técnico Superior en Desarrollo de Aplicaciones Web, y en los próximos dos minutos quiero contarte quién soy, qué sé hacer y qué tipo de trabajo busco.
+Hola, me llamo Javier, y como muchos otros como yo, acabo de terminar el Grado Superior de Desarrollo Web, me gustaría hablaros sobre mí, qué tipo de experiencia tengo tango en el papeln como en un entorno profesional en el dia a dia
 
-*(Pausa. Sonrisa. Saludo breve con la mano.)*
 
-Vengo de terminar el Grado Superior aquí en Cádiz. Durante el ciclo he trabajado con HTML, CSS y JavaScript por el lado del cliente, y con PHP, MySQL y Git por el lado del servidor. El Git es lo que más me gusta, porque obliga a trabajar de forma ordenada y a poder volver atrás si algo se rompe. Y aparte del temario, por mi cuenta me he metido con React, porque es lo que más se está pidiendo ahora mismo en las ofertas.
+Sobre el papel he trabajado con HTML, CSS y JavaScript en el curso por el lado del cliente, y con PHP, MySQL por el lado del servidor. Aunque por mi propia parte estoy curtido en redes y ciberseguridad, tengo varios proyectos como blue team y he trabajado con diversas máquinas y he auditado otras tantas, al final de la intervención estaré encantado de compartiros mis proyectos si así lo deseais.
 
-*(Pausa. Baja un poco el tono y el ritmo.)*
+¿Y qué te diferencia de otros como tú, direis?
 
-Voy a ser sincero: mi título es nuevo, pero no soy el primero en pisar un puesto de trabajo. Antes de estudiar esto he currado en hostelería y en atención al cliente, y ahí es donde he aprendido a tratar con gente de todo tipo, a mantener la calma cuando algo sale mal, y a cuidar el detalle.
-
-*(Pausa de 1,5 segundos. Marca "a cuidar el detalle". Mira a cámara.)*
-
-Y eso, en mi sector, es exactamente lo mismo. Si una pantalla se ve bien, es porque alguien se ha tomado la molestia de revisarla. La diferencia es que cuando algo falla, el que se equivoca no es un pedido mal cobrado: es código que no funciona. Y la solución es la de siempre: lo miras, lo pruebas, lo arreglas y lo dejas bien.
+Y sí, aunque soy "nuevo" como posible empleado junior, no soy el primero en pisar un puesto de trabajo. He estado varios años en el sector de la hostelería, y ahí es donde he aprendido a tratar con gente de todo tipo, a mantener la calma cuando algo sale mal, y a entender lo que realmente significa el trabajo en equipo, las aptitudes se desarrollan, nadie nace con ellas. Además en este mercado en auge con la Inteligencia Aritificial hacen falta personas que quieran aprender y sepan desde ya, que se aprende en el día a día y la adaptación es una cualidad muy preciada para ello.
 
 *(Pausa. Tono normal otra vez.)*
 
-Si tuviera que resumir en tres qué aporto a un equipo, serían estas.
+Mi curva de aprendizaje sobre el terreno real suele ser rápida, como digo, me adapto a entornos y personas desconocidas con relativa facilidad y si hay algo que no entiendo o no puedo realizar busco soporte de alguien que sí sepa y aprendo, no me quedo callado o evito esa responsabilidad
 
-*(Enumera con los dedos. Medio segundo entre cada punto.)*
 
-**Primera: aprendo rápido.** React no me lo enseñó nadie en clase, me lo enseñé yo en ratos. Y sé pedir ayuda cuando la necesito, que eso también es una competencia.
 
-**Segunda: trabajo en equipo y sé comunicar.** En hostelería, en un servicio, no puedes esconderte: si algo falla lo dices, y si alguien te pregunta le explicas lo que pasa. Es literalmente lo mismo que trabajar con un compañero que te pregunta por qué una cosa no le hace caso.
-
-**Tercera: soy constante y de fiar.** Llego a la hora, termino lo que empiezo, y aviso cuando no puedo. Que eso, al final, es la mitad de ser un buen compañero.
-
-*(Pausa. Mirada firme, sin sonreír.)*
-
-Lo que busco es un puesto de desarrollador junior en un equipo donde pueda aportar desde el primer día y seguir aprendiendo, y donde la gente se hable, que para mí es lo más importante. Estoy disponible para jornada completa, presencial o en remoto, y con muchas ganas de empezar.
+Lo que busco es un puesto de desarrollador junior en un equipo donde pueda aportar desde el primer día, que haya una comunicacion real y que no se me vea como algo al que cuidar y gastar un tiempo que no sobra, Estoy disponible para jornada completa, presencial o en remoto, y siempre dispuesto a todo por desarrollar mi carrera profesional en este seector
 
 *(Pausa. Sonríe. Asiente con la cabeza.)*
 
