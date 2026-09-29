@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 8 - Comparativa de frameworks</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      max-width: 960px;
+      margin: 40px auto;
+      padding: 0 20px;
+      line-height: 1.5;
+    }
+    h1 { color: #1a4d8f; }
+    h2 { font-size: 1.05rem; color: #1a4d8f; margin-top: 28px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 20px 0;
+      font-size: 0.9rem;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background-color: #eef4fb; }
+    .marca { font-weight: bold; }
+    .react { color: #087ea4; }
+    .angular { color: #dd0031; }
+    .vue { color: #2c7a4b; }
+    .otros { color: #666; }
+    .caso {
+      border: 1px solid #ddd;
+      border-left: 4px solid #b35900;
+      border-radius: 5px;
+      padding: 10px 14px;
+      margin-bottom: 12px;
+      background-color: #fffaf0;
+    }
+    .caso h3 { margin: 0 0 6px 0; font-size: 0.98rem; }
+    .elegido {
+      display: inline-block;
+      background-color: #2e7d32;
+      color: #fff;
+      padding: 1px 8px;
+      border-radius: 3px;
+      font-size: 0.85rem;
+      font-weight: bold;
+    }
+    button {
+      margin-right: 8px;
+      padding: 6px 13px;
+      cursor: pointer;
+      border: 1px solid #1a4d8f;
+      background-color: #1a4d8f;
+      color: #fff;
+      border-radius: 4px;
+    }
+    .alternativas { font-size: 0.88rem; color: #444; margin-top: 6px; }
+  </style>
+</head>
+<body>
+
+  <h1>Comparativa de frameworks de front-end</h1>
+  <p>
+    En los entornos profesionales las aplicaciones rara vez se construyen solo con JavaScript
+    nativo (Vanilla JS), sino apoyándose en un framework o librería avanzada. Estos son los
+    tres grandes del mercado.
+  </p>
+
+  <h2>Características comparadas</h2>
+  <table id="tabla">
+    <tr>
+      <th>Característica</th>
+      <th class="react">ReactJS</th>
+      <th class="angular">Angular</th>
+      <th class="vue">Vue.js</th>
+    </tr>
+    <tr>
+      <td><strong>Origen y soporte</strong></td>
+      <td>Meta (Facebook)</td>
+      <td>Google</td>
+      <td>Evan You</td>
+    </tr>
+    <tr>
+      <td><strong>Lenguaje base</strong></td>
+      <td>JavaScript con sintaxis JSX</td>
+      <td>TypeScript</td>
+      <td>JavaScript</td>
+    </tr>
+    <tr>
+      <td><strong>Modelo de componentes</strong></td>
+      <td>Orientada a componentes, reutilizables, con state propio</td>
+      <td>Orientada a componentes, con módulos e inyección de dependencias</td>
+      <td>Orientada a componentes, de archivo único</td>
+    </tr>
+    <tr>
+      <td><strong>DOM virtual</strong></td>
+      <td>Sí, con reconciliación</td>
+      <td>Sí</td>
+      <td>Sí</td>
+    </tr>
+    <tr>
+      <td><strong>Curva de aprendizaje</strong></td>
+      <td>Media</td>
+      <td>Pronunciada (rxidez estructural, RxJS)</td>
+      <td>Progresiva y suave</td>
+    </tr>
+    <tr>
+      <td><strong>Reactividad</strong></td>
+      <td>Hooks y state</td>
+      <td>Programación reactiva con RxJS</td>
+      <td>Reactividad progresiva</td>
+    </tr>
+    <tr>
+      <td><strong>Legado</strong></td>
+      <td>—</td>
+      <td>AngularJS (JavaScript clásico, anterior a la v2)</td>
+      <td>—</td>
+    </tr>
+  </table>
+
+  <p class="alternativas">
+    <strong>Otras alternativas:</strong> EmberJS (convención sobre configuración, grandes aplicaciones
+    empresariales), BackboneJS (modelos y vistas ligeras), MeteorJS (tiempo real, unifica cliente y
+    servidor), Aurelia.js, Polymer y Mithril.js (Web Components y motores ultraligeros).
+  </p>
+
+  <h2>Actividad de análisis comparativo</h2>
+  <p>¿Qué framework elegirías en cada caso? Cada botón despliega la justificación.</p>
+
+  <div class="caso" id="caso1">
+    <h3>1. Pequeña tienda de barrio, presupuesto reducido y despliegue rápido</h3>
+    <p><span class="elegido">Vue.js</span></p>
+    <p class="justificacion" hidden>
+      Curva de aprendizaje progresiva: el equipo entrega antes sin poder permitirse formación
+      larga. Su ligereza y velocidad de ejecución permiten un despliegue ligero. Suele combinarse
+      con back-end como Laravel, así que el perfil del mantenedor encaja con ese stack.
+    </p>
+    <button type="button" onclick="desplegar(1)">Ver justificación</button>
+  </div>
+
+  <div class="caso" id="caso2">
+    <h3>2. Portal bancario con cientos de programadores y tipado robusto</h3>
+    <p><span class="elegido">Angular</span></p>
+    <p class="justificacion" hidden>
+      Exige un tipado estático estricto: Angular se programa en TypeScript, un superconjunto
+      de JavaScript mantenido por Microsoft, que compila a JavaScript estándar. Su arquitectura
+      estructurada y su estandarización permiten que un nuevo programador se incorpore
+      eficientemente a un proyecto en marcha. La rigidez estructural es el precio de esa
+      consistencia, y en banca compensa.
+    </p>
+    <button type="button" onclick="desplegar(2)">Ver justificación</button>
+  </div>
+
+  <div class="caso" id="caso3">
+    <h3>3. Aplicación interactiva con miles de productos y renderizado ultra rápido</h3>
+    <p><span class="elegido">ReactJS</span></p>
+    <p class="justificacion" hidden>
+      Su DOM virtual calcula diferencias mínimas y actualiza solo los nodos necesarios, lo que
+      maximiza el rendimiento con listas grandes que cambian a menudo. La programación orientada
+      a componentes permite trocear la interfaz en piezas reutilizables (una tarjeta de producto,
+      un botón) que cada una gestiona su propio estado. Además es el más adoptado del mercado,
+      con una comunidad global muy amplia.
+    </p>
+    <button type="button" onclick="desplegar(3)">Ver justificación</button>
+  </div>
+
+  <p id="traza">Pulsa un botón para desplegar la justificación y ver la traza.</p>
+
+  <script>
+    function desplegar(numero) {
+      const texto = document.querySelector('#caso' + numero + ' .justificacion');
+      const visible = texto.hasAttribute('hidden');
+      if (visible) {
+        texto.removeAttribute('hidden');
+      } else {
+        texto.setAttribute('hidden', '');
+      }
+      const framework = texto.previousElementSibling.textContent;
+      document.getElementById('traza').textContent =
+        'Caso ' + numero + ' -> ' + framework + (visible ? ' (justificación visible)' : ' (justificación oculta)');
+      console.log('[Ej8] Caso ' + numero + ' · framework elegido: ' + framework);
+    }
+  </script>
+
+</body>
+</html>

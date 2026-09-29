@@ -1,0 +1,87 @@
+/* Ejercicio 1 - CSS: presentación y maquetación, sin ninguna lógica. */
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  max-width: 760px;
+  margin: 40px auto;
+  padding: 0 20px;
+  line-height: 1.5;
+  background-color: #fdfdfd;
+  color: #222;
+}
+
+/* Clase que alterna JavaScript para demostrar el diseño declarativo. */
+body.tema-oscuro {
+  background-color: #1e1e1e;
+  color: #e8e8e8;
+}
+
+body.tema-oscuro code {
+  background-color: #333;
+  color: #8f8;
+}
+
+h1 {
+  color: #1a4d8f;
+  border-bottom: 3px solid #1a4d8f;
+  padding-bottom: 6px;
+}
+
+body.tema-oscuro h1 {
+  color: #7ab6ff;
+  border-bottom-color: #7ab6ff;
+}
+
+h2 {
+  color: #1a4d8f;
+  font-size: 1.05rem;
+  margin-top: 22px;
+}
+
+body.tema-oscuro h2 {
+  color: #7ab6ff;
+}
+
+.intro {
+  background-color: #eef4fb;
+  border-left: 4px solid #1a4d8f;
+  padding: 10px 12px;
+}
+
+body.tema-oscuro .intro {
+  background-color: #2a2a2a;
+}
+
+code {
+  background-color: #eee;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+#contador {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #b35900;
+  margin-bottom: 8px;
+}
+
+#traza {
+  color: #666;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+button {
+  margin-right: 8px;
+  padding: 7px 14px;
+  cursor: pointer;
+  border: 1px solid #1a4d8f;
+  border-radius: 4px;
+  background-color: #1a4d8f;
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+button:hover {
+  background-color: #163a68;
+}
