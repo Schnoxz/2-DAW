@@ -1,36 +1,13 @@
-// Ejercicio 1 - JavaScript: la lógica, separada del HTML y del CSS.
+// Ejercicio 1 - Los dos botones del 1.2·1, cada uno en su función
 
-let contador = 0;
-
-const salida = document.getElementById('contador');
-const traza = document.getElementById('traza');
-
-function pintar() {
-  salida.textContent = 'Contador: ' + contador;
+// Cambia el contenido del párrafo.
+function cambiarParrafo() {
+  document.getElementById('prueba').innerHTML = 'CAMBIANDO el contenido!';
+  console.log('[Ej1] Párrafo actualizado');
 }
 
-function sumar() {
-  contador++;
-  pintar();
-  traza.textContent = 'última acción: sumar()';
-  console.log('[Ej1] Contador incrementado a ' + contador);
+// Cambia el texto del encabezado h1.
+function cambiarTitulo() {
+  document.getElementById('titulo').innerHTML = '¡TÍTULO cambiado!';
+  console.log('[Ej1] Encabezado actualizado');
 }
-
-function reiniciar() {
-  contador = 0;
-  pintar();
-  traza.textContent = 'última acción: reiniciar()';
-  console.log('[Ej1] Contador reiniciado');
-}
-
-function cambiarEstilo() {
-  document.body.classList.toggle('tema-oscuro');
-  traza.textContent = 'última acción: cambiarEstilo()';
-  console.log('[Ej1] CSS alternado · tema: ' + (document.body.classList.contains('tema-oscuro') ? 'oscuro' : 'claro'));
-}
-
-pintar();
-
-document.getElementById('sumar').addEventListener('click', sumar);
-document.getElementById('reiniciar').addEventListener('click', reiniciar);
-document.getElementById('modo').addEventListener('click', cambiarEstilo);

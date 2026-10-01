@@ -2,141 +2,17 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Ejercicio 2 - Formas de declarar funciones y hoisting</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      max-width: 780px;
-      margin: 40px auto;
-      padding: 0 20px;
-      line-height: 1.5;
-    }
-    .forma {
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      padding: 12px 14px;
-      margin-bottom: 14px;
-    }
-    .forma h2 {
-      margin: 0 0 6px 0;
-      font-size: 1rem;
-      color: #1a4d8f;
-    }
-    pre {
-      background-color: #f4f4f4;
-      border-left: 3px solid #1a4d8f;
-      padding: 8px 10px;
-      margin: 6px 0;
-      overflow-x: auto;
-    }
-    button {
-      margin-right: 8px;
-      margin-top: 6px;
-      padding: 6px 13px;
-      cursor: pointer;
-    }
-    #resultado {
-      font-size: 1.1rem;
-      font-weight: bold;
-      color: #b35900;
-    }
-    .ok { color: green; }
-    .error { color: red; }
-  </style>
+  <title>Ejercicio 2 - Evento clic con console.log()</title>
+  <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 
-  <h1>Formas principales de declarar funciones</h1>
-  <p>
-    Una función es un bloque de código reutilizable que se define una vez y se invoca
-    tantas veces como haga falta. El apartado F del tema distingue tres formas.
-  </p>
+  <h1>Traza informativa</h1>
+  <p>Abre las herramientas de desarrollo (F12) y pulsa el botón.</p>
 
-  <div class="forma">
-    <h2>A. Declaración tradicional (Function Declaration)</h2>
-    <pre><code>function saludar(nombre) {
-  return `Hola, ${nombre}`;
-}</code></pre>
-    <p>Disfruta de <strong>hoisting</strong>: se puede invocar antes de la línea donde está escrita.</p>
-    <button type="button" id="btnA">Invocar saludar("Ana")</button>
-  </div>
+  <button type="button" onclick="emitirTraza()">Emitir traza</button>
 
-  <div class="forma">
-    <h2>B. Expresión de función (Function Expression)</h2>
-    <pre><code>const duplicar = function (numero) {
-  return numero * 2;
-};</code></pre>
-    <p>Se asigna a una constante. <strong>No</strong> se puede usar antes de definirla.</p>
-    <button type="button" id="btnB">Invocar duplicar(5)</button>
-  </div>
-
-  <div class="forma">
-    <h2>C. Función flecha (Arrow Function, ES6)</h2>
-    <pre><code>const sumar = (a, b) => a + b;   // retorno implícito
-const cuadrado = x => x * x;      // un solo parámetro sin paréntesis</code></pre>
-    <p>Sintaxis moderna y compacta: con una sola línea el <code>return</code> y las llaves son implícitos.</p>
-    <button type="button" id="btnC">Invocar sumar(3, 4)</button>
-  </div>
-
-  <h2>Prueba de hoisting</h2>
-  <p>
-    Esta llamada se ejecuta <em>antes</em> de que el script defina nada:
-    <code>console.log(saludarTemprano('Ana'))</code>.
-    Solo la forma A sobrevive, porque el motor eleva la función al inicio del ámbito.
-  </p>
-  <p id="resultado">Resultado: —</p>
-
-  <p id="traza">Pulsa un botón para ver su traza en la consola (F12).</p>
-
-  <script>
-    // La TRAZA se emite aquí arriba, antes de la definición de saludarTemprano.
-    // Solo es posible porque las funciones declaradas con "function" se izolan (hoisting).
-    console.log('[Ej2] Hoisting: ' + saludarTemprano('Ana'));
-
-    // A. Declaración tradicional: admite hoisting.
-    function saludar(nombre) {
-      return 'Hola, ' + nombre;
-    }
-
-    function saludarTemprano(nombre) {
-      return saludar(nombre);
-    }
-
-    // B. Expresión de función: asignada a una constante, sin hoisting.
-    const duplicar = function (numero) {
-      return numero * 2;
-    };
-
-    // C. Arrow functions: retorno implícito, un parámetro sin paréntesis.
-    const sumar = (a, b) => a + b;
-    const cuadrado = x => x * x;
-
-    const resultado = document.getElementById('resultado');
-    const traza = document.getElementById('traza');
-
-    function mostrar(texto) {
-      resultado.textContent = 'Resultado: ' + texto;
-      traza.textContent = 'traza enviada a la consola';
-    }
-
-    document.getElementById('btnA').addEventListener('click', function () {
-      const r = saludar('Ana');
-      mostrar(r);
-      console.log('[Ej2] Declaración tradicional -> ' + r);
-    });
-
-    document.getElementById('btnB').addEventListener('click', function () {
-      const r = duplicar(5);
-      mostrar(r);
-      console.log('[Ej2] Expresión de función -> ' + r);
-    });
-
-    document.getElementById('btnC').addEventListener('click', function () {
-      const r = sumar(3, 4) + ' (cuadrado de 4 = ' + cuadrado(4) + ')';
-      mostrar(r);
-      console.log('[Ej2] Arrow functions -> sumar(3,4)=' + sumar(3, 4) + ' · cuadrado(4)=' + cuadrado(4));
-    });
-  </script>
+  <script src="script.js"></script>
 
 </body>
 </html>

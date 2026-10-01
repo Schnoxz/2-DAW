@@ -1,0 +1,22 @@
+/* CSS: solo la maquetación de las preguntas y los botones */
+
+body {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 30px auto;
+}
+
+.pregunta {
+  margin-bottom: 18px;
+  padding: 8px;
+}
+
+.pregunta p {
+  margin: 0 0 6px 0;
+}
+
+button {
+  margin-right: 6px;
+  padding: 4px 12px;
+  cursor: pointer;
+}

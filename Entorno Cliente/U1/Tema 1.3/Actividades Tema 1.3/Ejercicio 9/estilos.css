@@ -1,0 +1,14 @@
+/* CSS: solo la maquetación de la imagen y el pie */
+
+body {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 30px auto;
+}
+
+img {
+  border: 2px solid #333;
+  cursor: pointer; /* indica que la imagen es clicable */
+  display: block;
+  margin-bottom: 10px;
+}

@@ -2,145 +2,18 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Ejercicio 9 - Test de vocabulario técnico del criterio 1.3</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 20px;
-      line-height: 1.5;
-    }
-    h1 { color: #1a4d8f; }
-    .pregunta {
-      margin-bottom: 18px;
-      padding: 8px;
-      border-bottom: 1px solid #eee;
-    }
-    .pregunta p { margin: 0 0 6px 0; }
-    button {
-      margin-right: 6px;
-      padding: 4px 12px;
-      cursor: pointer;
-    }
-    .resultado {
-      font-size: 1.1rem;
-      font-weight: bold;
-      padding: 10px 12px;
-      border-radius: 5px;
-      margin: 14px 0;
-    }
-  </style>
+  <title>Ejercicio 9 - Secuencia cíclica de imágenes</title>
+  <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 
-  <h1>Test de vocabulario técnico (Criterio 1.3)</h1>
+  <h1>Fotogramas en bucle</h1>
+  <p>Haz clic sobre la imagen para avanzar al siguiente fotograma.</p>
 
-  <div class="pregunta" id="pregunta1">
-    <p>1. HTML es un lenguaje de marcado, no un lenguaje de programación.</p>
-    <button type="button" onclick="responder(1, true)">Verdadero</button>
-    <button type="button" onclick="responder(1, false)">Falso</button>
-  </div>
+  <img id="foto" alt="Fotograma">
+  <p id="pie">Fotograma 1 de 4</p>
 
-  <div class="pregunta" id="pregunta2">
-    <p>2. CSS interviene en la lógica y en los datos de la web.</p>
-    <button type="button" onclick="responder(2, true)">Verdadero</button>
-    <button type="button" onclick="responder(2, false)">Falso</button>
-  </div>
-
-  <div class="pregunta" id="pregunta3">
-    <p>3. JavaScript es dinámico, débilmente tipado y orientado a eventos.</p>
-    <button type="button" onclick="responder(3, true)">Verdadero</button>
-    <button type="button" onclick="responder(3, false)">Falso</button>
-  </div>
-
-  <div class="pregunta" id="pregunta4">
-    <p>4. El DOM virtual es una copia del DOM guardada en la memoria RAM que reduce el número de renderizaciones.</p>
-    <button type="button" onclick="responder(4, true)">Verdadero</button>
-    <button type="button" onclick="responder(4, false)">Falso</button>
-  </div>
-
-  <div class="pregunta" id="pregunta5">
-    <p>5. TypeScript es un superconjunto tipado de JavaScript que se compila a JavaScript estándar.</p>
-    <button type="button" onclick="responder(5, true)">Verdadero</button>
-    <button type="button" onclick="responder(5, false)">Falso</button>
-  </div>
-
-  <div class="pregunta" id="pregunta6">
-    <p>6. JSX es un lenguaje de plantillas independiente que no ejecuta JavaScript.</p>
-    <button type="button" onclick="responder(6, true)">Verdadero</button>
-    <button type="button" onclick="responder(6, false)">Falso</button>
-  </div>
-
-  <div class="pregunta" id="pregunta7">
-    <p>7. El patrón reactivo propaga automáticamente los cambios en la interfaz cuando varía el estado de los datos.</p>
-    <button type="button" onclick="responder(7, true)">Verdadero</button>
-    <button type="button" onclick="responder(7, false)">Falso</button>
-  </div>
-
-  <div class="pregunta" id="pregunta8">
-    <p>8. Las funciones flecha (arrow functions) son una incorporación de ES6 y el return puede ser implícito.</p>
-    <button type="button" onclick="responder(8, true)">Verdadero</button>
-    <button type="button" onclick="responder(8, false)">Falso</button>
-  </div>
-
-  <div class="pregunta" id="pregunta9">
-    <p>9. Una función declarada con "function" sufre hoisting; una expresión de función asignada a una const, no.</p>
-    <button type="button" onclick="responder(9, true)">Verdadero</button>
-    <button type="button" onclick="responder(9, false)">Falso</button>
-  </div>
-
-  <div class="pregunta" id="pregunta10">
-    <p>10. Angular es mantenido por Google y ReactJS por Meta (Facebook).</p>
-    <button type="button" onclick="responder(10, true)">Verdadero</button>
-    <button type="button" onclick="responder(10, false)">Falso</button>
-  </div>
-
-  <div class="pregunta" id="pregunta11">
-    <p>11. AJAX (2005) permitió actualizar páginas web sin recargarlas por completo.</p>
-    <button type="button" onclick="responder(11, true)">Verdadero</button>
-    <button type="button" onclick="responder(11, false)">Falso</button>
-  </div>
-
-  <div class="pregunta" id="pregunta12">
-    <p>12. La mayoría de frameworks son de pago y requieren licencia de uso.</p>
-    <button type="button" onclick="responder(12, true)">Verdadero</button>
-    <button type="button" onclick="responder(12, false)">Falso</button>
-  </div>
-
-  <p class="resultado" id="marcador">Aciertos: 0 / 12</p>
-  <p id="traza">Pulsa Verdadero o Falso en cada pregunta.</p>
-
-  <script>
-    // Solución correcta de las 12 preguntas (en el mismo orden que el HTML).
-    const respuestas = [true, false, true, true, true, false, true, true, true, true, true, false];
-    const contestadas = {};
-
-    // Evalúa la respuesta y colorea el bloque según el acierto.
-    function responder(numero, ganaBoton) {
-      const esAcierto = (respuestas[numero - 1] === ganaBoton);
-      const div = document.getElementById('pregunta' + numero);
-
-      if (esAcierto) {
-        div.style.color = 'green';
-      } else {
-        div.style.color = 'red';
-      }
-
-      contestadas[numero] = esAcierto;
-      actualizarMarcador();
-      console.log('[Ej9] Pregunta ' + numero + ': ' + (esAcierto ? 'ACIERTO' : 'ERROR'));
-    }
-
-    function actualizarMarcador() {
-      const aciertos = Object.keys(contestadas)
-        .filter(function (n) { return contestadas[n]; }).length;
-      const marcador = document.getElementById('marcador');
-      marcador.innerHTML = 'Aciertos: ' + aciertos + ' / ' + respuestas.length;
-      marcador.style.backgroundColor = aciertos >= 10 ? '#dff5df' : (aciertos >= 6 ? '#fff6d6' : '#fde0e0');
-      document.getElementById('traza').textContent = 'Preguntas contestadas: ' + Object.keys(contestadas).length;
-    }
-  </script>
+  <script src="script.js"></script>
 
 </body>
 </html>

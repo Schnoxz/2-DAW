@@ -1,9 +1,14 @@
-/* CSS: solo la maquetación de los botones */
+/* CSS: solo la maquetación de los botones y el párrafo de estado */
 
 body {
   font-family: Arial, sans-serif;
   max-width: 800px;
   margin: 30px auto;
+}
+
+p#estado {
+  padding: 10px;
+  border: 1px solid #ccc;
 }
 
 button {

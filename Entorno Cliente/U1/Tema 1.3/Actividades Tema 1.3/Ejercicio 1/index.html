@@ -2,43 +2,21 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Ejercicio 1 - La tríada HTML, CSS y JavaScript</title>
+  <title>Ejercicio 1 - Botones que modifican el h1 y el párrafo</title>
   <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 
-  <h1>La tríada fundamental: HTML + CSS + JavaScript</h1>
-  <p class="intro">
-    Cada lenguaje tiene una responsabilidad independiente. Esta página los separa
-    en tres ficheros: <code>index.html</code> (estructura), <code>estilos.css</code>
-    (presentación) y <code>script.js</code> (lógica).
+  <h1 id="titulo">Modificando el código HTML</h1>
+  <p id="prueba">Modificando el contenido.</p>
+
+  <p>
+    El 1.2·1 tenía el código suelto dentro del onclick. Ahora cada botón
+    llama a su propia función.
   </p>
 
-  <h2>1. HTML · estructura y semántica</h2>
-  <ul>
-    <li>Lenguaje de <strong>marcado</strong>, no de programación.</li>
-    <li>Define la semántica: textos, listas, campos, botones, imágenes.</li>
-  </ul>
-
-  <h2>2. CSS · presentación y maquetación</h2>
-  <ul>
-    <li>Lenguaje <strong>declarativo</strong> de diseño gráfico.</li>
-    <li>No interviene en la lógica ni en los datos de la web.</li>
-  </ul>
-
-  <h2>3. JavaScript · lógica y reactividad</h2>
-  <ul>
-    <li>Lenguaje <strong>dinámico, débilmente tipado y orientado a eventos</strong>.</li>
-    <li>Reacciona a la acción del usuario y altera el documento sin recargar.</li>
-  </ul>
-
-  <h2>Demostración práctica</h2>
-  <p id="contador">Contador: 0</p>
-  <button type="button" id="sumar">Sumar (+1)</button>
-  <button type="button" id="reiniciar">Reiniciar</button>
-  <button type="button" id="modo">Cambiar estilo (CSS)</button>
-
-  <p id="traza">Pulsa un botón para ver la traza por consola.</p>
+  <button type="button" onclick="cambiarParrafo()">¡Dale! (párrafo)</button>
+  <button type="button" onclick="cambiarTitulo()">¡Dale! (encabezado)</button>
 
   <script src="script.js"></script>
 

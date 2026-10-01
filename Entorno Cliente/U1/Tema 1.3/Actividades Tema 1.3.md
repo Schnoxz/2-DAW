@@ -1,126 +1,202 @@
 # Actividades Prácticas y de Consolidación — Tema 1.3
 
 > Materia: Desarrollo Web en Entorno Cliente (2º DAW)
-> Fuente: apartado **G. Actividades Prácticas y de Consolidación** del tema «Identificación y caracterización de los principales lenguajes relacionados con la programación de clientes Web» (Criterio 1.3).
-> Enunciado base: los apartados **A** (tríada HTML/CSS/JS), **B** (evolución de JavaScript), **C-D** (frameworks), **E** (vocabulario) y **F** (funciones en JavaScript).
+> Enunciado: apartado **G. Actividades Prácticas y de Consolidación** del tema «Identificación y caracterización de los principales lenguajes relacionados con la programación de clientes Web» (Criterio 1.3).
+> Primera línea del apartado G: **«Realiza los ejercicios del apartado anterior haciendo uso de funciones.»**
+
+## Qué hay que entregar
+
+Los nueve ejercicios del tema 1.2, **rehechos usando funciones**. Cada ejercicio es el mismo que su versión del 1.2, pero con el comportamiento sacado del `onclick` y metido en una función.
+
+Los otros dos puntos del apartado G se resuelven aparte:
+
+- **Actividad Propuesta 1.1** → programación reactiva, cómo se comporta una hoja de cálculo.
+- **Actividad de Análisis Comparativo** → tabla justificando ReactJS, Angular o Vue.js en tres escenarios.
+
+## Separación en ficheros
+
+Cada ejercicio tiene tres archivos que deben **mantenerse juntos** en su carpeta:
+
+- `index.html` → estructura y los `onclick` que llaman a las funciones.
+- `estilos.css` → presentación.
+- `script.js` → las funciones con toda la lógica.
+
+## Qué cambia respecto al 1.2
+
+| Antes (1.2) | Ahora (1.3) |
+|---|---|
+| El código va suelto en el `onclick` | El `onclick` solo llama a una función |
+| Sin fichero aparte | La lógica va en `script.js` |
+| El CSS va dentro del `index.html` | El CSS va en `estilos.css` |
 
 ## Índice de ejercicios
 
-1. [Ejercicio 1 — La tríada fundamental: HTML, CSS y JavaScript](#ejercicio-1--la-tríada-fundamental-html-css-y-javascript)
-2. [Ejercicio 2 — Formas de declarar funciones y *hoisting*](#ejercicio-2--formas-de-declarar-funciones-y-hoisting)
-3. [Ejercicio 3 — Los ejercicios del 1.2 rehacidos con funciones](#ejercicio-3--los-ejercicios-del-12-rehechos-con-funciones)
-4. [Ejercicio 4 — Programación reactiva: la hoja de cálculo](#ejercicio-4--programación-reactiva-la-hoja-de-cálculo)
-5. [Ejercicio 5 — DOM Virtual y reconciliación](#ejercicio-5--dom-virtual-y-reconciliación)
-6. [Ejercicio 6 — Programación orientada a componentes](#ejercicio-6--programación-orientada-a-componentes)
-7. [Ejercicio 7 — Cronología de JavaScript y ECMAScript](#ejercicio-7--cronología-de-javascript-y-ecmascript)
-8. [Ejercicio 8 — Comparativa de frameworks](#ejercicio-8--comparativa-de-frameworks)
-9. [Ejercicio 9 — Test de vocabulario técnico](#ejercicio-9--test-de-vocabulario-técnico)
+1. [Ejercicio 1 — Botones que modifican el `<h1>` y el párrafo](#ejercicio-1--botones-que-modifican-el-h1-y-el-párrafo)
+2. [Ejercicio 2 — Evento clic con `console.log()`](#ejercicio-2--evento-clic-con-consolelog)
+3. [Ejercicio 3 — Modal con `alert()`](#ejercicio-3--modal-con-alert)
+4. [Ejercicio 4 — Saludo multidioma con color](#ejercicio-4--saludo-multidioma-con-color)
+5. [Ejercicio 5 — Salida multidioma solo por consola](#ejercicio-5--salida-multidioma-solo-por-consola)
+6. [Ejercicio 6 — Salida directa con `document.write()`](#ejercicio-6--salida-directa-con-documentwrite)
+7. [Ejercicio 7 — Interfaz con tres botones (Consola / Estilo / Alerta)](#ejercicio-7--interfaz-con-tres-botones-consola--estilo--alerta)
+8. [Ejercicio 8 — Test interactivo de Verdadero/Falso](#ejercicio-8--test-interactivo-de-verdaderofalso)
+9. [Ejercicio 9 — Secuencia cíclica de imágenes](#ejercicio-9--secuencia-cíclica-de-imágenes)
 
 ---
 
-## Ejercicio 1 — La tríada fundamental: HTML, CSS y JavaScript
+## Ejercicio 1 — Botones que modifican el `<h1>` y el párrafo
 
-Cualquier página web se apoya sobre **tres lenguajes estándar**, cada uno con una responsabilidad independiente. Separarlos en **tres ficheros distintos**:
-
-- `index.html` → estructura y semántica (**HTML**, lenguaje de marcado, no de programación).
-- `estilos.css` → presentación y maquetación (**CSS**, lenguaje declarativo, sin lógica ni datos).
-- `script.js` → lógica y reactividad (**JavaScript**, dinámico, débilmente tipado y orientado a eventos).
-
-La página debe incluir un contador que demuestre que **JavaScript altera el documento sin recargar** y un botón que aplique una clase de **CSS** (por ejemplo, tema oscuro).
-
----
-
-## Ejercicio 2 — Formas de declarar funciones y *hoisting*
-
-El apartado F del tema distingue **tres formas** de declarar funciones. Construir una página con un botón por forma que muestre su resultado, y comprobar el comportamiento del *hoisting*:
+**Del 1.2·1.** Dos botones: uno cambia el párrafo y el otro el encabezado.
 
 ```js
-// A. Declaración tradicional — admite hoisting
-function saludar(nombre) { return `Hola, ${nombre}`; }
+function cambiarParrafo() {
+  document.getElementById('prueba').innerHTML = 'CAMBIANDO el contenido!';
+}
 
-// B. Expresión de función — sin hoisting
-const duplicar = function (numero) { return numero * 2; };
-
-// C. Funciones flecha (ES6) — retorno implícito
-const sumar = (a, b) => a + b;
-const cuadrado = x => x * x;
+function cambiarTitulo() {
+  document.getElementById('titulo').innerHTML = '¡TÍTULO cambiado!';
+}
 ```
 
-Invocar una función **antes** de la línea donde se define, para demostrar que solo la forma A sobrevive a esa situación.
+En el 1.2 el segundo botón no existía; el enunciado pedía añadirlo.
 
 ---
 
-## Ejercicio 3 — Los ejercicios del 1.2 rehacidos con funciones
+## Ejercicio 2 — Evento clic con `console.log()`
 
-> «Realiza los ejercicios del apartado anterior haciendo uso de funciones.»
+**Del 1.2·2.** El clic se captura y emite una traza.
 
-Recuperar los ejercicios más representativos del tema 1.2 y reescribirlos **extrayendo el comportamiento a funciones**, de modo que cada uno aplique una forma distinta de declararlas:
+```js
+function emitirTraza() {
+  console.log('Se ha capturado el evento clic del botón.');
+}
+```
 
-- **1.2·4** Saludos multidioma → **declaración tradicional**.
-- **1.2·1** Modificar el contenido → **expresión de función**.
-- **1.2·7** Interfaz Consola / Estilo / Alerta → **funciones flecha**.
-
----
-
-## Ejercicio 4 — Programación reactiva: la hoja de cálculo
-
-> **Actividad Propuesta 1.1.** Averigua qué es la programación reactiva. Investiga cómo se comporta una hoja de cálculo cuando modificas una celda y las celdas dependientes se recalculan de inmediato.
-
-Simular una hoja de cálculo donde las celdas de **fórmula** están **suscritas** a los datos de los que dependen:
-
-- Columnas con datos editables (`input[type=number]`).
-- Fórmulas que se recalculan **solas**, en cascada, sin pulsar ningún botón.
-- Un registro que muestra el orden exacto de los recálculos.
+`console.log()` solo escribe en la consola: no altera la página.
 
 ---
 
-## Ejercicio 5 — DOM Virtual y reconciliación
+## Ejercicio 3 — Modal con `alert()`
 
-Manipular el DOM nativo es lento porque obliga al motor a recalcular geometrías y repintar píxeles. React mantiene una **copia ligera del DOM en memoria RAM** y, cuando cambian los datos, calcula las **diferencias mínimas** entre el DOM virtual y el real, actualizando solo los nodos necesarios.
+**Del 1.2·3.** En vez de escribir en el párrafo, se abre una ventana modal.
 
-Construir una simulación con una lista de productos que permita:
+```js
+function mostrarAviso() {
+  window.alert('Clic capturado: se muestra una ventana emergente modal.');
+}
+```
 
-- **Renombrar** un producto y comprobar que se repinta **un solo nodo**.
-- Añadir y quitar productos.
-- Mostrar, en todo momento, cuántos nodos se han comparado frente a cuántos se han **realmente repintado**.
-
----
-
-## Ejercicio 6 — Programación orientada a componentes
-
-La interfaz no se diseña en un bloque monolítico, sino en piezas independientes y reutilizables (**componentes**), cada una con su **propio estado (state)** interno. Implementar al menos:
-
-- Un **contador** con state propio.
-- Una **tarjeta de producto** con state de favorito.
-- Una **barra de navegación** con state de sección activa.
-
-Comparar además **JSX** (escritura similar a HTML dentro del código) frente al JavaScript plano equivalente con `createElement()`.
+`window.alert()` bloquea la interacción con la página hasta que el usuario confirma.
 
 ---
 
-## Ejercicio 7 — Cronología de JavaScript y ECMAScript
+## Ejercicio 4 — Saludo multidioma con color
 
-Ordenar cronológicamente los hitos del apartado B y recorrerlos interactivamente, siguiendo las cuatro fases del tema:
+**Del 1.2·4.** Tres botones que muestran un saludo con su color.
 
-1. **Origen y estandarización temprana (1995-1999):** Mocha/JavaScript, JScript, ECMAScript 1, ES3.
-2. **El estancamiento y la era AJAX (2000-2008):** fracaso de ES4, auge de AJAX, librerías de abstracción (jQuery).
-3. **La madurez (2009):** ES5, motor V8 y Node.js.
-4. **El punto de inflexión y la era moderna (2015+):** ES6 y publicaciones anuales con el proceso de 4 fases.
+```js
+const saludos = {
+  ru: { texto: 'Привет!', color: 'purple' },
+  es: { texto: '¡Hola!', color: 'green' },
+  en: { texto: 'Hello!', color: 'blue' }
+};
+
+function saludar(idioma) {
+  const p = document.getElementById('saludo');
+  p.innerHTML = saludos[idioma].texto;
+  p.style.color = saludos[idioma].color;
+}
+```
+
+El idioma llega como **parámetro**, así que la misma función sirve para los tres botones.
 
 ---
 
-## Ejercicio 8 — Comparativa de frameworks
+## Ejercicio 5 — Salida multidioma solo por consola
 
-> **Actividad de análisis comparativo.** Elabora una tabla justificando qué framework (ReactJS, Angular o Vue.js) elegirías para cada caso.
+**Del 1.2·5.** La misma tabla de saludos, pero escribiéndose únicamente en la consola.
 
-Construir una tabla de características (origen y soporte, lenguaje base, DOM virtual, curva de aprendizaje, legado) y responder con justificación razonada:
+```js
+function saludar(idioma) {
+  const s = saludos[idioma];
+  console.log(s.texto + ' (color sugerido: ' + s.color + ')');
+}
+```
 
-1. Una **pequeña tienda de barrio** con presupuesto reducido y despliegue rápido.
-2. El **portal bancario** de una entidad financiera con cientos de programadores y exigencias estrictas de tipado robusto.
-3. Una **aplicación interactiva** con renderizado ultra rápido de miles de productos con cambios constantes en pantalla.
+Esta versión no toca el DOM.
 
 ---
 
-## Ejercicio 9 — Test de vocabulario técnico
+## Ejercicio 6 — Salida directa con `document.write()`
 
-Test interactivo de **Verdadero/Falso** sobre el vocabulario del apartado E y los conceptos clave del criterio (DOM Virtual, JSX, TypeScript, patrón reactivo, tríada, hoisting, ES6, frameworks open source).
+**Del 1.2·6.** El saludo se genera en el flujo del documento.
+
+```js
+const saludos = { ru: 'Привет!', es: '¡Hola!', en: 'Hello!' };
+
+function saludar(idioma) {
+  document.write('<h1>' + saludos[idioma] + '</h1>');
+}
+```
+
+`document.write()` tras la carga reabre el flujo y **sustituye** todo el contenido, por eso los botones desaparecen al pulsar.
+
+---
+
+## Ejercicio 7 — Interfaz con tres botones (Consola / Estilo / Alerta)
+
+**Del 1.2·7.** Los tres botones, cada uno en su función.
+
+```js
+const estado = document.getElementById('estado');
+
+function consola() {
+  console.log('Hora del sistema: ' + new Date().toLocaleTimeString());
+}
+
+function estilo() {
+  estado.innerHTML = 'Sistema Activo';
+  estado.style.backgroundColor = 'green';
+}
+
+function alerta() {
+  window.alert('El proceso ha concluido.');
+}
+```
+
+Cada función toca una cosa sola: la consola, el estilo o el modal.
+
+---
+
+## Ejercicio 8 — Test interactivo de Verdadero/Falso
+
+**Del 1.2·8.** Siete preguntas con botones «Verdadero» y «Falso».
+
+```js
+const respuestas = [true, false, true, true, true, true, true];
+
+function responder(numero, ganaBoton) {
+  const esAcierto = (respuestas[numero - 1] === ganaBoton);
+  const div = document.getElementById('pregunta' + numero);
+  div.style.color = esAcierto ? 'green' : 'red';
+}
+```
+
+La función recibe dos parámetros: el número de pregunta y qué botón se ha pulsado.
+
+---
+
+## Ejercicio 9 — Secuencia cíclica de imágenes
+
+**Del 1.2·9.** Cuatro fotogramas que avanzan al hacer clic.
+
+```js
+function siguiente() {
+  indice = (indice + 1) % imagenes.length;
+  foto.src = imagenes[indice];
+  pie.innerHTML = 'Fotograma ' + (indice + 1) + ' de ' + imagenes.length;
+}
+
+document.getElementById('foto').addEventListener('click', siguiente);
+```
+
+El módulo `%` hace que el contador vuelva al principio al llegar al último. Aquí el clic se registra con `addEventListener` porque no hay `onclick` en el HTML: el elemento es una imagen.

@@ -2,112 +2,17 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Ejercicio 3 - Los ejercicios de 1.2 rehacidos con funciones</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      max-width: 780px;
-      margin: 40px auto;
-      padding: 0 20px;
-      line-height: 1.5;
-    }
-    h2 {
-      color: #1a4d8f;
-      font-size: 1.05rem;
-      margin-top: 26px;
-      border-bottom: 2px solid #d7e3f2;
-      padding-bottom: 4px;
-    }
-    button {
-      margin-right: 8px;
-      margin-top: 6px;
-      padding: 6px 13px;
-      cursor: pointer;
-    }
-    #saludo {
-      font-size: 1.4rem;
-      font-weight: bold;
-    }
-    #estado {
-      padding: 8px 10px;
-      border: 1px solid #ccc;
-      display: inline-block;
-      min-width: 200px;
-    }
-    .nota {
-      color: #666;
-      font-size: 0.9rem;
-      font-style: italic;
-    }
-  </style>
+  <title>Ejercicio 3 - Modal con alert()</title>
+  <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 
-  <h1>Los ejercicios de 1.2 con funciones</h1>
-  <p>
-    El apartado G pide rehacer los ejercicios anteriores <strong>haciendo uso de funciones</strong>.
-    Aquí se recuperan los tres más representativos del tema 1.2 y cada uno aplica una forma
-    distinta de declararlas.
-  </p>
+  <h1>Aviso emergente modal</h1>
+  <p>Pulsa el botón; en lugar de escribir en un párrafo se muestra una ventana de aviso.</p>
 
-  <h2>Ejercicio 1.2·4 — Saludos multidioma (declaración tradicional)</h2>
-  <p id="saludo">Elige un idioma.</p>
-  <button type="button" onclick="saludar('ru')">Ruso</button>
-  <button type="button" onclick="saludar('es')">Español</button>
-  <button type="button" onclick="saludar('en')">Inglés</button>
-  <p class="nota">El 1.2·4 usaba el código directamente en el atributo <code>onclick</code>; aquí se extrae a una función.</p>
+  <button type="button" onclick="mostrarAviso()">Mostrar aviso</button>
 
-  <h2>Ejercicio 1.2·1 — Modificar el contenido (expresión de función)</h2>
-  <p id="prueba">Modificando el contenido.</p>
-  <button type="button" id="cambiar">¡Dale!</button>
-  <p class="nota">Asignada a una <code>const</code>, por eso no admite hoisting.</p>
-
-  <h2>Ejercicio 1.2·7 — Consola, estilo y alerta (funciones flecha)</h2>
-  <p id="estado">Sistema en espera</p>
-  <br>
-  <button type="button" id="btnConsola">Consola</button>
-  <button type="button" id="btnEstilo">Estilo</button>
-  <button type="button" id="btnAlerta">Alerta</button>
-
-  <script>
-    // Tabla de saludos: texto y color CSS para cada idioma.
-    const saludos = {
-      ru: { texto: 'Привет!', color: 'purple' },
-      es: { texto: '¡Hola!', color: 'green' },
-      en: { texto: 'Hello!', color: 'blue' }
-    };
-
-    // A. Declaración tradicional.
-    function saludar(idioma) {
-      const p = document.getElementById('saludo');
-      p.innerHTML = saludos[idioma].texto;
-      p.style.color = saludos[idioma].color;
-      console.log('[Ej3] saludar(' + idioma + ') -> ' + saludos[idioma].texto + ' en ' + saludos[idioma].color);
-    }
-
-    // B. Expresión de función: el contenido del 1.2·1 dentro de una función.
-    const cambiarTexto = function () {
-      document.getElementById('prueba').innerHTML = 'CAMBIANDO el contenido!';
-      console.log('[Ej3] cambiarTexto() ejecutado');
-    };
-
-    // C. Funciones flecha: cuerpo de una línea con retorno implícito.
-    const estado = document.getElementById('estado');
-
-    const aConsola = () => console.log('[Ej3] Hora del sistema: ' + new Date().toLocaleTimeString());
-
-    const aEstilo = () => {
-      estado.innerHTML = 'Sistema Activo';
-      estado.style.backgroundColor = 'green';
-    };
-
-    const aAlerta = () => window.alert('El proceso ha concluido.');
-
-    document.getElementById('cambiar').addEventListener('click', cambiarTexto);
-    document.getElementById('btnConsola').addEventListener('click', aConsola);
-    document.getElementById('btnEstilo').addEventListener('click', aEstilo);
-    document.getElementById('btnAlerta').addEventListener('click', aAlerta);
-  </script>
+  <script src="script.js"></script>
 
 </body>
 </html>

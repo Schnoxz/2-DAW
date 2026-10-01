@@ -2,155 +2,20 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Ejercicio 7 - Cronología de JavaScript y ECMAScript</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      max-width: 820px;
-      margin: 40px auto;
-      padding: 0 20px;
-      line-height: 1.5;
-    }
-    h1 { color: #1a4d8f; }
-    .pista {
-      background-color: #1e1e1e;
-      color: #d6f5d6;
-      font-family: Consolas, monospace;
-      font-size: 0.8rem;
-      padding: 6px 0;
-      text-align: center;
-      border-radius: 4px;
-      margin: 10px 0 22px 0;
-      letter-spacing: 1px;
-    }
-    .hito {
-      border-left: 4px solid #ccc;
-      padding: 4px 0 4px 14px;
-      margin-bottom: 14px;
-      opacity: 0.45;
-    }
-    .hito.visible { opacity: 1; }
-    .hito.actual { border-left-color: #b35900; background-color: #fffaf0; }
-    .hito .anio {
-      font-weight: bold;
-      color: #1a4d8f;
-      font-size: 1.05rem;
-    }
-    .hito .que { font-size: 0.9rem; color: #333; }
-    .hito button { margin-top: 4px; }
-    button {
-      padding: 6px 13px;
-      cursor: pointer;
-      margin-right: 6px;
-      border: 1px solid #1a4d8f;
-      background-color: #1a4d8f;
-      color: #fff;
-      border-radius: 4px;
-    }
-    button.sec { background-color: #fff; color: #1a4d8f; }
-    .actual .que { font-weight: bold; }
-  </style>
+  <title>Ejercicio 7 - Consola, Estilo y Alerta</title>
+  <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 
-  <h1>Cronología de JavaScript y ECMAScript</h1>
-  <p>
-    Un lenguaje diseñado en <strong>solo 10 días</strong> en 1995 terminó siendo el motor
-    de ejecución de la web moderna. Recorre los hitos en orden cronológico.
-  </p>
+  <h1>Panel de sistema</h1>
 
-  <p class="pista" id="pista">1995 ▸ 1996 ▸ 1997 ▸ 1999 ▸ 2005 ▸ 2006 ▸ 2009 ▸ 2015 ▸ 2016+</p>
+  <p id="estado">Sistema en espera</p>
 
-  <button type="button" id="todos">Ver la cronología completa</button>
-  <button type="button" class="sec" id="siguiente">Siguiente hito</button>
-  <button type="button" class="sec" id="reiniciar">Empezar de nuevo</button>
+  <button type="button" onclick="consola()">Botón 1 (Consola)</button>
+  <button type="button" onclick="estilo()">Botón 2 (Estilo)</button>
+  <button type="button" onclick="alerta()">Botón 3 (Alerta)</button>
 
-  <div id="linea"></div>
-
-  <script>
-    // Los hitos, en el orden en que ocurren, con la fase del tema a la que pertenecen.
-    const hitos = [
-      { anio: '1995', que: 'Brendan Eich crea JavaScript en 10 días para Netscape. Nace como Mocha y luego LiveScript.', fase: 0 },
-      { anio: '1996', que: 'Microsoft lanza JScript con Internet Explorer 3.0 por ingeniería inversa: primera guerra de navegadores.', fase: 0 },
-      { anio: '1997', que: 'Netscape entrega la especificación a Ecma International. Nace ECMAScript 1 (ECMA-262), un estándar neutro.', fase: 0 },
-      { anio: '1998-99', que: 'ES2 y sobre todo ES3 consolidan el lenguaje: expresiones regulares, try/catch y formateo estricto.', fase: 0 },
-      { anio: '2005', que: 'Jesse James Garrett acuña el término AJAX. XMLHttpRequest permite actualizar páginas sin recargarlas.', fase: 1 },
-      { anio: '2006', que: 'La fragmentación entre navegadores impulsa jQuery, Prototype y MooTools para unificar las APIs del DOM.', fase: 1 },
-      { anio: '2009', que: 'ECMAScript 5: "use strict", forEach/map/filter/reduce, JSON nativo, getters y setters.', fase: 2 },
-      { anio: '2009', que: 'Ryan Dahl crea Node.js sobre el motor V8 de Chrome y lleva JavaScript al backend (ecosistema npm).', fase: 2 },
-      { anio: '2015', que: 'ECMAScript 2015 (ES6), la mayor refundición de la sintaxis desde la creación del lenguaje.', fase: 3 },
-      { anio: '2016+', que: 'El TC39 adopta un proceso de 4 fases (Stages 0 a 4) y publicaciones anuales.', fase: 3 }
-    ];
-
-    const fases = [
-      { nombre: 'Origen y estandarización temprana (1995-1999)', color: '#1a4d8f' },
-      { nombre: 'El estancamiento y la era AJAX (2000-2008)', color: '#b35900' },
-      { nombre: 'La madurez: ES5 y la salida del navegador (2009)', color: '#2e7d32' },
-      { nombre: 'El punto de inflexión y la era moderna (2015+)', color: '#6a1b9a' }
-    ];
-
-    const linea = document.getElementById('linea');
-    let indice = -1;
-
-    // Un componente por hito: se pinta su contenido y se le da su estado visible/actual.
-    const nodos = hitos.map(function (hito, i) {
-      const div = document.createElement('div');
-      div.className = 'hito';
-      div.innerHTML =
-        '<span class="anio">' + hito.anio + '</span> ' +
-        '<button type="button" class="sec" data-indice="' + i + '">Ver detalle</button>' +
-        '<div class="que">' + hito.que + '</div>';
-      div.querySelector('button').addEventListener('click', function () {
-        mostrarDetalle(i);
-      });
-      linea.appendChild(div);
-      return div;
-    });
-
-    function pintarPista() {
-      document.getElementById('pista').textContent = hitos
-        .map(function (h) { return h.anio.split('-')[0]; })
-        .join(' ▸ ');
-    }
-
-    function revelarHasta(n) {
-      nodos.forEach(function (nodo, i) {
-        nodo.classList.toggle('visible', i <= n);
-        nodo.classList.toggle('actual', i === n);
-      });
-    }
-
-    function mostrarDetalle(n) {
-      indice = n;
-      revelarHasta(n);
-      const hito = hitos[n];
-      const fase = fases[hito.fase];
-      console.log('[Ej7] ' + hito.anio + ' — ' + fase.nombre);
-      console.log('[Ej7] ' + hito.que);
-    }
-
-    function siguiente() {
-      if (indice >= hitos.length - 1) {
-        indice = -1;
-        revelarHasta(-1);
-        console.log('[Ej7] Fin de la cronología.');
-        return;
-      }
-      mostrarDetalle(indice + 1);
-    }
-
-    document.getElementById('siguiente').addEventListener('click', siguiente);
-    document.getElementById('todos').addEventListener('click', function () {
-      mostrarDetalle(hitos.length - 1);
-    });
-    document.getElementById('reiniciar').addEventListener('click', function () {
-      indice = -1;
-      revelarHasta(-1);
-    });
-
-    pintarPista();
-    revelarHasta(-1);
-  </script>
+  <script src="script.js"></script>
 
 </body>
 </html>
