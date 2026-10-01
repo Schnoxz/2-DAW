@@ -8,3 +8,6 @@ desktop.ini
 
 # capturas intermedias de la exportacion de la exposicion
 _slides/
+
+# configuracion local de opencode (agentes), no va al repo
+.opencode/
