@@ -1,0 +1,21 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.cambiar-color {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.cambiar-color:hover {
+    background-color: #45a049;
+}
