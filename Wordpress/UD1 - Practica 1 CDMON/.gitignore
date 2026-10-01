@@ -1,0 +1,10 @@
+# Capturas de la practica
+# Las imagenes se guardan solo en local, no se suben al repositorio.
+# Si en algun momento quieres versionarlas, borra este archivo.
+*/*.png
+*/*.jpg
+*/*.jpeg
+*/*.webp
+
+# dominio y paso actual guardados por practica.ps1
+estado.json
