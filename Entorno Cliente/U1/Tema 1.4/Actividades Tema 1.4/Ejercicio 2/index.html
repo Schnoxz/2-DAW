@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2 Diferencia en dias entre dos fechas</title>
+</head>
+<body>
+    <script>
+        function calcularDiasDiferencia(fechaInicio, fechaFin) {
+            const inicio = new Date(fechaInicio);
+            const fin = new Date(fechaFin);
+
+            const diferencia = fin.getTime()-inicio.getTime();
+            // Tiempo en milisegundos que existe en un dia 86.400.000
+            const milisegundosDia = 24 * 60 * 60 * 1000; 
+
+            // Se devuelve redondeada la operacion de la diferencia entre el tiempo de un dia
+            return Math.round(diferencia/milisegundosDia);
+        }
+        // Devuelve por consola el resultado
+        console.log(calcularDiasDiferencia("2026-04-29", "2026-05-14")); // Deberían ser 15 días
+    </script>
+</body>
+</html>

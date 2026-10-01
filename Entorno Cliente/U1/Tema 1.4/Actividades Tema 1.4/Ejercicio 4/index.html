@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4 Formateador manual DD/MM/YYYY HH:mm</title>
+</head>
+<body>
+    <script>
+        // Los números menores de 10 deben incluir un cero a la izquierda (01, 02, ..., 09) utilizando el método de cadenas .padStart(2, "0").padStart: string.padStart(length, string)
+
+        function formatearFecha(fecha){
+            const dia = String(fecha.getDate()).padStart(2, "0");
+            const mes = String (fecha.getMonth() + 1).padStart(2, "0"); // +1 por el índice 0
+            const año = fecha.getFullYear();
+            const horas = String(fecha.getHours()).padStart(2, "0");
+            const minutos = String(fecha.getMinutes()).padStart(2, "0");
+
+        // Devuelve el valor formateado como se indica
+        return `${dia}/${mes}/${año} ${horas}:${minutos}`;
+        }
+
+        console.log(formatearFecha(new Date(2026, 4, 14, 16, 20)));
+    </script>
+    
+</body>
+</html>

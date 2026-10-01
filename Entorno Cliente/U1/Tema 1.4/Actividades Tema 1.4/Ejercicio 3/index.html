@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3 Ultimo dia del mes</title>
+</head>
+<body>
+    <script>
+        // El dia 0 de un mes es el equivalente al último del mes anterior, si el parámetro mes se recibe como ya conocemos (mes 1 = Enero), ek constructor espera un índice de un array (mes 0 = Enero),
+        function obtenerUltimoDiaMes(año, mes){
+            return new Date(año, mes, 0).getDate();
+        }
+
+        console.log(obtenerUltimoDiaMes(2026, 1)); // 31
+        console.log(obtenerUltimoDiaMes(2026, 2)); // 28
+        console.log(obtenerUltimoDiaMes(2028, 2)); // Año bisiesto y se verifica que el dia sea correcto "29"
+        console.log(obtenerUltimoDiaMes(2026, 12)); // 31
+    </script>
+</body>
+</html>
