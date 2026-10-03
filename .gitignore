@@ -11,3 +11,8 @@ _slides/
 
 # configuracion local de opencode (agentes), no va al repo
 .opencode/
+
+# tooling de Moodle: nunca versionar
+.moodle/
+session.json
+creds.json
