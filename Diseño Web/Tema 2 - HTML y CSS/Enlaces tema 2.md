@@ -13,6 +13,15 @@ Recursos enlazados desde el Moodle en la sección **Tema 2: HTML y CSS** del mó
 | HTML: ejercicios resueltos | https://www.eniun.com/ejercicios-resueltos-html/ |
 | CSS: tipos de selectores | https://www.eniun.com/selectores-css-tipos/ |
 | HTML: formularios | https://www.eniun.com/etiquetas-formularios-html5/ |
+| CSS: unidades de medida | https://www.eniun.com/unidades-medida-css/
+| CSS: colores | https://www.eniun.com/atributos-propiedades-colores-css/ |
+| CSS: propiedades del texto |https://www.eniun.com/atributos-propiedades-textos-css/ |
+| CSS: propiedades de las listas |https://www.eniun.com/atributos-propiedades-listas-css/ |
+| CSS: propiedades de tablas |https://www.eniun.com/atributos-propiedades-tablas-css/ |
+
+
+
+
 
 ## También en la sección
 
