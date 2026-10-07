@@ -17,28 +17,22 @@
     <div class="card shadow-sm">
       <div class="card-body">
         <?php
-          // SALIDA 1
-          // These are the original values from the statement, nothing has been changed yet
-
-          // 1) A variable called "numFloat" of type float
-          // The number 5.7 has a decimal part, so PHP stores it as a float on its own
+          
+          // Declaro numFloat especificamente con valor float para la parte 1 del ejercicio
           $numFloat = 5.7;
 
-          // is_float() returns TRUE if the variable is of type float
-          // The if asks if that is the case, and if so it shows one message and if not another
+          // Comprueba si es float el valor dentro de la variable declarada con un if, si no lo es pasa por el else e imprime el mensaje contrario
           echo "<h2 class='h4 text-primary'>1) La variable numFloat</h2>";
           if (is_float($numFloat)) {
             echo "<p>La variable <strong>numFloat</strong> vale <strong>$numFloat</strong> y <strong>sí es float</strong>.</p>";
           } else {
             echo "<p>La variable <strong>numFloat</strong> vale <strong>$numFloat</strong> y <strong>no es float</strong>.</p>";
           }
-
-          // 2) A variable called "variableSinValor" with no value assigned
+        
           // null es el valor que tiene por dentro una variable creada sin valor.
           // Se lo pongo aquí escrito para que is_null() no avise de que la variable no existe
           $variableSinValor = null;
 
-          // is_null() returns TRUE when the variable is NULL, which is what an empty variable is
           echo "<h2 class='h4 text-primary'>2) La variable variableSinValor</h2>";
           if (is_null($variableSinValor)) {
             echo "<p>La variable <strong>variableSinValor</strong> <strong>sí es NULL</strong>, porque se creó pero no se le dio ningún valor.</p>";

@@ -22,21 +22,17 @@
     <div class="card shadow-sm">
       <div class="card-body">
         <?php
-          // Código PHP del ejercicio
+          // Declaro dos variables, una donde guarda una cadena de texto plano y otro donde se imprime hora y fecha actual del server
           $mensaje = "¡Hola Mundo! Tu servidor PHP está funcionando correctamente.";
           $fechaActual = date("d/m/Y H:i");
-
+          // Imprime por pantalla el mensaje y la fecha y hora actual del servidor
           echo "<h2 class='h4 text-primary'>Mensaje desde el servidor:</h2>";
           echo "<p class='lead'>$mensaje</p>";
-          echo "<hr>";
           echo "<p class='text-secondary small'>Fecha y hora de generación: $fechaActual</p>";
         ?>
       </div>
     </div>
 
   </main>
-
-  <!-- JavaScript de Bootstrap (necesario para la interactividad) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

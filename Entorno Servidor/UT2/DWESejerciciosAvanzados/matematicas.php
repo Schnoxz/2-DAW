@@ -76,7 +76,7 @@
         <td><?= $mayor ?></td>
       </tr>
       <tr>
-        <td>Numero mas pequeno</td>
+        <td>Numero mas pequeño</td>
         <td><?= $menor ?></td>
       </tr>
     </table>

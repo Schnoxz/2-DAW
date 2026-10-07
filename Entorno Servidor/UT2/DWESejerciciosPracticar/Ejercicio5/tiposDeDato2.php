@@ -17,12 +17,9 @@
     <div class="card shadow-sm">
       <div class="card-body">
         <?php
-          // SALIDA 2
-          // Este archivo es una copia del anterior y el código es EXACTAMENTE el mismo
-          // Lo único que he hecho es cambiar el valor de las dos variables, como pide la nota
-          // del enunciado: "No modifiques nada del código PHP, sólo el valor de las variables"
+          // SALIDA2 este archivo es una copia del anterior lo único que he hecho es cambiar el valor de las dos variables, como pide la nota "No modifiques nada del código PHP, sólo el valor de las variables"
 
-          // 1) Ahora numFloat vale 12, que es un número sin decimales
+          // Ahora numFloat vale 12, que es un número sin decimales
           $numFloat = 12;
 
           // is_float() sigue siendo la misma función, no he tocado nada de ella
@@ -33,7 +30,7 @@
             echo "<p>La variable <strong>numFloat</strong> vale <strong>$numFloat</strong> y <strong>no es float</strong>. Antes valía 5.7, que al tener decimales sí era float.</p>";
           }
 
-          // 2) Ahora a variableSinValor sí tiene un valor asignado
+          // Ahora a variableSinValor sí tiene un valor asignado
           $variableSinValor = "Ahora ya tengo un valor";
 
           // El is_null() es el mismo de antes, y ahora la respuesta es la contraria

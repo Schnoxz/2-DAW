@@ -63,20 +63,12 @@
             <?php
               // El enunciado pide la fecha y la hora del día actual
               // date() es la función que devuelve la fecha y la hora en el formato que le pida
-              // Cada parte de la fecha va con sus propias letras, como una plantilla:
-              //   l = nombre del día en texto   (Monday)
-              //   F = nombre del mes en texto  (September)
-              //   j = día del mes sin ceros    (15)
-              //   S = sufijo del día en texto  (th en 15th)
-              //   Y = año con 4 cifras         (2023)
               echo "<h2 class='h4 text-primary'>Ejercicio 1: fecha y hora</h2>";
               echo "<p>La fecha de hoy es: <strong>" . date("l, F jS Y") . "</strong></p>";
-              // Para la hora los formatos son otros:
-              //   H = hora con 2 cifras (00-23)  i = minutos  s = segundos
+              // Para la hora los formatos son otros
               echo "<p>Y la hora es: <strong>" . date("H:i:s") . "</strong></p>";
               echo "<hr>";
-              // text-secondary small pone el texto en gris y pequeño, para que se vea como un
-              // dato secundario y no como el resultado principal
+              // text-secondary small pone el texto en gris y pequeño, para que se vea como un dato secundario y no como el resultado principal
               echo "<p class='text-secondary small'>La hora cambia cada vez que recargo la página, porque date() la lee en el momento en que se ejecuta.</p>";
             ?>
           </div>
@@ -104,14 +96,12 @@
               echo "<p>Segundo número: <strong>$segundoNumero</strong></p>";
 
               // En PHP el separador de decimales es el punto, pero en español se usa la coma.
-              // round() redondea al número de decimales que le indique, en este caso uno, para
-              // que 8 / 5 salga como 1.6 y no como 1.6 con Many decimales
+              // round() redondea al número de decimales que le indique, en este caso uno, para que 8 / 5 salga como 1.6 y no como 1.6 con muchos decimales
               $divisionRedondeada = round($division, 1);
               // Y con str_replace() cambio ese punto por una coma, para que se vea como 1,6
               $divisionBonita = str_replace(".", ",", $divisionRedondeada);
 
-              // <strong> y <em> son etiquetas de HTML: la primera pone el resultado en negrita
-              // y la segunda en cursiva, para destacar el dato
+              // <strong> y <em> son etiquetas de HTML: la primera pone el resultado en negrita y la segunda en cursiva, para destacar el dato
               echo "<p>a) El resto de dividir el primer número entre 5 --> <strong>$resto</strong></p>";
               echo "<p>b) El resultado de dividir el primer número entre el segundo --> <strong>$divisionBonita</strong></p>";
               echo "<p>c) El resultado de sumar los dos números --> <strong>$suma</strong></p>";
@@ -128,13 +118,10 @@
               // Guardo la frase en una variable, con un espacio al final como en el enunciado
               $frase = "Ya decidí que esta noche se sale con todas mis motomami ";
 
-              // str_replace() cambia un trozo de texto por otro. Si le digo que cambie un espacio
-              // por nada (una cadena vacía "") lo que hace es quitar todos los espacios
+              // str_replace() cambia un trozo de texto por otro. Si le digo que cambie un espacio por una cadena vacía "" lo que hace es quitar todos los espacios
               $fraseSinEspacios = str_replace(" ", "", $frase);
 
-              // mb_strlen() cuenta los caracteres. Se usa mb_ en vez de strlen() porque la frase
-              // lleva la í de "decidí", y strlen() contaría los bytes de esa letra y daría un
-              // número más grande
+              // mb_strlen() cuenta los caracteres. Se usa mb_ en vez de strlen() porque la frase lleva la tilde en la í de "decidí", y strlen() contaría los bytes de esa letra y daría un número más grande
               $longitudOriginal = mb_strlen($frase);
               $longitudFinal = mb_strlen($fraseSinEspacios);
               // Con strlen() la original daría 57 en vez de 56, por ese byte de más de la í
@@ -146,8 +133,7 @@
               echo "<p>La longitud de la cadena original es: <strong>$longitudOriginal</strong></p>";
               echo "<p>La longitud de la cadena final es: <strong>$longitudFinal</strong></p>";
               echo "<hr>";
-              // Con esta línea se ve por qué uso mb_strlen() y no strlen(): los dos cuentan
-              // igual, pero strlen() da un número más alto porque la í ocupa dos bytes
+              // Con esta línea se ve por qué uso mb_strlen() y no strlen(): los dos cuentan igual, pero strlen() da un número más alto porque la í ocupa dos bytes
               echo "<p class='text-secondary small'>Con strlen() la frase original daría <strong>$longitudConStrlen</strong> en lugar de <strong>$longitudOriginal</strong>, por el byte extra de la í de decidí.</p>";
             ?>
           </div>
@@ -159,8 +145,7 @@
         <div class="card shadow-sm">
           <div class="card-body">
             <?php
-              // define() crea una constante. La primera vez se le pone el nombre y el valor,
-              // y a partir de ahí el nombre ya vale por sí solo, sin el signo del dollar
+              // define() crea una constante. La primera vez se le pone el nombre y el valor, y a partir de ahí el nombre ya vale por sí solo, sin el signo del dollar
               define("PI", 3.141592);
 
               // La constante PI se puede usar en operaciones como si fuera un número normal
@@ -168,18 +153,15 @@
               $area = PI * $radio * $radio;
               $perimetro = 2 * PI * $radio;
 
-              // PHP_INT_MAX es una constante ya creada por PHP que guarda el número entero
-              // más grande que puede tener según el tamaño de la máquina
+              // PHP_INT_MAX es una constante ya creada por PHP que guarda el número entero más grande que puede tener según el tamaño de la máquina
               $maximoEntero = PHP_INT_MAX;
 
               echo "<h2 class='h4 text-primary'>Ejercicio 4: constantes</h2>";
-              // round() redondea a las cifras decimales que le indique, y después cambio el
-              // punto por una coma igual que en el ejercicio 2
+              // round() redondea a las cifras decimales que le indique, y después cambio el punto por una coma igual que en el ejercicio 2
               $areaBonita = str_replace(".", ",", round($area, 6));
               $perimetroBonito = str_replace(".", ",", round($perimetro, 6));
               echo "<p>Mi constante es <strong>PI</strong> y su valor aproximado es <strong>" . PI . "</strong></p>";
-              // El <sup> de cm<sup>2</sup> es la forma de escribir el 2 en pequeño y arriba,
-              // que es como se escribe el cuadrado en las unidades de superficie
+              // El <sup> de cm<sup>2</sup> es la forma de escribir el 2 en pequeño y arriba
               echo "<p>Área de un círculo de radio = " . $radio . " cm --> <strong>" . $areaBonita . "</strong> cm<sup>2</sup></p>";
               echo "<p>Perímetro de ese círculo --> <strong>" . $perimetroBonito . "</strong> cm</p>";
               echo "<hr>";
@@ -194,8 +176,7 @@
         <div class="card shadow-sm">
           <div class="card-body">
             <?php
-              // El enunciado pide este ejercicio en un proyecto aparte, ejecutado con el
-              // servidor propio de PHP, así que aquí solo dejo la explicación y los enlaces
+              // El enunciado pide este ejercicio en un proyecto aparte, ejecutado con el servidor propio de PHP, así que aquí solo dejo la explicación y los enlaces
               echo "<h2 class='h4 text-primary'>Ejercicio 5: tipos de dato</h2>";
             ?>
             <p>Este ejercicio va en la carpeta <code>Ejercicio5</code>, que está al lado de esta

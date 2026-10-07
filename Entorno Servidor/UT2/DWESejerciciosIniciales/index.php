@@ -26,8 +26,7 @@
          y las clases nav y nav-tabs son las que le dan el aspecto de barra de pestañas -->
     <ul class="nav nav-tabs mb-3">
       <li class="nav-item">
-        <!-- La primera pestaña lleva la clase active porque es la que se ve al abrir la
-             página; las otras se la quitan -->
+        <!-- La primera pestaña lleva la clase active porque es la que se ve al abrir la página; las otras se la quitan -->
         <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#panelEjercicio1"
           type="button">Ejercicio 1</button>
       </li>
