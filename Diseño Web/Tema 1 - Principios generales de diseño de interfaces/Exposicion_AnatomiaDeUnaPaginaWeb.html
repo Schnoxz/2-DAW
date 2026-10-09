@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La anatomía de una página web · Tema 1 · Diseño de Interfaces Web</title>
+<style>
+  :root{
+    --bg:#0e1120;
+    --bg2:#151a30;
+    --card:#1a2040;
+    --text:#e9ecff;
+    --muted:#9aa3d0;
+    --accent:#4fd1c5;
+    --accent2:#a78bfa;
+    --warn:#f6ad55;
+    --pink:#f687b3;
+    --mono:Consolas,"Courier New",monospace;
+    --sans:"Segoe UI",system-ui,-apple-system,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow:hidden}
+
+  #progress{position:fixed;top:0;left:0;height:4px;width:0%;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:100;transition:width .35s ease}
+
+  .slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    opacity:0;visibility:hidden;pointer-events:none;transform:translateX(40px);
+    transition:opacity .4s ease,transform .4s ease,visibility .4s;padding:5vh 7vw}
+  .slide.active{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(0)}
+  .slide.prev{transform:translateX(-40px)}
+  .inner{width:100%;max-width:1100px}
+
+  .eyebrow{display:inline-block;font-size:.85rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:1.1rem;font-weight:600}
+  h1{font-size:clamp(2.4rem,5.5vw,4.2rem);line-height:1.08;font-weight:800}
+  h2{font-size:clamp(1.7rem,3.4vw,2.6rem);line-height:1.15;margin-bottom:1.6rem;font-weight:750}
+  h3{font-size:1.05rem;color:var(--accent2);margin-bottom:.5rem}
+  h4{font-size:.95rem;margin-bottom:.3rem}
+  p,li{font-size:clamp(1rem,1.5vw,1.18rem);line-height:1.55}
+  .muted{color:var(--muted)}
+  .grad{background:linear-gradient(90deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  strong{color:var(--accent);font-weight:700}
+  code{font-family:var(--mono);background:#0a0d1c;border:1px solid #2a3160;
+    padding:.08em .4em;border-radius:6px;font-size:.92em;color:var(--warn)}
+
+  .cover::before,.cover::after{content:"";position:absolute;border-radius:50%;
+    filter:blur(90px);opacity:.5;pointer-events:none;z-index:-1}
+  .cover::before{width:420px;height:420px;background:#4fd1c540;top:-140px;right:-80px}
+  .cover::after{width:360px;height:360px;background:#a78bfa40;bottom:-140px;left:-100px}
+  .cover-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:2.5rem;align-items:center}
+  @media (max-width:900px){.cover-grid{grid-template-columns:1fr}}
+  .cover p.big-q{max-width:34rem;margin-top:.4rem;font-size:clamp(1.2rem,2vw,1.5rem);font-weight:550;line-height:1.4}
+  .cover-meta{margin-top:2.4rem;display:flex;gap:2.5rem;flex-wrap:wrap;color:var(--muted);font-size:.95rem;
+    border-top:1px solid #2b3262;padding-top:1.2rem}
+  .cover-meta b{display:block;color:var(--text);font-size:1.02rem;font-weight:600}
+  .hint{margin-top:2rem;color:var(--muted);font-size:.95rem;display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+  kbd{font-family:var(--mono);background:var(--card);border:1px solid #3a4280;
+    border-bottom-width:3px;border-radius:6px;padding:.15em .5em;font-size:.9em}
+  .keys-anim{display:inline-flex;gap:.4rem;align-items:center}
+  .key-press{animation:keyPress 1.6s ease-in-out infinite}
+  @keyframes keyPress{0%,100%{transform:translateY(0);border-bottom-width:3px}
+    15%{transform:translateY(3px);border-bottom-width:1px}
+    30%{transform:translateY(0);border-bottom-width:3px}}
+
+  .journey{display:flex;align-items:stretch;gap:0;margin-top:2rem;list-style:none;flex-wrap:wrap;row-gap:1.2rem}
+  .journey li{flex:1;min-width:150px;position:relative;background:var(--card);
+    border:1px solid #2b3262;border-radius:14px;padding:1rem .9rem .9rem;margin-right:1.4rem}
+  .journey li:last-child{margin-right:0}
+  .journey li::after{content:"➜";position:absolute;right:-1.25rem;top:50%;
+    transform:translateY(-50%);color:var(--accent2);font-size:1.1rem}
+  .journey li:last-child::after{content:none}
+  .journey .num{position:absolute;top:-0.85rem;left:.9rem;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0e1120;font-weight:800;
+    font-size:.8rem;width:1.6rem;height:1.6rem;border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .journey p{font-size:.8rem;color:var(--muted);line-height:1.4}
+
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;align-items:start}
+  .cols-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.2rem}
+  .cols-main{display:grid;grid-template-columns:1.2fr .8fr;gap:1.6rem;align-items:center}
+  @media (max-width:860px){.cols,.cols-3,.cols-main{grid-template-columns:1fr}.journey li{margin-right:0}.journey li::after{content:none}}
+  .card{background:var(--card);border:1px solid #2b3262;border-radius:16px;padding:1.3rem 1.4rem}
+  .card.accent{border-color:#2dd4bf55}
+  .card ul{margin-left:1.1rem}
+  .card li{margin-bottom:.45rem;font-size:1rem}
+  .card li:last-child{margin-bottom:0}
+  .intro{margin-bottom:1.2rem;color:var(--muted)}
+
+  .callout{margin-top:1.3rem;padding:1rem 1.2rem;border-radius:12px;background:#12173a;
+    border-left:4px solid var(--warn);font-size:1rem;line-height:1.5}
+  .callout.teal{border-left-color:var(--accent)}
+  .callout.violet{border-left-color:var(--accent2)}
+
+  /* Wireframe de la página web */
+  .anatomy{background:var(--card);border:1px solid #2b3262;border-radius:16px;padding:1.1rem}
+  .win{background:#0a0d1c;border:1px solid #3a4280;border-radius:10px;
+    display:grid;grid-template-rows:auto .55rem 1fr auto;grid-template-columns:96px 1fr;
+    gap:.42rem;padding:.5rem;height:250px}
+  .win .z{border-radius:7px;display:flex;align-items:center;justify-content:center;
+    font-size:.7rem;font-weight:700;letter-spacing:.02em;color:#0e1120;text-align:center;padding:0 .3rem;
+    background:#2a3160;transition:background .3s,box-shadow .3s}
+  .z-head{grid-column:1/3;grid-row:1}
+  .z-ws{grid-column:1/3;grid-row:2;background:transparent !important;color:transparent !important;
+    border:.15em dashed #3a4280;border-radius:6px}
+  .z-nav{grid-row:3;grid-column:1}
+  .z-body{grid-row:3;grid-column:2}
+  .z-foot{grid-column:1/3;grid-row:4}
+  .anatomy .labels{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.7rem;justify-content:center}
+  .anatomy .lb{font-size:.7rem;color:var(--muted);border:1px solid #2b3262;padding:.15em .55em;border-radius:99px}
+  .hl .z-head{background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 16px #4fd1c566}
+  .hl-nav .z-nav{background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 16px #4fd1c566}
+  .hl-body .z-body{background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 16px #4fd1c566}
+  .hl-foot .z-foot{background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 16px #4fd1c566}
+  .hl-ws .z-ws{background:var(--warn) !important;border-color:var(--warn);color:#0e1120 !important;
+    font-size:.62rem;display:flex;align-items:center;justify-content:center;box-shadow:0 0 14px #f6ad5544}
+  .hl-bodyfoot .z-body,.hl-bodyfoot .z-foot{background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 16px #4fd1c566}
+
+  .steps{display:flex;flex-direction:column;gap:.7rem;margin-top:.8rem;counter-reset:step}
+  .step{display:flex;gap:.9rem;align-items:flex-start;background:var(--card);
+    border:1px solid #2b3262;border-radius:12px;padding:.75rem 1rem}
+  .step::before{counter-increment:step;content:counter(step);flex:0 0 1.7rem;height:1.7rem;border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0e1120;font-weight:800;
+    font-size:.9rem;display:flex;align-items:center;justify-content:center;margin-top:.1rem}
+  .step p{font-size:.98rem}
+  .step b{color:var(--text)}
+
+  .flow{display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap;margin:1.2rem 0}
+  .node{background:var(--card);border:1px solid #3a4280;border-radius:12px;padding:.75rem 1rem;
+    text-align:center;min-width:120px;font-size:.95rem;font-weight:600}
+  .node small{display:block;font-weight:400;color:var(--muted);font-size:.78rem;margin-top:.2rem}
+  .node.good{border-color:var(--accent);box-shadow:0 0 18px #4fd1c533}
+  .node.bad{border-color:var(--pink);box-shadow:0 0 18px #f687b333}
+  .node.old{border-color:var(--warn);box-shadow:0 0 18px #f6ad5533}
+  .arrow{color:var(--accent2);font-size:1.2rem;font-weight:700}
+
+  .why{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.2rem;margin-top:1.6rem}
+  @media (max-width:860px){.why{grid-template-columns:1fr}}
+  .why .card p{font-size:.95rem;color:var(--muted);margin-top:.4rem}
+  .end{margin-top:1.8rem;font-size:1.3rem;font-weight:700}
+
+  #nav{position:fixed;bottom:1.1rem;right:1.4rem;z-index:100;display:flex;gap:.5rem;align-items:center}
+  #nav button{background:var(--card);color:var(--text);border:1px solid #3a4280;width:2.4rem;height:2.4rem;
+    border-radius:10px;font-size:1.1rem;cursor:pointer;transition:.15s}
+  #nav button:hover{border-color:var(--accent);color:var(--accent)}
+  #counter{color:var(--muted);font-family:var(--mono);font-size:.85rem;margin-right:.6rem}
+  #brand{position:fixed;bottom:1.25rem;left:1.4rem;z-index:100;color:#5b639c;font-size:.78rem;letter-spacing:.05em}
+  .click-zone{position:fixed;top:0;bottom:0;width:12vw;z-index:50;cursor:pointer}
+  #zoneL{left:0}#zoneR{right:0}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+<div class="click-zone" id="zoneL" title="Anterior"></div>
+<div class="click-zone" id="zoneR" title="Siguiente"></div>
+<div id="brand">TEMA 1 · PLANIFICACIÓN DE INTERFACES GRÁFICAS</div>
+
+<nav id="nav">
+  <span id="counter">1 / 10</span>
+  <button id="btnPrev" title="Anterior (←)">←</button>
+  <button id="btnNext" title="Siguiente (→)">→</button>
+</nav>
+
+<!-- 1 · PORTADA -->
+<section class="slide active">
+  <div class="inner cover">
+    <div class="cover-grid">
+      <div>
+        <span class="eyebrow">Tema 1 · Planificación de interfaces gráficas · 2º DAW</span>
+        <h1>La anatomía de<br><span class="grad">una página web</span></h1>
+        <p class="big-q muted">Los componentes de una interfaz web y cómo se ordenan:
+          qué es cada zona de la página y cómo se maqueta.</p>
+        <div class="cover-meta">
+          <div><b>Exposición</b>Javier Jiménez Alonso</div>
+          <div><b>Módulo</b>Diseño de Interfaces Web</div>
+        </div>
+        <div class="hint">
+          Navega con
+          <span class="keys-anim"><kbd class="key-press">←</kbd><kbd class="key-press">→</kbd></span>
+          o con los botones / clic en los laterales
+        </div>
+      </div>
+      <div class="anatomy">
+        <div class="win">
+          <div class="z z-head">cabecera</div>
+          <div class="z z-ws"></div>
+          <div class="z z-nav">menú</div>
+          <div class="z z-body">cuerpo</div>
+          <div class="z z-foot">pie</div>
+        </div>
+        <div class="labels">
+          <span class="lb">cabecera</span><span class="lb">navegación</span>
+          <span class="lb">cuerpo</span><span class="lb">pie</span><span class="lb">espacios en blanco</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · INTRODUCCIÓN -->
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">Introducción</span>
+    <h2>Qué vamos a ver<br>y por qué</h2>
+    <p class="muted" style="margin-bottom:1.2rem">
+      Este tema trata de la <strong>planificación de interfaces gráficas</strong>.
+      Esta exposición se centra en la parte más concreta: la <strong>estructura de una página web</strong>.</p>
+    <div class="cols">
+      <div class="card accent">
+        <h3>Qué vamos a ver</h3>
+        <ul>
+          <li>Los <strong>componentes</strong> de una interfaz web: cabecera, navegación, cuerpo, pie y espacios en blanco.</li>
+          <li>Qué es la <strong>maquetación</strong> y cómo ha evolucionado (tablas, capas y marcos).</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Por qué</h3>
+        <p>Las interfaces web han evolucionado hacia la <strong>homogeneidad</strong>:
+        los componentes son parecidos en casi todos los sitios y cualquier usuario los reconoce.</p>
+        <p style="margin-top:.6rem">Conocerlos es el <strong>vocabulario común de las guías de estilo</strong>,
+        y entender cómo se maqueta ayuda a <strong>separar contenido y presentación</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · MAPA -->
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">Índice de la exposición</span>
+    <h2>El recorrido de la exposición</h2>
+    <ol class="journey">
+      <li><span class="num">1</span>
+        <h4>Cabecera</h4>
+        <p>Identifica el sitio y su propietario</p></li>
+      <li><span class="num">2</span>
+        <h4>Navegación</h4>
+        <p>Los menús que mueven al usuario entre páginas</p></li>
+      <li><span class="num">3</span>
+        <h4>Cuerpo y pie</h4>
+        <p>El contenido central y la información inferior</p></li>
+      <li><span class="num">4</span>
+        <h4>Espacios en blanco</h4>
+        <p>Lo que no se ve, pero estructura la página</p></li>
+      <li><span class="num">5</span>
+        <h4>Maquetación</h4>
+        <p>Cómo se ordenan las zonas y con qué técnicas</p></li>
+    </ol>
+    <div class="callout">A lo largo del recorrido, el esquema de la derecha en cada
+      diapositiva marca la zona de la página de la que se habla.</div>
+  </div>
+</section>
+
+<!-- 4 · CABECERA -->
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">Componente 1 · La cabecera</span>
+    <h2>La cabecera: identifica<br>el sitio <span class="grad">a primera vista</span></h2>
+    <div class="cols-main">
+      <div class="card accent">
+        <ul>
+          <li><strong>Qué es</strong>: la zona superior de la página, normalmente a todo el ancho y altura variable.</li>
+          <li><strong>Contenido</strong>: logotipo y nombre del sitio o la empresa, a veces también login, fotografías o banners.</li>
+          <li><strong>Objetivos</strong>: identificar el sitio (como la portada de un periódico),
+            homogeneizar todas las páginas del sitio con una referencia común y separar el contenido del borde superior.</li>
+          <li><strong>Un detalle</strong>: en occidente se lee de arriba a la izquierda,
+            así que el logotipo va ahí para ser lo primero que se observe.</li>
+          <li>No es obligatoria y no siempre ocupa todo el ancho.</li>
+        </ul>
+      </div>
+      <div class="anatomy hl"><div class="win">
+        <div class="z z-head">cabecera</div><div class="z z-ws"></div>
+        <div class="z z-nav">menú</div><div class="z z-body">cuerpo</div><div class="z z-foot">pie</div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · NAVEGACIÓN -->
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">Componente 2 · Los sistemas de navegación</span>
+    <h2>Navegación: muévete<br>por el sitio sin perderte</h2>
+    <div class="cols-main">
+      <div class="card accent">
+        <ul>
+          <li><strong>Qué son</strong>: los menús que permiten visitar las diferentes secciones y páginas del sitio.</li>
+          <li>Pueden combinar <strong>texto y gráficos</strong>, con efectos dinámicos
+            como el <strong>rollover</strong>: la opción cambia de aspecto al pasar el puntero encima.</li>
+          <li><strong>Tipos habituales</strong>:
+            menús de <strong>árbol</strong> (se despliegan niveles, como el explorador de Windows),
+            menús de <strong>cortinilla</strong> (aparecen y desaparecen grupos de opciones)
+            y menús de <strong>pestañas</strong>.</li>
+        </ul>
+      </div>
+      <div class="anatomy hl-nav"><div class="win">
+        <div class="z z-head">cabecera</div><div class="z z-ws"></div>
+        <div class="z z-nav">menú</div><div class="z z-body">cuerpo</div><div class="z z-foot">pie</div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · CUERPO Y PIE -->
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">Componente 3 · El contenido</span>
+    <h2>Cuerpo y pie de página</h2>
+    <div class="cols-main">
+      <div>
+        <div class="card accent" style="margin-bottom:1rem">
+          <h3>El cuerpo</h3>
+          <ul>
+            <li>La zona <strong>central</strong>, bajo la cabecera y junto al menú lateral si lo hay.</li>
+            <li>Es donde va <strong>el contenido</strong>: lo que el usuario quiere ver.</li>
+            <li>Lleva un <strong>título</strong> que identifica la página, más grande o de otro color que el resto.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>El pie de página</h3>
+          <ul>
+            <li>La parte <strong>inferior</strong>, bajo el cuerpo.</li>
+            <li>Enlaza servicios concretos: contacto, condiciones de uso, empleo, publicidad, seguridad…</li>
+            <li>Ayuda a una <strong>percepción estructurada</strong> del sitio.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="anatomy hl-bodyfoot"><div class="win">
+        <div class="z z-head">cabecera</div><div class="z z-ws"></div>
+        <div class="z z-nav">menú</div><div class="z z-body">cuerpo</div><div class="z z-foot">pie</div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · ESPACIOS EN BLANCO -->
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">Componente 4 · Espacios en blanco</span>
+    <h2>Espacios en blanco:<br><span class="grad">lo que no se ve</span></h2>
+    <div class="cols-main">
+      <div class="card accent">
+        <ul>
+          <li><strong>Qué son</strong>: las zonas de la interfaz en las que no hay ningún elemento gráfico.</li>
+          <li><strong>Qué aportan</strong>: compensan el <strong>peso visual</strong> del resto de elementos.</li>
+          <li>Creamos con ellos <strong>márgenes y separaciones</strong> que encuadran los elementos
+            y marcan los <strong>límites de la composición</strong>.</li>
+          <li>Resultado: una interfaz más <strong>equilibrada, limpia y fácil de leer</strong>.</li>
+        </ul>
+      </div>
+      <div class="anatomy hl-ws"><div class="win">
+        <div class="z z-head">cabecera</div><div class="z z-ws">espacio en blanco</div>
+        <div class="z z-nav">menú</div><div class="z z-body">cuerpo</div><div class="z z-foot">pie</div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 · MAQUETACIÓN -->
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">Componente 5 · La maquetación</span>
+    <h2>Maquetar es <span class="grad">ordenar</span><br>los elementos en el espacio</h2>
+    <div class="cols">
+      <div class="card accent">
+        <h3>Qué es</h3>
+        <p>Colocar las diferentes partes de la página dentro de sus límites,
+        es decir, <strong>distribuir los elementos en el espacio disponible</strong>.</p>
+        <div class="flow">
+          <div class="node">Contenido<small>textos, imágenes</small></div>
+          <span class="arrow">+</span>
+          <div class="node">Presentación<small>dónde y cómo se muestra</small></div>
+          <span class="arrow">=</span>
+          <div class="node good">Página maquetada</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Para qué sirve</h3>
+        <ul>
+          <li><strong>Separar contenido de presentación</strong>: si cambian los contenidos no hay que tocar el diseño, y al revés.</li>
+          <li>Facilita el <strong>mantenimiento</strong> de la web.</li>
+          <li>Reduce el <strong>tiempo de desarrollo</strong> y el tiempo de carga de la página.</li>
+        </ul>
+        <div class="callout violet" style="margin-top:1rem">
+          Esa separación es la que permite mantener el estilo del sitio
+          y actualizar los contenidos sin romper nada.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 · EVOLUCIÓN DE LA MAQUETACIÓN -->
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">Cómo se ha maquetado</span>
+    <h2>De las tablas a las capas</h2>
+    <div class="cols-3">
+      <div class="card old">
+        <h3>Tablas (antes)</h3>
+        <p>Se maquetaba con tablas en HTML. Resultaba <strong>encorsetado</strong>,
+        con código difícil de entender, y daba <strong>problemas de accesibilidad</strong>
+        y de interpretación por los buscadores.</p>
+      </div>
+      <div class="card good">
+        <h3>Capas (actual)</h3>
+        <p>La maquetación actual usa <strong>capas o contenedores</strong> (<code>div</code>),
+        que se colocan con hojas de estilo (<strong>CSS</strong>). Pueden anidarse
+        y se adaptan mejor al contenido.</p>
+      </div>
+      <div class="card">
+        <h3>Marcos (frames)</h3>
+        <p>Insertan una <strong>página dentro de otra</strong>. Resultan útiles para compartir
+        cabecera o menú en todo el sitio, pero son <strong>rígidos</strong>: cada marco ocupa
+        un cuadrante fijo y algunos navegadores no los soportan.</p>
+      </div>
+    </div>
+    <div class="callout" style="text-align:center">
+      Hoy la opción habitual es la <strong>maquetación con capas y CSS</strong>,
+      que permite separar el contenido de la presentación.
+    </div>
+  </div>
+</section>
+
+<!-- 10 · RESUMEN Y CIERRE -->
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">Resumen y cierre</span>
+    <h2>El recorrido completo</h2>
+    <ol class="journey" style="margin-top:.6rem">
+      <li><span class="num">1</span>
+        <h4>Cabecera</h4>
+        <p>Identifica el sitio y homogeneiza sus páginas</p></li>
+      <li><span class="num">2</span>
+        <h4>Navegación</h4>
+        <p>Menús de árbol, cortinilla o pestañas</p></li>
+      <li><span class="num">3</span>
+        <h4>Cuerpo y pie</h4>
+        <p>Contenido central e información inferior</p></li>
+      <li><span class="num">4</span>
+        <h4>Espacios en blanco</h4>
+        <p>Márgenes, separaciones y equilibrio</p></li>
+      <li><span class="num">5</span>
+        <h4>Maquetación</h4>
+        <p>Capas + CSS para separar contenido y presentación</p></li>
+    </ol>
+
+    <div class="why" style="margin-top:1.2rem">
+      <div class="card accent"><h3>Vocabulario común</h3>
+        <p>Cada componente tiene un nombre y una función: es la base de las guías de estilo.</p></div>
+      <div class="card accent"><h3>Reconocibles</h3>
+        <p>Usuarios de cualquier sitio esperan estas zonas en lugares parecidos.</p></div>
+      <div class="card accent"><h3>Aplicación</h3>
+        <p>Esta estructura se traduce después en HTML semántico y CSS real.</p></div>
+    </div>
+
+    <p class="end">Gracias por la atención. ¿Preguntas?</p>
+    <p class="muted" style="margin-top:.6rem;font-size:.9rem">Fuente: Tema 1 · Planificación de interfaces gráficas —
+      apuntes sobre componentes de interfaz web y maquetación (págs. 41-45).</p>
+  </div>
+</section>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  const progress=document.getElementById('progress');
+  const counter=document.getElementById('counter');
+  let i=0;
+  function show(n){
+    if(n<0||n>=slides.length) return;
+    slides[i].classList.remove('active');
+    slides[i].classList.toggle('prev',n<i);
+    i=n;
+    slides[i].classList.remove('prev');
+    slides[i].classList.add('active');
+    progress.style.width=((i+1)/slides.length*100)+'%';
+    counter.textContent=(i+1)+' / '+slides.length;
+  }
+  const next=()=>show(i+1);
+  const prev=()=>show(i-1);
+  document.getElementById('btnNext').onclick=next;
+  document.getElementById('btnPrev').onclick=prev;
+  document.getElementById('zoneR').onclick=next;
+  document.getElementById('zoneL').onclick=prev;
+  document.addEventListener('keydown',e=>{
+    if(['ArrowRight','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();next();}
+    else if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){e.preventDefault();prev();}
+    else if(e.key==='Home')show(0);
+    else if(e.key==='End')show(slides.length-1);
+  });
+  let tx=null;
+  document.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(tx===null)return;
+    const dx=e.changedTouches[0].clientX-tx;
+    if(Math.abs(dx)>60)(dx<0?next:prev)();
+    tx=null;
+  },{passive:true});
+  show(0);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Del pergamino al píxel · Tema 1 · Diseño de Interfaces Web</title>
+<style>
+  :root{
+    --bg:#0e1120;
+    --bg2:#151a30;
+    --card:#1a2040;
+    --text:#e9ecff;
+    --muted:#9aa3d0;
+    --accent:#4fd1c5;
+    --accent2:#a78bfa;
+    --warn:#f6ad55;
+    --pink:#f687b3;
+    --mono:Consolas,"Courier New",monospace;
+    --sans:"Segoe UI",system-ui,-apple-system,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow:hidden}
+
+  #progress{position:fixed;top:0;left:0;height:4px;width:0%;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:100;transition:width .35s ease}
+
+  .slide{position:absolute;inset:0;display:flex;
+    overflow-y:auto;overscroll-behavior:contain;
+    opacity:0;visibility:hidden;pointer-events:none;transform:translateX(40px);
+    transition:opacity .4s ease,transform .4s ease,visibility .4s;padding:5vh 7vw}
+  .slide.active{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(0)}
+  .slide.prev{transform:translateX(-40px)}
+  .inner{width:100%;max-width:1100px;margin:auto}
+
+  .eyebrow{display:inline-block;font-size:.85rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:1.1rem;font-weight:600}
+  h1{font-size:clamp(2.4rem,5.5vw,4.2rem);line-height:1.08;font-weight:800}
+  h2{font-size:clamp(1.7rem,3.4vw,2.6rem);line-height:1.15;margin-bottom:1.6rem;font-weight:750}
+  h3{font-size:1.05rem;color:var(--accent2);margin-bottom:.5rem}
+  h4{font-size:.95rem;margin-bottom:.3rem}
+  p,li{font-size:clamp(1rem,1.5vw,1.18rem);line-height:1.55}
+  .muted{color:var(--muted)}
+  .grad{background:linear-gradient(90deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  strong{color:var(--accent);font-weight:700}
+  code{font-family:var(--mono);background:#0a0d1c;border:1px solid #2a3160;
+    padding:.08em .4em;border-radius:6px;font-size:.92em;color:var(--warn)}
+
+  .cover::before,.cover::after{content:"";position:absolute;border-radius:50%;
+    filter:blur(90px);opacity:.5;pointer-events:none;z-index:-1}
+  .cover::before{width:420px;height:420px;background:#4fd1c540;top:-140px;right:-80px}
+  .cover::after{width:360px;height:360px;background:#a78bfa40;bottom:-140px;left:-100px}
+  .cover-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:2.5rem;align-items:center}
+  @media (max-width:900px){.cover-grid{grid-template-columns:1fr}}
+  .cover p.big-q{max-width:34rem;margin-top:.4rem;font-size:clamp(1.2rem,2vw,1.5rem);font-weight:550;line-height:1.4}
+  .cover-meta{margin-top:2.4rem;display:flex;gap:2.5rem;flex-wrap:wrap;color:var(--muted);font-size:.95rem;
+    border-top:1px solid #2b3262;padding-top:1.2rem}
+  .cover-meta b{display:block;color:var(--text);font-size:1.02rem;font-weight:600}
+  .hint{margin-top:2rem;color:var(--muted);font-size:.95rem;display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+  kbd{font-family:var(--mono);background:var(--card);border:1px solid #3a4280;
+    border-bottom-width:3px;border-radius:6px;padding:.15em .5em;font-size:.9em}
+  .keys-anim{display:inline-flex;gap:.4rem;align-items:center}
+  .key-press{animation:keyPress 1.6s ease-in-out infinite}
+  @keyframes keyPress{0%,100%{transform:translateY(0);border-bottom-width:3px}
+    15%{transform:translateY(3px);border-bottom-width:1px}
+    30%{transform:translateY(0);border-bottom-width:3px}}
+
+  .tools{background:var(--card);border:1px solid #2b3262;border-radius:16px;padding:1.5rem 1.3rem}
+  .tools h4{margin-bottom:1rem;color:var(--muted);font-weight:600;font-size:.85rem;text-align:center}
+  .tools .shapes{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:1rem}
+  .t{display:flex;flex-direction:column;align-items:center;gap:.35rem}
+  .t span{font-size:.7rem;color:var(--muted)}
+  .t .sq{width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent2))}
+  .t .rec{width:64px;height:34px;border-radius:7px;background:linear-gradient(135deg,var(--pink),var(--warn))}
+  .t .cir{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--warn))}
+  .t .lat{width:3px;height:44px;border-radius:2px;background:linear-gradient(180deg,var(--accent),var(--accent2))}
+
+  .journey{display:flex;align-items:stretch;gap:1.4rem;margin-top:1.6rem;list-style:none;flex-wrap:wrap}
+  .journey li{flex:1;min-width:150px;position:relative;background:var(--card);
+    border:1px solid #2b3262;border-radius:14px;padding:1rem .9rem .9rem}
+  .journey .num{position:absolute;top:-0.85rem;left:.9rem;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0e1120;font-weight:800;
+    font-size:.8rem;width:1.6rem;height:1.6rem;border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .journey p{font-size:.8rem;color:var(--muted);line-height:1.45}
+
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;align-items:start}
+  .cols-main{display:grid;grid-template-columns:1.2fr .8fr;gap:1.6rem;align-items:center}
+  @media (max-width:860px){.cols,.cols-main{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid #2b3262;border-radius:16px;padding:1.3rem 1.4rem}
+  .card.accent{border-color:#2dd4bf55}
+  .card ul{margin-left:1.1rem}
+  .card li{margin-bottom:.45rem;font-size:1rem}
+  .card li:last-child{margin-bottom:0}
+
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+  @media (max-width:1000px){.grid4{grid-template-columns:1fr 1fr}}
+  @media (max-width:640px){.grid4{grid-template-columns:1fr}}
+  .grid4 .card h3{font-size:.95rem}
+  .grid4 .card p{font-size:.86rem;color:var(--muted);margin-top:.35rem}
+  .grid4 .card b{color:var(--text)}
+  .grid4 .card strong{color:var(--accent)}
+
+  .callout{margin-top:1.3rem;padding:1rem 1.2rem;border-radius:12px;background:#12173a;
+    border-left:4px solid var(--warn);font-size:1rem;line-height:1.5}
+  .callout teal,.callout.teal{border-left-color:var(--accent)}
+  .callout.violet{border-left-color:var(--accent2)}
+
+  .flow{display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap;margin:1.1rem 0}
+  .node{background:var(--card);border:1px solid #3a4280;border-radius:12px;padding:.7rem .85rem;
+    text-align:center;min-width:118px;font-size:.88rem;font-weight:600}
+  .node small{display:block;font-weight:400;color:var(--muted);font-size:.74rem;margin-top:.2rem}
+  .node.good{border-color:var(--accent);box-shadow:0 0 18px #4fd1c533}
+  .node.bad{border-color:var(--pink);box-shadow:0 0 18px #f687b333}
+  .node.old{border-color:var(--warn);box-shadow:0 0 18px #f6ad5533}
+  .arrow{color:var(--accent2);font-size:1.15rem;font-weight:700}
+
+  .timeline{display:flex;gap:.4rem;align-items:stretch;flex-wrap:wrap;margin-top:1.1rem}
+  .timeline .node{flex:1;min-width:104px;padding:.6rem .6rem;font-size:.8rem}
+  .timeline .node b{display:block;color:var(--accent);font-size:.72rem;margin-bottom:.2rem}
+
+  .shapes-big{display:flex;align-items:center;justify-content:center;gap:1.1rem;flex-wrap:wrap;padding:.4rem 0}
+  .shapes-big .t{flex-direction:column}
+  .shapes-big .t span{font-size:.72rem;color:var(--muted);text-align:center;max-width:110px}
+  .shape{background:linear-gradient(135deg,var(--accent),var(--accent2));opacity:.95}
+  .shape.sq{width:60px;height:60px;border-radius:8px}
+  .shape.rec-h{width:96px;height:44px;border-radius:8px}
+  .shape.rec-v{width:44px;height:96px;border-radius:8px}
+  .shape.rec-r{width:64px;height:64px;border-radius:16px}
+  .shape.cir{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--warn))}
+  .shape.oval{width:92px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--warn))}
+
+  .prism-card{background:var(--card);border:1px solid #2b3262;border-radius:16px;padding:1.2rem;
+    display:flex;flex-direction:column;align-items:center;gap:.9rem}
+  .prism{position:relative;width:120px;height:110px}
+  .prism .ray{position:absolute;left:0;top:18px;width:52px;height:3px;background:#e9ecff;border-radius:3px}
+  .prism .tri{position:absolute;left:46px;top:14px;width:0;height:0;
+    border-left:34px solid transparent;border-right:34px solid transparent;border-bottom:60px solid var(--bg2)}
+  .prism .tri::after{content:"";position:absolute;left:-26px;top:16px;width:0;height:0;
+    border-left:26px solid transparent;border-right:26px solid transparent;border-bottom:44px solid #4fd1c533}
+  .prism .split{position:absolute;left:86px;top:18px;width:24px;height:70px;border-radius:3px;
+    background:linear-gradient(180deg,#ef4444,#facc15,#22c55e,#3b82f6,#a855f7)}
+  .chips{display:flex;justify-content:center;gap:1.4rem;align-items:flex-start;flex-wrap:wrap}
+  .chips .c{display:flex;flex-direction:column;align-items:center;gap:.35rem;font-size:.78rem;color:var(--muted)}
+  .circle{width:42px;height:42px;border-radius:50%}
+  .swatch-row{display:flex;gap:.55rem;flex-wrap:wrap;margin-top:.5rem}
+  .sw{flex:1;min-width:78px;border-radius:10px;padding:.5rem .3rem;text-align:center;
+    font-weight:700;font-size:.74rem;color:#0e1120}
+  .sw.r{background:#ef4444}.sw.g{background:#22c55e}.sw.b{background:#3b82f6}.sw.y{background:#facc15}
+
+  .bars{display:flex;flex-direction:column;gap:.6rem}
+  .bar{display:grid;grid-template-columns:96px 1fr;gap:.8rem;align-items:center;font-size:.82rem;color:var(--muted)}
+  .bar .track{height:13px;border-radius:99px;background:#151a30;border:1px solid #2b3262;overflow:hidden}
+  .bar .fill{height:100%;border-radius:99px}
+  .fill.hue{background:linear-gradient(90deg,#ef4444,#facc15,#22c55e,#3b82f6,#a855f7,#ef4444)}
+  .fill.sat{width:72%;background:linear-gradient(90deg,#9aa3d0,#f87171)}
+  .fill.val{width:48%;background:linear-gradient(90deg,#e9ecff,#0a0d1c)}
+
+  .tercios-wrap{text-align:center}
+  .tercios{position:relative;max-width:340px;aspect-ratio:16/9;margin:0 auto;background:#0a0d1c;
+    border:1px solid #3a4280;border-radius:12px}
+  .tercios .g{position:absolute;background:#4fd1c566}
+  .tercios .gv{width:2px;top:0;bottom:0}
+  .tercios .gh{height:2px;left:0;right:0}
+  .tercios .dot{position:absolute;width:16px;height:16px;border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    box-shadow:0 0 14px #4fd1c588;transform:translate(-50%,-50%)}
+  .tercios-caption{margin-top:.5rem;font-size:.78rem;color:var(--muted)}
+
+  .typo-demo{display:flex;gap:1rem;align-items:stretch;margin:.6rem 0}
+  .typo-demo>div{flex:1;background:var(--card);border:1px solid #2b3262;border-radius:14px;
+    text-align:center;padding:1.1rem .8rem}
+  .serif-f{font-family:Georgia,'Times New Roman',serif;font-size:2.5rem;font-weight:700}
+  .sans-f{font-family:'Segoe UI',Arial,sans-serif;font-size:2.5rem;font-weight:700;letter-spacing:.02em}
+  .typo-sub{display:block;font-size:.74rem;color:var(--muted);margin-top:.35rem}
+
+  .anatomy{background:var(--card);border:1px solid #2b3262;border-radius:16px;padding:1.1rem}
+  .win{background:#0a0d1c;border:1px solid #3a4280;border-radius:10px;
+    display:grid;grid-template-rows:auto .55rem 1fr auto;grid-template-columns:96px 1fr;
+    gap:.42rem;padding:.5rem;height:250px}
+  .win .z{border-radius:7px;display:flex;align-items:center;justify-content:center;
+    font-size:.7rem;font-weight:700;letter-spacing:.02em;color:#0e1120;text-align:center;padding:0 .3rem;
+    background:#2a3160;transition:background .3s,box-shadow .3s}
+  .z-head{grid-column:1/3;grid-row:1}
+  .z-ws{grid-column:1/3;grid-row:2;background:transparent !important;color:transparent !important;
+    border:.15em dashed #3a4280;border-radius:6px}
+  .z-nav{grid-row:3;grid-column:1}
+  .z-body{grid-row:3;grid-column:2}
+  .z-foot{grid-column:1/3;grid-row:4}
+  .anatomy .labels{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.7rem;justify-content:center}
+  .anatomy .lb{font-size:.7rem;color:var(--muted);border:1px solid #2b3262;padding:.15em .55em;border-radius:99px}
+  .win.all .z{background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 10px #4fd1c544}
+  .win.all .z-ws{background:transparent !important;border-color:var(--warn);color:#0e1120 !important;
+    font-size:.62rem;display:flex;align-items:center;justify-content:center}
+
+  .why{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.2rem;margin-top:1.6rem}
+  @media (max-width:860px){.why{grid-template-columns:1fr}}
+  .why .card p{font-size:.95rem;color:var(--muted);margin-top:.4rem}
+  .end{margin-top:1.8rem;font-size:1.3rem;font-weight:700}
+
+  #nav{position:fixed;bottom:1.1rem;right:1.4rem;z-index:100;display:flex;gap:.5rem;align-items:center}
+  #nav button{background:var(--card);color:var(--text);border:1px solid #3a4280;width:2.4rem;height:2.4rem;
+    border-radius:10px;font-size:1.1rem;cursor:pointer;transition:.15s}
+  #nav button:hover{border-color:var(--accent);color:var(--accent)}
+  #counter{color:var(--muted);font-family:var(--mono);font-size:.85rem;margin-right:.6rem}
+  #brand{position:fixed;bottom:1.25rem;left:1.4rem;z-index:100;color:#5b639c;font-size:.78rem;letter-spacing:.05em}
+  .click-zone{position:fixed;top:0;bottom:0;width:12vw;z-index:50;cursor:pointer}
+  #zoneL{left:0}#zoneR{right:0}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+<div class="click-zone" id="zoneL" title="Anterior"></div>
+<div class="click-zone" id="zoneR" title="Siguiente"></div>
+<div id="brand">TEMA 1 · PLANIFICACIÓN DE INTERFACES GRÁFICAS</div>
+
+<nav id="nav">
+  <span id="counter">1 / 14</span>
+  <button id="btnPrev" title="Anterior (←)">←</button>
+  <button id="btnNext" title="Siguiente (→)">→</button>
+</nav>
+
+<section class="slide active">
+  <div class="inner cover">
+    <div class="cover-grid">
+      <div>
+        <span class="eyebrow">Tema 1 · Planificación de interfaces gráficas · 2º DAW</span>
+        <h1>Del pergamino<br>al <span class="grad">píxel</span></h1>
+        <p class="big-q muted">El hilo que une el diseño gráfico con la página web:
+          del primer signo tallado a la interfaz que se ordena en pantalla.</p>
+        <div class="cover-meta">
+          <div><b>Exposición</b>Javier Jiménez Alonso</div>
+          <div><b>Módulo</b>Diseño de Interfaces Web</div>
+        </div>
+        <div class="hint">
+          Navega con
+          <span class="keys-anim"><kbd class="key-press">←</kbd><kbd class="key-press">→</kbd></span>
+          o con los botones / clic en los laterales
+        </div>
+      </div>
+      <div class="tools">
+        <h4>La caja de herramientas del diseñador</h4>
+        <div class="shapes">
+          <div class="t"><div class="cir"></div><span>punto</span></div>
+          <div class="t"><div class="lat"></div><span>línea</span></div>
+          <div class="t"><div class="sq"></div><span>cuadrado</span></div>
+          <div class="t"><div class="rec"></div><span>rectángulo</span></div>
+        </div>
+        <div class="callout teal" style="margin-top:1.2rem;font-size:.9rem">
+          Con estas piezas se construye toda interfaz web. El recorrido muestra por qué.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">Introducción</span>
+    <h2>Qué vamos a ver<br>y por qué</h2>
+    <p class="muted" style="margin-bottom:1.2rem">
+      Una página web es, antes que código, un <strong>diseño gráfico</strong>.
+      Para maquetarla hace falta dominar el mismo lenguaje visual que ordena
+      un cartel o un libro: forma, color, composición y tipografía.</p>
+    <div class="cols">
+      <div class="card accent">
+        <h3>Qué vamos a ver</h3>
+        <ul>
+          <li>Cómo evolucionó el diseño hasta el <strong>diseñador web</strong>.</li>
+          <li>El <strong>lenguaje visual</strong>, los elementos del diseño y los contornos.</li>
+          <li>La <strong>teoría del color</strong> y las composiciones armónicas.</li>
+          <li>La <strong>composición</strong>: equilibrio, peso visual y la regla de los tercios.</li>
+          <li>La <strong>tipografía</strong>: familias, clasificación y legibilidad.</li>
+          <li>Los <strong>componentes de una interfaz</strong> y la maquetación web.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Por qué en este orden</h3>
+        <p>Es un único hilo: el diseño siempre ordena <strong>mensajes visuales</strong> para un receptor.
+        Solo cambia el soporte, del pergamino al navegador.</p>
+        <p style="margin-top:.6rem">Primero se ven las herramientas, luego cómo se usan
+        y, al final, cómo todo eso aterriza en la <strong>estructura de una página web</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">Índice de la exposición</span>
+    <h2>El recorrido de la exposición</h2>
+    <ol class="journey">
+      <li><span class="num">1</span><h4>Historia</h4><p>Del signo a la imprenta, el ordenador y la web</p></li>
+      <li><span class="num">2</span><h4>Lenguaje visual</h4><p>El diseño como comunicación con propósito</p></li>
+      <li><span class="num">3</span><h4>Elementos</h4><p>Las piezas con las que se construye un diseño</p></li>
+      <li><span class="num">4</span><h4>Contornos</h4><p>Qué transmite cada forma básica</p></li>
+      <li><span class="num">5</span><h4>Color</h4><p>Teoría, significado y armonías</p></li>
+      <li><span class="num">6</span><h4>Composición</h4><p>Equilibrio, peso visual y reticulado</p></li>
+      <li><span class="num">7</span><h4>Tipografía</h4><p>La letra como pieza de diseño</p></li>
+      <li><span class="num">8</span><h4>Interfaz web</h4><p>Componentes y maquetación de la página</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">1.1 · Introducción al diseño gráfico · Historia</span>
+    <h2>Cada soporte nuevo<br>redibuja el diseño</h2>
+    <div class="cols">
+      <div class="card accent">
+        <ul>
+          <li>El hombre se expresó con <strong>signos e imágenes</strong> antes que con el alfabeto;
+            los primeros soportes fueron la <strong>piedra, el papiro y el pergamino</strong>.</li>
+          <li>En la <strong>Edad Media</strong> se ornamentan los manuscritos religiosos
+            para difundir mejor el mensaje de la Iglesia.</li>
+          <li>En <strong>1440 Gutenberg</strong> inventa la imprenta y los caracteres móviles.
+            Nace una nueva profesión: el <strong>tipógrafo o cajista</strong>, técnico en maquetación de textos.</li>
+          <li>La <strong>Revolución Industrial</strong> trae la publicidad y, con ella,
+            el primer <strong>diseñador gráfico</strong> que orquesta formas, textos y fotos para comunicar.</li>
+          <li>En el <strong>s. XX</strong> llegan los ordenadores e Internet: aparece el
+            <strong>diseñador web</strong>, entre el diseñador clásico y el informático.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="timeline">
+          <div class="node old"><b>Signos</b>piedra, pergamino</div>
+          <span class="arrow">→</span>
+          <div class="node old"><b>Edad Media</b>ornamentación</div>
+          <span class="arrow">→</span>
+          <div class="node old"><b>1440</b>imprenta</div>
+          <span class="arrow">→</span>
+          <div class="node old"><b>S. XIX</b>publicidad</div>
+          <span class="arrow">→</span>
+          <div class="node good"><b>S. XX</b>diseñador web</div>
+        </div>
+        <div class="callout violet">
+          El hilo se mantiene: cambia la técnica, pero el objetivo sigue siendo
+          <strong>transmitir un mensaje visual a un grupo determinado</strong>.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">1.2 · El lenguaje visual</span>
+    <h2>Diseñar es comunicar,<br><span class="grad">no solo embellecer</span></h2>
+    <div class="card accent" style="margin-bottom:1.2rem">
+      <p>El diseño es un <strong>proceso de creación visual con un propósito</strong>:
+      una silla bien diseñada no solo se ve bien, también es estable, cómoda y duradera.
+      Un buen diseño es la mejor expresión visual de la esencia de algo,
+      ya sea un mensaje o un producto.</p>
+    </div>
+    <div class="grid4">
+      <div class="card">
+        <h3>Comunicativa</h3>
+        <p>El mensaje debe ser <strong>entendible</strong> a la vista del receptor.</p>
+      </div>
+      <div class="card">
+        <h3>Publicitaria</h3>
+        <p>Debe <strong>atraer la atención</strong> y resultar atractivo.</p>
+      </div>
+      <div class="card">
+        <h3>Estética</h3>
+        <p>Debe ser <strong>agradable</strong> a la vista de quien lo recibe.</p>
+      </div>
+      <div class="card">
+        <h3>Planificación</h3>
+        <p>El diseñador ordena mensajes: trabaja con <strong>comunicación</strong>,
+        percepción, tecnología y trabajo en equipo.</p>
+      </div>
+    </div>
+    <div class="callout teal">
+      El diseñador es <strong>una persona que resuelve problemas</strong>.
+      Antes de afrontarlos debe dominar un lenguaje visual,
+      la <strong>gramática</strong> que organiza los elementos del diseño.
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">1.3 · Elementos del diseño</span>
+    <h2>Las piezas de todo diseño</h2>
+    <p class="muted intro" style="margin-bottom:1.1rem">
+      Los elementos se agrupan en <strong>cuatro categorías</strong>. Están muy relacionados
+      entre sí y, reunidos, determinan la apariencia definitiva de un diseño.</p>
+    <div class="grid4">
+      <div class="card accent">
+        <h3>Conceptuales</h3>
+        <p><strong>No son visibles</strong>, parecen estar presentes: punto, línea, plano y volumen.</p>
+      </div>
+      <div class="card accent">
+        <h3>Visuales</h3>
+        <p><strong>Lo que realmente vemos</strong>: forma, tamaño, color y textura.</p>
+      </div>
+      <div class="card accent">
+        <h3>De relación</h3>
+        <p>Gobiernan la <strong>ubicación</strong> de las formas: dirección, posición, espacio y gravedad.</p>
+      </div>
+      <div class="card accent">
+        <h3>Prácticos</h3>
+        <p>Subyacen el <strong>contenido</strong>: representación, significado y función.</p>
+      </div>
+    </div>
+    <div class="callout">
+      En una interfaz se aplican todos a la vez: un botón es una <strong>forma</strong> con tamaño,
+      color y textura, que se <strong>posiciona</strong> según la dirección y la gravedad
+      y cumple una <strong>función</strong> con un significado.
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">Elementos · Los contornos</span>
+    <h2>Qué transmite cada forma</h2>
+    <div class="cols-main">
+      <div class="shapes-big">
+        <div class="t"><div class="shape sq"></div><span>Cuadrado: estabilidad, permanencia, honestidad</span></div>
+        <div class="t"><div class="shape rec-h"></div><span>Rectángulo horizontal: solidez, difícil de volcar</span></div>
+        <div class="t"><div class="shape rec-v"></div><span>Rectángulo vertical: menos estable, dirige la mirada</span></div>
+        <div class="t"><div class="shape rec-r"></div><span>Cuadrado redondeado: rompe la monotonía</span></div>
+        <div class="t"><div class="shape cir"></div><span>Círculo: movimiento, infinitud, la forma más enigmática</span></div>
+      </div>
+      <div>
+        <div class="card accent">
+          <ul>
+            <li>El <strong>cuadrado</strong> es estable y sólido, incita a mirar hacia dentro.</li>
+            <li>El <strong>rectángulo horizontal</strong> permite el recorrido lateral de la mirada.</li>
+            <li>El <strong>rectángulo vertical</strong> dirige la vista hacia arriba y abajo.</li>
+            <li>El <strong>círculo</strong> tiene un gran valor simbólico: protección, totalidad, movimiento continuo. Su proyección tridimensional, la esfera, es el cuerpo geométrico más perfecto.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="callout teal">
+      Detalle para la web: los elementos de una página son <strong>rectangulares aunque parezcan de otra forma</strong>.
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">1.4 · Teoría del color</span>
+    <h2>El color no existe:<br>es luz que <span class="grad">interpretamos</span></h2>
+    <div class="cols-main">
+      <div class="card accent">
+        <ul>
+          <li>El color es una <strong>sensación</strong>: responde a la estimulación del ojo
+            por las longitudes de onda de la luz (de <strong>400 a 700 nanómetros</strong>).</li>
+          <li>En <strong>1666 Newton</strong> demostró que la luz blanca, al pasar por un prisma,
+            se descompone en el espectro del arco iris.</li>
+          <li>Un objeto rojo <strong>absorbe</strong> el verde y el azul y <strong>refleja</strong> el rojo.</li>
+          <li>El <strong>círculo cromático</strong> de 12 colores ordena
+            primarios, secundarios y terciarios para trabajar con ellos.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="prism-card">
+          <h3 style="font-size:.9rem">El experimento de Newton (1666)</h3>
+          <div class="prism">
+            <div class="ray"></div>
+            <div class="tri"></div>
+            <div class="split"></div>
+          </div>
+          <div class="chips">
+            <div class="c"><div class="circle" style="background:#ef4444"></div>R</div>
+            <div class="c"><div class="circle" style="background:#22c55e"></div>G</div>
+            <div class="c"><div class="circle" style="background:#3b82f6"></div>B</div>
+          </div>
+          <p class="muted" style="font-size:.78rem;text-align:center">
+            Primarios aditivos (RGB): los de la luz y los <strong>monitores</strong>.
+            En imprenta se usan los sustractivos (CMY).</p>
+        </div>
+      </div>
+    </div>
+    <div class="callout violet">
+      Tres juegos de primarios según el ámbito: <strong>RYB</strong> (artistas),
+      <strong>RGB</strong> (luz, pantalla) y <strong>CMY</strong> (impresores).
+      En una web componemos con luz, con RGB.
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">1.4 · Color en la práctica</span>
+    <h2>Matiz, saturación, valor<br>y composiciones armónicas</h2>
+    <div class="cols">
+      <div class="card accent">
+        <h3>Las tres dimensiones del color</h3>
+        <div class="bars">
+          <div class="bar"><span>Matiz (tono)</span>
+            <div class="track"><div class="fill hue"></div></div></div>
+          <div class="bar"><span>Saturación</span>
+            <div class="track"><div class="fill sat"></div></div></div>
+          <div class="bar"><span>Valor (brillo)</span>
+            <div class="track"><div class="fill val"></div></div></div>
+        </div>
+        <p style="font-size:.92rem;margin-top:.6rem">
+          El <strong>matiz</strong> distingue un color de otro; la <strong>saturación</strong> mide su pureza
+          (cuánto gris tiene); el <strong>valor</strong> indica lo claro u oscuro que es.
+          En una composición, lo más brillante parece estar más cerca.</p>
+        <div class="swatch-row">
+          <div class="sw r">rojo · pasión</div>
+          <div class="sw g">verde · salud</div>
+          <div class="sw b">azul · confianza</div>
+          <div class="sw y">amarillo · alegría</div>
+        </div>
+        <p class="muted" style="font-size:.78rem;margin-top:.4rem">
+          Significados válidos en la cultura occidental; p. ej. en Japón el blanco significa muerte.</p>
+      </div>
+      <div class="card">
+        <h3>Armonías con el círculo cromático</h3>
+        <ul>
+          <li><strong>Monocromía</strong>: un color y sus variaciones de valor (blanco y negro).</li>
+          <li><strong>Análogos</strong>: colores vecinos, en un rango de unos 90º; comparten pigmento.</li>
+          <li><strong>Complementarios</strong>: opuestos a 180º; juntos equilibran la composición.</li>
+          <li><strong>Tríadas</strong>: tres colores equidistantes (los vértices de un triángulo equilátero).</li>
+        </ul>
+        <div class="callout teal" style="margin-top:1rem">
+          Ni toda la composición debe ser clara ni toda oscura:
+          sin contraste, no hay lectura.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">1.5 · La composición, el equilibrio y el dinamismo</span>
+    <h2>Componentes con intención:<br>equilibrio y <span class="grad">peso visual</span></h2>
+    <div class="cols-main">
+      <div class="card accent">
+        <ul>
+          <li>La composición es la <strong>distribución de los elementos</strong> en el espacio,
+            de forma equilibrada y con una intención.</li>
+          <li><strong>Equilibrio simétrico</strong>: igualdad de peso a ambos lados; formal, sereno.
+            <strong>Asimétrico</strong>: no hay igualdad de dimensiones; más dinámico, evita la monotonía.</li>
+          <li>El <strong>peso visual</strong>: abajo da sensación de estabilidad; la derecha carga más
+            y tiende a desequilibrar; el <strong>centro visual</strong> no coincide con el físico,
+            se percibe ligeramente por encima.</li>
+          <li>Se trabaja sobre un <strong>reticulado</strong>, unas guías imaginarias
+            donde el diseñador sitúa los bloques y delimita zonas, títulos, fotos y textos.</li>
+        </ul>
+      </div>
+      <div class="tercios-wrap">
+        <div class="card" style="border-color:#2b3262">
+          <h3 style="font-size:.9rem;text-align:center">La regla de los tercios</h3>
+          <div class="tercios">
+            <div class="g gv" style="left:33.33%"></div>
+            <div class="g gv" style="left:66.66%"></div>
+            <div class="g gh" style="top:33.33%"></div>
+            <div class="g gh" style="top:66.66%"></div>
+            <div class="dot" style="top:33.33%;left:66.66%"></div>
+            <div class="dot" style="top:66.66%;left:33.33%"></div>
+          </div>
+          <p class="tercios-caption">
+            Se divide la imagen en 9 partes. Las 4 intersecciones son los
+            puntos donde focalizar el peso visual.</p>
+        </div>
+      </div>
+    </div>
+    <div class="callout">
+      Según el reparto del peso hablamos de <strong>equilibrio estático</strong>
+      (peso nivelado en torno a un eje central) o <strong>dinámico</strong>
+      (varios ejes que aportan movimiento y tensión).
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">1.6 · La tipografía</span>
+    <h2>La letra también se diseña</h2>
+    <div class="cols-main">
+      <div class="card">
+        <h3>Clasificación esencial</h3>
+        <div class="typo-demo">
+          <div>
+            <div class="serif-f">Aa</div>
+            <span class="typo-sub">Con serif (remate)</span>
+            <div class="serif-mark">Garamond · Times</div>
+          </div>
+          <div>
+            <div class="sans-f">Aa</div>
+            <span class="typo-sub">Sans serif (palo seco)</span>
+            <div class="sans-mark">Helvética · Arial · Verdana</div>
+          </div>
+        </div>
+        <ul>
+          <li>El <strong>serif</strong> es el remate ornamental del extremo de los trazos.</li>
+          <li>Familias tipográficas por estilo:
+            <strong>gótica</strong>, <strong>antiguo</strong> (clásica),
+            <strong>transicional</strong> (Baskerville), <strong>moderna</strong> (Bodoni, 1789),
+            <strong>egipcia</strong> (Rockwell) y <strong>sans serif</strong> (Helvética).</li>
+          <li>Variables de tono (<strong>light, regular, bold, black</strong>)
+            y de proporción (<strong>condensada, expandida</strong>).</li>
+        </ul>
+      </div>
+      <div class="card accent">
+        <h3>Legibilidad</h3>
+        <p>La legibilidad depende del tipo de letra y de la composición del texto.
+        Son claves el <strong>interletrado</strong>, el <strong>interpalabrado</strong>
+        y el <strong>interlineado</strong>.</p>
+        <ul>
+          <li>La longitud óptima de línea favorece la lectura de párrafos.</li>
+          <li>Márgenes amplios dan claridad.</li>
+          <li>El error más grave es <strong>perder la diferenciación entre signos</strong>.</li>
+        </ul>
+        <div class="callout violet" style="margin-top:1rem">
+          En pantalla triunfa la sans serif (Arial, Verdana) por su
+          <strong>mayor nitidez en píxeles</strong>; la serif se asocia al texto largo en papel.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">1.8 · Componentes de una interfaz web</span>
+    <h2>La anatomía de la página web</h2>
+    <div class="cols-main">
+      <div class="card accent">
+        <ul>
+          <li><strong>Cabecera</strong>: identifica el sitio con su logotipo; común en todas las páginas. El logo va arriba a la izquierda, lo primero que se observa.</li>
+          <li><strong>Navegación</strong>: los menús. Efectos como el <strong>rollover</strong> y formatos de árbol, cortinilla o pestañas.</li>
+          <li><strong>Cuerpo</strong>: la zona central con el contenido y un título que lo identifica.</li>
+          <li><strong>Pie</strong>: enlaza servicios concretos: contacto, empleo, condiciones de uso.</li>
+          <li><strong>Espacios en blanco</strong>: las zonas vacías compensan el peso visual,
+            crean márgenes y equilibran la composición.</li>
+        </ul>
+      </div>
+      <div class="anatomy">
+        <div class="win all">
+          <div class="z z-head">cabecera</div>
+          <div class="z z-ws">espacio en blanco</div>
+          <div class="z z-nav">menú</div>
+          <div class="z z-body">cuerpo</div>
+          <div class="z z-foot">pie</div>
+        </div>
+        <div class="labels">
+          <span class="lb">cabecera</span><span class="lb">navegación</span>
+          <span class="lb">cuerpo</span><span class="lb">pie</span><span class="lb">espacios en blanco</span>
+        </div>
+      </div>
+    </div>
+    <div class="callout">
+      Estas zonas son el <strong>vocabulario común de las guías de estilo</strong>:
+      en la evolución de la web han sobrevivido los elementos que los usuarios entienden.
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">1.9 · Maquetación web</span>
+    <h2>Maquetar: ordenar<br>los elementos en el espacio</h2>
+    <div class="cols">
+      <div class="card accent">
+        <h3>Qué es y para qué</h3>
+        <p>Maquetar es <strong>colocar las partes de la página dentro de sus límites</strong>.
+        La ventaja clave es <strong>separar el contenido de la presentación</strong>:
+        si cambian los contenidos no se toca el diseño, y al revés.</p>
+        <div class="flow">
+          <div class="node">Contenido<small>textos, imágenes</small></div>
+          <span class="arrow">+</span>
+          <div class="node">Presentación<small>dónde y cómo se muestra</small></div>
+          <span class="arrow">=</span>
+          <div class="node good">Página maquetada</div>
+        </div>
+        <p class="muted" style="font-size:.9rem">
+          De paso: menos tiempo de desarrollo y de carga, y un mantenimiento más sencillo.</p>
+      </div>
+      <div class="card">
+        <h3>Cómo ha evolucionado la técnica</h3>
+        <div class="flow" style="flex-direction:column;align-items:stretch;gap:.5rem">
+          <div class="node old">Tablas<small>encorsetadas, complejas, con problemas de accesibilidad</small></div>
+          <span class="arrow" style="align-self:center">→</span>
+          <div class="node good">Capas (div) + CSS<small>la forma actual: contenedores con estilos</small></div>
+          <span class="arrow" style="align-self:center">→</span>
+          <div class="node bad">Marcos (frames)<small>una página dentro de otra; rígidos y con soporte irregular</small></div>
+        </div>
+      </div>
+    </div>
+    <div class="callout teal">
+      Hoy se maqueta con <strong>capas colocadas con hojas de estilo (CSS)</strong>.
+      Ese divorcio entre contenido y presentación es también la base del desarrollo web moderno.
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="inner">
+    <span class="eyebrow">Resumen y cierre</span>
+    <h2>El hilo completo</h2>
+    <ol class="journey" style="margin-top:.6rem">
+      <li><span class="num">1</span><h4>Historia</h4><p>Cada soporte nuevo, del pergamino al navegador, reordena el diseño</p></li>
+      <li><span class="num">2</span><h4>Lenguaje visual</h4><p>Diseño = proceso de creación visual con propósito</p></li>
+      <li><span class="num">3</span><h4>Elementos</h4><p>Punto, línea, forma, color, textura, relación, función</p></li>
+      <li><span class="num">4</span><h4>Contornos</h4><p>Rectángulos y círculos con significado</p></li>
+      <li><span class="num">5</span><h4>Color</h4><p>Luz, círculo cromático, matiz, saturación, armonías</p></li>
+      <li><span class="num">6</span><h4>Composición</h4><p>Equilibrio, peso visual, tercios y reticulado</p></li>
+      <li><span class="num">7</span><h4>Tipografía</h4><p>Familias, clasificación y legibilidad</p></li>
+      <li><span class="num">8</span><h4>Interfaz web</h4><p>Cabecera, navegación, cuerpo, pie y maquetación con capas</p></li>
+    </ol>
+    <div class="why" style="margin-top:1.1rem">
+      <div class="card accent"><h3>Mismo lenguaje</h3>
+        <p>La web usa las mismas herramientas que un cartel o un libro: forma, color, texto.</p></div>
+      <div class="card accent"><h3>Las reglas guían</h3>
+        <p>Equilibrio, tercios y legibilidad son criterios, no barreras.</p></div>
+      <div class="card accent"><h3>Al final, la intuición</h3>
+        <p>Las reglas son una guía; el ojo del receptor es quien mide al final.</p></div>
+    </div>
+    <p class="end">Gracias por la atención. ¿Preguntas?</p>
+    <p class="muted" style="margin-top:.5rem;font-size:.85rem">Fuente: Tema 1 · Planificación de interfaces gráficas
+      (págs. 2-10, 13, 18-20, 26-27, 41-45).</p>
+  </div>
+</section>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  const progress=document.getElementById('progress');
+  const counter=document.getElementById('counter');
+  let i=0;
+  function show(n){
+    if(n<0||n>=slides.length) return;
+    slides[i].classList.remove('active');
+    slides[i].classList.toggle('prev',n<i);
+    i=n;
+    slides[i].classList.remove('prev');
+    slides[i].scrollTop = 0;
+    slides[i].classList.add('active');
+    progress.style.width=((i+1)/slides.length*100)+'%';
+    counter.textContent=(i+1)+' / '+slides.length;
+  }
+  const next=()=>show(i+1);
+  const prev=()=>show(i-1);
+  document.getElementById('btnNext').onclick=next;
+  document.getElementById('btnPrev').onclick=prev;
+  document.getElementById('zoneR').onclick=next;
+  document.getElementById('zoneL').onclick=prev;
+  document.addEventListener('keydown',e=>{
+    if(['ArrowRight','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();next();}
+    else if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){e.preventDefault();prev();}
+    else if(e.key==='Home')show(0);
+    else if(e.key==='End')show(slides.length-1);
+  });
+  let tx=null;
+  document.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(tx===null)return;
+    const dx=e.changedTouches[0].clientX-tx;
+    if(Math.abs(dx)>60)(dx<0?next:prev)();
+    tx=null;
+  },{passive:true});
+  show(0);
+})();
+</script>
+</body>
+</html>
