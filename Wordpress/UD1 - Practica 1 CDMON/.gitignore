@@ -8,3 +8,6 @@
 
 # dominio y paso actual guardados por practica.ps1
 estado.json
+
+# credenciales de la practica (nunca subir al repositorio)
+credenciales.md

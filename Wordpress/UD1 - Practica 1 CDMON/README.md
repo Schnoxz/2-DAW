@@ -198,3 +198,26 @@ $p = ".\practica.ps1"
 1. `Win + Shift + S` para capturar la pantalla
 2. Abrir **Paint** y pegar (`Ctrl + V`)
 3. `Ctrl + S` y escribir el nombre que aparece en la lista de este README, dentro de la carpeta del paso
+
+---
+
+## Incidencias y notas para el informe
+
+### Error 500 al entrar a `/wp-admin`
+
+Al principio intenté entrar a WordPress **escribiendo la URL directamente** en el navegador y me salió un
+**500 Internal Server Error** (tanto en `/wp-admin` como en `favicon.ico`). Tras revisarlo, la causa
+era doble:
+
+- Estaba usando el dominio **con `www`** (`www.jjidaw.com.mialias.net`), y el dominio de la
+  plataforma va **sin `www`**.
+- Las plataformas de prueba de CDMON están **"dormidas"** y hay que **arrancarlas entrando por el
+  panel**. Si accedes directo a `/wp-admin` sin pasar antes por **"Acceder a la página"**, la web no
+  está levantada y el servidor responde 500.
+
+**Solución:** entrar **siempre** por el camino largo (CDMON → listado de hostings → tu plataforma →
+"Acceder a la página") y usar el dominio **sin `www`**. Con eso la web arranca y el `/wp-admin`
+responde bien.
+
+> Conclusión útil para el informe: el 500 **no era un fallo de usuario/contraseña** ni del
+> WordPress instalado, sino que la plataforma estaba apagada y se accedía por una URL incorrecta.
