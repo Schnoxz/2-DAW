@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apuntes sobre Expresiones Regulares e Irregulares</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; line-height: 1.6; color: #333; max-width: 1000px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; }
+        h1, h2, h3 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 5px; }
+        h1 { text-align: center; }
+        h2 { margin-top: 30px; }
+        .card { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { padding: 12px; border: 1px solid #ddd; text-align: left; }
+        th { background-color: #3498db; color: white; }
+        .regex { background-color: #f8f9fa; color: #d63384; font-family: 'Courier New', monospace; font-weight: bold; padding: 2px 5px; border-radius: 3px; }
+        .ejemplo { background-color: #e8f5e9; padding: 10px; border-left: 4px solid #4caf50; margin: 10px 0; font-family: 'Courier New', monospace; }
+        .explicacion { color: #555; font-size: 0.95em; }
+        code { background-color: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; }
+    </style>
+</head>
+<body>
+    <h1>Apuntes sobre Expresiones Regulares e Irregulares</h1>
+
+    <div class="card">
+        <h2>1. ¿Qué es una expresión regular?</h2>
+        <p>Una <strong>expresión regular</strong> (regex o regexp) es un patrón de búsqueda que sirve para encontrar, validar, reemplazar o extraer texto dentro de cadenas de caracteres.</p>
+        <p>Se usan en muchos lenguajes: PHP, JavaScript, Python, Java, etc. Nos permiten buscar coincidencias sin tener que escribir muchos bucles.</p>
+    </div>
+
+    <div class="card">
+        <h2>2. ¿Expresión regular o irregular?</h2>
+        <p>El término correcto en informática es <strong>expresión regular</strong>. La palabra "regular" hace referencia a las <em>lenguas regulares</em> de la teoría de autómatas (Chomsky).</p>
+        <p>Decimos "expresión regular", no "irregular". Cuando alguien dice "irregular", se confunde con verbos irregulares del inglés/español.</p>
+        <p><strong>Dato importante:</strong> Existe la <em>regex</em> o <em>expresión regular</em>. Nunca se dice "expresión irregular" en el ámbito informático.</p>
+    </div>
+
+    <div class="card">
+        <h2>3. Metacaracteres más usados</h2>
+        <p>Los <strong>metacaracteres</strong> son símbolos con un significado especial dentro de una expresión regular.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Metacaracter</th>
+                    <th>Significado</th>
+                    <th>Ejemplo</th>
+                    <th>Coincide con...</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="regex">.</span></td>
+                    <td>Cualquier carácter (excepto salto de línea)</td>
+                    <td><span class="regex">c.t</span></td>
+                    <td>"cat", "cut", "c3t"</td>
+                </tr>
+                <tr>
+                    <td><span class="regex">^</span></td>
+                    <td>Inicio de cadena</td>
+                    <td><span class="regex">^Hola</span></td>
+                    <td>Solo si empieza por "Hola"</td>
+                </tr>
+                <tr>
+                    <td><span class="regex">$</span></td>
+                    <td>Final de cadena</td>
+                    <td><span class="regex">mundo$</span></td>
+                    <td>Solo si termina por "mundo"</td>
+                </tr>
+                <tr>
+                    <td><span class="regex">|</span></td>
+                    <td>O (alternancia)</td>
+                    <td><span class="regex">perro|gato</span></td>
+                    <td>"perro" o "gato"</td>
+                </tr>
+                <tr>
+                    <td><span class="regex">[]</span></td>
+                    <td>Clase de caracteres</td>
+                    <td><span class="regex">[aeiou]</span></td>
+                    <td>Cualquier vocal</td>
+                </tr>
+                <tr>
+                    <td><span class="regex">[^ ]</span></td>
+                    <td>Negación de clase</td>
+                    <td><span class="regex">[^0-9]</span></td>
+                    <td>Cualquier cosa que NO sea un dígito</td>
+                </tr>
+                <tr>
+                    <td><span class="regex">()</span></td>
+                    <td>Grupo de captura</td>
+                    <td><span class="regex">(abc)+</span></td>
+                    <td>Captura "abc" para reutilizarlo</td>
+                </tr>
+                <tr>
+                    <td><span class="regex">\</span></td>
+                    <td>Escape de metacaracter</td>
+                    <td><span class="regex">\.</span></td>
+                    <td>Busca un punto literal "."</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>4. Cuantificadores</h2>
+        <p>Indican cuántas veces debe aparecer un carácter, grupo o clase.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Cuantificador</th>
+                    <th>Significado</th>
+                    <th>Ejemplo</th>
+                    <th>Coincide con...</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="regex">*</span></td>
+                    <td>0 o más veces</td>
+                    <td><span class="regex">a*</span></td>
+                    <td>"", "a", "aaa"</td>
+                </tr>
+                <tr>
+                    <td><span class="regex">+</span></td>
+                    <td>1 o más veces</td>
+                    <td><span class="regex">a+</span></td>
+                    <td>"a", "aaa" (no vacío)</td>
+                </tr>
+                <tr>
+                    <td><span class="regex">?</span></td>
+                    <td>0 o 1 vez (opcional)</td>
+                    <td><span class="regex">colou?r</span></td>
+                    <td>"color", "colour"</td>
+                </tr>
+                <tr>
+                    <td><span class="regex">{n}</span></td>
+                    <td>Exactamente n veces</td>
+                    <td><span class="regex">\d{3}</span></td>
+                    <td>3 dígitos</td>
+                </tr>
+                <tr>
+                    <td><span class="regex">{n,}</span></td>
+                    <td>n o más veces</td>
+                    <td><span class="regex">\d{2,}</span></td>
+                    <td>2 o más dígitos</td>
+                </tr>
+                <tr>
+                    <td><span class="regex">{n,m}</span></td>
+                    <td>Entre n y m veces</td>
+                    <td><span class="regex">\d{1,3}</span></td>
+                    <td>1, 2 o 3 dígitos</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>5. Secuencias predefinidas</h2>
+        <p>Atajos muy útiles para clases comunes. Todas llevan una barra invertida.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Símbolo</th>
+                    <th>Equivale a</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="regex">\d</span></td>
+                    <td><span class="regex">[0-9]</span></td>
+                    <td>Dígito</td>
+                </tr>
+                <tr>
+                    <td><span class="regex">\D</span></td>
+                    <td><span class="regex">[^0-9]</span></td>
+                    <td>No dígito</td>
+                </tr>
+                <tr>
+                    <td><span class="regex">\w</span></td>
+                    <td><span class="regex">[a-zA-Z0-9_]</span></td>
+                    <td>Carácter alfanumérico o guión bajo</td>
+                </tr>
+                <tr>
+                    <td><span class="regex">\W</span></td>
+                    <td><span class="regex">[^a-zA-Z0-9_]</span></td>
+                    <td>No alfanumérico</td>
+                </tr>
+                <tr>
+                    <td><span class="regex">\s</span></td>
+                    <td><span class="regex">[ \t\r\n\f\v]</span></td>
+                    <td>Espacio en blanco</td>
+                </tr>
+                <tr>
+                    <td><span class="regex">\S</span></td>
+                    <td><span class="regex">[^ \t\r\n\f\v]</span></td>
+                    <td>No espacio en blanco</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>6. Ejemplos prácticos</h2>
+        <h3>Validar un número de teléfono español (9 dígitos)</h3>
+        <div class="ejemplo">/^\d{9}$/</div>
+        <p class="explicacion"><code>^</code> inicio, <code>\d{9}</code> 9 dígitos, <code>$</code> fin. Ej: "123456789" válido.</p>
+
+        <h3>Validar un correo electrónico básico</h3>
+        <div class="ejemplo">/^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,}$/</div>
+        <p class="explicacion">Busca letras/números/puntos/guiones, @, dominio y extensión de 2 o más letras.</p>
+
+        <h3>Extraer palabras que empiecen por mayúscula</h3>
+        <div class="ejemplo">/\b[A-Z][a-z]*\b/</div>
+        <p class="explicacion"><code>\b</code> límite de palabra. Ej: "Ana y Pedro" extrae Ana, Pedro.</p>
+
+        <h3>Buscar solo fechas con formato DD/MM/AAAA</h3>
+        <div class="ejemplo">/^\d{2}\/\d{2}\/\d{4}$/</div>
+        <p class="explicacion">La barra se escapa con <code>\</code>. Ej: "05/11/2025" válido.</p>
+
+        <h3>Sustituir varios espacios por uno solo</h3>
+        <div class="ejemplo">/\s+/</div>
+        <p class="explicacion">Reemplazando por " " deja una sola separación entre palabras.</p>
+    </div>
+
+    <div class="card">
+        <h2>7. Expresiones "regulares" vs "irregulares" (aclaración final)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Concepto</th>
+                    <th>Correcto</th>
+                    <th>Explicación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Patrones de texto</td>
+                    <td><strong>Expresión regular</strong></td>
+                    <td>Término estándar en programación e informática.</td>
+                </tr>
+                <tr>
+                    <td>Verbos en inglés</td>
+                    <td><strong>Verbo irregular</strong></td>
+                    <td>No sigue la regla "-ed" para pasado (go → went).</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><strong>Moraleja:</strong> Cuando hablamos de búsquedas con patrones, decimos <em>"expresión regular"</em>. La forma <em>"expresión irregular"</em> es incorrecta en este contexto.</p>
+    </div>
+
+    <div class="card" style="text-align: center; font-size: 0.9em; color: #666;">
+        <p>Apuntes para el módulo Desarrollo Web en Entorno Servidor - 2º DAW</p>
+    </div>
+</body>
+</html>
