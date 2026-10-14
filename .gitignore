@@ -16,3 +16,7 @@ _slides/
 .moodle/
 session.json
 creds.json
+
+# fuentes de los apuntes: se versionan solo los PDF
+Entorno Servidor/apuntes/*.md
+Entorno Servidor/apuntes/*.css
