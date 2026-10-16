@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Test de WordPress y CMS — UD1 (dificultad media)</title>
+<style>
+  :root{
+    --fondo:#f2f5f8;
+    --tarjeta:#ffffff;
+    --texto:#1f2933;
+    --suave:#5b6b7b;
+    --borde:#dce3ea;
+    --acento:#2271b1;
+    --acento-suave:#eaf2fa;
+    --ok:#1b7f4b;
+    --ok-fondo:#e6f6ec;
+    --ok-borde:#a9dcbd;
+    --mal:#b4322a;
+    --mal-fondo:#fdecea;
+    --mal-borde:#f0b6b0;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:var(--fondo);
+    color:var(--texto);
+    font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+    line-height:1.55;
+    -webkit-text-size-adjust:100%;
+  }
+  .envoltorio{max-width:880px;margin:0 auto;padding:24px 18px 80px}
+  header.cabecera{
+    background:linear-gradient(135deg,#2271b1,#14456e);
+    color:#fff;border-radius:14px;padding:22px 24px;margin-bottom:18px;
+    box-shadow:0 6px 18px rgba(20,69,110,.18);
+  }
+  header.cabecera h1{margin:0 0 6px;font-size:1.5rem;line-height:1.25}
+  header.cabecera p{margin:0;opacity:.9;font-size:.94rem}
+  nav.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+  nav.tabs button{
+    flex:1 1 180px;padding:11px 14px;border:1px solid var(--borde);background:#fff;
+    color:var(--suave);border-radius:10px;font-size:.92rem;font-weight:600;cursor:pointer;
+    transition:.15s;font-family:inherit;
+  }
+  nav.tabs button:hover{border-color:var(--acento);color:var(--acento)}
+  nav.tabs button.activa{background:var(--acento);border-color:var(--acento);color:#fff}
+  section.bateria{display:none}
+  section.bateria.visible{display:block}
+  .panel{
+    background:var(--tarjeta);border:1px solid var(--borde);border-radius:12px;
+    padding:14px 16px;margin-bottom:16px;position:sticky;top:10px;z-index:5;
+    box-shadow:0 3px 10px rgba(31,41,51,.06);
+  }
+  .barra-fondo{height:8px;background:#e6ecf2;border-radius:99px;overflow:hidden}
+  .barra{height:100%;width:0;background:linear-gradient(90deg,#2271b1,#3fa0e0);transition:width .25s}
+  .datos{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px;font-size:.88rem;color:var(--suave);align-items:center}
+  .datos b{color:var(--texto)}
+  .nota-final{margin-left:auto;font-weight:700;color:var(--acento)}
+  .controles{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;align-items:center}
+  .controles button{
+    padding:8px 14px;border-radius:8px;border:1px solid var(--borde);background:#fff;
+    color:var(--texto);font-size:.85rem;font-weight:600;cursor:pointer;font-family:inherit;
+  }
+  .controles button:hover{border-color:var(--acento);color:var(--acento)}
+  .controles button.principal{background:var(--acento);border-color:var(--acento);color:#fff}
+  .controles button.principal:hover{background:#1b5c92;color:#fff}
+  .controles button[disabled]{opacity:.45;cursor:default}
+  .controles label{font-size:.85rem;color:var(--suave);display:flex;align-items:center;gap:6px;cursor:pointer}
+  .controles input[type=checkbox]{width:16px;height:16px;accent-color:var(--acento);cursor:pointer}
+  article.pregunta{
+    background:var(--tarjeta);border:1px solid var(--borde);border-radius:12px;
+    padding:16px 18px;margin-bottom:14px;box-shadow:0 2px 6px rgba(31,41,51,.04);
+  }
+  .enunciado{display:flex;gap:10px;margin-bottom:12px}
+  .num{
+    flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--acento-suave);
+    color:var(--acento);font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center;
+  }
+  .enunciado p{margin:0;font-weight:600}
+  .opciones{display:grid;gap:8px}
+  .opcion{
+    display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;
+    padding:10px 12px;border:1px solid var(--borde);border-radius:9px;background:#fbfcfd;
+    color:var(--texto);font-size:.94rem;font-family:inherit;cursor:pointer;transition:.12s;
+  }
+  .opcion:hover:not([disabled]){border-color:var(--acento);background:var(--acento-suave)}
+  .opcion[disabled]{cursor:default}
+  .letra{
+    flex:0 0 auto;width:22px;height:22px;border-radius:6px;background:#eef2f6;color:var(--suave);
+    font-size:.78rem;font-weight:700;display:flex;align-items:center;justify-content:center;
+  }
+  .opcion.elegida{border-color:var(--acento);background:var(--acento-suave)}
+  .opcion.correcta{border-color:var(--ok-borde);background:var(--ok-fondo);color:var(--ok);font-weight:600}
+  .opcion.correcta .letra{background:var(--ok);color:#fff}
+  .opcion.incorrecta{border-color:var(--mal-borde);background:var(--mal-fondo);color:var(--mal);font-weight:600}
+  .opcion.incorrecta .letra{background:var(--mal);color:#fff}
+  .opcion.atenuada{opacity:.6}
+  .explicacion{display:none;margin-top:12px;padding:11px 13px;border-radius:9px;font-size:.89rem;border-left:4px solid}
+  .explicacion .veredicto{display:block;font-weight:700;margin-bottom:3px}
+  .explicacion.exp-ok{background:var(--ok-fondo);border-color:var(--ok);color:#14532f}
+  .explicacion.exp-mal{background:var(--mal-fondo);border-color:var(--mal);color:#7d241e}
+  .pie{margin-top:8px;font-size:.82rem;color:var(--suave);text-align:center}
+  @media (max-width:520px){
+    header.cabecera h1{font-size:1.25rem}
+    .datos{font-size:.82rem}
+    .nota-final{margin-left:0;width:100%}
+  }
+</style>
+</head>
+<body>
+<div class="envoltorio">
+
+  <header class="cabecera">
+    <h1>Test de WordPress y CMS — UD1</h1>
+    <p>Dificultad media · 3 baterías × 15 preguntas · Basado en <em>UD1. Introducción al CMS y CDMON</em> y en los <em>Apuntes de WordPress y CMS</em> (bloques 1 a 5 y glosario).</p>
+  </header>
+
+  <nav class="tabs" id="tabs"></nav>
+
+  <main id="contenido"></main>
+
+  <p class="pie">Cada batería se corrige al instante (o al pulsar «Corregir», si desactivas la corrección inmediata). «Barajar» cambia el orden de preguntas y opciones para practicar sin memorizar posiciones.</p>
+
+</div>
+
+<script>
+/* ============================================================
+   1. PREGUNTAS
+   P(enunciado, [4 opciones], índice correcto, explicación)
+   ============================================================ */
+const P = (p, o, c, e) => ({ p, o, c, e });
+
+const BATERIAS = [
+  {
+    titulo: "Batería 1 · Los CMS",
+    preguntas: [
+      P("¿Qué significan las siglas CMS?",
+        ["Content Manager System", "Content Management System", "Central Management Software", "Content Marketing System"], 1,
+        "CMS son las siglas de Content Management System, es decir, Sistema de Gestión de Contenidos."),
+
+      P("Según la definición técnica, un CMS es…",
+        ["Un lenguaje de programación para crear webs dinámicas",
+         "Un programa de diseño gráfico con el que se hacen plantillas",
+         "Una aplicación web que permite crear, gestionar y modificar contenido digital sin conocimientos técnicos de programación",
+         "Un servidor web que aloja páginas HTML estáticas"], 2,
+        "El CMS es una aplicación web: el usuario escribe el contenido desde un panel y el sistema lo guarda en la base de datos y lo publica."),
+
+      P("¿Qué característica de un CMS hace que cambiar el diseño de la web no afecte al contenido?",
+        ["La interfaz intuitiva", "La separación contenido-diseño", "El flujo de publicación", "La gestión de usuarios"], 1,
+        "La separación contenido-diseño permite cambiar el tema sin tocar los textos y viceversa."),
+
+      P("En el flujo de trabajo típico de un CMS, ¿qué elemento va inmediatamente antes del «sitio web publicado»?",
+        ["El panel de administración", "El propio CMS", "La base de datos", "El usuario"], 2,
+        "El orden es: Usuario → Panel de administración → CMS → Base de datos → Sitio web publicado."),
+
+      P("¿Cuál de estos componentes de un CMS se encarga de almacenar todo el contenido y la configuración?",
+        ["El backend", "La base de datos", "El frontend", "El tema o plantilla"], 1,
+        "La base de datos almacena el contenido y las configuraciones; el backend es el panel de administración y el frontend la parte visible."),
+
+      P("El «frontend» de un CMS es…",
+        ["El panel desde el que se edita el contenido",
+         "El conjunto de plugins instalados",
+         "La parte visible para los visitantes del sitio",
+         "La base de datos donde se guarda la información"], 2,
+        "Backend = administración; frontend = web pública que ve el visitante."),
+
+      P("¿Cuál es la ventaja clave de la arquitectura de un CMS?",
+        ["Que el usuario solo interactúa con el backend y el CMS genera el frontend automáticamente",
+         "Que el frontend hay que programarlo a mano en cada visita",
+         "Que el tema sustituye a la base de datos",
+         "Que los plugins se encargan de almacenar el contenido"], 0,
+        "El usuario trabaja en el panel y el CMS genera solo la web pública, sin programar nada."),
+
+      P("¿Cuál de estos CMS es propietario (de pago y de código cerrado)?",
+        ["Joomla", "Drupal", "Sitecore", "WordPress"], 2,
+        "Open Source: WordPress, Joomla y Drupal. Propietarios: Adobe Experience Manager y Sitecore."),
+
+      P("Según su propósito, WooCommerce, PrestaShop y Magento son CMS de…",
+        ["Portales empresariales", "Educación", "E-commerce", "Blogs y sitios web"], 2,
+        "El grupo de comercio electrónico lo forman WooCommerce, PrestaShop y Magento."),
+
+      P("¿Qué CMS se clasifica en el grupo de educación?",
+        ["Ghost", "Moodle", "Liferay", "Umbraco"], 1,
+        "En educación se citan Moodle y Chamilo; Ghost es de blogs y Liferay de portales empresariales."),
+
+      P("Atendiendo a la tecnología, WordPress, Joomla y Drupal están desarrollados en…",
+        [".NET", "Java", "PHP", "Python"], 2,
+        "PHP: WordPress, Joomla y Drupal · .NET: Umbraco y Sitecore · Java: Liferay y OpenCMS."),
+
+      P("¿Qué CMS está desarrollado sobre tecnología .NET?",
+        ["Liferay", "Umbraco", "Ghost", "Chamilo"], 1,
+        "Umbraco y Sitecore son los ejemplos de tecnología .NET."),
+
+      P("Según los datos del material, ¿qué cuota tiene WordPress dentro del mercado de CMS?",
+        ["43,5 %", "35 %", "65,1 %", "28 %"], 2,
+        "Un 65,1 % de cuota en el mercado de CMS; el 43,5 % se refiere a todos los sitios web del mundo."),
+
+      P("¿Qué porcentaje de todos los sitios web del mundo usan WordPress?",
+        ["43,5 %", "65,1 %", "35 %", "18 %"], 0,
+        "El 43,5 % de todos los sitios web del mundo; el 35 % es la cifra de los sitios en español."),
+
+      P("Entre los sitios creados con WordPress, el tipo más frecuente es…",
+        ["Las tiendas online (18 %)", "Los portales de noticias (12 %)", "Los blogs personales (32 %)", "Los sitios corporativos (28 %)"], 2,
+        "Distribución: blogs personales 32 %, corporativos 28 %, tiendas 18 %, noticias 12 % y otros 10 %.")
+    ]
+  },
+  {
+    titulo: "Batería 2 · WordPress",
+    preguntas: [
+      P("¿Cuál es la diferencia entre WordPress.org y WordPress.com?",
+        ["WordPress.org es un servicio en la nube gestionado y WordPress.com un software que instalas",
+         "WordPress.org es software libre que instalas en tu hosting y WordPress.com es un servicio en la nube gestionado",
+         "Son dos direcciones web para el mismo servicio",
+         "WordPress.com permite cualquier tema o plugin y WordPress.org no"], 1,
+        "En WordPress.org controlas todo (cualquier tema y plugin) pero tú gestionas hosting, seguridad y copias; en WordPress.com el control depende del plan."),
+
+      P("Según los apuntes, ¿qué versión de PHP se recomienda como mínimo para instalar WordPress?",
+        ["PHP 5.6 o superior", "PHP 7.4 o superior, mejor una con soporte como 8.2+", "PHP 6.0 o superior", "Cualquier versión de PHP sirve"], 1,
+        "Requisitos recomendados: PHP 7.4+ (mejor 8.2+), MySQL 5.7+ o MariaDB 10.3+, servidor Apache o Nginx, dominio y hosting."),
+
+      P("En la raíz de WordPress, ¿dónde se guardan los temas, los plugins y los archivos subidos?",
+        ["En wp-admin/", "En wp-includes/", "En wp-content/", "En wp-config.php"], 2,
+        "wp-content/ es lo que se personaliza; wp-admin/ es el panel y wp-includes/ el núcleo interno."),
+
+      P("¿Qué carpeta de WordPress contiene el código interno del núcleo y no se debe tocar?",
+        ["wp-content/", "wp-includes/", "wp-admin/", "wp-uploads/"], 1,
+        "wp-includes/ guarda el código del núcleo; por eso no se modifica."),
+
+      P("¿Cuál es el archivo de configuración principal, que guarda los datos de conexión a la base de datos y las claves de seguridad (salts)?",
+        [".htaccess", "functions.php", "wp-config.php", "index.php"], 2,
+        "wp-config.php contiene la conexión a la base de datos, los salts y ajustes avanzados; nunca debe subirse a un repositorio público."),
+
+      P("¿En qué dirección se accede al escritorio (panel de administración) de WordPress?",
+        ["tudominio.com/admin", "tudominio.com/wp-admin", "tudominio.com/escritorio", "tudominio.com/wp-config"], 1,
+        "Se entra por tudominio.com/wp-admin (o por tudominio.com/wp-login.php)."),
+
+      P("¿Qué diferencia hay entre una entrada y una página?",
+        ["Las entradas son contenido estático y las páginas se ordenan por fecha",
+         "Las entradas se ordenan por fecha y llevan categorías, etiquetas y autor; las páginas son contenido estático y atemporal",
+         "No hay diferencia: son dos nombres para lo mismo",
+         "Las páginas aparecen en la lista del blog y las entradas no"], 1,
+        "Entradas = artículos del blog (fecha, categorías, etiquetas, comentarios). Páginas = contenido estático como Inicio o Contacto."),
+
+      P("En WordPress, los descriptores concretos y libres que afinan el tema de una entrada son las…",
+        ["Categorías", "Etiquetas (tags)", "Páginas", "Revisiones"], 1,
+        "Las etiquetas son descriptores libres y concretos; las categorías agrupan de forma general y jerárquica."),
+
+      P("El editor actual de WordPress, basado en bloques, se llama…",
+        ["Elementor", "Gutenberg", "Classic Editor", "El Loop"], 1,
+        "Gutenberg sustituyó al editor clásico: cada párrafo, imagen o botón es un bloque que se añade y edita visualmente."),
+
+      P("Un tema hijo (child theme) sirve para…",
+        ["Traducir el tema a varios idiomas",
+         "Personalizar el tema padre sin perder los cambios cuando este se actualiza",
+         "Añadir la funcionalidad de tienda online",
+         "Hacer copias de seguridad automáticas del sitio"], 1,
+        "El tema hijo hereda del padre y aísla tus modificaciones, que sobreviven a las actualizaciones."),
+
+      P("¿Cuál de estos plugins se dedica a la optimización SEO?",
+        ["Akismet", "WooCommerce", "Yoast SEO o Rank Math", "WP Super Cache"], 2,
+        "Yoast SEO y Rank Math son plugins de SEO; Akismet filtra spam, WooCommerce crea la tienda y WP Super Cache mejora el rendimiento."),
+
+      P("Entre los roles de WordPress, ¿cuál puede escribir borradores que un editor debe revisar y publicar?",
+        ["Administrador", "Autor", "Colaborador", "Suscriptor"], 2,
+        "Administrador (control total) · Editor (publica entradas de cualquiera) · Autor (las suyas) · Colaborador (borradores) · Suscriptor (solo su perfil)."),
+
+      P("Entre las opciones de enlaces permanentes, ¿cuál está mejor valorada para el SEO?",
+        ["Simple: ?p=123", "Numérico: /archives/123", "Día y nombre: /2024/09/24/mi-entrada/", "Nombre de la entrada: /mi-entrada/"], 3,
+        "«Nombre de la entrada» (/mi-entrada/) es la mejor para SEO; el formato simple no se recomienda y el numérico es poco claro."),
+
+      P("¿Qué problema tiene la estructura de enlaces permanentes «Simple» (?p=123)?",
+        ["Que no funciona en WordPress",
+         "Que no aporta ninguna palabra clave y no es nada amigable para el usuario ni para el SEO",
+         "Que solo admite entradas, no páginas",
+         "Que obliga a escribir el número de la entrada a mano"], 1,
+        "La opción simple no incluye palabras clave en la URL, por eso está marcada como «no recomendado»."),
+
+      P("¿Cuál de estas prácticas NO es recomendable al crear URLs amigables?",
+        ["Incluir palabras clave en la URL",
+         "Usar guiones en lugar de espacios",
+         "Escribir las palabras separadas con espacios y caracteres especiales",
+         "Mantener la URL corta y con una estructura lógica tipo /categoria/post/"], 2,
+        "Se deben evitar los espacios y los caracteres especiales: se usan guiones (/) y URLs cortas, de unos 5-6 niveles como máximo.")
+    ]
+  },
+  {
+    titulo: "Batería 3 · CDMON y comparativa",
+    preguntas: [
+      P("¿Qué es CDMON?",
+        ["Un CMS de código abierto competidor de WordPress",
+         "Un proveedor español de hosting y dominios",
+         "Un editor de plantillas para WordPress",
+         "Un plugin de copias de seguridad"], 1,
+        "CDMON ofrece hosting web, correo profesional, certificados SSL, dominios y servidores, con infraestructura LAMP."),
+
+      P("¿Qué característica tiene el panel de control de CDMON?",
+        ["Es cPanel en su versión estándar",
+         "Está desarrollado por ellos mismos, no es cPanel",
+         "Es el mismo panel que usa WordPress",
+         "Es una copia de phpMyAdmin"], 1,
+        "Su panel propio centraliza dominios, hostings, correo, DNS, seguridad, copias de seguridad y certificados en un mismo entorno."),
+
+      P("La infraestructura de CDMON es LAMP. ¿Qué significa esa sigla?",
+        ["Linux, Apache, MySQL/MariaDB y PHP",
+         "Linux, Angular, MongoDB y Python",
+         "Laravel, Apache, MySQL y Perl",
+         "Linux, Apache, MariaDB y Perl"], 0,
+        "LAMP = Linux, Apache, MySQL/MariaDB y PHP."),
+
+      P("¿Qué capacidad de almacenamiento ofrece la plataforma de pruebas gratuita de CDMON?",
+        ["1 GB", "5 GB", "15 GB", "Ilimitada"], 1,
+        "5 GB de almacenamiento, con SSD NVMe, HTTP/2, PHP 8.2-8.5, MariaDB, SSL gratuito e instalación de CMS en 1 clic."),
+
+      P("Las plataformas de prueba gratuitas de CDMON…",
+        ["Caducan a los 30 días y obligan a contratar un plan",
+         "Se renuevan cada 90 días sin coste y no obligan a publicar",
+         "Solo duran una semana y no se pueden renovar",
+         "Son una demo con menos herramientas que un plan de pago"], 1,
+        "Se renuevan cada 90 días sin coste. No es una demo: es un hosting real con las mismas herramientas que un plan de pago."),
+
+      P("¿Cómo se instala WordPress en CDMON?",
+        ["Subiendo los archivos uno a uno por FTP",
+         "Con el instalador de CMS en 1 clic desde la sección Aplicaciones",
+         "Compilando el código fuente en el servidor",
+         "No es posible instalar WordPress en CDMON"], 1,
+        "Desde Aplicaciones se elige WordPress, se aceptan las políticas y CDMON genera las credenciales y la URL /wp-admin."),
+
+      P("¿Qué registro DNS apunta el dominio (y sus subdominios) a una dirección IP?",
+        ["A", "MX", "CNAME", "TXT"], 0,
+        "El registro A asocia el dominio a una IP, por ejemplo la del servidor web."),
+
+      P("¿Qué registro DNS se usa como alias hacia otro nombre, típicamente para www y ftp?",
+        ["A", "CNAME", "MX", "CAA"], 1,
+        "El CNAME es un alias hacia otro nombre; es el habitual para www y ftp."),
+
+      P("¿Qué registro DNS indica el servidor de correo electrónico del dominio?",
+        ["TXT", "A", "MX", "CNAME"], 2,
+        "El registro MX señala el servidor de correo del dominio."),
+
+      P("Los registros SPF, DKIM y DMARC, que evitan que el correo se marque como spam, se publican como registro…",
+        ["MX", "TXT", "A", "CAA"], 1,
+        "SPF, DKIM y DMARC se publican en registros TXT. El CAA indica qué autoridades pueden emitir certificados SSL."),
+
+      P("¿Cuántos días de copias de seguridad automáticas de archivos ofrece CDMON, restaurables en un clic?",
+        ["7 días", "15 días", "30 días", "90 días"], 1,
+        "Backups automáticos de los archivos de los últimos 15 días, restaurables en un clic."),
+
+      P("Al entrar en /wp-admin aparece un error 500 en una plataforma de pruebas. ¿Cuál es la causa más habitual?",
+        ["Que WordPress está en la versión 8.2",
+         "Que la plataforma está «dormida» y hay que entrar antes desde el panel con «Acceder a la página»",
+         "Que falta el archivo .htaccess",
+         "Que el tema Astra está desactualizado"], 1,
+        "También puede ocurrir si el dominio se está usando con www cuando debe ir sin www."),
+
+      P("¿Cuándo conviene elegir desarrollo a medida en lugar de un CMS?",
+        ["Cuando el presupuesto es limitado y hay que lanzar en días",
+         "Cuando hay grandes volúmenes de datos o usuarios e integraciones complejas con otros sistemas",
+         "Cuando el cliente quiere gestionar el contenido por sí mismo",
+         "Cuando el proyecto es un blog personal o un portafolio"], 1,
+        "Desarrollo a medida: requisitos muy específicos, grandes volúmenes, integraciones complejas, aplicaciones web complejas y máximos de seguridad y rendimiento."),
+
+      P("En la práctica de la unidad, ¿qué tema se instala y activa como base del diseño?",
+        ["Astra", "Twenty Twenty-Four", "OceanWP", "Elementor"], 0,
+        "Astra es ligero y compatible con Elementor; Elementor es el plugin constructor visual con el que se montan las páginas."),
+
+      P("Un CMS headless consiste en…",
+        ["Usar WordPress sin temas ni plugins",
+         "Editar el contenido en el panel de WordPress y construir el sitio público con un frontend a medida que consume ese contenido",
+         "Un WordPress que funciona sin conexión a internet",
+         "Un CMS que no utiliza base de datos"], 1,
+        "La vía híbrida combina la facilidad de gestión de WordPress con la velocidad y el diseño de un desarrollo propio.")
+    ]
+  }
+];
+
+/* ============================================================
+   2. LÓGICA DEL TEST
+   ============================================================ */
+const LETRAS = ["A", "B", "C", "D"];
+
+const estados = [];
+const tabs = document.getElementById("tabs");
+const contenido = document.getElementById("contenido");
+
+function barajar(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+function crearEstado(datos) {
+  return {
+    titulo: datos.titulo,
+    base: datos.preguntas.map(q => ({
+      p: q.p,
+      e: q.e,
+      opciones: q.o.map((texto, i) => ({ texto, ok: i === q.c }))
+    })),
+    lista: [],
+    respuestas: [],
+    nodos: [],
+    instantanea: true,
+    corregido: false,
+    seccion: null,
+    barra: null,
+    marcador: null,
+    nota: null,
+    botonCorregir: null
+  };
+}
+
+function reiniciar(estado, desordenar) {
+  estado.lista = estado.base.map(q => ({
+    p: q.p,
+    e: q.e,
+    opciones: q.opciones.map(o => ({ texto: o.texto, ok: o.ok }))
+  }));
+  if (desordenar) {
+    barajar(estado.lista);
+    estado.lista.forEach(q => barajar(q.opciones));
+  }
+  estado.respuestas = new Array(estado.lista.length).fill(null);
+  estado.corregido = false;
+}
+
+function bloqueada(estado, k) {
+  return estado.respuestas[k] !== null && (estado.instantanea || estado.corregido);
+}
+
+function pintarPregunta(estado, k) {
+  const nodo = estado.nodos[k];
+  const opciones = estado.lista[k].opciones;
+  const respuesta = estado.respuestas[k];
+  const bloq = bloqueada(estado, k);
+
+  nodo.botones.forEach((boton, j) => {
+    boton.classList.remove("elegida", "correcta", "incorrecta", "atenuada");
+    boton.disabled = bloq;
+    if (respuesta === j) boton.classList.add("elegida");
+    if (bloq) {
+      if (opciones[j].ok) boton.classList.add("correcta");
+      else if (respuesta === j) boton.classList.add("incorrecta");
+      else boton.classList.add("atenuada");
+    }
+  });
+
+  if (bloq) {
+    const acierto = opciones[respuesta].ok;
+    const correcta = opciones.find(o => o.ok);
+    nodo.exp.className = "explicacion " + (acierto ? "exp-ok" : "exp-mal");
+    nodo.veredicto.textContent = acierto ? "✓ Correcto" : "✗ Incorrecto";
+    nodo.texto.textContent = (acierto ? "" : "La respuesta correcta es «" + correcta.texto + "». ") + estado.lista[k].e;
+    nodo.exp.style.display = "block";
+  } else {
+    nodo.exp.style.display = "none";
+  }
+}
+
+function actualizarMarcador(estado) {
+  const total = estado.lista.length;
+  let respondidas = 0;
+  let aciertos = 0;
+  estado.respuestas.forEach((r, k) => {
+    if (r === null) return;
+    respondidas++;
+    if (estado.lista[k].opciones[r].ok) aciertos++;
+  });
+
+  estado.barra.style.width = (respondidas / total * 100) + "%";
+  let marcadorTxt = "Respondidas " + respondidas + "/" + total + " · Aciertos " + aciertos;
+  if (respondidas === total) {
+    const nota = (aciertos / total * 10).toFixed(1).replace(".", ",");
+    marcadorTxt += " · Nota: " + nota + "/10";
+    estado.nota.textContent = "";
+  } else {
+    estado.nota.textContent = "";
+  }
+  estado.marcador.textContent = marcadorTxt;
+}
+
+function montar(estado) {
+  const contenedor = estado.contenedor;
+  contenedor.innerHTML = "";
+  estado.nodos = [];
+
+  estado.lista.forEach((pregunta, k) => {
+    const articulo = document.createElement("article");
+    articulo.className = "pregunta";
+
+    const enunciado = document.createElement("div");
+    enunciado.className = "enunciado";
+    const num = document.createElement("span");
+    num.className = "num";
+    num.textContent = String(k + 1);
+    const texto = document.createElement("p");
+    texto.textContent = pregunta.p;
+    enunciado.append(num, texto);
+    articulo.appendChild(enunciado);
+
+    const caja = document.createElement("div");
+    caja.className = "opciones";
+    const botones = [];
+
+    pregunta.opciones.forEach((opcion, j) => {
+      const boton = document.createElement("button");
+      boton.type = "button";
+      boton.className = "opcion";
+      const letra = document.createElement("span");
+      letra.className = "letra";
+      letra.textContent = LETRAS[j];
+      const etiqueta = document.createElement("span");
+      etiqueta.textContent = opcion.texto;
+      boton.append(letra, etiqueta);
+      boton.addEventListener("click", () => responder(estado, k, j));
+      caja.appendChild(boton);
+      botones.push(boton);
+    });
+
+    articulo.appendChild(caja);
+
+    const exp = document.createElement("div");
+    exp.className = "explicacion";
+    const veredicto = document.createElement("span");
+    veredicto.className = "veredicto";
+    const expTexto = document.createElement("span");
+    exp.append(veredicto, expTexto);
+    articulo.appendChild(exp);
+
+    contenedor.appendChild(articulo);
+    estado.nodos.push({ botones, exp, veredicto, texto: expTexto });
+  });
+
+  estado.lista.forEach((_, k) => pintarPregunta(estado, k));
+  actualizarMarcador(estado);
+}
+
+function responder(estado, k, j) {
+  if (estado.respuestas[k] !== null && (estado.instantanea || estado.corregido)) return;
+  estado.respuestas[k] = j;
+  if (estado.instantanea) {
+    pintarPregunta(estado, k);
+  } else {
+    estado.nodos[k].botones.forEach((boton, i) => {
+      boton.classList.toggle("elegida", i === j);
+    });
+  }
+  actualizarMarcador(estado);
+}
+
+function corregirTodo(estado) {
+  estado.corregido = true;
+  estado.lista.forEach((_, k) => pintarPregunta(estado, k));
+  actualizarMarcador(estado);
+}
+
+function crearBateria(datos, indice) {
+  const estado = crearEstado(datos);
+  estados.push(estado);
+
+  const botonTab = document.createElement("button");
+  botonTab.type = "button";
+  botonTab.textContent = datos.titulo;
+  botonTab.addEventListener("click", () => seleccionar(indice));
+  tabs.appendChild(botonTab);
+
+  const seccion = document.createElement("section");
+  seccion.className = "bateria";
+
+  const panel = document.createElement("div");
+  panel.className = "panel";
+
+  const barraFondo = document.createElement("div");
+  barraFondo.className = "barra-fondo";
+  const barra = document.createElement("div");
+  barra.className = "barra";
+  barraFondo.appendChild(barra);
+
+  const datosPanel = document.createElement("div");
+  datosPanel.className = "datos";
+  const marcador = document.createElement("span");
+  marcador.textContent = "Respondidas 0/" + datos.preguntas.length + " · Aciertos 0";
+  const nota = document.createElement("span");
+  nota.className = "nota-final";
+  datosPanel.append(marcador, nota);
+
+  const controles = document.createElement("div");
+  controles.className = "controles";
+  const botonCorregir = document.createElement("button");
+  botonCorregir.type = "button";
+  botonCorregir.className = "principal";
+  botonCorregir.textContent = "Corregir respuestas";
+  botonCorregir.style.display = "none";
+  botonCorregir.addEventListener("click", () => corregirTodo(estado));
+
+  const botonBarajar = document.createElement("button");
+  botonBarajar.type = "button";
+  botonBarajar.textContent = "🔀 Barajar";
+  botonBarajar.addEventListener("click", () => {
+    reiniciar(estado, true);
+    montar(estado);
+  });
+
+  const botonReiniciar = document.createElement("button");
+  botonReiniciar.type = "button";
+  botonReiniciar.textContent = "↺ Reiniciar";
+  botonReiniciar.addEventListener("click", () => {
+    reiniciar(estado, false);
+    montar(estado);
+  });
+
+  const etiqueta = document.createElement("label");
+  const check = document.createElement("input");
+  check.type = "checkbox";
+  check.checked = true;
+  check.addEventListener("change", () => {
+    estado.instantanea = check.checked;
+    botonCorregir.style.display = check.checked ? "none" : "inline-block";
+    estado.lista.forEach((_, k) => pintarPregunta(estado, k));
+    actualizarMarcador(estado);
+  });
+  etiqueta.append(check, document.createTextNode("Corrección inmediata"));
+
+  controles.append(botonBarajar, botonReiniciar, etiqueta, botonCorregir);
+  panel.append(barraFondo, datosPanel, controles);
+  const contenedor = document.createElement("div");
+  contenedor.className = "lista-preguntas";
+  seccion.appendChild(panel);
+  seccion.appendChild(contenedor);
+  contenido.appendChild(seccion);
+
+  estado.seccion = seccion;
+  estado.contenedor = contenedor;
+  estado.barra = barra;
+  estado.marcador = marcador;
+  estado.nota = nota;
+  estado.botonCorregir = botonCorregir;
+  estado.tab = botonTab;
+}
+
+function seleccionar(indice) {
+  estados.forEach((estado, i) => {
+    estado.seccion.classList.toggle("visible", i === indice);
+    estado.tab.classList.toggle("activa", i === indice);
+  });
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/* Construcción inicial */
+BATERIAS.forEach((datos, i) => {
+  crearBateria(datos, i);
+  reiniciar(estados[i], false);
+  montar(estados[i]);
+  if (i > 0) estados[i].seccion.classList.remove("visible");
+});
+
+seleccionar(0);
+estados[0].tab.classList.add("activa");
+</script>
+</body>
+</html>
