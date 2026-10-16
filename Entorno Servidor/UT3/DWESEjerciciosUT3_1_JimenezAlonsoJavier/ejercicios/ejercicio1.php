@@ -1,18 +1,13 @@
 <?php
-// ================= EJERCICIO 1 (opcional): lanzar una moneda =================
-// Este archivo es un trozo de pagina: lo incluye index.php dentro del panel
-// (pestaña) del ejercicio 1, asi que aqui NO va el <!DOCTYPE html> ni el <head>.
+// Ejercicio 1: lanzar una moneda. Este trozo lo incluye index.php dentro de su
+// pestaña, asi que aqui no van el DOCTYPE ni el head.
 //
-// El enunciado pide mostrar una imagen con la cara o la cruz cada vez que se
-// refresca la pagina. Como no tengo imagenes de la moneda, la dibujo con un SVG
-// en linea (una imagen vectorial hecha con etiquetas).
+// No tengo imagenes de la moneda, asi que la dibujo con SVG.
 
-// rand(0, 1) devuelve un 0 o un 1 al azar, como una moneda al aire.
-// Uso rand() porque es la funcion que explica la teoria (funciones numericas).
+// 0 o 1, como una moneda al aire
 $moneda = rand(0, 1);
 
-// Guardo los dos dibujos en variables para no repetir el SVG dos veces.
-// El SVG es un circulo dorado; en la cara lleva una sonrisa y en la cruz una X.
+// Los dos dibujos en variables para no repetir el SVG dos veces
 $cara = '<svg width="140" height="140" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cara de la moneda">'
       . '<circle cx="60" cy="60" r="55" fill="#f1c40f" stroke="#b7950b" stroke-width="5"/>'
       . '<circle cx="42" cy="48" r="6" fill="#7d6608"/>'
@@ -27,7 +22,6 @@ $cruz = '<svg width="140" height="140" viewBox="0 0 120 120" xmlns="http://www.w
 
 echo "<h2 class='h4 text-primary'>Ejercicio 1: lanzar una moneda al aire</h2>";
 
-// Segun salga 0 o 1 muestro un dibujo y el nombre del resultado
 if ($moneda == 0) {
   echo $cara;
   echo "<p class='fs-4 mt-2'>Ha salido <strong>CARA</strong></p>";
@@ -37,5 +31,4 @@ if ($moneda == 0) {
 }
 
 echo "<hr>";
-// text-secondary small pone el texto en gris y pequeño, como dato secundario
 echo "<p class='text-secondary small'>Cada vez que recargues la pagina volvera a lanzarse la moneda.</p>";
