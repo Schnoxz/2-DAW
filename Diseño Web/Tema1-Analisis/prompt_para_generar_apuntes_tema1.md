@@ -1,4 +1,4 @@
-# Prompt para generar apuntes del Tema 1: Principios generales de diseño de interfaces
+# Prompt para agente: comprender el Tema 1 (Principios generales de diseño de interfaces) con vista a crear proyectos
 
 Copia y pega TODO este texto tal cual en otro modelo de IA.
 
