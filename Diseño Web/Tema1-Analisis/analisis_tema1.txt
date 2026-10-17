@@ -1,0 +1,390 @@
+---P2---
+Dise±o de Interfaces Web.                                                                       Curso 2015-2016 
+IES Fco. Romero Vargas - Dpto. de  Informßtica.                                                                                   Pßgina 2 
+ 
+se±alizaci¾n, 
+etc.), 
+packaging 
+(dise±o 
+de 
+embalaje, 
+envoltorios, etc.). 
+ 
+FUNCIONES DEL DISEÐO GR┴FICO: 
+À TendrÝa una funci¾n comunicativa para que el dise±o sea entendible a la vista 
+del receptor. 
+À TendrÝa una funci¾n publicitaria: se  hace atractivo a la vista del receptor. 
+À TendrÝa una funci¾n estÚtica: intenta ser agradable a la vista del receptor. 
+ 
+ 
+HISTORIA DEL DISEÐO GR┴FICO DESDE SUS OR═GENES A LA ACTUALIDAD: 
+En un principio el hombre se expresaba mediante elementos visuales, hasta 
+adquirir el lenguaje.  El lengua
+===
+---P3---
+Dise±o de Interfaces Web.                                                                       Curso 2015-2016 
+IES Fco. Romero Vargas - Dpto. de  Informßtica.                                                                                   Pßgina 3 
+ 
+Ya para el a±o 1440 Johan Gutenberg dise±a la imprenta, un artefacto capaz de 
+reproducir textos e imßgenes sobre papel en escala masiva. Nace la industria de la 
+imprenta moderna, esto permiti¾ lanzar un sinfÝn de productos impresos en todo el 
+mundo. Se crean nuevos materiales, nuevas tintas, fuentes tipogrßficas de todo tipo y 
+se crea una nueva profesi¾n: el tip¾grafo o cajista, un tÚcnico especialista en 
+maquetaci¾n y ajuste de textos que luego serÝan impresos por los impresores. 
+ 
+El oficio de cajista se remonta a los inicios de la
+===
+---P4---
+Dise±o de Interfaces Web.                                                                       Curso 2015-2016 
+IES Fco. Romero Vargas - Dpto. de  Informßtica.                                                                                   Pßgina 4 
+ 
+ 
+ 
+ 
+ 
+En el S. XX aparecieron los ordenadores.  En un primer momento se reducÝa a los 
+tÚcnicos y profesionales, pero se extendi¾ a otros grupos sociales. 
+El dise±ador grßfico estß en un momento en que su profesi¾n tiene una cabida 
+mßs amplia.  Se acudi¾ a los ordenadores para simplificar las aplicaciones.  Los 
+dise±adores grßficos hicieron entendible las aplicaciones a travÚs de elementos 
+visuales.  Pero hay un problema; por un lado estaban los dise±adores grßficos clßsicos, 
+no acostumbrados a estas tecnologÝas, teniendo que aprend
+===
+---P5---
+Dise±o de Interfaces Web.                                                                       Curso 2015-2016 
+IES Fco. Romero Vargas - Dpto. de  Informßtica.                                                                                   Pßgina 5 
+ 
+1.2: EL LENGUAJE VISUAL 
+ 
+Muchos piensan en el dise±o como en alg·n tipo de esfuerzo dedicado a embellecer la 
+apariencia exterior de las cosas. Ciertamente, el solo embellecimiento es una parte 
+del dise±o, pero el dise±o es mucho mßs que eso. 
+Miremos en nuestro alrededor. El dise±o no es s¾lo adorno. La silla bien dise±ada no 
+s¾lo posee una apariencia exterior agradable, sino que se mantiene firme sobre el piso 
+y da un confort adecuado a quien se siente en ella. Ademßs, debe ser segura y 
+bastante duradera, puede ser producida a un c
+===
+---P6---
+Dise±o de Interfaces Web.                                                                       Curso 2015-2016 
+IES Fco. Romero Vargas - Dpto. de  Informßtica.                                                                                   Pßgina 6 
+ 
+muy poca con la emoci¾n y la intuici¾n. Esto se debe a que prefiero enfrentar a los 
+principios en tÚrminos precisos y concretos, con una mßxima objetividad y una mÝnima 
+ambig³edad. 
+No debemos olvidar que el dise±ador es una persona que resuelve problemas. Los 
+problemas que debe encarar le son siempre dados. Esto supone que Úl no puede 
+alterar ninguno de los problemas, sino que debe encontrar las soluciones apropiadas. 
+Ciertamente, una soluci¾n inspirada podrß ser conseguida de forma intuitiva, pero en 
+casi todos los casos el dise±ad
+===
+---P7---
+Dise±o de Interfaces Web.                                                                       Curso 2015-2016 
+IES Fco. Romero Vargas - Dpto. de  Informßtica.                                                                                   Pßgina 7 
+ 
+ 
+ 
+ 
+Elementos visuales 
+Cuando dibujamos un objeto en un papel, empleamos una lÝnea visible para 
+representar una lÝnea conceptual. La lÝnea visible tiene no s¾lo largo, sino tambiÚn 
+ancho. Su color y su textura quedan determinados por los materiales que usamos y por 
+la forma en que los usamos. 
+AsÝ, cuando los elementos conceptuales se hacen visibles, tienen forma, medida, color 
+y textura. Los elementos visuales forman la parte mßs prominente de un dise±o, 
+porque son lo que realmente vemos. 
+a) Forma. Todo lo que pueda ser visto pos
+===
+---P8---
+Dise±o de Interfaces Web.                                                                       Curso 2015-2016 
+IES Fco. Romero Vargas - Dpto. de  Informßtica.                                                                                   Pßgina 8 
+ 
+Este grupo de elementos gobierna la ubicaci¾n y la interrelaci¾n de las formas en un 
+dise±o. Algunos pueden ser percibidos, como la direcci¾n y la posici¾n; otros pueden 
+ser sentidos, como el espacio y la gravedad. 
+a) Direcci¾n. La direcci¾n de una forma depende de c¾mo estß relacionada con el 
+observador, con el marco que la contiene o con otras formas cercanas (fig. 3a). 
+b) Posici¾n. La posici¾n de una forma es juzgada por su relaci¾n respecto al cuadro o la 
+estructura (vÚase capÝtulo 4) del dise±o (fig. 3b). 
+c) Espacio. Las formas
+===
+---P9---
+Dise±o de Interfaces Web.                                                                       Curso 2015-2016 
+IES Fco. Romero Vargas - Dpto. de  Informßtica.                                                                                   Pßgina 9 
+ 
+b) Significado. El significado se hace presente cuando el dise±o transporta un mensaje.  
+ 
+ 
+ 
+ 
+ 
+c) Funci¾n. La  funci¾n se hace presente cuando un dise±o debe servir un determinado 
+prop¾sito.  
+ 
+ 
+ 
+ 
+ 
+ 
+El CONTORNO, DISTINTOS TIPOS DE CONTORNOS 
+ 
+À CUADRADO: Figura estable y de carßcter permanente, asociado a la estabilidad, 
+permanencia, honestidad, rectitud, limpieza, esmero y equilibrio.  La figura derivada es 
+el RECT┴NGULO, que sugiere menos perfecci¾n y estabilidad.  El cuadrado es menos 
+sugerente que el rectßngulo, pero mß
+===
+---P10---
+Dise±o de Interfaces Web.                                                                       Curso 2015-2016 
+IES Fco. Romero Vargas - Dpto. de  Informßtica.                                                                                   Pßgina 10 
+ 
+protecci¾n, inestabilidad, totalidad, movimiento continuo e infinitud.  El ËVALO es un 
+derivado.  Su proyecci¾n tridimensional es la esfera.  Es el cuerpo geomÚtrico mßs 
+perfecto.  Es el que contiene un mayor volumen en menor espacio.  Los elementos de 
+una pßgina web son rectangulares aunque parezcan de otra forma. 
+ 
+ 
+1.4 TEOR═A DEL COLOR 
+ 
+Empezaremos diciendo que el color en sÝ no existe, no es una caracterÝstica del objeto, 
+es mßs bien una apreciaci¾n subjetiva nuestra. Por tanto, podemos definirlo como, 
+una sensaci¾n que se pr
+===
+---P13---
+Dise±o de Interfaces Web.                                                                       Curso 2015-2016 
+IES Fco. Romero Vargas - Dpto. de  Informßtica.                                                                                   Pßgina 13 
+ 
+Para ampliar.. 
+ 
+MATIZ, SATURACIËN Y VALOR O BRILLO 
+ 
+-MATIZ O TONO: Atributo que permite distinguir, por ejemplo, el rojo del azul.  
+Es el recorrido de un tono a uno u otro lado del cÝrculo cromßtico.  Los tres colores 
+primarios (verde, rojo y azul) son los tres matices primarios.  Mezclßndolos se 
+consiguen el resto de colores y matices. 
+Dos colores son complementarios cuando estß uno frente al otro en el cÝrculo de 
+matices o cÝrculo cromßtico. 
+ 
+-SATURACIËN: TambiÚn llamada intensidad.  Este concepto representa la pureza 
+o inte
+===
+---P18---
+Dise±o de Interfaces Web.        
+IES Fco. Romero Vargas - Dpto
+ 
+ 
+La composici¾n se define como l
+equilibrada y coherente con una
+ 
+Tenemos varias posibilidades o r
+ 
+1. El centro fÝsico y el centro visu
+abajo de los elementos por analo
+visual estß desplazado un poco h
+ 
+ 
+ 
+2. Los elementos situados a la de
+composici¾n. 
+Mientras que un mayor peso visu
+ 
+                                                              Curso 
+. de  Informßtica.                                                                  
+la distribuci¾n o disposici¾n de los elementos en un di
+ intenci¾n. 
+recursos a utilizar: 
+ual no coinciden. El ojo humano tiende a percibir una 
+ogÝa inconsciente con la fuerza de la gravedad. Es por
+hacia arriba. 
+ 
+erecha poseen mayor peso visual y tienden a desequi
+ 
+ 
+ual a la izq
+===
+---P19---
+Dise±o de Interfaces Web.        
+IES Fco. Romero Vargas - Dpto
+ 
+ 
+ 
+ 
+3. Cuanto mayor peso visual dist
+parecen asentados. 
+ 
+ 
+Arriba el peso visual aumenta te
+elementos distribuidos arriba tie
+inestable. 
+ 
+ 
+4. Se habla de equilibrio estßtico
+visual se nivela alrededor de un e
+ 
+ 
+                                                              Curso 
+. de  Informßtica.                                                                  
+tribuimos abajo mayor es la sensaci¾n de estabilidad
+ 
+endemos a percibir esa fuerza de atracci¾n hacia abajo
+enden a hacer que la composici¾n se desequilibre o qu
+ 
+o en esas composiciones (habitualmente mßs clßsicas)
+eje central. 
+ 
+2015-2016 
+                 Pßgina 19 
+d, los elementos 
+o, por lo que los 
+ue el dise±o parezca 
+) en las que el peso 
+
+===
+---P20---
+Dise±o de Interfaces Web.        
+IES Fco. Romero Vargas - Dpto
+ 
+El equilibrio dinßmico se da en a
+dinamismo que da la sensaci¾n d
+mßs moderno. 
+ 
+ 
+ 
+ 
+ 
+5. La regla de los tercios. Seg·n 
+horizontales y otras dos verticale
+cuatro puntos de intersecci¾n do
+son donde se focaliza el peso visu
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+                                                              Curso 
+. de  Informßtica.                                                                  
+aquellas composiciones que poseen varios ejes que do
+de movimiento y  tensi¾n. Son composiciones menos c
+ 
+esta regla la imagen se divide en 9 partes iguales util
+es. Quedando asÝ dos lÝneas de horizonte donde distrib
+onde colocar el elemento principal, el que se quiere res
+ual. 
+ 
+ 
+2015-2016 
+                 Pßgina 20 
+ta
+===
+---P26---
+Dise±o de Interfaces Web.                                                                       Curso 2015-2016 
+IES Fco. Romero Vargas - Dpto. de  Informßtica.                                                                                   Pßgina 26 
+ 
+FAMILIAS TIPOGR┴FICAS 
+Se da el nombre de letras al conjunto de signos usados para usar un lenguaje.  Su 
+equivalente en tipografÝa e imprenta es el tipo.  El tipo define a los signos que se 
+emplean para la ejecuci¾n de los moldes tipogrßficos y carßcter es el resultado de la 
+impresi¾n de los tipos. 
+Se puede hacer una primera clasificaci¾n tipogrßfica dependiendo de tres 
+elementos esenciales: 
+1║/. La presencia o ausencia de serif. 
+2║/. Forma del serif. 
+3║/. Uniformidad o variabilidad del grosor del trazo. 
+De acuerdo con esto, pode
+===
+---P27---
+Dise±o de Interfaces Web.                                                                       Curso 2015-2016 
+IES Fco. Romero Vargas - Dpto. de  Informßtica.                                                                                   Pßgina 27 
+ 
+(griego y romano), dio su nombre a este tipo de letras que incide en el mßximo 
+contraste entre los trazos gruesos y los finos. 
+Egipcia: Surge en el s. XIX con la Revoluci¾n Industrial.  Con los nuevos avances 
+tecnol¾gicos y junto a la demanda de mercado, generalmente publicidad.  En aquella 
+Úpoca las necesidades de publicidad demandaban dise±os creativos que destacaron 
+del entorno.  TambiÚn se conoce como de palo y tiene formas exageradas y, en 
+ocasiones, ilegible. 
+Sin rasgo o sansserif: surgi¾ como respuesta a la b·squeda de dise±
+===
+---P41---
+Dise±o de Interfaces Web.                                                                       Curso 2015-2016 
+IES Fco. Romero Vargas - Dpto. de  Informßtica.                                                                                   Pßgina 41 
+ 
+1.8 COMPONENTES DE UNA INTERFAZ WEB: 
+ 
+Desde las primeras pßginas web hasta la actualidad, los dise±os han evolucionado 
+hacia la homogeneidad, ofreciendo unas interfaces bien definidas, con un conjunto de 
+componentes grßficos y funcionales similares que hacen posible que, sea cual sea el 
+usuario que accede a un sitio web cualquiera, la comunicaci¾n entre ellos sea posible y 
+efectiva. En esta evoluci¾n, como si de una selecci¾n natural se tratase, se han 
+asentado elementos que han demostrado su utilidad y su comprensi¾n por los 
+usua
+===
+---P42---
+Dise±o de Interfaces Web.                                                                       Curso 2015-2016 
+IES Fco. Romero Vargas - Dpto. de  Informßtica.                                                                                   Pßgina 42 
+ 
+La cabecera no es obligatoria pero es habitual usarla, la forma mßs com·n es 
+rectangular, en cualquier caso, el dise±o de la misma nunca debe ocultar el logo y el 
+texto que se muestra en ella. 
+ 
+La cabecera no tiene siempre que ocupar todo el ancho de la pßgina, puede ocurrir 
+que tan solo ocupe una parte del mismo, generalmente la izquierda, en la que se suele 
+situar en una banda vertical com·n con un men· de navegaci¾n. Por otro lado, 
+tambiÚn es posible encontrar pßginas sin cabecera, generalmente en pßginas de inicio 
+que sirven c
+===
+---P43---
+Dise±o de Interfaces Web.                                                                       Curso 2015-2016 
+IES Fco. Romero Vargas - Dpto. de  Informßtica.                                                                                   Pßgina 43 
+ 
+EL CUERPO DE LA P┴GINA 
+El cuerpo es la parte de la pßgina web donde se presenta al usuario toda la 
+informaci¾n referente a los contenidos de la pßgina. Lo que aparece en el cuerpo suele 
+ser el objetivo del sitio, lo que el usuario quiere ver. Su ubicaci¾n es siempre central, 
+bajo la cabecera si hay, y al lado del men· lateral de navegaci¾n  si hay. 
+ 
+ 
+ 
+Es habitual que el cuerpo central lleve un tÝtulo que identifique claramente la pßgina a 
+la que ha accedido el usuario.  El tama±o de las letras del tÝtulo de pßgina debe ser 
+super
+===
+---P44---
+Dise±o de Interfaces Web.                                                                       Curso 2015-2016 
+IES Fco. Romero Vargas - Dpto. de  Informßtica.                                                                                   Pßgina 44 
+ 
+LOS ESPACIOS EN BLANCO 
+Aunque parezca mentira, un elemento de especial importancia en un dise±o web son 
+los espacios en blanco, se definen como todas esas zonas de la interfaz en las que no 
+hay ning·n otro elemento grßfico. Entre sus objetivos estß el compensar el peso visual 
+del resto de elementos, crean mßrgenes o separaciones entre ellos, encuadrßndolos 
+de forma adecuada, y marcan los lÝmites que estructuran la composici¾n, haciendo la 
+interfaz mßs equilibrada, limpia y bella. 
+ 
+ 
+ 
+1.9 MAQUETACIËN WEB. ELEMENTOS DE ORDENACIËN 
+
+===
+---P45---
+Dise±o de Interfaces Web.                                                                       Curso 2015-2016 
+IES Fco. Romero Vargas - Dpto. de  Informßtica.                                                                                   Pßgina 45 
+ 
+problemas al analizar la estructura de la pßgina y su uso puede causar problemas de 
+accesibilidad e interpretaci¾n de los contenidos organizados en ellas. 
+ 
+ 
+Actualmente, la maquetaci¾n con tablas ha caÝdo en desuso y se realiza 
+utilizando capas (etiquetas <div>), tambiÚn llamadas divisiones o contenedores. La 
+colocaci¾n de capas en una pßgina se realiza a travÚs de hojas de estilo.  
+ 
+ 
+Las capas, DIV o layout, son como contenedores donde se colocan imßgenes, 
+textos o incluso, otras capas. Pueden estar anidadas, es decir, unas den
+===
