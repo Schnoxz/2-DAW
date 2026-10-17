@@ -6,7 +6,7 @@ Copia y pega TODO este texto tal cual en otro modelo de IA.
 Actúa como un experto en Diseño Web y en planificación de interfaces gráficas, con nivel adecuado para un alumno de 2º DAW.
 
 OBJETIVO PRINCIPAL
-Tu única tarea es elaborar unos APUNTES COMPLETOS, ORDENADOS Y CLAROS basándote ÚNICAMENTE en el contenido extraído de las páginas indicadas del PDF "Tema 1.-Planificación de interfaces gráficas_15_16.pdf" correspondiente al módulo "Diseño Web" de 2º DAW.
+Tu única tarea es entender y dominar los CONCEPTOS de este tema para poder CREAR PROYECTOS WEB reales basándote ÚNICAMENTE en el contenido extraído de las páginas indicadas del PDF "Tema 1.-Planificación de interfaces gráficas_15_16.pdf" correspondiente al módulo "Diseño Web" de 2º DAW.
 
 FICHERO DE REFERENCIA
 Tienes que analizar el archivo: C:\Users\javie\Desktop\2-DAW\Diseño Web\Tema1-Analisis\analisis_tema1.txt
@@ -19,7 +19,7 @@ REGLAS ESTRICTAS
 - Prioriza la claridad para estudiar.
 
 ¿QUÉ TIENES QUE HACER?
-Genera unos apuntes completos aptos para estudiar el Tema 1. Debes incluir:
+Genera unos explicación clara de los conceptos que debe comprender para aplicar este tema en proyectos. Debes incluir:
 
 1. TÍTULO
    - Pon un título claro: "Tema 1. Principios generales de diseño de interfaces"
@@ -53,8 +53,8 @@ Genera unos apuntes completos aptos para estudiar el Tema 1. Debes incluir:
    - Usa títulos (#, ##, ###), listas, negritas y cursivas
    - Usa tablas SIEMPRE que sea útil para comparar o resumir (funciones, principios, etc.)
    - Usa ejemplos con código o bloques si procede
-   - Resultado final limpio, ordenado y pensado para memorizar/repasar
+   - Explicación clara, práctica y orientada a aplicar lo aprendido a la hora de diseñar interfaces web
 
 INSTRUCCIÓN FINAL
-Genera ÚNICAMENTE los apuntes en Markdown. NO añadas introducción fuera del propio apunte, NO expliques qué has hecho, NO pongas conclusiones inventadas. Basa TODO estrictamente en el contenido de analisis_tema1.txt (págs. 2-10, 13, 18-20, 26-27, 41-45).
+Genera una EXPLICACIÓN COMPLETA en Markdown, orientada a un agente que va a crear proyectos de diseño de interfaces. Expón los conceptos de forma que sirvan para guiar la toma de decisiones al crear interfaces, NO expliques qué has hecho, NO pongas conclusiones inventadas. Basa TODO estrictamente en el contenido de analisis_tema1.txt (págs. 2-10, 13, 18-20, 26-27, 41-45).
 ``
