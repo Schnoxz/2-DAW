@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Video con subtitulos</title>
+  <!-- Ejercicio 5: video con subtitulos. Fuente: https://es.wikipedia.org/wiki/Algeciras -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      text-align: center;
+      color: #333333;
+    }
+    h1 {
+      color: #1b3a6b;
+    }
+    video {
+      width: 600px;
+      border: 1px solid #999999;
+    }
+    .fuente {
+      background-color: #f0f0f0;
+      padding: 10px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Video: la historia de Algeciras</h1>
+  <p>Pulsa el boton de subtitulos (CC) para verlos.</p>
+
+  <video controls poster="assets/poster.svg">
+    <source src="assets/video.webm" type="video/webm">
+    <source src="assets/video.mp4" type="video/mp4">
+    <track src="assets/sub-es.vtt" kind="subtitles" srclang="es" label="Espanol" default>
+    <track src="assets/sub-en.vtt" kind="subtitles" srclang="en" label="English">
+    Tu navegador no admite el video.
+  </video>
+
+  <p class="fuente">
+    Fuente: <a href="https://es.wikipedia.org/wiki/Algeciras">https://es.wikipedia.org/wiki/Algeciras</a>
+  </p>
+
+</body>
+</html>

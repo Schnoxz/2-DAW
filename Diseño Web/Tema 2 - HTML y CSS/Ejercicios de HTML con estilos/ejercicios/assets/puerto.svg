@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" width="640" height="420" role="img" aria-label="Puerto Bahía">
+  <defs><linearGradient id="gpuerto" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#fca5a5"/><stop offset="100%" stop-color="#0c4a6e"/>
+  </linearGradient></defs>
+  <rect width="640" height="420" fill="url(#gpuerto)"/>
+  <circle cx="90" cy="80" r="36" fill="#fef08a"/>
+  <rect y="280" width="640" height="140" fill="#0c4a6e"/>
+  <g stroke="#334155" stroke-width="8" fill="none">
+    <path d="M120 280 v-120 h150"/><path d="M210 280 v-100 h150"/><path d="M300 280 v-140 h130"/>
+  </g>
+  <g fill="#1f2937"><rect x="108" y="274" width="24" height="16"/><rect x="198" y="274" width="24" height="16"/><rect x="288" y="274" width="24" height="16"/></g>
+  <g stroke="#0f172a" stroke-width="2">
+    <rect x="440" y="230" width="70" height="30" fill="#ef4444"/>
+    <rect x="510" y="230" width="70" height="30" fill="#22c55e"/>
+    <rect x="440" y="260" width="70" height="30" fill="#3b82f6"/>
+    <rect x="510" y="260" width="70" height="30" fill="#eab308"/>
+  </g>
+  <path d="M60 300 h200 l-22 40 h-156 z" fill="#475569"/>
+  <rect y="376" width="640" height="44" fill="rgba(15,23,42,.55)"/>
+  <text x="20" y="404" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#fff">Puerto Bahía</text>
+</svg>
