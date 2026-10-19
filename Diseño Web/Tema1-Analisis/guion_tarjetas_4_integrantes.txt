@@ -1,0 +1,375 @@
+﻿================================================================================
+TEMA 1 · PRINCIPIOS GENERALES DE DISEÑO DE INTERFACES
+GUION EN TARJETAS · 4 INTEGRANTES
+"Nada es casualidad, todo es causalidad"
+================================================================================
+
+CÓMO USAR ESTE GUION
+--------------------
+- No es un texto para leer: es un ESQUELETO PARA CONTAR. Cada tarjeta tiene un
+  ESTÍMULO (cómo entras), lo que NARRAS (con tus palabras), el CONCEPTO que hay
+  detrás y un ESTÍMULO AL PÚBLICO (una pregunta o gesto para que piensen).
+- Objetivo real: que el público siga EL PROCESO, no que memorice datos.
+  Cuanto más les hagas razonar a ellos, mejor es la exposición.
+- Regla de oro: una idea por diapositiva; el ejemplo siempre antes que la
+  definición; pausa después del titular.
+
+
+LA HISTORIA (lo que va creciendo)
+---------------------------------
+La charla avanza como una investigación, no como una lista:
+
+  1. LA MIRADA        -> primero descubrimos que no vemos: escaneamos.
+  2. LAS FORMAS       -> después, con qué lenguaje hablamos sin palabras.
+  3. EL COLOR         -> luego, cómo emocionamos en milisegundos.
+  4. LA VOZ Y EL ORDEN-> al final montamos la web y entendemos por qué funciona.
+
+Cada bloque no repite: profundiza. Empezamos en lo que el público VE (una app),
+seguimos con CÓMO lo procesa su cerebro y terminamos en POR QUÉ nada de lo que
+ve es casualidad. La última pieza solo tiene sentido porque han visto las otras.
+
+REPARTO Y TIEMPOS (total ~15-16 min)
+------------------------------------
+  INTEGRANTE 1 · "La mirada" ............ diapositivas 1-5      (~3:15)
+  INTEGRANTE 2 · "El lenguaje de las formas"  6-8               (~2:25)
+  INTEGRANTE 3 · "El color y la emoción"  9-20 (con la ronda)   (~4:40)
+  INTEGRANTE 4 · "La voz y el orden" .... 21-27                 (~5:20)
+
+  La "ronda de color" (11-18) la modera el Integrante 3, pero participan todos.
+
+
+================================================================================
+INTEGRANTE 1 — "LA MIRADA"
+Tema: percepción y atención. Cómo entra la información en la cabeza del usuario.
+Aporta al relato: la primera capa. Aún no hablamos de diseño; hablamos de cómo
+miramos. Aquí el público descubre que "no ve, escanea".
+================================================================================
+
+--------------------------------------------------------------------------------
+[P1] PORTADA · "Nada es casualidad, todo es causalidad"
+Tiempo: 0:00 · 15 s
+--------------------------------------------------------------------------------
+ESTÍMULO: «Antes de empezar, haced una cosa: mirad el móvil cinco segundos.»
+NARRAS: Hoy no vais a estudiar un tema: vais a entender por qué las webs que
+  usáis os funcionan tan bien. Y os vais a quedar con una frase.
+CONCEPTO: expectativa y curiosidad (abrimos con acción, no con teoría).
+ESTÍMULO AL PÚBLICO: «¿Habéis mirado algo concreto o "todo"?» -> ya están dentro.
+
+--------------------------------------------------------------------------------
+[P2] MIRA TU MÓVIL: NADA ESTÁ AL AZAR
+Tiempo: 0:15 · 40 s
+--------------------------------------------------------------------------------
+ESTÍMULO: «Abre cualquier app y dime: ¿qué ves primero?»
+NARRAS: Cada botón, cada color y cada hueco está colocado para que mires,
+  confíes y pulses… y tú lo haces sin darte cuenta. Alguien decidió dónde va el
+  aviso, de qué color es el botón y cuánto aire hay entre las cosas.
+CONCEPTO: ATENCIÓN SELECTIVA + SALIENCIA VISUAL. No vemos todo el campo visual:
+  el cerebro elige lo que destaca. Ese "destacar" se llama saliencia y ocurre
+  ANTES de que decidas mirarlo.
+ESTÍMULO AL PÚBLICO: «Levantad la mano los que habéis mirado el botón rojo.»
+  (casi todos) -> acabas de demostrar la saliencia en directo.
+
+--------------------------------------------------------------------------------
+[P3] DISEÑAR ES RESOLVER PROBLEMAS
+Tiempo: 0:55 · 45 s
+--------------------------------------------------------------------------------
+ESTÍMULO: «Diseñar no es decorar. Y lo voy a demostrar con una frase.»
+NARRAS: Diseñar es resolver problemas. Y el problema no lo eliges tú: te lo dan.
+  Tu trabajo no es inventarlo, sino encontrar la solución: entender, probar,
+  decidir. Casi siempre hay una solución mejor que las demás; el oficio está en
+  encontrarla.
+CONCEPTO: CARGA COGNITIVA Y BÚSQUEDA DE ORDEN. Buscamos patrones y sentido;
+  cuando algo "encaja", el cerebro baja la guardia y confía.
+ESTÍMULO AL PÚBLICO: «¿Alguna vez habéis entrado en una web y habéis pensado
+  "no sé por dónde empezar"?» -> eso es un problema mal resuelto, no fea.
+
+--------------------------------------------------------------------------------
+[P4] TODA INTERFAZ TIENE UN TRIPLE OBJETIVO
+Tiempo: 1:40 · 45 s
+--------------------------------------------------------------------------------
+ESTÍMULO: «Tu web tiene que hacer tres cosas… y las tres a la vez.»
+NARRAS: COMUNICAR (que se entienda a la primera), ATRAER (que destaque) y
+  GUSTAR (que resulte agradable). Si falla una se nota: entiendes pero no
+  confías, o te gusta pero te pierdes.
+CONCEPTO: SESGO DE LA PRIMERA IMPRESIÓN. En décimas de segundo el cerebro ya ha
+  juzgado si la web "parece fiable" (juicio estético-racional exprés).
+ESTÍMULO AL PÚBLICO: convertirlo en checklist viva: «¿Se entiende? ¿Atrae?
+  ¿Gusta?» -> que respondan en voz alta.
+
+--------------------------------------------------------------------------------
+[P5] CÓMO MIRA EL OJO (POR QUÉ ESTO FUNCIONA)
+Tiempo: 2:25 · 50 s
+--------------------------------------------------------------------------------
+ESTÍMULO: «Nadie "lee" una web. Y os lo demuestro.»
+NARRAS: El ojo no lee: escanea y salta a lo que más contrasta. Recorremos la
+  pantalla en F cuando hay texto y en Z cuando es una landing, y siempre
+  empezamos arriba a la izquierda. Más tamaño, más contraste y más color = más
+  atención.
+CONCEPTO: ECONOMÍA COGNITIVA + LEY DE FITTS. El cerebro ahorra energía mirando lo
+  que destaca; y cuanto más grande y más cerca está algo, antes lo pulsamos.
+  Por eso el botón importante es grande.
+ESTÍMULO AL PÚBLICO: tapa la pantalla y pregunta «¿dónde estaba el botón?».
+  Si lo recuerdan, el diseñador dirigió su mirada. Eso es lo que haréis vosotros.
+CIERRE DE BLOQUE: dirigir la mirada no es casualidad: es la primera decisión.
+
+
+================================================================================
+INTEGRANTE 2 — "EL LENGUAJE DE LAS FORMAS"
+Tema: geometría y minimalismo. El vocabulario visual que usamos sin darnos cuenta.
+Aporta al relato: la segunda capa. Ya sabemos que escaneamos; ahora, con qué
+formas hablamos y por qué hoy el diseño tiende a lo simple.
+================================================================================
+
+--------------------------------------------------------------------------------
+[P6] LA PSICOLOGÍA DE LAS FORMAS: LAS CURVAS NOS CALMAN
+Tiempo: 3:15 · 50 s
+--------------------------------------------------------------------------------
+ESTÍMULO: «¿Por qué casi todo lo moderno lleva esquinas redondeadas?»
+NARRAS: Las formas nos hablan sin palabras, y preferimos las curvas: los ángulos
+  nos ponen en alerta. El ojo recorre un círculo sin detenerse; en un cuadrado se
+  engancha en las esquinas. Redondeado = amable; anguloso = agresivo.
+CONCEPTO: EFECTO DE LA CURVATURA (curvilinearity). Preferimos las formas curvas
+  de forma innata; los ángulos activan la detección de amenaza. Y el ojo no
+  "resbala": las esquinas son puntos de fijación.
+ESTÍMULO AL PÚBLICO: dibuja un cuadrado y un círculo al aire: «¿a cuál te
+  acercarías?» -> todos eligen el círculo. Acaban de sentir la teoría.
+
+--------------------------------------------------------------------------------
+[P7] LAS FORMAS EN PANTALLA: QUÉ USAR Y PARA QUÉ
+Tiempo: 4:05 · 45 s
+--------------------------------------------------------------------------------
+ESTÍMULO: «Cada forma de tu web está diciendo algo.»
+NARRAS: CÍRCULO = protección y comunidad -> avatares, iconos, badges: humaniza.
+  CUADRADO y RECTÁNGULO = orden y estabilidad -> tarjetas y bloques: el esqueleto
+  del layout. ESFERA y ÓVALO = completitud -> sellos y fotos.
+CONCEPTO: EFECTO BOUBA/KIKI. Las formas redondeadas y los sonidos suaves se
+  asocian entre sí (amable), y las angulosas con lo duro. El cerebro empareja
+  forma y carácter antes de que puedas explicarlo.
+ESTÍMULO AL PÚBLICO: «¿Por qué creéis que los avatares son círculos y las
+  tarjetas son rectángulos?» -> que lo razonen ellos.
+
+--------------------------------------------------------------------------------
+[P8] MINIMALISMO: MENOS FORMA, MÁS INTENCIÓN
+Tiempo: 4:50 · 50 s
+--------------------------------------------------------------------------------
+ESTÍMULO: «Hoy el diseño ha ido hacia lo esencial: ¿es pereza o es inteligencia?»
+NARRAS: Del recargado al plano y al minimalista: formas simples, curvas suaves y
+  mucho aire. El minimalismo no es "vacío": es quitar todo lo que no ayuda a
+  entender. Menos elementos = el ojo descansa y sabe dónde ir.
+CONCEPTO: LEY DE PRÄGNANZ (Gestalt) + REDUCCIÓN DE CARGA. Interpretamos y
+  preferimos la forma más simple posible; cuanta menos información inútil, menos
+  esfuerzo y más sensación de orden, limpieza y calidad.
+ESTÍMULO AL PÚBLICO: «¿Cuál de las tres webs parece más cara?» (recargado,
+  plano, minimalista) -> casi todos dirán la minimalista. Lo simple se percibe
+  como mejor.
+CIERRE DE BLOQUE: las formas no adornan: organizan la mirada y deciden el tono.
+
+
+================================================================================
+INTEGRANTE 3 — "EL COLOR Y LA EMOCIÓN"
+Tema: color. Cómo se construye en la cabeza y cómo se usa para provocar.
+Aporta al relato: la tercera capa. Ya hay mirada y forma; ahora añadimos la
+emoción. Aquí la exposición se vuelve interactiva con la RONDA.
+================================================================================
+
+--------------------------------------------------------------------------------
+[P9] EL COLOR ES PROVOCACIÓN: ¿QUÉ TE SUGIERE?
+Tiempo: 5:40 · 45 s
+--------------------------------------------------------------------------------
+ESTÍMULO: «Voy a haceros una trampa: os enseño un color y me decís qué sentís.»
+NARRAS: El color no está en el objeto: lo construye tu cerebro. Es una sensación.
+  Por eso no se elige el color que gusta, sino el que produce el efecto buscado.
+CONCEPTO: PROCESAMIENTO PRE-ATENCIONAL. El color se capta en milisegundos
+  ANTES de leer, y genera una impresión emocional inmediata: influye en lo que
+  sentimos, recordamos y decidimos.
+ESTÍMULO AL PÚBLICO: «¿Sabías que tu cerebro decide si un color te gusta antes
+  de que puedas nombrarlo?» -> dejarlo caer y pasar a la ronda.
+
+--------------------------------------------------------------------------------
+[P10] RONDA DE COLOR
+Tiempo: 6:25 · 20 s (reglas) + ~2 min de ronda
+--------------------------------------------------------------------------------
+ESTÍMULO: «Vamos a ver una serie de colores.»
+NARRAS: Quiero que, lo más rápido posible, digáis lo primero que se os venga a
+  la cabeza: una palabra, lo que sea. Después comprobamos si coincidís con lo
+  que buscan las marcas.
+CONCEPTO: PRIMING Y ASOCIACIÓN AUTOMÁTICA. La primera palabra que sale es la
+  asociación ya aprendida en tu cultura; no la piensas, la sueltas.
+CÓMO SE MODERA (Integrante 3, con todo el grupo atento):
+  - Muestra el color (flash_rojo) y espera las palabras. NO des la respuesta.
+  - Luego enseña la revelación (flash_rojo_revela) con el efecto y las marcas.
+  - Ronda: ROJO -> AZUL -> VERDE -> NEGRO.
+  - Recoge 3-4 palabras por color y enlázalas con la tabla final.
+ESTÍMULO AL PÚBLICO: ya están participando; el estímulo es la propia ronda.
+
+--------------------------------------------------------------------------------
+[P11-P18] RONDA DE COLOR (diapositivas a sangre)
+Tiempo: 6:45 - 8:45
+--------------------------------------------------------------------------------
+  P11 ROJO (pregunta)  -> P12 ROJO (revela: urgencia, apetito · Coca-Cola, Netflix)
+  P13 AZUL (pregunta)  -> P14 AZUL (revela: confianza · PayPal, Facebook)
+  P15 VERDE (pregunta) -> P16 VERDE (revela: naturaleza, salud · WhatsApp, Spotify)
+  P17 NEGRO (pregunta) -> P18 NEGRO (revela: poder, lujo · Chanel)
+  Truco: deja 2-3 segundos de silencio tras enseñar cada color; que se mojen antes.
+
+--------------------------------------------------------------------------------
+[P19] LA PSICOLOGÍA DEL COLOR: QUÉ SIENTE LA GENTE
+Tiempo: 8:45 · 45 s
+--------------------------------------------------------------------------------
+ESTÍMULO: «Vuestras palabras eran, casi palabra por palabra, las que buscan las marcas.»
+NARRAS: ROJO urgencia y apetito (Coca-Cola, Netflix); AZUL confianza (PayPal,
+  Facebook); VERDE naturaleza y salud (WhatsApp, Spotify); AMARILLO atención
+  (McDonald's, IKEA); NARANJA acción (Amazon); MORADO lujo (Twitch); NEGRO poder
+  (Chanel); BLANCO limpieza (Apple). Ninguna eligió su color por gusto.
+CONCEPTO: ASOCIACIÓN COMPARTIDA. Los colores significan porque los hemos
+  aprendido juntos (cultura y experiencia); por eso funcionan casi en todas partes.
+ESTÍMULO AL PÚBLICO: «¿Alguien ha dicho algo que no estuviera en la tabla?»
+  (casi nunca) -> vuestro cerebro usa atajos compartidos.
+
+--------------------------------------------------------------------------------
+[P20] EL COLOR EN ESCENARIOS REALES (Y SUS TRAMPAS)
+Tiempo: 9:30 · 50 s
+--------------------------------------------------------------------------------
+ESTÍMULO: «No se elige el color que me gusta: se elige el que produce el efecto.»
+NARRAS: Banca -> azul (confianza). Salud -> verde y azul. Lujo -> negro y dorado.
+  Rebajas -> rojo. Comida -> rojo y naranja. Y dos trampas: hay que respetar el
+  contraste para que el texto se lea, y no depender SOLO del color.
+CONCEPTO: ACCESIBILIDAD Y CONTEXTO. ~1 de cada 12 hombres no distingue rojo de
+  verde (daltonismo): acompáñalo con iconos o texto. Además, el mismo color se ve
+  distinto según el fondo (contraste simultáneo) y cambia de sentido según la
+  cultura.
+ESTÍMULO AL PÚBLICO: «¿De qué color es el botón de comprar?» -> casi todos
+  dirán naranja o rojo. Ese es el color-acción aprendido.
+CIERRE DE BLOQUE: el color no decora: provoca. Y provoca porque lo aprendimos.
+
+
+================================================================================
+INTEGRANTE 4 — "LA VOZ Y EL ORDEN"
+Tema: tipografía, composición, anatomía y espacios. Y el cierre.
+Aporta al relato: la capa final. Ya hay mirada, forma y color; ahora los
+ponemos en orden y entendemos por qué todo lo anterior funciona junto.
+================================================================================
+
+--------------------------------------------------------------------------------
+[P21] LA TIPOGRAFÍA ES LA VOZ DE LA MARCA
+Tiempo: 10:20 · 50 s
+--------------------------------------------------------------------------------
+ESTÍMULO: «El texto dice QUÉ dices; la tipografía, CÓMO lo dices.»
+NARRAS: CON REMATES (serif) = tradición, autoridad, elegancia -> prensa,
+  editorial, lujo. SIN REMATES (sans-serif) = moderno, limpio, tecnológico ->
+  Google, Apple. Se diferencian por tener remates o no, su forma y si el trazo
+  tiene grosor uniforme o variable.
+CONCEPTO: FLUIDEZ DE PROCESAMIENTO (fluency). Lo que se lee con facilidad se
+  percibe como más verdadero y fiable. Además, leemos la FORMA de la letra antes
+  que la palabra: la tipografía nos predispone a confiar o a desconfiar.
+ESTÍMULO AL PÚBLICO: «Si una web sobre abogados usara la letra de un videojuego,
+  ¿confiaríais?» -> la tipografía cambia la credibilidad.
+
+--------------------------------------------------------------------------------
+[P22] TIPOGRAFÍA APLICADA: JERARQUÍA Y LEGIBILIDAD
+Tiempo: 11:10 · 45 s
+--------------------------------------------------------------------------------
+ESTÍMULO: «No pongas todo del mismo tamaño.»
+NARRAS: La jerarquía decide qué lees primero: título grande, subtítulo, texto y
+  etiquetas mínimas. El peso (negrita) marca importancia: para acciones, no para
+  párrafos enteros. Legibilidad: tamaño generoso, buen interlineado, líneas no
+  muy largas y contraste.
+CONCEPTO: GUÍA DE LA ATENCIÓN + MICRO-LEGIBILIDAD. La jerarquía no es estética,
+  es un mapa; y leemos mejor líneas de ~60-70 caracteres.
+ESTÍMULO AL PÚBLICO: «¿Por qué las webs de noticias usan titulares enormes?»
+  -> porque saben por dónde quieres empezar.
+
+--------------------------------------------------------------------------------
+[P23] COMPOSICIÓN: DIRIGIR LA MIRADA
+Tiempo: 11:55 · 50 s
+--------------------------------------------------------------------------------
+ESTÍMULO: «El centro de la pantalla no es donde mira el ojo.»
+NARRAS: El ojo ve un centro un poco más arriba del real: ahí va lo importante.
+  La derecha pesa más; lo de abajo transmite estabilidad. Equilibrio estático
+  (eje central) y dinámico (varios ejes, más moderno). Regla de los tercios:
+  dividir en 9 y poner lo clave en un cruce.
+CONCEPTO: PESO VISUAL Y GESTALT. Peso, dirección, gravedad y proximidad deciden
+  qué parece ligero o pesado y qué leemos como un grupo. La mirada se conduce.
+ESTÍMULO AL PÚBLICO: «Si quito este elemento, ¿qué parte te pesa más?» -> que
+  sientan el equilibrio antes de que se lo expliques.
+
+--------------------------------------------------------------------------------
+[P24] ANATOMÍA DE UNA WEB: LAS ZONAS
+Tiempo: 12:45 · 45 s
+--------------------------------------------------------------------------------
+ESTÍMULO: «Todas las webs se parecen por dentro. Y eso es buena señal.»
+NARRAS: Toda web repite las mismas zonas porque funcionan: cabecera e identidad,
+  menú, hero con su botón; debajo el cuerpo (el contenido) y alrededor tarjetas,
+  testimonios y pie. Todas rectangulares; las otras formas son accesorio.
+CONCEPTO: FAMILIARIDAD (efecto de mera exposición). Lo que reconocemos nos
+  relaja; como el ojo ya sabe dónde mirar, confía. Por eso repetir la estructura
+  es una ventaja, no una falta de originalidad.
+ESTÍMULO AL PÚBLICO: «¿Dónde esperáis encontrar el menú?» -> arriba. Si lo
+  cambiara, os costaría. Eso es el poder de lo esperado.
+
+--------------------------------------------------------------------------------
+[P25] LOS ESPACIOS Y LA ESTRUCTURA
+Tiempo: 13:30 · 50 s
+--------------------------------------------------------------------------------
+ESTÍMULO: «Cuando una web se ve agobiante, casi nunca sobra algo: falta aire.»
+NARRAS: El espacio en blanco no es vacío: separa, encuadra y equilibra.
+  Micro-espacio entre líneas y letras; macro-espacio entre secciones; y detrás,
+  rejillas y columnas. Una web apretada agobia; con aire se lee y se confía.
+CONCEPTO: RESPIRACIÓN COGNITIVA + LEY DE PROXIMIDAD. El aire reduce la carga y
+  agrupa: lo que está junto se lee como un mismo bloque. Por eso se maqueta con
+  capas (div) y CSS, no con tablas.
+ESTÍMULO AL PÚBLICO: comparar "sin aire" y "con aire": «¿Cuál has leído antes?»
+  -> la que respira, sin dudarlo.
+
+--------------------------------------------------------------------------------
+[P26] NADA ES CASUALIDAD, TODO ES CAUSALIDAD
+Tiempo: 14:20 · 60 s
+--------------------------------------------------------------------------------
+ESTÍMULO: «Volved a mirar el móvil del principio.»
+NARRAS: Ese botón, ese color, esa letra y ese hueco son CAUSAS con EFECTOS:
+  cómo percibimos, cómo miramos, nuestra cultura, la accesibilidad y el objetivo
+  del negocio. No se decora: se provoca. Y a partir de hoy, cada píxel se decide
+  con un motivo.
+CONCEPTO: CAUSALIDAD DEL DISEÑO. Cada decisión visual busca un efecto en quien
+  la mira; el diseño no es azar, es la elección consciente de causas.
+ESTÍMULO AL PÚBLICO: «¿Y ahora veis la misma app que al principio?» -> no:
+  la miran distinto. Eso es haber cambiado el proceso, no memorizado datos.
+
+--------------------------------------------------------------------------------
+[P27] PORTADA-FINAL · "Nada es casualidad, todo es causalidad"
+Tiempo: 15:20 · 20 s
+--------------------------------------------------------------------------------
+ESTÍMULO: (silencio y cierre) Se vuelve a la portada, idéntica.
+NARRAS: Una sola frase para irse: nada es casualidad, todo es causalidad.
+CONCEPTO: CIERRE EN BUCLE. Repetir la imagen inicial produce sensación de
+  cierre y hace que lo aprendido "encaje" (efecto de redondez/completitud).
+ESTÍMULO AL PÚBLICO: pausa, mirada al público y punto final.
+
+
+================================================================================
+CHULETA · LOS CONCEPTOS QUE HABÉIS USADO (para repasar)
+================================================================================
+  ATENCIÓN SELECTIVA / SALIENCIA ... no vemos todo: vemos lo que destaca
+  ECONOMÍA COGNITIVA ............... el cerebro busca el menor esfuerzo
+  LEY DE FITTS ..................... lo grande y cercano se pulsa antes
+  PATRONES F / Z ................... cómo escaneamos la pantalla
+  EFECTO DE CURVATURA .............. preferimos las curvas; los ángulos alertan
+  EFECTO BOUBA/KIKI ................ forma y sonido redondeados = amable
+  LEY DE PRÄGNANZ (GESTALT) ........ preferimos la forma más simple
+  CARGA COGNITIVA .................. menos elementos, más fácil
+  COLOR PRE-ATENCIONAL ............. el color se procesa antes que el texto
+  PRIMING / ASOCIACIÓN ............. el color activa significados aprendidos
+  DALTONISMO / ACCESIBILIDAD ....... no dependas solo del color
+  FLUIDEZ DE PROCESAMIENTO ......... lo fácil de leer se percibe como más cierto
+  PESO VISUAL / GESTALT ............ proximidad, peso y gravedad dirigen la mirada
+  FAMILIARIDAD / MERA EXPOSICIÓN ... lo reconocido da confianza
+  RESPIRACIÓN COGNITIVA ............ el aire reduce el esfuerzo
+  CAUSALIDAD DEL DISEÑO ............ cada decisión es una causa con un efecto
+
+5 CLAVES DE EXPRESIÓN ORAL
+  1. Una idea por diapositiva; si dudas, di MENOS.
+  2. El ejemplo antes que la definición.
+  3. Mira la diapositiva con la mano, no con los ojos.
+  4. Pausa después del titular (y 2-3 s antes de revelar cada color).
+  5. Encadena con la pregunta de tu transición: que suene a UNA sola historia.
+================================================================================
