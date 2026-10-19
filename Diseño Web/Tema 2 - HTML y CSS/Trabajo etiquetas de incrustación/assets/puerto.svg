@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" width="640" height="420" role="img" aria-label="Ilustración del Puerto de Algeciras con grúas y buque">
+  <defs>
+    <linearGradient id="cieloP" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fca5a5"/>
+      <stop offset="100%" stop-color="#fde68a"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="420" fill="url(#cieloP)"/>
+  <circle cx="540" cy="90" r="40" fill="#fb923c"/>
+  <rect y="290" width="640" height="130" fill="#0c4a6e"/>
+  <!-- grúas -->
+  <g stroke="#334155" stroke-width="8" fill="none">
+    <path d="M120 290 v-130 h150"/>
+    <path d="M200 290 v-110 h150"/>
+    <path d="M280 290 v-150 h130"/>
+  </g>
+  <g fill="#1f2937">
+    <rect x="108" y="284" width="24" height="16"/>
+    <rect x="188" y="284" width="24" height="16"/>
+    <rect x="268" y="284" width="24" height="16"/>
+  </g>
+  <!-- contenedores -->
+  <g stroke="#0f172a" stroke-width="2">
+    <rect x="430" y="230" width="70" height="30" fill="#ef4444"/>
+    <rect x="500" y="230" width="70" height="30" fill="#22c55e"/>
+    <rect x="430" y="260" width="70" height="30" fill="#3b82f6"/>
+    <rect x="500" y="260" width="70" height="30" fill="#eab308"/>
+  </g>
+  <!-- buque -->
+  <path d="M360 300 h220 l-24 40 h-172 z" fill="#475569"/>
+  <rect x="392" y="278" width="120" height="22" fill="#94a3b8"/>
+  <text x="320" y="400" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#e0f2fe">Puerto Bahía de Algeciras</text>
+</svg>

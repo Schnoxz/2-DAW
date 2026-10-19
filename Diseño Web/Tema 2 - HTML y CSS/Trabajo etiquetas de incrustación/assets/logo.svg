@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 200" width="640" height="200" role="img" aria-label="Logotipo de Algeciras Digital">
+  <defs>
+    <linearGradient id="cielo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <linearGradient id="mar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="200" rx="16" fill="url(#cielo)"/>
+  <circle cx="540" cy="60" r="34" fill="#fde047"/>
+  <path d="M0 140 h640 v60 h-640 z" fill="url(#mar)"/>
+  <path d="M0 140 q40 -14 80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 v60 h-640 z" fill="#0284c7" opacity="0.55"/>
+  <path d="M120 140 l40 -60 h70 l-58 60 z" fill="#f8fafc" opacity="0.9"/>
+  <text x="32" y="72" font-family="Segoe UI, Arial, sans-serif" font-size="40" font-weight="700" fill="#ffffff">Algeciras</text>
+  <text x="34" y="104" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#e0f2fe" letter-spacing="6">DIGITAL</text>
+</svg>

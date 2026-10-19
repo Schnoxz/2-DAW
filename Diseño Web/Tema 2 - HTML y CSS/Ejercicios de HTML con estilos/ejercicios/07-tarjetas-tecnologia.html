@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Tarjetas de productos</title>
+  <!-- Ejercicio 7: tarjetas con atributos data-*. Fuente: https://es.wikipedia.org/wiki/Unidad_central_de_procesamiento -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      color: #333333;
+    }
+    h1 {
+      color: #1b3a6b;
+    }
+    .tarjeta {
+      display: inline-block;
+      width: 200px;
+      border: 2px solid #999999;
+      padding: 10px;
+      margin: 10px;
+      vertical-align: top;
+    }
+    .precio {
+      font-weight: bold;
+      color: #b91c1c;
+    }
+    [data-categoria="componentes"] {
+      border-color: #1b3a6b;
+    }
+    [data-categoria="perifericos"] {
+      border-color: #b45309;
+    }
+    [data-categoria="software"] {
+      border-color: #15803d;
+    }
+    .fuente {
+      background-color: #f0f0f0;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Productos informaticos</h1>
+
+  <div class="tarjeta" data-categoria="componentes">
+    <h2>Procesador</h2>
+    <p class="precio">199 &euro;</p>
+    <p>Unidad central de proceso de 8 nucleos.</p>
+  </div>
+
+  <div class="tarjeta" data-categoria="componentes">
+    <h2>Memoria RAM</h2>
+    <p class="precio">59 &euro;</p>
+    <p>16 GB de memoria, tipo DDR5.</p>
+  </div>
+
+  <div class="tarjeta" data-categoria="perifericos">
+    <h2>Teclado</h2>
+    <p class="precio">35 &euro;</p>
+    <p>Teclado mecanico con luz.</p>
+  </div>
+
+  <div class="tarjeta" data-categoria="software">
+    <h2>Editor de codigo</h2>
+    <p class="precio">0 &euro;</p>
+    <p>Programa gratuito para escribir codigo.</p>
+  </div>
+
+  <p class="fuente">
+    Fuente: <a href="https://es.wikipedia.org/wiki/Unidad_central_de_procesamiento">Wikipedia - Unidad central de procesamiento</a>
+  </p>
+
+</body>
+</html>

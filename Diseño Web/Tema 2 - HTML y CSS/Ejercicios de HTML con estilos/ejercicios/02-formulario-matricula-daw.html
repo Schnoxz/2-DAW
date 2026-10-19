@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de matricula DAW</title>
+  <!-- Ejercicio 2: formulario. Fuente: https://www.todofp.es/que-estudiar/loe/informatica-comunicaciones/des-aplicaciones-web.html -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      color: #333333;
+    }
+    h1 {
+      color: #1b3a6b;
+    }
+    form {
+      background-color: #f5f5f5;
+      padding: 20px;
+      width: 400px;
+      border: 1px solid #cccccc;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input, select {
+      width: 100%;
+      padding: 5px;
+      margin-top: 3px;
+    }
+    button {
+      margin-top: 15px;
+      background-color: #1b3a6b;
+      color: white;
+      border: none;
+      padding: 10px;
+      width: 100%;
+    }
+    .fuente {
+      background-color: #f0f0f0;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Matricula en el ciclo DAW</h1>
+
+  <form>
+    <label>Nombre:
+      <input type="text" name="nombre" required>
+    </label>
+
+    <label>Apellidos:
+      <input type="text" name="apellidos" required>
+    </label>
+
+    <label>Correo electronico:
+      <input type="email" name="email" required>
+    </label>
+
+    <label>Fecha de nacimiento:
+      <input type="date" name="fecha">
+    </label>
+
+    <label>Modalidad:
+      <select name="modalidad">
+        <option>Presencial</option>
+        <option>Semipresencial</option>
+        <option>A distancia</option>
+      </select>
+    </label>
+
+    <button type="submit">Enviar solicitud</button>
+  </form>
+
+  <p class="fuente">
+    Fuente: <a href="https://www.todofp.es/que-estudiar/loe/informatica-comunicaciones/des-aplicaciones-web.html">todofp.es - Desarrollo de Aplicaciones Web</a>
+  </p>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-label="Póster del vídeo sobre Algeciras">
+  <defs>
+    <linearGradient id="pg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e3a8a"/><stop offset="100%" stop-color="#0891b2"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#pg)"/>
+  <circle cx="520" cy="90" r="40" fill="#fde047"/>
+  <path d="M0 260 q160 -40 320 0 t320 0 v100 h-640 z" fill="#0c4a6e"/>
+  <path d="M0 280 q160 -34 320 0 t320 0 v80 h-640 z" fill="#0e7490" opacity="0.8"/>
+  <g fill="#ffffff" opacity="0.9"><path d="M300 200 l40 -70 l40 70 z"/><path d="M270 200 l30 -50 l30 50 z"/><path d="M340 200 l30 -50 l30 50 z"/></g>
+  <text x="320" y="330" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700" fill="#e0f2fe">Historia de Algeciras · vídeo</text>
+</svg>

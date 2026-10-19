@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Algeciras Digital - Inicio</title>
+  <!-- Trabajo: etiquetas de incrustación. Fuente: https://es.wikipedia.org/wiki/Algeciras -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f2f2f2;
+      color: #333333;
+    }
+    header {
+      background-color: #1b3a6b;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    header img {
+      height: 50px;
+    }
+    nav {
+      margin-top: 10px;
+    }
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      max-width: 900px;
+      margin: 20px auto;
+      background-color: white;
+      padding: 20px;
+      border: 1px solid #cccccc;
+    }
+    h2 {
+      color: #1b3a6b;
+      border-bottom: 2px solid #cccccc;
+      padding-bottom: 5px;
+    }
+    img {
+      max-width: 100%;
+    }
+    iframe, video, canvas, embed, object {
+      border: 1px solid #cccccc;
+    }
+    video, audio {
+      width: 100%;
+    }
+    canvas {
+      background-color: #fafafa;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #999999;
+      padding: 6px;
+      text-align: center;
+    }
+    th {
+      background-color: #1b3a6b;
+      color: white;
+    }
+    .aviso {
+      background-color: #fff3cd;
+      border-left: 5px solid #e0a800;
+      padding: 10px;
+    }
+    footer {
+      background-color: #1b3a6b;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+    }
+    footer a {
+      color: #ffd966;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <!-- Etiqueta img -->
+    <img src="assets/logo.svg" alt="Logotipo de Algeciras Digital">
+    <h1>Algeciras Digital</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="detalle.html">El Puerto</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>La ciudad de Algeciras</h2>
+    <p>
+      Algeciras es una ciudad de la provincia de Cádiz, en Andalucía. Está situada junto
+      al Estrecho de Gibraltar y tiene uno de los puertos más importantes de España.
+    </p>
+
+    <!-- Etiqueta img -->
+    <img src="assets/plaza-alta.svg" alt="Plaza Alta de Algeciras">
+
+    <h2>Mapa</h2>
+    <!-- Etiqueta iframe -->
+    <iframe src="https://www.google.com/maps?q=Algeciras&output=embed"
+            width="100%" height="300" title="Mapa de Algeciras"></iframe>
+
+    <h2>Vídeo</h2>
+    <!-- Etiquetas video y source -->
+    <video controls poster="assets/poster.svg">
+      <source src="assets/video-flor.webm" type="video/webm">
+      <source src="assets/video-flor.mp4" type="video/mp4">
+      Tu navegador no admite el vídeo.
+    </video>
+
+    <h2>Audio</h2>
+    <!-- Etiquetas audio y source -->
+    <audio controls>
+      <source src="assets/audio-rugido.mp3" type="audio/mpeg">
+      Tu navegador no admite el audio.
+    </audio>
+
+    <h2>Dibujo con canvas</h2>
+    <!-- Etiqueta canvas -->
+    <canvas width="400" height="150">
+      Tu navegador no admite canvas.
+    </canvas>
+
+    <h2>Documento incrustado</h2>
+    <!-- Etiqueta embed -->
+    <embed src="assets/ficha-tecnica.pdf" type="application/pdf" width="100%" height="300">
+    <!-- Etiqueta object -->
+    <object data="assets/ficha-tecnica.pdf" type="application/pdf" width="100%" height="300">
+      <p>No se puede mostrar el PDF. <a href="assets/ficha-tecnica.pdf">Descárgalo aquí</a>.</p>
+    </object>
+
+    <h2>Dibujo SVG</h2>
+    <!-- Etiqueta svg -->
+    <svg width="300" height="120">
+      <rect x="10" y="10" width="120" height="100" fill="#38bdf8" />
+      <circle cx="220" cy="60" r="50" fill="#fde047" />
+    </svg>
+
+    <p class="aviso">
+      Fuente de los datos: Wikipedia, «Algeciras»:
+      <a href="https://es.wikipedia.org/wiki/Algeciras">https://es.wikipedia.org/wiki/Algeciras</a>
+    </p>
+
+    <p><a href="detalle.html">Ir al nivel 2: el Puerto de Algeciras</a></p>
+  </main>
+
+  <footer>
+    Algeciras Digital - Ejercicio de contenido incrustado HTML
+  </footer>
+
+</body>
+</html>
