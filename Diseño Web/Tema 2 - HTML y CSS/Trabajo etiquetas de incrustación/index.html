@@ -3,162 +3,98 @@
 <head>
   <meta charset="UTF-8">
   <title>Algeciras Digital - Inicio</title>
-  <!-- Trabajo: etiquetas de incrustación. Fuente: https://es.wikipedia.org/wiki/Algeciras -->
+  <!-- Trabajo: etiquetas de incrustación (img, iframe, video, audio) -->
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      background-color: #f2f2f2;
-      color: #333333;
     }
     header {
       background-color: #1b3a6b;
-      color: white;
-      padding: 15px;
-      text-align: center;
-    }
-    header img {
-      height: 50px;
-    }
-    nav {
-      margin-top: 10px;
+      color: #ffffff;
     }
     nav a {
-      color: white;
-      margin: 0 10px;
-      text-decoration: none;
+      color: #ffffff;
     }
-    nav a:hover {
-      text-decoration: underline;
+    h1, h2, h3 {
+      color: #1b3a6b;
     }
     main {
-      max-width: 900px;
-      margin: 20px auto;
-      background-color: white;
-      padding: 20px;
-      border: 1px solid #cccccc;
-    }
-    h2 {
-      color: #1b3a6b;
-      border-bottom: 2px solid #cccccc;
-      padding-bottom: 5px;
-    }
-    img {
-      max-width: 100%;
-    }
-    iframe, video, canvas, embed, object {
-      border: 1px solid #cccccc;
-    }
-    video, audio {
-      width: 100%;
-    }
-    canvas {
-      background-color: #fafafa;
-    }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-    th, td {
-      border: 1px solid #999999;
-      padding: 6px;
-      text-align: center;
-    }
-    th {
-      background-color: #1b3a6b;
-      color: white;
-    }
-    .aviso {
-      background-color: #fff3cd;
-      border-left: 5px solid #e0a800;
-      padding: 10px;
+      background-color: #ffffff;
     }
     footer {
       background-color: #1b3a6b;
-      color: white;
-      text-align: center;
-      padding: 10px;
-      font-size: 14px;
+      color: #ffffff;
     }
-    footer a {
-      color: #ffd966;
+    table {
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #000000;
+    }
+    th {
+      background-color: #1b3a6b;
+      color: #ffffff;
+    }
+    .destacado {
+      color: #1b3a6b;
     }
   </style>
 </head>
 <body>
-
   <header>
-    <!-- Etiqueta img -->
-    <img src="assets/logo.svg" alt="Logotipo de Algeciras Digital">
     <h1>Algeciras Digital</h1>
     <nav>
       <a href="index.html">Inicio</a>
-      <a href="detalle.html">El Puerto</a>
+      <a href="detalle.html">Detalle</a>
     </nav>
   </header>
 
   <main>
-    <h2>La ciudad de Algeciras</h2>
-    <p>
-      Algeciras es una ciudad de la provincia de Cádiz, en Andalucía. Está situada junto
-      al Estrecho de Gibraltar y tiene uno de los puertos más importantes de España.
-    </p>
+    <section>
+      <h2>Imagen</h2>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Algeciras_%28Spain%29_%28cropped%29.jpg/400px-Algeciras_%28Spain%29_%28cropped%29.jpg" alt="Vista de Algeciras">
+    </section>
 
-    <!-- Etiqueta img -->
-    <img src="assets/plaza-alta.svg" alt="Plaza Alta de Algeciras">
+    <section>
+      <h2>Vídeo</h2>
+      <video src="https://www.w3schools.com/html/mov_bbb.mp4" controls></video>
+    </section>
 
-    <h2>Mapa</h2>
-    <!-- Etiqueta iframe -->
-    <iframe src="https://www.google.com/maps?q=Algeciras&output=embed"
-            width="100%" height="300" title="Mapa de Algeciras"></iframe>
+    <section>
+      <h2>Audio</h2>
+      <audio src="https://www.w3schools.com/html/horse.mp3" controls></audio>
+    </section>
 
-    <h2>Vídeo</h2>
-    <!-- Etiquetas video y source -->
-    <video controls poster="assets/poster.svg">
-      <source src="assets/video-flor.webm" type="video/webm">
-      <source src="assets/video-flor.mp4" type="video/mp4">
-      Tu navegador no admite el vídeo.
-    </video>
+    <section>
+      <h2>Iframe</h2>
+      <iframe src="https://es.wikipedia.org/wiki/Algeciras" width="400" height="250"></iframe>
+    </section>
 
-    <h2>Audio</h2>
-    <!-- Etiquetas audio y source -->
-    <audio controls>
-      <source src="assets/audio-rugido.mp3" type="audio/mpeg">
-      Tu navegador no admite el audio.
-    </audio>
+    <section>
+      <h2>Datos</h2>
+      <table>
+        <tr>
+          <th>Concepto</th>
+          <th>Valor</th>
+        </tr>
+        <tr>
+          <td>Población</td>
+          <td>123.000</td>
+        </tr>
+        <tr>
+          <td>Provincia</td>
+          <td>Cádiz</td>
+        </tr>
+      </table>
+    </section>
 
-    <h2>Dibujo con canvas</h2>
-    <!-- Etiqueta canvas -->
-    <canvas width="400" height="150">
-      Tu navegador no admite canvas.
-    </canvas>
-
-    <h2>Documento incrustado</h2>
-    <!-- Etiqueta embed -->
-    <embed src="assets/ficha-tecnica.pdf" type="application/pdf" width="100%" height="300">
-    <!-- Etiqueta object -->
-    <object data="assets/ficha-tecnica.pdf" type="application/pdf" width="100%" height="300">
-      <p>No se puede mostrar el PDF. <a href="assets/ficha-tecnica.pdf">Descárgalo aquí</a>.</p>
-    </object>
-
-    <h2>Dibujo SVG</h2>
-    <!-- Etiqueta svg -->
-    <svg width="300" height="120">
-      <rect x="10" y="10" width="120" height="100" fill="#38bdf8" />
-      <circle cx="220" cy="60" r="50" fill="#fde047" />
-    </svg>
-
-    <p class="aviso">
-      Fuente de los datos: Wikipedia, «Algeciras»:
-      <a href="https://es.wikipedia.org/wiki/Algeciras">https://es.wikipedia.org/wiki/Algeciras</a>
-    </p>
-
-    <p><a href="detalle.html">Ir al nivel 2: el Puerto de Algeciras</a></p>
+    <section>
+      <p class="destacado">Trabajo centrado en etiquetas de incrustación siguiendo la teoría vista.</p>
+    </section>
   </main>
 
   <footer>
-    Algeciras Digital - Ejercicio de contenido incrustado HTML
+    <p>Algeciras Digital - Diseño de Interfaces Web</p>
   </footer>
-
 </body>
 </html>

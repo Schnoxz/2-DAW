@@ -2,43 +2,42 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Galeria de Algeciras</title>
-  <!-- Ejercicio 4: galeria de imagenes. Fuente: https://es.wikipedia.org/wiki/Algeciras -->
+  <title>Galería de Algeciras</title>
+  <!-- Ejercicio 4: imágenes con HTML y estilos básicos -->
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
-      color: #333333;
     }
     h1 {
       color: #1b3a6b;
     }
-    .foto {
-      width: 30%;
-      margin: 5px;
-      border: 1px solid #999999;
+    img {
+      width: 300px;
     }
-    .fuente {
-      background-color: #f0f0f0;
-      padding: 10px;
+    figure {
+      display: inline-block;
+    }
+    figcaption {
+      text-align: center;
     }
   </style>
 </head>
 <body>
+  <h1>Galería de Algeciras</h1>
 
-  <h1>Galeria de Algeciras</h1>
-  <p>Algunos lugares de la ciudad:</p>
+  <figure>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Algeciras_%28Spain%29_%28cropped%29.jpg/320px-Algeciras_%28Spain%29_%28cropped%29.jpg" alt="Vista de Algeciras">
+    <figcaption>Vista general de Algeciras</figcaption>
+  </figure>
 
-  <img class="foto" src="assets/plaza-alta.svg" alt="Plaza Alta">
-  <img class="foto" src="assets/puerto.svg" alt="Puerto de Algeciras">
-  <img class="foto" src="assets/isla-verde.svg" alt="Isla Verde">
-  <img class="foto" src="assets/getares.svg" alt="Playa de Getares">
-  <img class="foto" src="assets/rio-miel.svg" alt="Rio de la Miel">
-  <img class="foto" src="assets/centenario.svg" alt="Parque del Centenario">
+  <figure>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Port_of_Algeciras.jpg/320px-Port_of_Algeciras.jpg" alt="Puerto de Algeciras">
+    <figcaption>Puerto de Algeciras</figcaption>
+  </figure>
 
-  <p class="fuente">
-    Fuente: <a href="https://es.wikipedia.org/wiki/Algeciras">https://es.wikipedia.org/wiki/Algeciras</a>
-  </p>
-
+  <figure>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Plaza_Alta_de_Algeciras_%281%29.jpg/320px-Plaza_Alta_de_Algeciras_%281%29.jpg" alt="Plaza Alta">
+    <figcaption>Plaza Alta de Algeciras</figcaption>
+  </figure>
 </body>
 </html>
