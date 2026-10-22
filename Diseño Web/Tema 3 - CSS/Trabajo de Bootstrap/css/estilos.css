@@ -1,0 +1,30 @@
+/* Estilos propios del proyecto. Bootstrap ya trae la mayor parte del diseño. */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f5ef;
+}
+
+/* Barra de navegación y pie */
+.navbar,
+footer {
+  background-color: #2c3e50;
+}
+
+/* Todas las portadas tienen la misma altura */
+.portada {
+  height: 220px;
+  object-fit: cover;
+}
+
+/* El precio se ve más grande y en otro color */
+.precio {
+  color: #b5651d;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* Cabecera de la tabla del carrito */
+.tabla-carrito th {
+  background-color: #e9ecef;
+}
