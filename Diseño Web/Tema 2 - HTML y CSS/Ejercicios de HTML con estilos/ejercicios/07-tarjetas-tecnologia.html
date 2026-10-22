@@ -2,41 +2,50 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Tarjetas de tecnología</title>
-  <!-- Ejercicio 7: selectores de clase y estilos básicos -->
+  <title>Tarjetas de tecnologías web</title>
+  <!--
+    Ejercicio 7 - Clases y estilos básicos.
+    Fuente de los datos:
+      https://es.wikipedia.org/wiki/HTML
+      https://es.wikipedia.org/wiki/CSS
+      https://es.wikipedia.org/wiki/JavaScript
+  -->
   <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
-    h1 {
-      color: #1b3a6b;
-    }
-    .tarjeta {
-      border: 1px solid #cccccc;
-      width: 250px;
-      background-color: #f5f5f5;
-    }
-    .titulo-tarjeta {
-      color: #1b3a6b;
-    }
+    body { font-family: Arial, sans-serif; background-color: #f4f6fa; }
+    h1 { color: #1b3a6b; text-align: center; }
+    .tarjeta { display: inline-block; width: 220px; margin: 10px; padding: 15px; background-color: #ffffff; border: 1px solid #cccccc; vertical-align: top; }
+    .tarjeta h2 { color: #1b3a6b; font-size: 18px; margin-top: 0; }
+    .tarjeta p { color: #555555; font-size: 14px; }
+    .etiqueta { background-color: #e6ecf8; color: #1b3a6b; padding: 3px 8px; font-size: 12px; }
+    .fuente { text-align: center; font-size: 12px; color: #666666; }
   </style>
 </head>
 <body>
-  <h1>Tecnologías web</h1>
+  <h1>Tecnologías del desarrollo web</h1>
 
   <div class="tarjeta">
-    <h2 class="titulo-tarjeta">HTML</h2>
-    <p>Lenguaje de marcado para estructurar páginas web.</p>
+    <h2>HTML</h2>
+    <p>Lenguaje de marcado que estructura el contenido de las páginas web.</p>
+    <span class="etiqueta">Estructura</span>
   </div>
 
   <div class="tarjeta">
-    <h2 class="titulo-tarjeta">CSS</h2>
-    <p>Lenguaje para dar estilos y presentación a las páginas web.</p>
+    <h2>CSS</h2>
+    <p>Hojas de estilo que controlan la presentación, el color y la maquetación.</p>
+    <span class="etiqueta">Presentación</span>
   </div>
 
   <div class="tarjeta">
-    <h2 class="titulo-tarjeta">JavaScript</h2>
-    <p>Lenguaje de programación para añadir interactividad.</p>
+    <h2>JavaScript</h2>
+    <p>Lenguaje de programación que añade interactividad en el navegador.</p>
+    <span class="etiqueta">Comportamiento</span>
   </div>
+
+  <p class="fuente">
+    Fuente: Wikipedia -
+    <a href="https://es.wikipedia.org/wiki/HTML">HTML</a>,
+    <a href="https://es.wikipedia.org/wiki/CSS">CSS</a> y
+    <a href="https://es.wikipedia.org/wiki/JavaScript">JavaScript</a>.
+  </p>
 </body>
 </html>

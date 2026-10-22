@@ -3,41 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <title>Galería de Algeciras</title>
-  <!-- Ejercicio 4: imágenes con HTML y estilos básicos -->
+  <!--
+    Ejercicio 4 - Imágenes y figure.
+    Fuente de los datos: https://es.wikipedia.org/wiki/Algeciras
+  -->
   <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
-    h1 {
-      color: #1b3a6b;
-    }
-    img {
-      width: 300px;
-    }
-    figure {
-      display: inline-block;
-    }
-    figcaption {
-      text-align: center;
-    }
+    body { font-family: Arial, sans-serif; background-color: #f7f7f7; }
+    h1 { color: #1b3a6b; text-align: center; }
+    figure { display: inline-block; width: 260px; margin: 10px; background-color: #ffffff; border: 1px solid #cccccc; }
+    img { width: 100%; }
+    figcaption { padding: 6px; text-align: center; color: #444444; }
+    .fuente { text-align: center; font-size: 12px; color: #555555; }
   </style>
 </head>
 <body>
-  <h1>Galería de Algeciras</h1>
+  <h1>Lugares de Algeciras</h1>
 
   <figure>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Algeciras_%28Spain%29_%28cropped%29.jpg/320px-Algeciras_%28Spain%29_%28cropped%29.jpg" alt="Vista de Algeciras">
-    <figcaption>Vista general de Algeciras</figcaption>
+    <img src="assets/plaza-alta.svg" alt="Ilustración de la Plaza Alta de Algeciras">
+    <figcaption>Plaza Alta</figcaption>
   </figure>
-
   <figure>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Port_of_Algeciras.jpg/320px-Port_of_Algeciras.jpg" alt="Puerto de Algeciras">
+    <img src="assets/puerto.svg" alt="Ilustración del puerto de Algeciras">
     <figcaption>Puerto de Algeciras</figcaption>
   </figure>
-
   <figure>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Plaza_Alta_de_Algeciras_%281%29.jpg/320px-Plaza_Alta_de_Algeciras_%281%29.jpg" alt="Plaza Alta">
-    <figcaption>Plaza Alta de Algeciras</figcaption>
+    <img src="assets/getares.svg" alt="Ilustración de la playa de Getares">
+    <figcaption>Playa de Getares</figcaption>
   </figure>
+  <figure>
+    <img src="assets/rio-miel.svg" alt="Ilustración del parque del Río de la Miel">
+    <figcaption>Parque del Río de la Miel</figcaption>
+  </figure>
+  <figure>
+    <img src="assets/isla-verde.svg" alt="Ilustración de la Isla Verde">
+    <figcaption>Isla Verde</figcaption>
+  </figure>
+  <figure>
+    <img src="assets/centenario.svg" alt="Ilustración del parque María Cristina">
+    <figcaption>Parque María Cristina</figcaption>
+  </figure>
+
+  <p class="fuente">
+    Fuente: <a href="https://es.wikipedia.org/wiki/Algeciras">Wikipedia - Algeciras</a>
+  </p>
 </body>
 </html>

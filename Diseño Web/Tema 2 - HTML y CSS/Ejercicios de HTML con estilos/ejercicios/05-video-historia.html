@@ -2,25 +2,42 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Vídeo sobre la historia de Algeciras</title>
-  <!-- Ejercicio 5: etiquetas de contenido incrustado - video -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vídeo con subtítulos sobre Algeciras</title>
+  <!--
+    Ejercicio 5 - Vídeo y pistas de texto: video, source, track, controls, poster.
+    Fuente de los datos: https://es.wikipedia.org/wiki/Historia_de_Algeciras
+    El vídeo y el audio son ejemplos libres de MDN; los subtítulos son propios.
+  -->
   <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
-    h1 {
-      color: #1b3a6b;
-    }
-    video {
-      width: 400px;
-    }
+    body { font-family: Arial, sans-serif; background-color: #1b1b1b; color: #eee; margin: 0; padding: 30px; }
+    h1 { text-align: center; font-weight: normal; letter-spacing: 1px; }
+    .reproductor { max-width: 640px; margin: 0 auto; background-color: #000; border-radius: 8px; overflow: hidden; }
+    video { width: 100%; display: block; }
+    .descripcion { max-width: 640px; margin: 18px auto; line-height: 1.6; color: #ccc; }
+    .fuente { max-width: 640px; margin: 0 auto; font-size: 0.8rem; color: #999; border-top: 1px solid #333; padding-top: 10px; }
   </style>
 </head>
 <body>
-  <h1>Historia de Algeciras</h1>
+  <h1>Algeciras en un minuto</h1>
 
-  <video src="https://www.w3schools.com/html/mov_bbb.mp4" controls></video>
+  <div class="reproductor">
+    <video controls poster="assets/poster.svg" preload="metadata">
+      <source src="assets/video.mp4" type="video/mp4">
+      <source src="assets/video.webm" type="video/webm">
+      <track kind="subtitles" src="assets/sub-es.vtt" srclang="es" label="Español" default>
+      <track kind="subtitles" src="assets/sub-en.vtt" srclang="en" label="English">
+      Tu navegador no admite el elemento <code>video</code>.
+    </video>
+  </div>
 
-  <p>Vídeo de ejemplo con la etiqueta &lt;video&gt; y el atributo controls.</p>
+  <p class="descripcion">
+    Reproducción de ejemplo con dos pistas de subtítulos, española e inglesa,
+    que se pueden activar desde los controles del reproductor.
+  </p>
+
+  <p class="fuente">
+    Fuente: <a href="https://es.wikipedia.org/wiki/Historia_de_Algeciras">Wikipedia – Historia de Algeciras</a>
+  </p>
 </body>
 </html>

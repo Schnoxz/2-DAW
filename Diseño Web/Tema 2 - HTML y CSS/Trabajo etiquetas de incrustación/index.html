@@ -1,100 +1,84 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Algeciras Digital - Inicio</title>
-  <!-- Trabajo: etiquetas de incrustación (img, iframe, video, audio) -->
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
-    header {
-      background-color: #1b3a6b;
-      color: #ffffff;
-    }
-    nav a {
-      color: #ffffff;
-    }
-    h1, h2, h3 {
-      color: #1b3a6b;
-    }
-    main {
-      background-color: #ffffff;
-    }
-    footer {
-      background-color: #1b3a6b;
-      color: #ffffff;
-    }
-    table {
-      border-collapse: collapse;
-    }
-    th, td {
-      border: 1px solid #000000;
-    }
-    th {
-      background-color: #1b3a6b;
-      color: #ffffff;
-    }
-    .destacado {
-      color: #1b3a6b;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Principal</title>
+<style>
+/* Estilos para el cuerpo de la página */
+body{font-family:Arial;background:#fff;color:#000}
+
+/* Estilos para los encabezados, colo color de fondo, padding y redondeados  */
+h1,h2{color:#333; background: #f5f5f5; padding:10px; border-radius:5px}
+
+/* Estilos para la barra de navegación, color de fondo e igual que los h1-h2 */
+nav{background:#e5e5e5; padding:10px; border-radius:5px}
+
+/* Estilos para los enlaces, color de texto */
+a{color:#333}
+
+/* Estilos para imágenes, vídeos, audio, ancho de 300px */
+img,video,audio{width:300px}
+
+/* Estilos para el canvas, simplemente un borde dibujado para saber dónde está */
+canvas{border:1px solid #ccc}
+
+/* Estilos para embed y object, ancho de 300px y altura de 200px */
+embed,object{width:300px;height:200px}
+</style>
 </head>
 <body>
-  <header>
-    <h1>Algeciras Digital</h1>
-    <nav>
-      <a href="index.html">Inicio</a>
-      <a href="detalle.html">Detalle</a>
-    </nav>
-  </header>
 
-  <main>
-    <section>
-      <h2>Imagen</h2>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Algeciras_%28Spain%29_%28cropped%29.jpg/400px-Algeciras_%28Spain%29_%28cropped%29.jpg" alt="Vista de Algeciras">
-    </section>
+<header>
+<h1 style="background:#e5e5e5;">Contenido incrustado</h1>
+</header>
 
-    <section>
-      <h2>Vídeo</h2>
-      <video src="https://www.w3schools.com/html/mov_bbb.mp4" controls></video>
-    </section>
+<nav><a href="index.html">Principal</a> | <a href="detalle.html">Iframe</a></nav>
 
-    <section>
-      <h2>Audio</h2>
-      <audio src="https://www.w3schools.com/html/horse.mp3" controls></audio>
-    </section>
+<main>
 
-    <section>
-      <h2>Iframe</h2>
-      <iframe src="https://es.wikipedia.org/wiki/Algeciras" width="400" height="250"></iframe>
-    </section>
+<section>
+<!-- Muestra una imagen externa -->
+<h2>img</h2>
+<img src="https://www.w3schools.com/html/pic_trulli.jpg" alt="img">
+</section>
 
-    <section>
-      <h2>Datos</h2>
-      <table>
-        <tr>
-          <th>Concepto</th>
-          <th>Valor</th>
-        </tr>
-        <tr>
-          <td>Población</td>
-          <td>123.000</td>
-        </tr>
-        <tr>
-          <td>Provincia</td>
-          <td>Cádiz</td>
-        </tr>
-      </table>
-    </section>
+<section>
+<!-- Reproduce un vídeo con controles -->
+<h2>video</h2>
+<video src="https://www.w3schools.com/html/mov_bbb.mp4" controls></video>
+</section>
 
-    <section>
-      <p class="destacado">Trabajo centrado en etiquetas de incrustación siguiendo la teoría vista.</p>
-    </section>
-  </main>
+<section>
+<!-- Reproduce un audio con controles -->
+<h2>audio</h2>
+<audio src="https://www.w3schools.com/html/horse.mp3" controls></audio>
+</section>
 
-  <footer>
-    <p>Algeciras Digital - Diseño de Interfaces Web</p>
-  </footer>
+<section>
+<!-- Lienzo vacío para dibujo -->
+<h2>canvas</h2>
+<canvas width="200" height="100"></canvas>
+</section>
+
+<section>
+<!-- Incrusta contenido externo -->
+<h2>embed</h2>
+<embed src="https://www.w3schools.com/html/pic_trulli.jpg" type="image/jpeg" width="300" height="200">
+</section>
+
+<section>
+<!-- Incrusta un objeto con texto alternativo -->
+<h2>object</h2>
+<object data="https://www.w3schools.com/html/img_girl.jpg" type="image/jpeg" width="300" height="200">No se puede mostrar el objeto</object>
+</section>
+
+<section>
+<!-- Gráfico vectorial en línea -->
+<h2>svg</h2>
+<svg width="100" height="100"><circle cx="50" cy="50" r="40" stroke="#666" stroke-width="2" fill="#e6e6e6"/></svg>
+</section>
+
+</main>
+
 </body>
 </html>
