@@ -3,22 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ejercicios UT3_1 - Estructuras de control</title>
-  <!-- Bootstrap 5 desde el CDN, como en los ejercicios de UT2 -->
+  <title>Ejercicios UT3_2 - Arrays</title>
+  <!-- Bootstrap 5 por CDN: estilos y funcionamiento de las pestañas -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+  <!-- container centra la página; my-5 deja margen arriba y abajo -->
   <main class="container my-5">
+
+    <!-- Cabecera común -->
     <header class="mb-4 text-center">
       <h1 class="display-5">Desarrollo Web en Entorno Servidor</h1>
-      <p class="text-muted mb-1">Javier Jimenez Alonso</p>
       <p class="text-muted mb-1">Curso: 2º DAW</p>
-      <p class="text-muted mb-0">UT3_1 - Ejercicios de estructuras de control</p>
+      <p class="text-muted mb-0">UT3_2 - Ejercicios de arrays</p>
     </header>
 
-    <!-- El enunciado pide los ejercicios en pestañas, todos dentro de este index.php.
-         Cada uno esta en su archivo de "ejercicios/" y aqui solo se incluye. -->
-    <ul class="nav nav-tabs mb-3">
+    <!-- Barra de pestañas. Cada botón indica con data-bs-target el panel que abre.
+         flex-wrap permite que las pestañas bajen de línea si no caben. -->
+    <ul class="nav nav-tabs flex-wrap mb-3">
       <li class="nav-item">
         <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#panelEjercicio1"
           type="button">Ejercicio 1</button>
@@ -44,7 +46,7 @@
           type="button">Ejercicio 6</button>
       </li>
       <li class="nav-item">
-        <!-- el 7 y el 8 son obligatorios, de ahi el asterisco -->
+        <!-- Los ejercicios 7 y 8 son obligatorios -->
         <button class="nav-link" data-bs-toggle="tab" data-bs-target="#panelEjercicio7"
           type="button">Ejercicio 7 *</button>
       </li>
@@ -54,20 +56,18 @@
       </li>
     </ul>
 
-    <!-- Un panel por ejercicio: cada uno lleva el id al que apunta su boton y dentro
-         se incluye el archivo correspondiente. -->
+    <!-- Paneles: Bootstrap enseña el que corresponde a la pestaña pulsada -->
     <div class="tab-content">
 
-      <!-- Ejercicio 1 -->
       <div class="tab-pane fade show active" id="panelEjercicio1">
         <div class="card shadow-sm">
           <div class="card-body">
+            <!-- include pega aquí el código del ejercicio -->
             <?php include 'ejercicios/ejercicio1.php'; ?>
           </div>
         </div>
       </div>
 
-      <!-- Ejercicio 2 -->
       <div class="tab-pane fade" id="panelEjercicio2">
         <div class="card shadow-sm">
           <div class="card-body">
@@ -76,7 +76,6 @@
         </div>
       </div>
 
-      <!-- Ejercicio 3 -->
       <div class="tab-pane fade" id="panelEjercicio3">
         <div class="card shadow-sm">
           <div class="card-body">
@@ -85,7 +84,6 @@
         </div>
       </div>
 
-      <!-- Ejercicio 4 -->
       <div class="tab-pane fade" id="panelEjercicio4">
         <div class="card shadow-sm">
           <div class="card-body">
@@ -94,7 +92,6 @@
         </div>
       </div>
 
-      <!-- Ejercicio 5 -->
       <div class="tab-pane fade" id="panelEjercicio5">
         <div class="card shadow-sm">
           <div class="card-body">
@@ -103,7 +100,6 @@
         </div>
       </div>
 
-      <!-- Ejercicio 6 -->
       <div class="tab-pane fade" id="panelEjercicio6">
         <div class="card shadow-sm">
           <div class="card-body">
@@ -131,23 +127,9 @@
       </div>
 
     </div>
-
   </main>
 
-  <!-- Bootstrap JS: es lo que hace que las pestañas cambien al pulsarlas -->
+  <!-- JS de Bootstrap: es el que cambia de pestaña -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    // Prueba: al cargar pulso la pestaña 5 y a los 3 segundos dejo sus clases en el
-    // titulo de la pagina, para poder comprobar desde fuera que el cambio ha ido bien.
-    window.addEventListener('load', function () {
-      document.querySelector('[data-bs-target="#panelEjercicio5"]').click();
-      setTimeout(function () {
-        var p5 = document.getElementById('panelEjercicio5');
-        var p1 = document.getElementById('panelEjercicio1');
-        document.title = 'P5=[' + (p5 ? p5.className : 'null') + '] P1=[' + (p1 ? p1.className : 'null') + ']';
-      }, 3000);
-    });
-  </script>
 </body>
 </html>
-
