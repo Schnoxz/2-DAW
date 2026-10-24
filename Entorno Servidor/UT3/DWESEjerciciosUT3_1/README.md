@@ -3,6 +3,7 @@
 Proyecto de la **Entrega UT3_1 - Estructuras de control** (Desarrollo web en
 entorno servidor, 2º DAW).
 Fecha límite en Moodle: **24/10/2026, 12:23**.
+Autor: **Javier Jiménez Alonso**.
 
 ## Estructura
 
@@ -62,8 +63,25 @@ Abrir <http://localhost:8000/index.php>.
 
 ## Pendiente para la entrega
 
-- [ ] Capturas de pantalla de cada pestaña.
-- [ ] Validación en <https://validator.w3.org/> del HTML generado (captura del
-      resultado sin errores).
-- [ ] Exportar esta memoria a PDF.
-- [ ] Comprimir como `DWESEjerciciosUT3_1_ApellidosNombre.zip`.
+- [x] Capturas de pantalla de cada pestaña → carpeta [`capturas/`](capturas)
+- [x] Validación en <https://validator.w3.org/> del HTML generado: **0 errores**.
+      Captura en [`capturas/ut3_1_validacion_w3c.png`](capturas/ut3_1_validacion_w3c.png).
+      La página valida y solo emite un aviso informativo de normalización
+      Unicode sobre la entidad `&#832;` de la tabla del ejercicio 5.
+- [x] Exportar esta memoria a PDF → `Explicacion_DWESEjerciciosUT3_1_JimenezAlonsoJavier.pdf`
+- [x] Comprimir como `DWESEjerciciosUT3_1_JimenezAlonsoJavier.zip`
+
+## Anexo: capturas
+
+| Captura | Descripción |
+|---|---|
+| ![](capturas/ut3_1_ej01_moneda.png) | Ejercicio 1: lanzar una moneda |
+| ![](capturas/ut3_1_ej02_notas.png) | Ejercicio 2: nota a partir de un número aleatorio |
+| ![](capturas/ut3_1_ej03_tresIguales.png) | Ejercicio 3: tres numeros iguales |
+| ![](capturas/ut3_1_ej04_formulario.png) | Ejercicio 4: formulario de los pares anteriores |
+| ![](capturas/ut3_1_ej04_resultado.png) | Ejercicio 4: resultado para `?numero=10` |
+| ![](capturas/ut3_1_ej05_unicode.png) | Ejercicio 5: tabla UNICODE del 0 al 50000 |
+| ![](capturas/ut3_1_ej06_tablaMult.png) | Ejercicio 6: tabla de multiplicar de un aleatorio |
+| ![](capturas/ut3_1_ej07_frutas.png) | Ejercicio 7: contar frutas (array aleatorio) |
+| ![](capturas/ut3_1_ej08_tabla100.png) | Ejercicio 8: números 1-100 y tabla de emoticonos |
+| ![](capturas/ut3_1_validacion_w3c.png) | Validación del HTML generado en validator.w3.org |

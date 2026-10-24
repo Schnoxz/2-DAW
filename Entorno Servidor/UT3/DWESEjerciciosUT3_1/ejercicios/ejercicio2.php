@@ -1,12 +1,11 @@
 <?php
-// Ejercicio 2: a partir de una nota al azar, decir qué calificación es.
+// Ejercicio 2: a partir de una nota al azar, decir qué calificación es
 
 // Nota entera entre 1 y 10
 $nota = rand(1, 10);
 
-// Los tramos del enunciado son [0,5), [5,6), [6,7), [7,9) y [9,10].
-// Por eso uso "<" en los límites: un 5 ya cuenta como Suficiente y un 9 como
-// Sobresaliente. La primera condición que se cumple es la que se queda.
+// Los tramos del enunciado son [0,5), [5,6), [6,7), [7,9) y [9,10]
+// Por eso uso "<" en los límites: un 5 ya cuenta como Suficiente y un 9 como Sobresaliente. La primera condición que se cumple es la que se queda
 if ($nota < 5) {
   $categoria = "Insuficiente";
   $color = "text-danger";     // rojo

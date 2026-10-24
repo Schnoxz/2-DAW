@@ -9,9 +9,7 @@
 <table class="table table-bordered table-sm text-center w-auto">
   <tbody>
     <?php
-      // Recorro del 1 al 100. Como quiero 10 números por fila:
-      // abro la fila en el primero de cada decena (1, 11, 21...) y la cierro
-      // en el último (10, 20, 30...). El operador % da el resto.
+      // Recorro del 1 al 100. Como quiero 10 números por fila: abro la fila en el primero de cada decena (1, 11, 21...) y la cierro en el último (10, 20, 30...). El operador % da el resto.
       for ($i = 1; $i <= 100; $i++) {
         if ($i % 10 == 1) {
           echo "<tr>";
@@ -28,7 +26,7 @@
 <h3 class="h5 mt-4">Apartado 2: tabla de emoticonos al azar</h3>
 <p>Los emoticonos cambian cada vez que se refresca la página.</p>
 <?php
-  // Los cinco emoticonos que permite el enunciado, guardados por su código
+  // Los cinco emoticonos guardados por su código
   $emoticonos = [128169, 128168, 127866, 128405, 129313];
 ?>
 <table class="table table-bordered text-center w-auto">
