@@ -1,29 +1,26 @@
 ﻿<!DOCTYPE html>
+<!-- html: raíz del documento; lang="es" indica el idioma -->
 <html lang="es">
+<!-- head: datos para el navegador; no se ven en la página -->
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>Horario del ciclo DAW</title>
-  <!--
-    Ejercicio 3 - Tablas: table, caption, thead, tbody, th, td, colspan.
-    Fuente de los datos: horario del I.E.S. Kursaal (curso 2026/2027).
-  -->
-  <style>
-    body { font-family: Arial, sans-serif; }
-    h1 { color: #1b3a6b; }
-    table { border-collapse: collapse; width: 700px; }
-    caption { font-weight: bold; margin-bottom: 8px; }
-    th, td { border: 1px solid #cccccc; padding: 8px; text-align: center; }
-    thead th { background-color: #1b3a6b; color: #ffffff; }
-    .par { background-color: #eef2fa; }
-    .recreo { background-color: #ffe8a3; font-style: italic; }
-    .fuente { font-size: 12px; color: #555555; }
-  </style>
+
+  <!-- style: CSS interno de la tabla -->
+  <style>/* body: Arial y 20px de margen */ body { font-family: Arial, sans-serif; margin: 20px; } /* table: border-collapse une los bordes de las celdas para que no se vean dobles */ table { border-collapse: collapse; } /* caption: negrita para que el título de la tabla destaque */ caption { font-weight: bold; } /* th, td: borde gris y padding para separar el contenido y que la tabla se lea */ th, td { border: 1px solid #888888; padding: 8px; } /* thead th: fondo gris para distinguir la cabecera de los datos */ thead th { background-color: #dddddd; }</style>
 </head>
+<!-- body: contenido visible de la página -->
 <body>
+  <!-- h1: título principal de la página -->
   <h1>Horario DAW - Curso 2026/2027</h1>
 
   <table>
-    <caption>Segundo curso - Grupo A</caption>
+    <!-- caption: título de la tabla; va dentro de table y describe su contenido -->
+    <caption>Segundo curso - Grupo A (turno de tarde)</caption>
+
+    <!-- thead: cabecera de la tabla; agrupa la fila con los nombres de las columnas -->
     <thead>
       <tr>
         <th>Hora</th>
@@ -34,33 +31,73 @@
         <th>Viernes</th>
       </tr>
     </thead>
+
+    <!-- tbody: cuerpo de la tabla; agrupa las filas de datos -->
     <tbody>
+      <!-- Cada tr es una franja horaria; el th de la izquierda es el encabezado de esa fila -->
       <tr>
-        <th>8:00 - 9:00</th>
-        <td>DWES</td><td>DIW</td><td>DWEC</td><td>DWES</td><td>DWEC</td>
-      </tr>
-      <tr class="par">
-        <th>9:00 - 10:00</th>
-        <td>DWES</td><td>DIW</td><td>DWEC</td><td>DWES</td><td>DWEC</td>
-      </tr>
-      <tr class="recreo">
-        <th>10:00 - 10:30</th>
-        <td colspan="5">Recreo</td>
+        <th>15:45 - 16:45</th>
+        <td>Inglés</td>
+        <td>DIWEB</td>
+        <td>Optativa</td>
+        <td>DWEC</td>
+        <td>Despliegue</td>
       </tr>
       <tr>
-        <th>10:30 - 11:30</th>
-        <td>DWEC</td><td>DWES</td><td>DIW</td><td>DWEC</td><td>DIW</td>
+        <th>16:45 - 17:45</th>
+        <td>DIWEB</td>
+        <td>IPE II</td>
+        <td>IPE II</td>
+        <td>DWEC</td>
+        <td>DWES</td>
       </tr>
-      <tr class="par">
-        <th>11:30 - 12:30</th>
-        <td>Despliegue</td><td>DWES</td><td>IPE II</td><td>DWEC</td><td>DIW</td>
+      <tr>
+        <th>17:45 - 18:45</th>
+        <td>DIWEB</td>
+        <td>DWEC</td>
+        <td>Despliegue</td>
+        <td>IPE II</td>
+        <td>DWES</td>
+      </tr>
+      <!-- colspan="5": para que la celda ocupe 5 columnas -->
+      <tr>
+        <th>18:45 - 19:00</th>
+        <td colspan="5">Descanso</td>
+      </tr>
+      <tr>
+        <th>19:00 - 20:00</th>
+        <td>DWES</td>
+        <td>Inglés</td>
+        <td>DIWEB</td>
+        <td>DWEC</td>
+        <td>DWEC</td>
+      </tr>
+      <tr>
+        <th>20:00 - 21:00</th>
+        <td>DWES</td>
+        <td>Proyecto</td>
+        <td>DIWEB</td>
+        <td>Optativa</td>
+        <td>DWEC</td>
+      </tr>
+      <tr>
+        <th>21:00 - 22:00</th>
+        <td>DWES</td>
+        <td>Proyecto</td>
+        <td>DWES</td>
+        <td>Optativa</td>
+        <td>DWES</td>
       </tr>
     </tbody>
   </table>
 
-  <p class="fuente">
+  <!-- p: leyenda -->
+  <p>
     DWEC: Desarrollo Web en Entorno Cliente. DWES: Desarrollo Web en Entorno Servidor.
-    DIW: Diseño de Interfaces Web.
+    DIWEB: Diseño de Interfaces Web. IPE II: Itinerario Personal para la Empleabilidad II.
+    Despliegue: Despliegue de Aplicaciones Web.
+    Fuente: horario del I.E.S. Kursaal (2026/2027).
   </p>
+
 </body>
 </html>

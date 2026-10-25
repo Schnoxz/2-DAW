@@ -1,35 +1,34 @@
 <!DOCTYPE html>
+<!-- html: raíz del documento; lang="es" indica el idioma -->
 <html lang="es">
+<!-- head: datos para el navegador; no se ven en la página -->
 <head>
   <meta charset="UTF-8">
   <title>Línea del tiempo de Algeciras</title>
-  <!--
-    Ejercicio 9 - Listas ordenadas y de definición.
-    Fuente de los datos: https://es.wikipedia.org/wiki/Historia_de_Algeciras
-  -->
-  <style>
-    body { font-family: Georgia, serif; background-color: #fbf8f1; color: #3a3226; }
-    h1 { color: #6b3f1b; text-align: center; }
-    ol { background-color: #ffffff; border: 1px solid #d9c9b0; padding: 20px 40px; }
-    li { margin-bottom: 10px; }
-    .fecha { font-weight: bold; color: #6b3f1b; }
-    dt { font-weight: bold; color: #6b3f1b; margin-top: 10px; }
-    dd { margin-left: 20px; }
-    .fuente { text-align: center; font-size: 12px; color: #7a6a55; }
-  </style>
+
+  <!-- style: CSS interno de la línea del tiempo -->
+  <style>/* body: Un estilo histórico y margen para que el texto no toque el borde */ body { font-family: Georgia, serif; background-color: #fbf7ef; margin: 20px; } /* h1: centrado y marrón para destacar el título */ h1 { text-align: center; color: #7b4b2a; } /* li: margen inferior para separar la línea del tiempo */ li { margin-bottom: 5px; } /* dt: negrita y marrón para que destaquen */ dt { font-weight: bold; color: #7b4b2a; }</style>
 </head>
+<!-- body: contenido visible de la página -->
 <body>
+
+  <!-- h1: título principal; solo debe haber uno -->
   <h1>Línea del tiempo de Algeciras</h1>
 
+  <!-- ol: lista ordenada; el orden de los acontecimientos importa, por eso no se usa ul -->
   <ol>
-    <li><span class="fecha">Siglo VIII a. C.:</span> los fenicios fundan la ciudad (Iulia Traducta).</li>
-    <li><span class="fecha">Año 711:</span> desembarco musulmán en la península, cerca de Algeciras.</li>
-    <li><span class="fecha">Año 1344:</span> la ciudad es conquistada por Alfonso XI de Castilla.</li>
-    <li><span class="fecha">Año 1704:</span> tras la toma de Gibraltar, muchos vecinos se instalan aquí.</li>
-    <li><span class="fecha">Siglo XX:</span> crece el puerto y la ciudad se convierte en la mayor del Campo de Gibraltar.</li>
+    <!-- li: cada acontecimiento; strong destaca la fecha dentro del texto -->
+    <li><strong>Siglo VIII a. C.:</strong> los fenicios fundan la ciudad.</li>
+    <li><strong>Año 711:</strong> desembarco musulmán cerca de Algeciras.</li>
+    <li><strong>Año 1344:</strong> la ciudad es conquistada por Alfonso XI de Castilla.</li>
+    <li><strong>Año 1704:</strong> tras la toma de Gibraltar, muchos vecinos se instalan aquí.</li>
+    <li><strong>Siglo XX:</strong> crece el puerto y la ciudad se convierte en la mayor del Campo de Gibraltar.</li>
   </ol>
 
+  <!-- h2: título de la sección de vocabulario; va un nivel por debajo del h1 -->
   <h2>Palabras que debes recordar</h2>
+
+  <!-- dl: lista de definiciones; dt: término; dd: definición del término -->
   <dl>
     <dt>Estrecho de Gibraltar</dt>
     <dd>Paso de agua entre España y Marruecos.</dd>
@@ -37,8 +36,10 @@
     <dd>Comarca de la provincia de Cádiz.</dd>
   </dl>
 
-  <p class="fuente">
+  <!-- p: fuente de la información; a: enlace a Wikipedia -->
+  <p>
     Fuente: <a href="https://es.wikipedia.org/wiki/Historia_de_Algeciras">Wikipedia - Historia de Algeciras</a>
   </p>
+
 </body>
 </html>

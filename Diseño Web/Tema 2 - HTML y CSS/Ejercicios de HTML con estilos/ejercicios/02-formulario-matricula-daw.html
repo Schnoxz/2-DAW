@@ -1,40 +1,43 @@
 <!DOCTYPE html>
+<!-- html: raíz del documento; lang="es" indica el idioma -->
 <html lang="es">
+<!-- head: datos para el navegador; no se ven en la página -->
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>Matrícula en el ciclo DAW</title>
-  <!--
-    Ejercicio 2 - Formularios: form, label, input, select, textarea y fieldset.
-    Fuente de los datos: https://www.todofp.es/que-estudiar/loe/informatica-comunicaciones/des-aplicaciones-web.html
-  -->
-  <style>
-    body { font-family: Arial, sans-serif; background-color: #f4f6fa; margin: 0; padding: 30px; }
-    h1 { color: #1b3a6b; text-align: center; }
-    form { max-width: 520px; margin: 0 auto; background-color: #fff; padding: 24px; border-radius: 8px; }
-    label { display: block; margin-top: 12px; font-weight: bold; color: #333; }
-    input, select, textarea { width: 100%; padding: 8px; margin-top: 4px; border: 1px solid #bbb; border-radius: 4px; }
-    fieldset { border: 1px solid #ccc; border-radius: 6px; margin-top: 16px; }
-    button { margin-top: 18px; width: 100%; padding: 10px; background-color: #1b3a6b; color: #fff; border: 0; border-radius: 4px; cursor: pointer; }
-    .fuente { font-size: 0.8rem; color: #555; text-align: center; margin-top: 18px; }
-  </style>
+
+  <!-- style: CSS interno del formulario -->
+  <style>/* body: Arial, fondo azul claro y margen para que el formulario no toque el borde */ body { font-family: Arial, sans-serif; background-color: #eaf2f8; margin: 20px; } /* h1: centrado y azul para que el título principal destaque */ h1 { text-align: center; color: #2e6da4; } /* label: display block pone cada etiqueta en su propia línea; margin-top la separa del campo anterior */ label { display: block; margin-top: 10px; } /* input, select, textarea: un pequeño margen superior para separar la etiqueta del campo */ input, select, textarea { margin-top: 4px; } /* fieldset: margen superior para separar el grupo del resto */ fieldset { margin-top: 15px; } /* button: margen superior y padding para separarlo de los campos */ button { margin-top: 15px; padding: 5px 15px; }</style>
 </head>
+<!-- body: contenido visible de la página -->
 <body>
+
+  <!-- h1: título principal de la página -->
   <h1>Matrícula en el ciclo DAW</h1>
 
+  <!-- form: agrupa los campos; action="#" no envía a un servidor real y method="post" manda los datos en el cuerpo -->
   <form action="#" method="post">
+
+    <!-- label: texto asociado al campo; for="nombre" coincide con id="nombre", así al pulsar el texto se activa el campo -->
     <label for="nombre">Nombre</label>
+    <!-- input: campo de una línea; type="text" es texto normal y required lo hace obligatorio -->
     <input type="text" id="nombre" name="nombre" required>
 
     <label for="apellidos">Apellidos</label>
+    <!-- type="text": otro campo de texto; name es el nombre con el que se envía el dato -->
     <input type="text" id="apellidos" name="apellidos" required>
 
     <label for="email">Correo electrónico</label>
+    <!-- type="email": el navegador comprueba que el texto tenga forma de correo -->
     <input type="email" id="email" name="email" required>
 
     <label for="fecha">Fecha de nacimiento</label>
+    <!-- type="date": muestra un selector de fecha en lugar de escribirla a mano -->
     <input type="date" id="fecha" name="fecha">
 
+    <!-- select: lista desplegable; option: cada una de las opciones -->
     <label for="modalidad">Modalidad</label>
     <select id="modalidad" name="modalidad">
       <option value="presencial">Presencial</option>
@@ -42,8 +45,11 @@
       <option value="distancia">A distancia</option>
     </select>
 
+    <!-- fieldset: agrupa campos relacionados; legend: título visible del grupo -->
     <fieldset>
       <legend>Módulos matriculados</legend>
+
+      <!-- input type="checkbox": casilla; al estar dentro de label, al pulsar el texto también se marca; checked la deja marcada -->
       <label><input type="checkbox" name="modulo" value="dwec" checked> DWEC</label>
       <label><input type="checkbox" name="modulo" value="dwes" checked> DWES</label>
       <label><input type="checkbox" name="modulo" value="diw" checked> DIW</label>
@@ -51,13 +57,17 @@
     </fieldset>
 
     <label for="observaciones">Observaciones</label>
+    <!-- textarea: campo de texto largo; rows="3" indica las líneas visibles -->
     <textarea id="observaciones" name="observaciones" rows="3"></textarea>
 
+    <!-- button: envía el formulario; type="submit" su función es enviar -->
     <button type="submit">Enviar solicitud</button>
   </form>
 
-  <p class="fuente">
-    Fuente: <a href="https://www.todofp.es/que-estudiar/loe/informatica-comunicaciones/des-aplicaciones-web.html">todoFP – Desarrollo de Aplicaciones Web</a>
+  <!-- p: fuente de la información; a: enlace externo -->
+  <p>
+    Fuente: <a href="https://www.todofp.es/que-estudiar/loe/informatica-comunicaciones/des-aplicaciones-web.html">todoFP - Desarrollo de Aplicaciones Web</a>
   </p>
+
 </body>
 </html>

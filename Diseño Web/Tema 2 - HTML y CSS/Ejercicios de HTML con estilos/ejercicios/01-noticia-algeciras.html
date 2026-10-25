@@ -1,53 +1,62 @@
 <!DOCTYPE html>
+<!-- html: raíz del documento; lang="es" indica el idioma -->
 <html lang="es">
+<!-- head: datos para el navegador; no se ven en la página -->
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Algeciras abre un centro para conocer el Estrecho</title>
-  <!--
-    Ejercicio 1 - Etiquetas de contenido y texto.
-    Fuente de los datos: https://es.wikipedia.org/wiki/Algeciras
-  -->
-  <style>
-    body { font-family: Georgia, serif; max-width: 720px; margin: 40px auto; padding: 0 20px; color: #222; }
-    h1 { color: #1b3a6b; border-bottom: 3px solid #1b3a6b; padding-bottom: 8px; }
-    h2 { color: #1b3a6b; font-size: 1.2rem; }
-    p { line-height: 1.6; text-align: justify; }
-    .autor { color: #666; font-style: italic; }
-    .destacado { background-color: #fff3bf; font-weight: bold; }
-    blockquote { border-left: 4px solid #1b3a6b; margin: 0; padding-left: 16px; color: #444; }
-    .fuente { font-size: 0.85rem; color: #555; border-top: 1px solid #ddd; padding-top: 10px; }
-  </style>
-</head>
-<body>
-  <h1>Algeciras abre un centro para conocer el Estrecho</h1>
-  <p class="autor">Redacción local | Algeciras, 12 de octubre de 2026</p>
 
-  <h2>Un punto de encuentro para la historia y el entorno</h2>
+  <!-- style: CSS interno de esta noticia -->
+  <style>/* body: Arial, fondo gris claro y margen */ body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 20px; } /* h1: color morado para el titular; es el título principal */ h1 { color: #291596; } /* h2: gris oscuro para separar los subtítulos del titular */ h2 { color: #444444; } /* blockquote: cursiva ya que es una cita */ blockquote { font-style: italic; }</style>
+</head>
+<!-- body: contenido visible de la página -->
+<body>
+
+  <!-- h1: título principal; solo debe haber uno -->
+  <h1>Algeciras abre un centro para conocer el Estrecho</h1>
+
+  <p>Redacción local | Algeciras, 12 de octubre de 2026</p>
+
+  <!-- h2: título de sección; va un nivel por debajo del h1 -->
+  <h2>Un punto de encuentro junto al mar</h2>
+
+  <!-- strong: marca una palabra en negrita -->
   <p>
     Algeciras es una ciudad de la provincia de Cádiz situada junto al
-    <strong>Estrecho de Gibraltar</strong>, entre el mar Mediterráneo y el océano
-    Atlántico. Su puerto es uno de los de mayor tráfico de mercancías de España.
-  </p>
-  <p>
-    El nuevo centro quiere dar a conocer la importancia
-    <span class="destacado">estratégica y natural del Estrecho</span>, así como la
-    historia de la ciudad, desde la fundación fenicia hasta la actualidad.
+    <strong>Estrecho de Gibraltar</strong>, entre el mar Mediterráneo y el
+    océano Atlántico. Su puerto es uno de los que más mercancías mueve de España.
   </p>
 
+  <!-- span: agrupa texto en línea; aquí sirve para marcar una idea dentro del párrafo -->
+  <p>
+    El nuevo centro quiere dar a conocer la importancia
+    <span>estratégica y natural del Estrecho</span> y la
+    historia de la ciudad, desde su fundación hasta hoy.
+  </p>
+
+  <!-- h2: título de la segunda sección -->
+  <h2>Una frase para la historia</h2>
+
+  <!-- blockquote: cita textual de otra fuente -->
   <blockquote>
     «Algeciras es la puerta sur de Europa y un lugar de encuentro entre culturas.»
   </blockquote>
 
+  <!-- h2: título de la tercera sección -->
   <h2>Datos de interés</h2>
+
+  <!-- ul: lista no ordenada; li: cada dato -->
   <ul>
-    <li>Población: alrededor de 120 000 habitantes.</li>
+    <li>Población: unos 120 000 habitantes.</li>
     <li>Comarca: Campo de Gibraltar.</li>
     <li>Fiestas: Feria Real y Semana Santa.</li>
   </ul>
 
-  <p class="fuente">
-    Fuente: <a href="https://es.wikipedia.org/wiki/Algeciras">Wikipedia – Algeciras</a>
+  <!-- p: párrafo final con la fuente; a: enlace a Wikipedia -->
+  <p>
+    Fuente: <a href="https://es.wikipedia.org/wiki/Algeciras">Wikipedia - Algeciras</a>
   </p>
+
 </body>
 </html>

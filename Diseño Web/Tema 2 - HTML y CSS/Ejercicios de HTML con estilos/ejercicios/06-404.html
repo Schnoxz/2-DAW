@@ -1,22 +1,26 @@
 <!DOCTYPE html>
+<!-- html: raíz del documento; lang="es" indica el idioma -->
 <html lang="es">
+<!-- head: datos para el navegador; no se ven en la página -->
 <head>
   <meta charset="UTF-8">
+
   <title>Página no encontrada</title>
-  <!-- Ejercicio 6 - Página de error 404. -->
-  <style>
-    body { font-family: Arial, sans-serif; background-color: #eef2fa; text-align: center; }
-    h1 { font-size: 80px; color: #1b3a6b; margin-top: 150px; margin-bottom: 0; }
-    p { color: #333333; }
-    a { color: #ffffff; background-color: #1b3a6b; padding: 10px 20px; text-decoration: none; }
-    a:hover { background-color: #122a4d; }
-    .codigo { font-size: 12px; color: #777777; margin-top: 30px; }
-  </style>
+
+  <!-- style: CSS interno de la página de error -->
+  <style>/* body: Arial, texto centrado y 100px de margen superior, así el mensaje queda en el centro de la pantalla */ body { font-family: Arial, sans-serif; text-align: center; margin-top: 100px; } /* h1: 80px y gris */ h1 { font-size: 80px; color: #888888; } /* a: gris oscuro */ a { color: #333333; }</style>
 </head>
+<!-- body: contenido visible de la página -->
 <body>
+
+  <!-- h1: título principal de la página, aquí el propio código de error -->
   <h1>404</h1>
+
+  <!-- p: mensaje que explica el error -->
   <p>No hemos encontrado la página que buscas.</p>
+
+  <!-- a: enlace para volver al índice; href indica el destino -->
   <a href="index.html">Volver al índice</a>
-  <p class="codigo">Error 404 - Recurso no encontrado</p>
+
 </body>
 </html>

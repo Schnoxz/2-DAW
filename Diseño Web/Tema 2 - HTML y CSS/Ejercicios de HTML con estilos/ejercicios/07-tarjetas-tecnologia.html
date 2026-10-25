@@ -1,51 +1,50 @@
 <!DOCTYPE html>
+<!-- html: raíz del documento; lang="es" indica el idioma -->
 <html lang="es">
+<!-- head: datos para el navegador; no se ven en la página -->
 <head>
   <meta charset="UTF-8">
+
   <title>Tarjetas de tecnologías web</title>
-  <!--
-    Ejercicio 7 - Clases y estilos básicos.
-    Fuente de los datos:
-      https://es.wikipedia.org/wiki/HTML
-      https://es.wikipedia.org/wiki/CSS
-      https://es.wikipedia.org/wiki/JavaScript
-  -->
-  <style>
-    body { font-family: Arial, sans-serif; background-color: #f4f6fa; }
-    h1 { color: #1b3a6b; text-align: center; }
-    .tarjeta { display: inline-block; width: 220px; margin: 10px; padding: 15px; background-color: #ffffff; border: 1px solid #cccccc; vertical-align: top; }
-    .tarjeta h2 { color: #1b3a6b; font-size: 18px; margin-top: 0; }
-    .tarjeta p { color: #555555; font-size: 14px; }
-    .etiqueta { background-color: #e6ecf8; color: #1b3a6b; padding: 3px 8px; font-size: 12px; }
-    .fuente { text-align: center; font-size: 12px; color: #666666; }
-  </style>
+
+  <!-- style: CSS interno de las tarjetas -->
+  <style>/* body: Arial, fondo gris claro y margen; el fondo separa las tarjetas del navegador */ body { font-family: Arial, sans-serif; background-color: #f0f0f0; margin: 20px; } /* h1: centrado para que el título quede sobre las tarjetas */ h1 { text-align: center; } /* .tarjeta se repite en las tres tarjetas, por eso es clase y no etiqueta. inline-block las pone en fila, width fija el ancho, margin las separa, padding da espacio y border dibuja el recuadro */ .tarjeta { display: inline-block; width: 200px; margin: 10px; padding: 10px; border: 1px solid #cccccc; }</style>
 </head>
+<!-- body: contenido visible de la página -->
 <body>
+
+  <!-- h1: título principal de la página; solo hay uno -->
   <h1>Tecnologías del desarrollo web</h1>
 
+  <!-- .tarjeta: bloque de cada tecnología; h2 es el título de la tarjeta, p la descripción y span la categoría -->
   <div class="tarjeta">
+    <!-- h2: título de la tarjeta; está un nivel por debajo del h1 general -->
     <h2>HTML</h2>
-    <p>Lenguaje de marcado que estructura el contenido de las páginas web.</p>
-    <span class="etiqueta">Estructura</span>
+    <p>Lenguaje de marcado que organiza el contenido de las páginas web.</p>
+    <span>Estructura</span>
   </div>
 
   <div class="tarjeta">
+    <!-- h2: título de sección; va un nivel por debajo del h1 -->
     <h2>CSS</h2>
-    <p>Hojas de estilo que controlan la presentación, el color y la maquetación.</p>
-    <span class="etiqueta">Presentación</span>
+    <p>Hojas de estilo que dan color, tamaño y posición a los elementos.</p>
+    <span>Presentación</span>
   </div>
 
   <div class="tarjeta">
+    <!-- h2: título de sección; va un nivel por debajo del h1 -->
     <h2>JavaScript</h2>
-    <p>Lenguaje de programación que añade interactividad en el navegador.</p>
-    <span class="etiqueta">Comportamiento</span>
+    <p>Lenguaje de programación que añade movimiento e interacción.</p>
+    <span>Comportamiento</span>
   </div>
 
-  <p class="fuente">
+  <!-- p: fuente de la información; a: enlaces a Wikipedia -->
+  <p>
     Fuente: Wikipedia -
     <a href="https://es.wikipedia.org/wiki/HTML">HTML</a>,
     <a href="https://es.wikipedia.org/wiki/CSS">CSS</a> y
     <a href="https://es.wikipedia.org/wiki/JavaScript">JavaScript</a>.
   </p>
+
 </body>
 </html>

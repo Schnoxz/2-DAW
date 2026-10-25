@@ -1,51 +1,64 @@
 <!DOCTYPE html>
+<!-- html: raíz del documento; lang="es" indica el idioma -->
 <html lang="es">
+<!-- head: datos para el navegador; no se ven en la página -->
 <head>
   <meta charset="UTF-8">
   <title>Galería de Algeciras</title>
-  <!--
-    Ejercicio 4 - Imágenes y figure.
-    Fuente de los datos: https://es.wikipedia.org/wiki/Algeciras
-  -->
-  <style>
-    body { font-family: Arial, sans-serif; background-color: #f7f7f7; }
-    h1 { color: #1b3a6b; text-align: center; }
-    figure { display: inline-block; width: 260px; margin: 10px; background-color: #ffffff; border: 1px solid #cccccc; }
-    img { width: 100%; }
-    figcaption { padding: 6px; text-align: center; color: #444444; }
-    .fuente { text-align: center; font-size: 12px; color: #555555; }
-  </style>
+
+  <!-- style: CSS interno de la galería -->
+  <style>/* body: Arial, fondo gris claro y margen; el fondo hace de marco para las fotos */ body { font-family: Arial, sans-serif; background-color: #eeeeee; margin: 20px; } /* h1: centrado para que el título quede sobre la galería */ h1 { text-align: center; } /* figure: inline-block coloca las figuras en fila y margin las separa, así la galería no necesita flex */ figure { display: inline-block; margin: 10px; } /* img: ancho fijo de 260px para que todas las fotos tengan el mismo tamaño y la galería quede alineada */ img { width: 260px; }</style>
+
 </head>
+<!-- body: contenido visible de la página -->
 <body>
+
+  <!-- h1: título principal; solo debe haber uno -->
   <h1>Lugares de Algeciras</h1>
 
+  <!-- figure: agrupa una imagen con su pie; se repite seis veces con el mismo patrón -->
   <figure>
-    <img src="assets/plaza-alta.svg" alt="Ilustración de la Plaza Alta de Algeciras">
+    <!-- img: imagen; alt describe la foto por si no cargan -->
+    <img src="assets/plaza-alta.jpg" alt="Plaza Alta de Algeciras">
+    <!-- figcaption: pie de foto; describe la imagen que tiene encima -->
     <figcaption>Plaza Alta</figcaption>
   </figure>
+
   <figure>
-    <img src="assets/puerto.svg" alt="Ilustración del puerto de Algeciras">
+    <img src="assets/puerto.jpg" alt="Puerto de Algeciras">
     <figcaption>Puerto de Algeciras</figcaption>
   </figure>
+
   <figure>
-    <img src="assets/getares.svg" alt="Ilustración de la playa de Getares">
+    <img src="assets/getares.jpg" alt="Playa de Getares">
     <figcaption>Playa de Getares</figcaption>
   </figure>
+
   <figure>
-    <img src="assets/rio-miel.svg" alt="Ilustración del parque del Río de la Miel">
-    <figcaption>Parque del Río de la Miel</figcaption>
+    <img src="assets/rio-miel.jpg" alt="Río de la Miel">
+    <figcaption>Río de la Miel</figcaption>
   </figure>
+
   <figure>
-    <img src="assets/isla-verde.svg" alt="Ilustración de la Isla Verde">
+    <img src="assets/isla-verde.jpg" alt="Fuerte de Isla Verde">
     <figcaption>Isla Verde</figcaption>
   </figure>
+
   <figure>
-    <img src="assets/centenario.svg" alt="Ilustración del parque María Cristina">
+    <img src="assets/maria-cristina.jpg" alt="Parque María Cristina">
     <figcaption>Parque María Cristina</figcaption>
   </figure>
 
-  <p class="fuente">
-    Fuente: <a href="https://es.wikipedia.org/wiki/Algeciras">Wikipedia - Algeciras</a>
+  <!-- p: fuente de las fotos; a: enlace a cada archivo de Wikimedia Commons -->
+  <p>
+    Fotos de Wikimedia Commons:
+    <a href="https://commons.wikimedia.org/wiki/File:Plaza_Alta,_Algeciras,_C%C3%A1diz,_Espa%C3%B1a,_2015-12-09,_DD_02.JPG">Plaza Alta</a>,
+    <a href="https://commons.wikimedia.org/wiki/File:Puerto_de_la_bahia_de_Algeciras.jpg">Puerto</a>,
+    <a href="https://commons.wikimedia.org/wiki/File:Getares.jpg">Getares</a>,
+    <a href="https://commons.wikimedia.org/wiki/File:R%C3%ADo_de_la_miel_algeciras_02.jpg">Río de la Miel</a>,
+    <a href="https://commons.wikimedia.org/wiki/File:Fuerte_de_Isla_Verde_(11).JPG">Isla Verde</a> y
+    <a href="https://commons.wikimedia.org/wiki/File:Parque_Mar%C3%ADa_Cristina_Algeciras_2024_(2).jpg">Parque María Cristina</a>.
   </p>
+
 </body>
 </html>

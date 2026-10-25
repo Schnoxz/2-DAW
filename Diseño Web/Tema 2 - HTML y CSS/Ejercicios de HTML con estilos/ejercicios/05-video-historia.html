@@ -1,43 +1,43 @@
 <!DOCTYPE html>
+<!-- html: raíz del documento; lang="es" indica el idioma -->
 <html lang="es">
+<!-- head: datos para el navegador; no se ven en la página -->
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Vídeo con subtítulos sobre Algeciras</title>
-  <!--
-    Ejercicio 5 - Vídeo y pistas de texto: video, source, track, controls, poster.
-    Fuente de los datos: https://es.wikipedia.org/wiki/Historia_de_Algeciras
-    El vídeo y el audio son ejemplos libres de MDN; los subtítulos son propios.
-  -->
-  <style>
-    body { font-family: Arial, sans-serif; background-color: #1b1b1b; color: #eee; margin: 0; padding: 30px; }
-    h1 { text-align: center; font-weight: normal; letter-spacing: 1px; }
-    .reproductor { max-width: 640px; margin: 0 auto; background-color: #000; border-radius: 8px; overflow: hidden; }
-    video { width: 100%; display: block; }
-    .descripcion { max-width: 640px; margin: 18px auto; line-height: 1.6; color: #ccc; }
-    .fuente { max-width: 640px; margin: 0 auto; font-size: 0.8rem; color: #999; border-top: 1px solid #333; padding-top: 10px; }
-  </style>
+
+  <title>Vídeo con subtítulos</title>
+
+  <style>/* body: Arial, texto centrado y margen; así el vídeo y los párrafos quedan centrados y sin tocar los bordes */ body { font-family: Arial, sans-serif; text-align: center; margin: 20px; } /* video: 600px de ancho en escritorio y max-width 100% para que no se salga */ video { width: 600px; max-width: 100%; }</style>
 </head>
+<!-- body: contenido visible de la página -->
 <body>
-  <h1>Algeciras en un minuto</h1>
 
-  <div class="reproductor">
-    <video controls poster="assets/poster.svg" preload="metadata">
-      <source src="assets/video.mp4" type="video/mp4">
-      <source src="assets/video.webm" type="video/webm">
-      <track kind="subtitles" src="assets/sub-es.vtt" srclang="es" label="Español" default>
-      <track kind="subtitles" src="assets/sub-en.vtt" srclang="en" label="English">
-      Tu navegador no admite el elemento <code>video</code>.
-    </video>
-  </div>
+  <!-- h1: título principal; solo debe haber uno -->
+  <h1>Vídeo con subtítulos</h1>
 
-  <p class="descripcion">
-    Reproducción de ejemplo con dos pistas de subtítulos, española e inglesa,
-    que se pueden activar desde los controles del reproductor.
+  <!-- video: reproductor nativo del navegador; controls muestra los botones y poster es la imagen que se ve antes de reproducir -->
+  <video controls poster="assets/algeciras-poster.jpg">
+    <!-- source: archivo de vídeo; el type avisa al navegador de que es un MP4 y así puede elegir si lo soporta -->
+    <source src="assets/algeciras.mp4" type="video/mp4">
+    <!-- track: pista de subtítulos; kind="subtitles" indica el tipo, srclang el idioma, label el nombre del menú y default la activa al cargar -->
+    <!-- Los subtítulos van como data URI para que funcionen al abrir el HTML con file://; los .vtt también están en assets/ -->
+    <track src="data:text/vtt;base64,V0VCVlRUCgowMDowMDowMC4wMDAgLS0+IDAwOjAwOjA0LjAwMApBbGdlY2lyYXMsIGVuIGxhIGJhaMOtYSBkZWwgRXN0cmVjaG8gZGUgR2licmFsdGFyLgoKMDA6MDA6MDQuMDAwIC0tPiAwMDowMDowOC4wMDAKVmlzdGEgYcOpcmVhIGRlIGxhIGNpdWRhZCB5IHN1IHB1ZXJ0by4KCjAwOjAwOjA4LjAwMCAtLT4gMDA6MDA6MTIuMDAwCkVsIHB1ZXJ0byBkZSBBbGdlY2lyYXMgZXMgdW5vIGRlIGxvcyBtw6FzIGltcG9ydGFudGVzIGRlIEVzcGHDsWEuCgowMDowMDoxMi4wMDAgLS0+IDAwOjAwOjE2LjAwMApFbCBFc3RyZWNobyBzZXBhcmEgRXNwYcOxYSBkZSBNYXJydWVjb3MuCgowMDowMDoxNi4wMDAgLS0+IDAwOjAwOjIwLjAwMApMYSBjaXVkYWQgY3JlY2UgZW50cmUgZWwgcHVlcnRvIHkgbGFzIGNvbGluYXMuCgowMDowMDoyMC4wMDAgLS0+IDAwOjAwOjI0LjAwMApVbiBwYXNlbyBwb3IgQWxnZWNpcmFzIGRlc2RlIGVsIGFpcmUuCg==" kind="subtitles" srclang="es" label="Español" default>
+    <track src="data:text/vtt;base64,V0VCVlRUCgowMDowMDowMC4wMDAgLS0+IDAwOjAwOjA0LjAwMApBbGdlY2lyYXMsIG9uIHRoZSBCYXkgb2YgdGhlIFN0cmFpdCBvZiBHaWJyYWx0YXIuCgowMDowMDowNC4wMDAgLS0+IDAwOjAwOjA4LjAwMApBZXJpYWwgdmlldyBvZiB0aGUgY2l0eSBhbmQgaXRzIHBvcnQuCgowMDowMDowOC4wMDAgLS0+IDAwOjAwOjEyLjAwMApUaGUgcG9ydCBvZiBBbGdlY2lyYXMgaXMgb25lIG9mIHRoZSBtb3N0IGltcG9ydGFudCBpbiBTcGFpbi4KCjAwOjAwOjEyLjAwMCAtLT4gMDA6MDA6MTYuMDAwClRoZSBTdHJhaXQgc2VwYXJhdGVzIFNwYWluIGZyb20gTW9yb2Njby4KCjAwOjAwOjE2LjAwMCAtLT4gMDA6MDA6MjAuMDAwClRoZSBjaXR5IGdyb3dzIGJldHdlZW4gdGhlIHBvcnQgYW5kIHRoZSBoaWxscy4KCjAwOjAwOjIwLjAwMCAtLT4gMDA6MDA6MjQuMDAwCkEgdG91ciBvZiBBbGdlY2lyYXMgZnJvbSB0aGUgYWlyLgo=" kind="subtitles" srclang="en" label="English">
+    <!-- Texto alternativo: solo se ve si el navegador no entiende la etiqueta video -->
+    Tu navegador no admite la etiqueta video.
+  </video>
+
+  <p>
+    Vídeo de Algeciras. Los subtítulos están integrados y se pueden activar
+    con el botón CC del reproductor.
   </p>
 
-  <p class="fuente">
-    Fuente: <a href="https://es.wikipedia.org/wiki/Historia_de_Algeciras">Wikipedia – Historia de Algeciras</a>
+  <!-- p: fuente del vídeo y de la información, a: enlaces externos -->
+  <p>
+    Vídeo: <a href="https://www.youtube.com/watch?v=aNmCmn6cEk8">Vista de la bahía de Algeciras desde dron</a> (YouTube).
+    Información: <a href="https://es.wikipedia.org/wiki/Algeciras">Wikipedia - Algeciras</a>.
   </p>
+
 </body>
 </html>
