@@ -1,3 +1,7 @@
+<?php
+// auxiliar.php guarda las funciones que usan varios ejercicios: se carga una vez aquí
+require_once 'ejercicios/auxiliar.php';
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>

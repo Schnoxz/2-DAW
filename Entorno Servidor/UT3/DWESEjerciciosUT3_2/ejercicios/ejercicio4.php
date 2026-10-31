@@ -1,38 +1,30 @@
 <?php
 // Ejercicio 4 (opcional): ordenar un array asociativo de cuatro maneras.
-//   asort()  -> de menor a mayor por valor
-//   arsort() -> de mayor a menor por valor
-//   ksort()  -> de menor a mayor por clave (alfabéticamente)
-//   krsort() -> de mayor a menor por clave
-// Estas funciones cambian el array que reciben, así que llamo a cada una
-// sobre una copia para no perder el orden original.
-
-require_once __DIR__ . '/helpers.php';
 
 // Array de precios: la clave es la fruta y el valor su precio
 $precios = [
-    'manzana' => 1.20,
-    'pera'    => 0.95,
-    'plátano' => 0.60,
-    'naranja' => 1.10,
-    'uva'     => 2.40,
-    'melón'   => 1.75,
+  'manzana' => 1.20,
+  'pera'    => 0.95,
+  'plátano' => 0.60,
+  'naranja' => 1.10,
+  'uva'     => 2.40,
+  'melón'   => 1.75,
 ];
 
-// Una copia por cada ordenación
+// asort, arsort, ksort y krsort cambian el array que reciben, así que ordeno una copia de cada uno
 $porValorAsc = $precios;
-asort($porValorAsc);
+asort($porValorAsc);      // de menor a mayor por valor
 
 $porClaveAsc = $precios;
-ksort($porClaveAsc);
+ksort($porClaveAsc);      // de menor a mayor por clave (alfabéticamente)
 
 $porValorDesc = $precios;
-arsort($porValorDesc);
+arsort($porValorDesc);    // de mayor a menor por valor
 
 $porClaveDesc = $precios;
-krsort($porClaveDesc);
+krsort($porClaveDesc);    // de mayor a menor por clave
 
-echo '<h2 class="h4 text-primary">Ejercicio 4: ordenar un array asociativo</h2>';
+echo "<h2 class='h4 text-primary'>Ejercicio 4: ordenar un array asociativo</h2>";
 mostrarAsociativo($precios, 'Array original (sin ordenar)');
 ?>
 
