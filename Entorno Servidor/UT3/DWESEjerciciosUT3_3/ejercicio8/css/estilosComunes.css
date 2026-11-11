@@ -1,0 +1,65 @@
+/* Estilos que no cambian con el tema: la cabecera y los enlaces del contenido.
+   Los colores propios de cada tema están en temaClaro.css y temaOscuro.css. */
+
+/* La cabecera se coloca en fila y se separa del contenido con una línea */
+.cabecera {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  margin-bottom: 2em;
+  padding-bottom: 1em;
+  border-bottom: 2px solid currentColor;
+}
+
+.cabecera__titulo {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.cabecera__nav {
+  display: flex;
+  gap: 0.5em;
+}
+
+/* currentColor toma el color del texto del tema, así los enlaces se ven bien
+   tanto en fondo claro como en fondo oscuro sin repetir colores aquí */
+.cabecera__nav a {
+  color: currentColor;
+  border: 1px solid currentColor;
+  border-radius: 100px;
+  padding: 0.4em 1em;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+/* El tema que está activo se queda subrayado y en negrita */
+.cabecera__nav a.activo {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* Las hojas del tema no dan color a los enlaces del contenido, y el azul por
+   defecto no se lee sobre negro: los ato al color del tema */
+.contenido a {
+  color: currentColor;
+}
+
+.contenido h2 {
+  font-size: 1.2rem;
+  margin-top: 1.5em;
+}
+
+.contenido ul {
+  line-height: 1.8em;
+}
+
+@media screen and (max-width: 30em) {
+  /* En pantallas estrechas los enlaces bajan debajo del título */
+  .cabecera {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
