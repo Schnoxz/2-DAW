@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="TachoAviso">
+  <rect width="32" height="32" rx="7" fill="#123a5c"/>
+  <path d="M8 16.5l4.6 4.6L24 10.5" fill="none" stroke="#e9a13b" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
