@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="tituloBano">
+  <title id="tituloBano">Baño con bañera y lavabo</title>
+  <rect width="800" height="600" fill="#e8f4f6"/>
+  <g stroke="#d3e7ea" stroke-width="3">
+    <line x1="0" y1="100" x2="800" y2="100"/>
+    <line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="100" y1="0" x2="100" y2="300"/>
+    <line x1="200" y1="0" x2="200" y2="300"/>
+    <line x1="300" y1="0" x2="300" y2="300"/>
+    <line x1="400" y1="0" x2="400" y2="300"/>
+    <line x1="500" y1="0" x2="500" y2="300"/>
+    <line x1="600" y1="0" x2="600" y2="300"/>
+    <line x1="700" y1="0" x2="700" y2="300"/>
+  </g>
+  <rect y="430" width="800" height="170" fill="#c5dde1"/>
+  <rect x="70" y="340" width="330" height="120" rx="24" fill="#ffffff" stroke="#a8c8ce" stroke-width="8"/>
+  <rect x="100" y="360" width="270" height="70" rx="18" fill="#d9eef2"/>
+  <rect x="70" y="440" width="20" height="50" fill="#9fb8bd"/>
+  <rect x="380" y="440" width="20" height="50" fill="#9fb8bd"/>
+  <path d="M430 120h90v40h-90z" fill="#b0bec5"/>
+  <path d="M470 160v70" stroke="#b0bec5" stroke-width="14"/>
+  <circle cx="470" cy="250" r="22" fill="#b0bec5"/>
+  <rect x="540" y="330" width="190" height="30" rx="8" fill="#ffffff"/>
+  <rect x="560" y="290" width="150" height="40" rx="18" fill="#ffffff" stroke="#a8c8ce" stroke-width="6"/>
+  <rect x="590" y="120" width="90" height="70" rx="8" fill="#cfe3ef" stroke="#a8c8ce" stroke-width="6"/>
+  <rect x="600" y="250" width="10" height="40" fill="#b0bec5"/>
+  <rect x="660" y="250" width="10" height="40" fill="#b0bec5"/>
+</svg>

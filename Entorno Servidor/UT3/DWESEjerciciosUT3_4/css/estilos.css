@@ -1,0 +1,42 @@
+/* Estilos propios de la entrega UT3_4.
+   Bootstrap ya trae casi todo; aquí solo va lo que es específico:
+   las miniaturas de las fotos, el logotipo y los dos modelos de cabecera. */
+
+/* Las fotos de la galería y de la tabla se recortan siempre al mismo tamaño
+   para que las tarjetas y las filas queden alineadas. */
+.foto-miniatura {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+
+.foto-tabla {
+  width: 90px;
+  height: 60px;
+  object-fit: cover;
+}
+
+.logo {
+  width: 46px;
+  height: 46px;
+}
+
+/* Cabecera 1: azul, con el logotipo a la izquierda y el menú a la derecha. */
+.cabecera-1 {
+  background-color: #0d3b66;
+}
+
+/* Cabecera 2: verde, con el bloque del título centrado. */
+.cabecera-2 {
+  background-color: #14532d;
+}
+
+/* La franja superior de la cabecera 2 lleva la fecha y cambia el color. */
+.cabecera-2 .franja {
+  background-color: #0b3d20;
+}
+
+/* Los formularios dentro de una tarjeta no necesitan más margen abajo. */
+.card form {
+  margin-bottom: 0;
+}
