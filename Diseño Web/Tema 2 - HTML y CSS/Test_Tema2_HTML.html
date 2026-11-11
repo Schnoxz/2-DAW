@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test Tema 2 HTML</title>
+<style>
+:root{--bg:#fdfdfb;--fg:#1d1d1f;--mut:#5a5a60;--acc:#0b5cad;--card:#fff;--line:#d9dce1;--ok:#1a7f37;--okbg:#dcf5e3;--ko:#c62828;--kobg:#fde2e2;--code:#f1f3f6}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17181b;--fg:#e8e8ea;--mut:#a0a3aa;--acc:#7fb4ff;--card:#202226;--line:#3a3d44;--ok:#5fd17f;--okbg:#173322;--ko:#ff7b7b;--kobg:#3a1c1c;--code:#2a2d33}}
+body{background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,Segoe UI,sans-serif;max-width:760px;margin:0 auto;padding:16px}
+h1{font-size:1.5rem;margin:.3em 0}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;color:var(--mut);font-size:.95rem}
+.prog{height:6px;background:var(--line);border-radius:3px;margin:10px 0 18px;overflow:hidden}.prog>i{display:block;height:100%;background:var(--acc);width:0;transition:width .2s}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px}
+.cat{font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--acc);font-weight:600}
+.q{font-size:1.1rem;margin:6px 0 14px;font-weight:600}
+code{font-family:Consolas,monospace;background:var(--code);padding:1px 5px;border-radius:4px;font-size:.92em}
+pre{font-family:Consolas,monospace;background:var(--code);padding:10px;border-radius:6px;overflow-x:auto;font-size:.88rem;font-weight:400;margin:8px 0 0}
+.opt{display:block;width:100%;text-align:left;background:transparent;color:var(--fg);border:1.5px solid var(--line);border-radius:8px;padding:10px 12px;margin:8px 0;font:inherit;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--acc)}
+.opt.ok{border-color:var(--ok);background:var(--okbg)}.opt.ko{border-color:var(--ko);background:var(--kobg)}
+.opt:disabled{cursor:default}
+.exp{margin-top:12px;padding:10px 12px;border-radius:8px;background:var(--code);font-size:.95rem;display:none}
+.btn{background:var(--acc);color:#fff;border:0;border-radius:8px;padding:10px 18px;font:inherit;font-weight:600;cursor:pointer;margin-top:14px}
+.btn.sec{background:transparent;color:var(--acc);border:1.5px solid var(--acc)}
+.big{font-size:3rem;font-weight:700;margin:.2em 0}
+.fail{border-left:3px solid var(--ko);padding:6px 10px;margin:10px 0;background:var(--code);border-radius:0 6px 6px 0;font-size:.93rem}
+select{font:inherit;padding:6px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--fg)}
+</style>
+</head>
+<body>
+<h1>Test Tema 2 · HTML</h1>
+<div id="app"></div>
+<script>
+const Q=[
+// Estructura y semántica
+["Estructura","¿Cuál es la primera línea de un documento HTML5?",["<!DOCTYPE html>","<html version=\"5\">","<!HTML5>","<doctype html5>"],0,"<code>&lt;!DOCTYPE html&gt;</code> indica al navegador que es HTML5."],
+["Estructura","¿Dónde se coloca la etiqueta <code>&lt;title&gt;</code>?",["Dentro de &lt;body&gt;","Dentro de &lt;head&gt;","Dentro de &lt;header&gt;","Fuera de &lt;html&gt;"],1,"El título de la pestaña es un metadato: va en <code>&lt;head&gt;</code>. No confundir con <code>&lt;header&gt;</code>, que es la cabecera visible."],
+["Estructura","¿Qué atributo de <code>&lt;meta&gt;</code> define la codificación de caracteres?",["encoding","lang","charset","type"],2,"<code>&lt;meta charset=\"UTF-8\"&gt;</code>"],
+["Estructura","Para enlazar una hoja de estilos externa se usa:",["&lt;style src=\"estilos.css\"&gt;","&lt;link href=\"estilos.css\" rel=\"stylesheet\"&gt;","&lt;css href=\"estilos.css\"&gt;","&lt;script href=\"estilos.css\"&gt;"],1,"<code>&lt;link&gt;</code> con <code>rel=\"stylesheet\"</code>. <code>&lt;style&gt;</code> es para CSS escrito dentro del propio documento."],
+["Semántica","¿Cuál de estas etiquetas NO es semántica?",["&lt;article&gt;","&lt;nav&gt;","&lt;div&gt;","&lt;footer&gt;"],2,"<code>&lt;div&gt;</code> y <code>&lt;span&gt;</code> no dicen nada sobre su contenido."],
+["Semántica","¿Qué etiqueta solo puede aparecer UNA vez por documento?",["&lt;section&gt;","&lt;main&gt;","&lt;article&gt;","&lt;header&gt;"],1,"<code>body</code>, <code>h1</code> y <code>main</code> son únicos. <code>header</code> y <code>footer</code> pueden repetirse dentro de artículos o secciones."],
+["Semántica","Una entrada de blog que se podría publicar por separado va en:",["&lt;aside&gt;","&lt;section&gt;","&lt;article&gt;","&lt;address&gt;"],2,"<code>&lt;article&gt;</code> = contenido independiente y reutilizable."],
+["Semántica","La barra lateral de una web se marca con:",["&lt;aside&gt;","&lt;nav&gt;","&lt;side&gt;","&lt;sidebar&gt;"],0,"<code>&lt;aside&gt;</code>. <code>&lt;side&gt;</code> y <code>&lt;sidebar&gt;</code> no existen."],
+["Semántica","La información de contacto se marca semánticamente con:",["&lt;contact&gt;","&lt;address&gt;","&lt;info&gt;","&lt;cite&gt;"],1,"<code>&lt;address&gt;</code>, normalmente dentro del <code>&lt;footer&gt;</code>."],
+["Semántica","¿Cuál NO es una ventaja de usar etiquetas semánticas?",["Mejor SEO","Mayor accesibilidad","Código más legible","La página carga más rápido"],3,"Las ventajas son SEO, accesibilidad y legibilidad. La velocidad de carga no cambia."],
+// Contenido
+["Contenido","¿Qué etiqueta conserva los espacios y saltos de línea tal como se escriben?",["&lt;p&gt;","&lt;code&gt;","&lt;pre&gt;","&lt;blockquote&gt;"],2,"<code>&lt;pre&gt;</code> = preformateado. Fuera de él, varios espacios se convierten en uno solo."],
+["Contenido","¿Qué produce <code>&lt;ol type=\"A\" start=\"3\"&gt;</code>?",["Una lista que empieza en 3","Una lista que empieza en C","Una lista que empieza en A con 3 elementos","Una lista con números romanos"],1,"<code>type=\"A\"</code> numera con letras mayúsculas y <code>start=\"3\"</code> empieza en la tercera letra: la C."],
+["Contenido","¿Qué valor de <code>type</code> en <code>&lt;ul&gt;</code> pone cuadrados?",["box","rect","square","quad"],2,"Los valores son <code>disc</code> ●, <code>circle</code> ○ y <code>square</code> ■."],
+["Contenido","¿Qué atributo invierte la numeración de una <code>&lt;ol&gt;</code>?",["reverse","reversed","desc","invert"],1,"<code>&lt;ol reversed&gt;</code>"],
+["Contenido","En una lista de definiciones, ¿qué etiqueta contiene el término?",["&lt;dd&gt;","&lt;dl&gt;","&lt;dt&gt;","&lt;dfn&gt;"],2,"<code>&lt;dl&gt;</code> es la lista, <code>&lt;dt&gt;</code> el término y <code>&lt;dd&gt;</code> la definición."],
+["Contenido","El pie de una imagen dentro de <code>&lt;figure&gt;</code> es:",["&lt;caption&gt;","&lt;figcaption&gt;","&lt;legend&gt;","&lt;label&gt;"],1,"<code>&lt;figcaption&gt;</code>. <code>&lt;caption&gt;</code> es para tablas y <code>&lt;legend&gt;</code> para fieldset."],
+["Contenido","¿Qué diferencia hay entre <code>id</code> y <code>class</code>?",["Ninguna","id es único en la página; class se puede repetir","class es único; id se puede repetir","id solo sirve para CSS"],1,"No puede haber dos elementos con el mismo <code>id</code>. Una <code>class</code> se puede usar en varios elementos, y un elemento puede tener varias clases."],
+// Texto
+["Texto","¿Cuál indica que un texto es IMPORTANTE (con significado)?",["&lt;b&gt;","&lt;strong&gt;","&lt;mark&gt;","&lt;big&gt;"],1,"<code>strong</code> marca importancia. <code>b</code> solo pone negrita."],
+["Texto","¿Cómo se escribe H₂O en HTML?",["H&lt;sup&gt;2&lt;/sup&gt;O","H&lt;sub&gt;2&lt;/sub&gt;O","H&lt;small&gt;2&lt;/small&gt;O","H&lt;low&gt;2&lt;/low&gt;O"],1,"<code>sub</code> = subíndice (abajo). <code>sup</code> = superíndice (arriba)."],
+["Texto","¿Qué etiqueta muestra un tooltip con la forma completa al pasar el ratón?",["&lt;abbr title=\"…\"&gt;","&lt;dfn&gt;","&lt;q&gt;","&lt;tip&gt;"],0,"<code>&lt;abbr title=\"Hypertext Markup Language\"&gt;HTML&lt;/abbr&gt;</code>"],
+["Texto","El título de una obra (un libro o una película) se marca con:",["&lt;q&gt;","&lt;title&gt;","&lt;cite&gt;","&lt;em&gt;"],2,"<code>&lt;cite&gt;</code>. <code>&lt;title&gt;</code> es el título de la pestaña."],
+["Texto","¿Qué etiqueta resalta un texto como si fuera un rotulador fosforito?",["&lt;mark&gt;","&lt;strong&gt;","&lt;u&gt;","&lt;high&gt;"],0,"<code>&lt;mark&gt;</code>"],
+["Texto","¿Qué etiqueta tacha un contenido que ya no es correcto?",["&lt;u&gt;","&lt;s&gt;","&lt;del-text&gt;","&lt;strike-out&gt;"],1,"<code>&lt;s&gt;</code>"],
+["Texto","¿Cuál de estas etiquetas es VACÍA, es decir, no lleva cierre?",["&lt;span&gt;","&lt;br&gt;","&lt;p&gt;","&lt;li&gt;"],1,"Etiquetas vacías: br, hr, img, input, meta, link, source y wbr."],
+// Enlaces
+["Enlaces","¿Qué valor de <code>target</code> abre el enlace en una pestaña nueva?",["_new","_self","_blank","_top"],2,"<code>_blank</code>. El valor por defecto es <code>_self</code>."],
+["Enlaces","¿Qué valor de <code>target</code> se aplica por defecto?",["_blank","_self","_parent","_top"],1,"<code>_self</code>: el enlace se abre en la misma pestaña."],
+["Enlaces","Un enlace que abre el programa de correo es:",["&lt;a href=\"email:info@web.com\"&gt;","&lt;a href=\"mailto:info@web.com\"&gt;","&lt;a mail=\"info@web.com\"&gt;","&lt;a href=\"mail://info@web.com\"&gt;"],1,"<code>mailto:</code>. Para llamar por teléfono se usa <code>tel:</code>."],
+["Enlaces","¿Qué atributo hace que un enlace descargue el archivo en vez de abrirlo?",["save","download","get","file"],1,"<code>&lt;a href=\"doc.pdf\" download=\"apuntes.pdf\"&gt;</code>"],
+["Enlaces","¿Cómo se llama el texto visible y clicable de un enlace?",["Alt text","Anchor text","Link title","Href text"],1,"El anchor text o texto de anclaje."],
+["Marcadores","Para ir a <code>&lt;h2 id=\"faq\"&gt;</code> en la misma página:",["&lt;a href=\"faq\"&gt;","&lt;a href=\"#faq\"&gt;","&lt;a id=\"#faq\"&gt;","&lt;a name=\"faq\"&gt;"],1,"El enlace lleva <code>#</code> delante del nombre; el destino lleva el <code>id</code> sin almohadilla."],
+["Marcadores","Para ir a la sección <code>contacto</code> de <code>index.html</code> desde otra página:",["index.html/contacto","index.html?contacto","index.html#contacto","#index.html#contacto"],2,"<code>&lt;a href=\"index.html#contacto\"&gt;</code>"],
+// Entidades
+["Entidades","¿Qué entidad representa el símbolo &lt;?",["&amp;lt;","&amp;less;","&amp;gt;","&amp;min;"],0,"<code>&amp;lt;</code> = less than. <code>&amp;gt;</code> = greater than (&gt;)."],
+["Entidades","¿Qué representa <code>&amp;nbsp;</code>?",["Un salto de línea","Un espacio que no se comprime","Una tabulación","Un punto"],1,"Non-breaking space: un espacio que el navegador no junta con los demás."],
+["Entidades","¿Cómo se escribe el símbolo ©?",["&amp;c;","&amp;copy;","&amp;copyright","#copy"],1,"<code>&amp;copy;</code>: empieza por &amp; y termina en punto y coma."],
+// Tablas
+["Tablas","¿Qué etiqueta crea una FILA en una tabla?",["&lt;td&gt;","&lt;th&gt;","&lt;tr&gt;","&lt;row&gt;"],2,"<code>tr</code> = table row. <code>td</code> = celda de datos. <code>th</code> = celda de encabezado."],
+["Tablas","Para que una celda ocupe 3 COLUMNAS:",["rowspan=\"3\"","colspan=\"3\"","span=\"3\"","cols=\"3\""],1,"<code>colspan</code> une celdas en horizontal. <code>rowspan</code> las une en vertical."],
+["Tablas","El título de una tabla se pone con:",["&lt;title&gt;","&lt;legend&gt;","&lt;caption&gt;","&lt;th&gt;"],2,"<code>&lt;caption&gt;</code>, justo después de abrir <code>&lt;table&gt;</code>."],
+["Tablas","Si en una fila hay <code>&lt;td rowspan=\"2\"&gt;</code> y la tabla tiene 3 columnas, ¿cuántos <code>&lt;td&gt;</code> lleva la fila SIGUIENTE?",["3","2","1","4"],1,"La celda con rowspan ya ocupa una columna de la fila de abajo, así que esa fila solo necesita 2 celdas."],
+["Tablas","¿Cuál de estas etiquetas agrupa el cuerpo de la tabla?",["&lt;tbody&gt;","&lt;tmain&gt;","&lt;tcontent&gt;","&lt;body&gt;"],0,"<code>thead</code> es la cabecera, <code>tbody</code> el cuerpo y <code>tfoot</code> el pie."],
+["Tablas","¿Qué está mal en <code>&lt;table&gt;&lt;td&gt;Dato&lt;/td&gt;&lt;/table&gt;</code>?",["Nada","Falta &lt;tr&gt;","Falta &lt;th&gt;","Falta &lt;caption&gt;"],1,"Un <code>&lt;td&gt;</code> siempre va dentro de una fila <code>&lt;tr&gt;</code>."],
+// Formularios
+["Formularios","¿Qué atributo de <code>&lt;form&gt;</code> indica a dónde se envían los datos?",["method","action","href","src"],1,"<code>action</code> = la URL. <code>method</code> = GET o POST."],
+["Formularios","¿Qué método se usa por defecto y pone los datos en la URL?",["POST","GET","PUT","SEND"],1,"GET muestra los datos en la URL. POST los envía ocultos; úsalo para contraseñas."],
+["Formularios","¿Qué método usarías para un formulario de inicio de sesión?",["GET","POST","Cualquiera, da igual","LINK"],1,"POST, para que la contraseña no aparezca en la URL."],
+["Formularios","Para asociar un <code>&lt;label&gt;</code> a un input, el <code>for</code> del label debe coincidir con el ___ del input:",["name","value","id","class"],2,"<code>&lt;label for=\"x\"&gt;</code> ↔ <code>&lt;input id=\"x\"&gt;</code>"],
+["Formularios","¿Qué etiquetas agrupan campos y les ponen título?",["&lt;group&gt; y &lt;title&gt;","&lt;fieldset&gt; y &lt;legend&gt;","&lt;div&gt; y &lt;h3&gt;","&lt;section&gt; y &lt;label&gt;"],1,"<code>&lt;fieldset&gt;</code> crea el recuadro y <code>&lt;legend&gt;</code> es su título."],
+["Formularios","Para elegir UNA sola opción entre varias se usa:",["type=\"checkbox\"","type=\"radio\"","type=\"select\"","type=\"option\""],1,"radio permite una sola opción y checkbox varias. Los radio de un mismo grupo deben llevar el mismo <code>name</code>."],
+["Formularios","¿Qué deben tener en común varios <code>radio</code> del mismo grupo?",["El mismo id","El mismo name","El mismo value","El mismo label"],1,"El mismo <code>name</code>. El <code>id</code> nunca se repite."],
+["Formularios","¿Qué atributo hace obligatorio un campo?",["needed","mandatory","required","obligatory"],2,"<code>required</code>"],
+["Formularios","El texto gris de ejemplo dentro de un campo vacío es:",["value","title","placeholder","hint"],2,"<code>placeholder</code>. <code>value</code> es el valor real del campo."],
+["Formularios","¿Qué atributo pone el cursor en un campo nada más cargar la página?",["focus","autofocus","autoselect","cursor"],1,"<code>autofocus</code>"],
+["Formularios","Diferencia entre <code>readonly</code> y <code>disabled</code>:",["Son iguales","readonly se envía con el formulario; disabled no","disabled se envía; readonly no","readonly oculta el campo"],1,"Ninguno de los dos se puede editar, pero el valor de un campo disabled no se envía al servidor."],
+["Formularios","¿Qué <code>type</code> muestra una barra deslizante?",["slider","range","scroll","number"],1,"<code>type=\"range\"</code>, normalmente con <code>min</code> y <code>max</code>."],
+["Formularios","¿Qué etiqueta crea una caja de texto de varias líneas?",["&lt;input type=\"multiline\"&gt;","&lt;textarea&gt;","&lt;textbox&gt;","&lt;input type=\"area\"&gt;"],1,"<code>&lt;textarea rows=\"5\" cols=\"40\"&gt;&lt;/textarea&gt;</code>. Sí lleva cierre."],
+["Formularios","¿Cómo se agrupan las opciones dentro de un <code>&lt;select&gt;</code>?",["&lt;group&gt;","&lt;optgroup label=\"…\"&gt;","&lt;fieldset&gt;","&lt;options&gt;"],1,"<code>&lt;optgroup label=\"Frutas\"&gt;</code> con varias <code>&lt;option&gt;</code> dentro."],
+["Formularios","¿Qué atributo deja marcada de inicio una opción de un <code>&lt;select&gt;</code>?",["checked","selected","default","active"],1,"<code>selected</code> se usa en option; <code>checked</code> en checkbox y radio."],
+["Formularios","Para unir un input con un <code>&lt;datalist id=\"paises\"&gt;</code>:",["&lt;input data=\"paises\"&gt;","&lt;input list=\"paises\"&gt;","&lt;input for=\"paises\"&gt;","&lt;input datalist=\"paises\"&gt;"],1,"Con el atributo <code>list</code>, que vale lo mismo que el id del datalist."],
+["Formularios","¿Qué hace <code>&lt;input type=\"reset\"&gt;</code>?",["Envía el formulario","Recarga la página","Deja los campos como estaban al principio","Borra el formulario del HTML"],2,"submit envía, reset restaura los valores iniciales y button no hace nada sin JavaScript."],
+["Formularios","¿Qué ventaja tiene <code>&lt;button&gt;</code> sobre <code>&lt;input type=\"submit\"&gt;</code>?",["Envía más rápido","Puede contener HTML (iconos, imágenes)","No necesita formulario","Valida mejor"],1,"Dentro de <code>&lt;button&gt;</code> puedes poner contenido HTML; en input solo cabe el texto de value."],
+["Formularios","¿Qué atributo de <code>&lt;select&gt;</code> permite elegir varias opciones?",["many","multiple","several","checkbox"],1,"<code>&lt;select multiple&gt;</code>; se eligen con Ctrl + clic."],
+// Regex
+["Pattern","¿Qué <code>pattern</code> valida un código postal de 5 cifras?",["[0-9]{5}","[0-9]*5","\\d+5","[5]{0-9}"],0,"<code>[0-9]{5}</code> o <code>\\d{5}</code>: exactamente 5 dígitos."],
+["Pattern","¿Qué significa <code>+</code> en una expresión regular?",["0 o más veces","1 o más veces","0 o 1 vez","Exactamente 1"],1,"<code>*</code> = 0 o más, <code>+</code> = 1 o más, <code>?</code> = 0 o 1."],
+["Pattern","¿Qué significa <code>[^abc]</code>?",["Empieza por abc","Cualquier carácter que no sea a, b ni c","a, b o c","abc al final"],1,"<code>^</code> dentro de corchetes niega. Fuera de los corchetes, <code>^</code> significa inicio de línea."],
+["Pattern","¿Qué representa <code>\\d</code>?",["Una letra","Un dígito","Un espacio","Cualquier carácter"],1,"<code>\\d</code> = dígito, <code>\\w</code> = carácter de palabra, <code>\\s</code> = espacio."],
+["Pattern","¿Qué valida <code>pattern=\"[A-Za-z]{3}\\d{3}\"</code>?",["3 números y 3 letras","3 letras seguidas de 3 dígitos","Entre 3 y 6 letras","Una matrícula de 3 caracteres"],1,"Por ejemplo: <code>ABC123</code>."],
+// Incrustado
+["Incrustado","¿Qué atributo de <code>&lt;img&gt;</code> muestra un texto si la imagen no carga y sirve para la accesibilidad?",["title","alt","name","desc"],1,"<code>alt</code>. <code>title</code> es el texto que aparece al pasar el ratón."],
+["Incrustado","¿Qué atributo hace que un <code>&lt;video&gt;</code> muestre los botones de play, volumen, etc.?",["buttons","controls","player","show"],1,"<code>&lt;video controls&gt;</code>"],
+["Incrustado","Para dar al vídeo varios formatos alternativos se usa:",["&lt;track&gt;","&lt;source&gt;","&lt;alt&gt;","&lt;format&gt;"],1,"Varias etiquetas <code>&lt;source src=\"…\" type=\"…\"&gt;</code> dentro de video o audio."],
+["Incrustado","Para insertar un vídeo de YouTube o un mapa de Google se usa:",["&lt;embed&gt;","&lt;video&gt;","&lt;iframe&gt;","&lt;object&gt;"],2,"<code>&lt;iframe&gt;</code> mete otra página dentro de la tuya. Ambos servicios dan el código desde la opción Compartir → Insertar."],
+["Incrustado","¿Qué etiqueta crea un lienzo para dibujar con JavaScript?",["&lt;svg&gt;","&lt;canvas&gt;","&lt;draw&gt;","&lt;paint&gt;"],1,"<code>&lt;canvas&gt;</code>. <code>&lt;svg&gt;</code> es una imagen vectorial."],
+["Incrustado","¿Qué ventaja tienen las imágenes SVG?",["Pesan más pero se ven mejor","No pierden calidad al ampliarse","Solo funcionan en Chrome","Permiten vídeo"],1,"Son vectoriales: ideales para logotipos e iconos."],
+["Incrustado","¿Qué atributo de <code>&lt;video&gt;</code> muestra una imagen antes de reproducir?",["cover","poster","thumbnail","preview"],1,"<code>poster=\"portada.jpg\"</code>"],
+// Código
+["Código","¿Qué error tiene este código?<pre>&lt;p&gt;&lt;strong&gt;Hola&lt;/p&gt;&lt;/strong&gt;</pre>",["Ninguno","Las etiquetas están mal anidadas","strong no puede ir dentro de p","Falta un br"],1,"Lo último que abres es lo primero que cierras: <code>&lt;p&gt;&lt;strong&gt;Hola&lt;/strong&gt;&lt;/p&gt;</code>."],
+["Código","¿Qué falla aquí?<pre>&lt;label for=\"mail\"&gt;Email&lt;/label&gt;\n&lt;input type=\"email\" id=\"correo\"&gt;</pre>",["Nada","El for y el id no coinciden","Falta el atributo name","type=\"email\" no existe"],1,"for=\"mail\" e id=\"correo\" deben llevar el mismo valor."],
+["Código","¿Qué está mal en <code>&lt;img src=\"a.jpg\"&gt;&lt;/img&gt;</code>?",["Falta href","img es vacía: no lleva cierre (y además le falta alt)","Debería ser &lt;image&gt;","src debe ir en mayúsculas"],1,"<code>&lt;img src=\"a.jpg\" alt=\"descripción\"&gt;</code>"],
+["Código","¿Cuántas columnas ocupa visualmente esta fila?<pre>&lt;tr&gt;&lt;td colspan=\"2\"&gt;A&lt;/td&gt;&lt;td&gt;B&lt;/td&gt;&lt;td colspan=\"2\"&gt;C&lt;/td&gt;&lt;/tr&gt;</pre>",["3","4","5","6"],2,"2 + 1 + 2 = 5 columnas."],
+["Código","¿Qué se ve con este código?<pre>&lt;ol type=\"i\" start=\"4\"&gt;&lt;li&gt;X&lt;/li&gt;&lt;/ol&gt;</pre>",["4. X","iv. X","d. X","IV. X"],1,"<code>i</code> son números romanos en minúscula, y empieza en el 4: iv."],
+["Código","¿Qué hace este campo?<pre>&lt;input type=\"text\" pattern=\"[0-9]{8}[A-Z]\" required&gt;</pre>",["Pide un teléfono","Pide un DNI obligatorio (8 cifras y una letra mayúscula)","Pide un código postal","Pide una contraseña de 9 caracteres"],1,"8 dígitos seguidos de una letra mayúscula; required lo hace obligatorio."]
+];
+
+const app=document.getElementById('app');
+let set=[],i=0,score=0,fails=[],answered=false;
+
+function shuffle(a){a=a.slice();for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]]}return a}
+
+function home(){
+  const cats=[...new Set(Q.map(q=>q[0]))];
+  app.innerHTML=`<div class="card">
+  <p>Banco de <b>${Q.length} preguntas</b> sobre todo el Tema 2. Las preguntas y las respuestas salen en orden aleatorio. Después de contestar verás la explicación.</p>
+  <p><label>Número de preguntas: <select id="n"><option>20</option><option selected>30</option><option>50</option><option value="${Q.length}">Todas (${Q.length})</option></select></label></p>
+  <p><label>Tema: <select id="c"><option value="">Todos</option>${cats.map(c=>`<option>${c}</option>`).join('')}</select></label></p>
+  <button class="btn" id="go">Empezar test</button></div>`;
+  document.getElementById('go').onclick=()=>{
+    const c=document.getElementById('c').value,n=+document.getElementById('n').value;
+    let pool=Q.filter(q=>!c||q[0]===c);
+    set=shuffle(pool).slice(0,n).map(q=>{const order=shuffle(q[2].map((t,k)=>k));return{cat:q[0],q:q[1],opts:order.map(k=>q[2][k]),ok:order.indexOf(q[3]),exp:q[4]}});
+    i=0;score=0;fails=[];show();
+  };
+}
+
+function show(){
+  answered=false;const q=set[i];
+  app.innerHTML=`<div class="bar"><span>Pregunta ${i+1} de ${set.length}</span><span>Aciertos: ${score}</span></div>
+  <div class="prog"><i style="width:${i/set.length*100}%"></i></div>
+  <div class="card"><div class="cat">${q.cat}</div><div class="q">${q.q}</div>
+  ${q.opts.map((o,k)=>`<button class="opt" data-k="${k}">${String.fromCharCode(97+k)}) ${o}</button>`).join('')}
+  <div class="exp" id="exp"></div>
+  <button class="btn" id="next" style="display:none">${i+1<set.length?'Siguiente →':'Ver resultado'}</button></div>`;
+  app.querySelectorAll('.opt').forEach(b=>b.onclick=()=>answer(+b.dataset.k));
+  document.getElementById('next').onclick=()=>{i++;i<set.length?show():result()};
+}
+
+function answer(k){
+  if(answered)return;answered=true;const q=set[i];
+  const btns=app.querySelectorAll('.opt');
+  btns.forEach(b=>b.disabled=true);
+  btns[q.ok].classList.add('ok');
+  if(k===q.ok){score++}else{btns[k].classList.add('ko');fails.push({q:q.q,yours:q.opts[k],ok:q.opts[q.ok],exp:q.exp})}
+  const e=document.getElementById('exp');e.style.display='block';
+  e.innerHTML=(k===q.ok?'<b style="color:var(--ok)">✔ ¡Correcto!</b> ':'<b style="color:var(--ko)">✘ Incorrecto.</b> ')+q.exp;
+  document.getElementById('next').style.display='inline-block';
+}
+
+document.addEventListener('keydown',e=>{
+  if(!set.length||i>=set.length)return;
+  if(!answered&&/^[1-4a-d]$/i.test(e.key)){const k=isNaN(e.key)?e.key.toLowerCase().charCodeAt(0)-97:+e.key-1;if(k<set[i].opts.length)answer(k)}
+  else if(answered&&e.key==='Enter'){document.getElementById('next').click()}
+});
+
+function result(){
+  const pct=Math.round(score/set.length*100),nota=(score/set.length*10).toFixed(1);
+  const msg=pct>=90?'¡Lo tienes dominado!':pct>=70?'Muy bien: repasa los fallos y listo.':pct>=50?'Aprobado justo: repasa el resumen en las partes que has fallado.':'Toca repasar el resumen y repetir el test.';
+  app.innerHTML=`<div class="card" style="text-align:center"><div class="big">${nota}</div><p>${score} de ${set.length} aciertos (${pct}%)<br><b>${msg}</b></p>
+  <button class="btn" id="again">Otro test</button> ${fails.length?'<button class="btn sec" id="retry">Repetir solo los fallos</button>':''}</div>
+  ${fails.length?'<h2 style="font-size:1.15rem;margin-top:24px">Tus fallos</h2>'+fails.map(f=>`<div class="fail"><div>${f.q}</div><div>Tu respuesta: <s>${f.yours}</s></div><div>Correcta: <b>${f.ok}</b></div><div class="muted" style="color:var(--mut)">${f.exp}</div></div>`).join(''):''}`;
+  document.getElementById('again').onclick=home;
+  const r=document.getElementById('retry');
+  if(r)r.onclick=()=>{const qs=new Set(fails.map(f=>f.q));set=shuffle(set.filter(s=>qs.has(s.q)));i=0;score=0;fails=[];show()};
+}
+home();
+</script>
+</body>
+</html>
