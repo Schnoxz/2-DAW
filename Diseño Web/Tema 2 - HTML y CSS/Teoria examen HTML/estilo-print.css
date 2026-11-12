@@ -1,0 +1,408 @@
+/* ============================================================
+   Estilo de impresión del cuadernillo de HTML
+   Pensado para A4, letra pequeña y mucho contenido por página.
+   Se usa para generar el PDF con Edge en modo headless.
+   ============================================================ */
+
+@page {
+  size: A4;
+  margin: 13mm 12mm 14mm 12mm;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10pt;
+}
+
+body {
+  font-family: "Segoe UI", Calibri, system-ui, sans-serif;
+  font-size: 9.3pt;
+  line-height: 1.42;
+  color: #1c2733;
+  margin: 0;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ---------- Portada ---------- */
+
+/* La portada es un bloque normal: con flex, Edge rompía la página a la mitad. */
+.cover {
+  padding-top: 42mm;
+  page-break-after: always;
+  page-break-inside: avoid;
+}
+
+.cover .banda {
+  height: 9mm;
+  background: #0b4f6c;
+  margin-bottom: 12mm;
+}
+
+.cover .etiqueta {
+  font-size: 10pt;
+  letter-spacing: 2.5pt;
+  text-transform: uppercase;
+  color: #2b6cb0;
+  font-weight: 600;
+  margin-bottom: 4mm;
+}
+
+.cover h1 {
+  font-size: 34pt;
+  line-height: 1.05;
+  color: #0b4f6c;
+  border: none;
+  margin: 0 0 4mm 0;
+  padding: 0;
+  /* El h1 global lleva page-break-before: always; aquí sobra y partía la portada. */
+  page-break-before: avoid;
+  page-break-after: avoid;
+}
+
+.cover .subtitulo {
+  font-size: 15pt;
+  color: #2d3748;
+  margin: 0 0 8mm 0;
+}
+
+.cover .linea {
+  width: 40mm;
+  height: 1.2mm;
+  background: #e0a800;
+  margin-bottom: 8mm;
+}
+
+.cover .descripcion {
+  font-size: 10.5pt;
+  color: #3d4a5a;
+  max-width: 150mm;
+  margin: 0 0 5mm 0;
+}
+
+.cover .meta {
+  font-size: 9pt;
+  color: #4a5568;
+  margin-top: 10mm;
+  border-top: 0.6pt solid #cbd5e0;
+  padding-top: 3mm;
+}
+
+/* ---------- Índice ---------- */
+
+.toc {
+  column-count: 2;
+  column-gap: 9mm;
+  font-size: 9.2pt;
+  page-break-after: always;
+}
+
+.toc h2 {
+  column-span: all;
+  font-size: 18pt;
+  border: none;
+  padding: 0;
+  margin: 0 0 6mm 0;
+}
+
+.toc p {
+  margin: 0 0 3.2pt 0;
+  break-inside: avoid;
+}
+
+.toc a {
+  color: #1c2733;
+  text-decoration: none;
+}
+
+.toc .num {
+  display: inline-block;
+  width: 15pt;
+  font-weight: 700;
+  color: #0b4f6c;
+}
+
+.toc .sub {
+  display: block;
+  margin-left: 15pt;
+  font-size: 8.4pt;
+  color: #4a5568;
+}
+
+/* El bloque de introducción va debajo de las dos columnas, a todo el ancho. */
+.toc .intro {
+  column-span: all;
+  margin-top: 7mm;
+}
+
+/* ---------- Títulos ---------- */
+
+h1 {
+  font-size: 17pt;
+  color: #0b4f6c;
+  border-bottom: 2pt solid #0b4f6c;
+  padding-bottom: 2.5pt;
+  margin: 0 0 7pt 0;
+  page-break-before: always;
+  page-break-after: avoid;
+}
+
+h1#sec1 {
+  page-break-before: avoid;
+}
+
+h2 {
+  font-size: 12.2pt;
+  color: #0b4f6c;
+  border-left: 4pt solid #2b6cb0;
+  padding-left: 5pt;
+  margin: 13pt 0 4pt 0;
+  page-break-after: avoid;
+}
+
+h3 {
+  font-size: 10.4pt;
+  color: #16324a;
+  margin: 9pt 0 3pt 0;
+  page-break-after: avoid;
+}
+
+h4 {
+  font-size: 9.6pt;
+  color: #2d3748;
+  margin: 7pt 0 2pt 0;
+  page-break-after: avoid;
+}
+
+/* ---------- Párrafos y listas ---------- */
+
+p {
+  margin: 0 0 4.5pt 0;
+}
+
+ul,
+ol {
+  margin: 0 0 5pt 0;
+  padding-left: 13pt;
+}
+
+li {
+  margin-bottom: 1.3pt;
+}
+
+li > ul,
+li > ol {
+  margin-top: 1.3pt;
+  margin-bottom: 1.3pt;
+}
+
+strong {
+  color: #102a3c;
+}
+
+hr {
+  border: none;
+  border-top: 0.6pt solid #cbd5e0;
+  margin: 8pt 0;
+}
+
+/* ---------- Código ---------- */
+
+code {
+  font-family: "Cascadia Mono", Consolas, "Courier New", monospace;
+  font-size: 0.86em;
+  background: #edf3f8;
+  color: #0b3d5c;
+  padding: 0.4pt 2.2pt;
+  border-radius: 2pt;
+}
+
+pre {
+  font-family: "Cascadia Mono", Consolas, "Courier New", monospace;
+  font-size: 7.55pt;
+  line-height: 1.34;
+  background: #f7fafc;
+  border: 0.5pt solid #d3e0ea;
+  border-left: 3pt solid #2b6cb0;
+  padding: 5pt 7pt;
+  margin: 5pt 0 7pt 0;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  tab-size: 2;
+  page-break-inside: auto;
+}
+
+pre code {
+  background: none;
+  color: #142433;
+  padding: 0;
+  font-size: inherit;
+  border-radius: 0;
+}
+
+/* ---------- Tablas ---------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.15pt;
+  line-height: 1.3;
+  margin: 4pt 0 8pt 0;
+  page-break-inside: avoid;
+}
+
+thead {
+  background: #e3edf6;
+}
+
+th,
+td {
+  border: 0.5pt solid #b7c9d8;
+  padding: 2.1pt 3.6pt;
+  vertical-align: top;
+  text-align: left;
+}
+
+th {
+  font-weight: 600;
+  color: #102a3c;
+}
+
+tbody tr:nth-child(even) {
+  background: #f7fafc;
+}
+
+td code,
+th code {
+  font-size: 0.9em;
+  background: #e8f0f7;
+}
+
+/* ---------- Avisos ---------- */
+
+blockquote {
+  margin: 5pt 0 7pt 0;
+  padding: 5pt 8pt;
+  background: #fff8e1;
+  border-left: 3pt solid #e0a800;
+  font-size: 8.9pt;
+}
+
+blockquote p {
+  margin: 0 0 3pt 0;
+}
+
+blockquote p:last-child {
+  margin: 0;
+}
+
+.nota,
+.trampa,
+.regla {
+  padding: 5pt 8pt 1pt 8pt;
+  margin: 5pt 0 7pt 0;
+  font-size: 8.9pt;
+}
+
+.nota {
+  background: #eaf4fb;
+  border-left: 3pt solid #2b6cb0;
+}
+
+.trampa {
+  background: #fdecea;
+  border-left: 3pt solid #c0392b;
+}
+
+.regla {
+  background: #edf7ee;
+  border-left: 3pt solid #2f855a;
+}
+
+.nota p,
+.trampa p,
+.regla p {
+  margin: 0 0 4pt 0;
+}
+
+/* ---------- Cajas de ejercicio ---------- */
+
+.ejercicio {
+  border: 0.7pt solid #2f855a;
+  background: #f4fbf6;
+  padding: 5pt 8pt 1pt 8pt;
+  margin: 7pt 0 8pt 0;
+}
+
+.ejercicio h3 {
+  color: #22543d;
+  margin-top: 2pt;
+}
+
+.ejercicio > p:last-child,
+.ejercicio > pre:last-child,
+.ejercicio > table:last-child {
+  margin-bottom: 4pt;
+}
+
+/* ---------- Columnas ---------- */
+
+.cols2 {
+  column-count: 2;
+  column-gap: 8mm;
+}
+
+.cols2 li,
+.cols2 p {
+  break-inside: avoid;
+}
+
+.cols3 {
+  column-count: 3;
+  column-gap: 6mm;
+}
+
+/* ---------- Chuleta ---------- */
+
+.chuleta {
+  border: 1pt solid #0b4f6c;
+  background: #f4f8fb;
+  padding: 6pt 9pt 2pt 9pt;
+  margin: 6pt 0;
+}
+
+.chuleta h2 {
+  border: none;
+  padding: 0;
+  margin: 0 0 4pt 0;
+  font-size: 11pt;
+}
+
+.chuleta table {
+  font-size: 7.9pt;
+  margin-bottom: 5pt;
+}
+
+/* ---------- Utilidades ---------- */
+
+.small {
+  font-size: 8.2pt;
+  color: #4a5568;
+}
+
+.center {
+  text-align: center;
+}
+
+.noborder {
+  border: none;
+  background: none;
+}
+
+/* Evita que una tabla o un bloque pequeño se quede solo al final de página */
+.keep {
+  page-break-inside: avoid;
+}

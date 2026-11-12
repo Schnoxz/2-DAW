@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel de vencimientos · TachoAviso</title>
+  <meta name="description" content="Demo estática del panel privado de TachoAviso: vencimientos del tacógrafo, ITV, seguro y tarjeta del conductor.">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/panel.css">
+</head>
+<body class="ta-panel">
+  <a class="ta-salto" href="#ta-panel-contenido">Saltar al contenido</a>
+
+  <header class="ta-barra">
+    <div class="ta-barra__fila">
+      <a class="ta-logo ta-logo--claro" href="index.html">
+        <span class="ta-logo__marca" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="30" height="30" role="img" aria-hidden="true" focusable="false">
+            <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-width="2"></circle>
+            <path d="M9 16.5l4.2 4.2L23 11" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </span>
+        <span class="ta-logo__texto">TachoAviso</span>
+      </a>
+
+      <nav class="ta-barra__nav" aria-label="Navegación del panel">
+        <a class="ta-barra__enlace ta-barra__enlace--activo" href="panel.html" aria-current="page">Vencimientos</a>
+        <button class="ta-barra__enlace" type="button" data-abrir-dialogo="ta-dialogo-vehiculo">Vehículos</button>
+        <button class="ta-barra__enlace" type="button" data-abrir-dialogo="ta-dialogo-conductor">Conductores</button>
+      </nav>
+
+      <div class="ta-barra__usuario">
+        <span class="ta-barra__nombre">Transportes García</span>
+        <a class="ta-barra__salir" href="index.html">Salir</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="ta-panel__contenido" id="ta-panel-contenido">
+    <div class="ta-panel__cabecera">
+      <div>
+        <p class="ta-etiqueta">Panel de vencimientos</p>
+        <h1>Hola, Transportes García</h1>
+        <p class="ta-panel__fecha">Hoy es <span data-hoy>—</span>. Esto es lo que tienes que vigilar.</p>
+        <p class="ta-campo__ayuda">Demo estática con datos inventados: los cambios no se guardan al recargar.</p>
+      </div>
+      <div class="ta-panel__acciones">
+        <a class="ta-boton ta-boton--secundario" href="panel.html">Exportar CSV</a>
+        <button class="ta-boton ta-boton--primario" type="button" data-abrir-dialogo="ta-dialogo-vencimiento">Nuevo vencimiento</button>
+      </div>
+    </div>
+
+    <section class="ta-resumen" aria-label="Resumen de vencimientos">
+      <div class="ta-resumen__dato">
+        <span class="ta-resumen__numero" data-resumen="total">0</span>
+        <span class="ta-resumen__texto">Vencimientos activos</span>
+      </div>
+      <div class="ta-resumen__dato ta-resumen__dato--rojo">
+        <span class="ta-resumen__numero" data-resumen="rojo">0</span>
+        <span class="ta-resumen__texto">Urgentes o vencidos</span>
+      </div>
+      <div class="ta-resumen__dato ta-resumen__dato--ambar">
+        <span class="ta-resumen__numero" data-resumen="ambar">0</span>
+        <span class="ta-resumen__texto">Próximos (8-30 días)</span>
+      </div>
+      <div class="ta-resumen__dato ta-resumen__dato--verde">
+        <span class="ta-resumen__numero" data-resumen="verde">0</span>
+        <span class="ta-resumen__texto">Con margen</span>
+      </div>
+    </section>
+
+    <section class="ta-tabla-caja" aria-labelledby="ta-titulo-tabla">
+      <div class="ta-tabla-cabecera">
+        <h2 id="ta-titulo-tabla">Todos los vencimientos</h2>
+        <div class="ta-filtros">
+          <div class="ta-filtros__grupo" role="group" aria-label="Filtrar por estado">
+            <button class="ta-chip ta-chip--activo" type="button" data-filtro="todos" aria-pressed="true">Todos</button>
+            <button class="ta-chip" type="button" data-filtro="rojo" aria-pressed="false">Urgentes</button>
+            <button class="ta-chip" type="button" data-filtro="ambar" aria-pressed="false">Próximos</button>
+            <button class="ta-chip" type="button" data-filtro="verde" aria-pressed="false">Con margen</button>
+          </div>
+
+          <div class="ta-filtros__busqueda">
+            <label class="ta-visually-hidden" for="ta-buscar">Buscar por matrícula, alias o trámite</label>
+            <input type="search" id="ta-buscar" placeholder="Buscar matrícula, alias o trámite" data-buscar>
+          </div>
+
+          <div class="ta-filtros__tipo">
+            <label class="ta-visually-hidden" for="ta-tipo">Filtrar por trámite</label>
+            <select id="ta-tipo" data-filtro-tipo>
+              <option value="">Todos los trámites</option>
+              <option value="tarjeta_conductor">Tarjeta del conductor</option>
+              <option value="tarjeta_conductor_g2v2">Tarjeta del conductor (G2V2)</option>
+              <option value="unidad_vehiculo">Unidad del vehículo</option>
+              <option value="itv">ITV</option>
+              <option value="seguro">Seguro</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="ta-tabla-scroll">
+        <table class="ta-tabla">
+          <thead>
+            <tr>
+              <th scope="col">Estado</th>
+              <th scope="col">Vehículo</th>
+              <th scope="col">Conductor</th>
+              <th scope="col">Trámite</th>
+              <th scope="col">Vence</th>
+              <th scope="col">Días</th>
+              <th scope="col"><span class="ta-visually-hidden">Acciones</span></th>
+            </tr>
+          </thead>
+          <tbody data-tabla-vencimientos>
+            <tr class="ta-tabla__vacia">
+              <td colspan="7">
+                <strong>Cargando los vencimientos de ejemplo…</strong>
+                Si no aparecen, comprueba que JavaScript está activado.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="ta-tabla__leyenda">
+        <span class="ta-punto ta-punto--rojo"></span> Rojo: 7 días o menos, o vencido.
+        <span class="ta-punto ta-punto--ambar"></span> Ámbar: de 8 a 30 días.
+        <span class="ta-punto ta-punto--verde"></span> Verde: más de 30 días.
+      </p>
+      <p class="ta-tabla__vacia-mensaje" data-sin-resultados hidden>No hay vencimientos que coincidan con el filtro.</p>
+    </section>
+
+    <details class="ta-ajustes">
+      <summary>Ajustes de los avisos</summary>
+
+      <form method="post" action="panel.html">
+        <input type="hidden" name="action" value="tachoaviso_accion">
+        <input type="hidden" name="accion" value="guardar_ajustes">
+
+        <fieldset>
+          <legend>Avísame con esta antelación</legend>
+          <label class="ta-campo--check">
+            <input type="checkbox" name="antelacion_30" value="30" checked>
+            30 días antes
+          </label>
+          <label class="ta-campo--check">
+            <input type="checkbox" name="antelacion_15" value="15" checked>
+            15 días antes
+          </label>
+          <label class="ta-campo--check">
+            <input type="checkbox" name="antelacion_7" value="7" checked>
+            7 días antes
+          </label>
+        </fieldset>
+
+        <div class="ta-campo">
+          <label for="ta-email-avisos">Correo para los avisos</label>
+          <input type="email" id="ta-email-avisos" name="email_avisos" placeholder="flota@transportesgarcia.es" data-validar="email">
+          <p class="ta-campo__ayuda">Si lo dejas vacío, se usa el correo de la cuenta.</p>
+          <p class="ta-campo__error" data-error-de="ta-email-avisos" aria-live="polite"></p>
+        </div>
+
+        <label class="ta-campo--check">
+          <input type="checkbox" name="recibir_avisos" value="1" checked>
+          Quiero recibir los avisos por correo
+        </label>
+
+        <button class="ta-boton ta-boton--primario" type="submit">Guardar ajustes</button>
+      </form>
+    </details>
+  </main>
+
+  <dialog class="ta-dialogo" id="ta-dialogo-vencimiento" aria-labelledby="ta-titulo-dialogo-vencimiento">
+    <form method="post" action="panel.html">
+      <input type="hidden" name="action" value="tachoaviso_accion">
+      <input type="hidden" name="accion" value="guardar_vencimiento">
+
+      <div class="ta-dialogo__cabecera">
+        <h2 id="ta-titulo-dialogo-vencimiento">Nuevo vencimiento</h2>
+        <button class="ta-dialogo__cerrar" type="button" data-cerrar-dialogo aria-label="Cerrar">&times;</button>
+      </div>
+
+      <p class="ta-dialogo__intro">Indica la fecha de la última revisión. Nosotros sumamos el plazo legal.</p>
+
+      <div class="ta-campo">
+        <label for="ta-tipo-nuevo">Trámite</label>
+        <select id="ta-tipo-nuevo" name="tipo" data-tipo-vencimiento>
+          <option value="tarjeta_conductor" data-dias="28">Tarjeta del conductor (28 días)</option>
+          <option value="tarjeta_conductor_g2v2" data-dias="56">Tarjeta del conductor (G2V2) (56 días)</option>
+          <option value="unidad_vehiculo" data-dias="90">Unidad del vehículo (90 días)</option>
+          <option value="itv" data-dias="365">ITV (365 días)</option>
+          <option value="seguro" data-dias="365">Seguro (365 días)</option>
+        </select>
+      </div>
+
+      <div class="ta-campo">
+        <label for="ta-vehiculo-nuevo">Vehículo</label>
+        <select id="ta-vehiculo-nuevo" name="vehiculo_id">
+          <option value="0">Sin vehículo (solo tarjeta)</option>
+          <option value="1">Camión 1 · 1234 ABC</option>
+          <option value="2">Camión 2 · 4567 DEF</option>
+          <option value="3">Camión 3 · 7890 GHI</option>
+          <option value="4">Furgoneta · 2345 JKL</option>
+          <option value="5">Camión 4 · 3456 MNO</option>
+        </select>
+      </div>
+
+      <div class="ta-campo">
+        <label for="ta-conductor-nuevo">Conductor</label>
+        <select id="ta-conductor-nuevo" name="conductor_id">
+          <option value="0">Sin conductor</option>
+          <option value="1">Luis</option>
+          <option value="2">Marta</option>
+          <option value="3">Ana</option>
+        </select>
+      </div>
+
+      <div class="ta-campo">
+        <label for="ta-fecha-nuevo">Fecha de la última revisión</label>
+        <input type="date" id="ta-fecha-nuevo" name="fecha_referencia" required data-validar="fecha">
+        <p class="ta-campo__error" data-error-de="ta-fecha-nuevo" aria-live="polite"></p>
+      </div>
+
+      <div class="ta-campo">
+        <label for="ta-intervalo-nuevo">Intervalo en días</label>
+        <input type="number" id="ta-intervalo-nuevo" name="intervalo_dias" min="1" max="1095" value="28" required data-validar="numero">
+        <p class="ta-campo__ayuda">Se rellena solo al elegir el trámite, pero puedes cambiarlo.</p>
+        <p class="ta-campo__error" data-error-de="ta-intervalo-nuevo" aria-live="polite"></p>
+      </div>
+
+      <p class="ta-campo__ayuda" data-previsualizacion aria-live="polite"></p>
+
+      <div class="ta-campo">
+        <label for="ta-notas-nuevo">Notas (opcional)</label>
+        <input type="text" id="ta-notas-nuevo" name="notas" maxlength="255" placeholder="Ej.: descarga hecha en el taller">
+      </div>
+
+      <div class="ta-dialogo__acciones">
+        <button class="ta-boton ta-boton--secundario" type="button" data-cerrar-dialogo>Cancelar</button>
+        <button class="ta-boton ta-boton--primario" type="submit">Calcular y guardar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="ta-dialogo" id="ta-dialogo-vehiculo" aria-labelledby="ta-titulo-dialogo-vehiculo">
+    <form method="post" action="panel.html">
+      <input type="hidden" name="action" value="tachoaviso_accion">
+      <input type="hidden" name="accion" value="guardar_vehiculo">
+
+      <div class="ta-dialogo__cabecera">
+        <h2 id="ta-titulo-dialogo-vehiculo">Nuevo vehículo</h2>
+        <button class="ta-dialogo__cerrar" type="button" data-cerrar-dialogo aria-label="Cerrar">&times;</button>
+      </div>
+
+      <div class="ta-campo">
+        <label for="ta-matricula">Matrícula</label>
+        <input type="text" id="ta-matricula" name="matricula" placeholder="1234 ABC" required data-validar="matricula">
+        <p class="ta-campo__error" data-error-de="ta-matricula" aria-live="polite"></p>
+      </div>
+
+      <div class="ta-campo">
+        <label for="ta-alias-vehiculo">Alias del vehículo</label>
+        <input type="text" id="ta-alias-vehiculo" name="alias" placeholder="Camión 1" data-validar="texto">
+        <p class="ta-campo__ayuda">Si lo dejas vacío, se usa la matrícula.</p>
+      </div>
+
+      <div class="ta-campo">
+        <label for="ta-marca">Marca (opcional)</label>
+        <input type="text" id="ta-marca" name="marca" maxlength="60" placeholder="Mercedes Actros">
+      </div>
+
+      <div class="ta-dialogo__acciones">
+        <button class="ta-boton ta-boton--secundario" type="button" data-cerrar-dialogo>Cancelar</button>
+        <button class="ta-boton ta-boton--primario" type="submit">Guardar vehículo</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="ta-dialogo" id="ta-dialogo-conductor" aria-labelledby="ta-titulo-dialogo-conductor">
+    <form method="post" action="panel.html">
+      <input type="hidden" name="action" value="tachoaviso_accion">
+      <input type="hidden" name="accion" value="guardar_conductor">
+
+      <div class="ta-dialogo__cabecera">
+        <h2 id="ta-titulo-dialogo-conductor">Nuevo conductor</h2>
+        <button class="ta-dialogo__cerrar" type="button" data-cerrar-dialogo aria-label="Cerrar">&times;</button>
+      </div>
+
+      <p class="ta-dialogo__intro">Solo se guarda un alias. No pongas el nombre real: no hace falta para avisar de un plazo.</p>
+
+      <div class="ta-campo">
+        <label for="ta-alias-conductor">Alias</label>
+        <input type="text" id="ta-alias-conductor" name="alias" placeholder="Conductor A" required data-validar="texto">
+        <p class="ta-campo__error" data-error-de="ta-alias-conductor" aria-live="polite"></p>
+      </div>
+
+      <div class="ta-campo">
+        <label for="ta-vehiculo-conductor">Vehículo habitual (opcional)</label>
+        <select id="ta-vehiculo-conductor" name="vehiculo_id">
+          <option value="0">Sin vehículo asignado</option>
+          <option value="1">Camión 1 · 1234 ABC</option>
+          <option value="2">Camión 2 · 4567 DEF</option>
+          <option value="3">Camión 3 · 7890 GHI</option>
+          <option value="4">Furgoneta · 2345 JKL</option>
+          <option value="5">Camión 4 · 3456 MNO</option>
+        </select>
+      </div>
+
+      <div class="ta-dialogo__acciones">
+        <button class="ta-boton ta-boton--secundario" type="button" data-cerrar-dialogo>Cancelar</button>
+        <button class="ta-boton ta-boton--primario" type="submit">Guardar conductor</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="demo.js"></script>
+  <script src="../assets/js/config.js"></script>
+  <script src="../assets/js/validacion.js"></script>
+  <script src="../assets/js/panel.js"></script>
+</body>
+</html>

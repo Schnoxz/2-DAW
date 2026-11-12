@@ -1,12 +1,5 @@
 # Tarea 2 - El cliente, la idea de negocio y los valores éticos y sociales · Solución
 
-**Curso:** Proyecto Intermodular de Desarrollo de Aplicaciones Web  
-**Proyecto:** TachoAviso — Control de vencimientos legales para transportistas autónomos y microflotas  
-**Estado:** Completado  
-**Enunciado:** `Tarea 2 - El cliente, la idea de negocio y los valores eticos y sociales.md`
-
----
-
 ## 1. Segmento de mercado y early adopters
 
 ### 1.1. Problemas actuales de los early adopters
@@ -170,8 +163,3 @@ Al estudiar a esos clientes aparece el hueco. Los productos parecidos tienen tre
 El negocio se plantea con los pies en el suelo. El MVP se desarrolla como plugin de WordPress con PHP y JavaScript, se despliega en un hosting de unos 66–132 € al año y se cobra a **4–6 € al mes**, por debajo del precio de una sola multa y en la franja que el mercado ya tolera (el competidor directo cobra 3–5 €). El objetivo del primer año **no es ganar un sueldo, sino cubrir gastos y demostrar que el producto se usa**: 30–40 cuentas activas, unos 120–200 € al mes de ingresos, un 70 % de retención a los tres meses, cinco entrevistas con transportistas y un acuerdo con un taller o una asociación local para captar a los primeros clientes. Si esos números se cumplen, el segundo año se puede plantear crecer hacia asesorías y hacia otras comarcas con puerto.
 
 Por último, el proyecto incorpora desde el diseño tres elementos del balance social. El primero es la **privacidad**: solo se guardan tres datos por cuenta (alias, matrícula y fechas), la política se escribe en lenguaje claro y el usuario puede descargar o borrar todo con un botón. El segundo es la **accesibilidad**, entendida como inclusión digital: contraste y tamaño de letra conformes a WCAG 2.1 AA, botones grandes, formularios de un solo paso y lenguaje del sector, para que lo use también un transportista de 55 años desde la cabina. El tercero son las **compras sostenibles y el apoyo al entorno**: hosting con energía renovable y servidores en Europa, acuerdos con talleres y asociaciones del Campo de Gibraltar, una charla anual gratuita sobre plazos y sanciones y un descuento del 50 % para autónomos en baja actividad. No son adornos: son la forma de que un negocio pequeño compita por confianza en un sector donde la confianza es el único marketing que funciona.
-
----
-
-> **Nota:** Respuesta lista para entregar en Moodle (Proyecto Intermodular, Tarea 2).
-> Enlace del enunciado: https://educacionadistancia.juntadeandalucia.es/centros/cadiz/mod/assign/view.php?id=455539

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="tituloCocina">
+  <title id="tituloCocina">Cocina con encimera y armarios</title>
+  <rect width="800" height="600" fill="#eef3f1"/>
+  <rect y="430" width="800" height="170" fill="#cfd8d3"/>
+  <rect x="80" y="80" width="300" height="100" rx="6" fill="#d9e6df" stroke="#b7c9c0" stroke-width="6"/>
+  <rect x="80" y="200" width="300" height="120" rx="6" fill="#c6d8cf" stroke="#b7c9c0" stroke-width="6"/>
+  <line x1="230" y1="200" x2="230" y2="320" stroke="#b7c9c0" stroke-width="6"/>
+  <rect x="80" y="340" width="470" height="24" fill="#8a6a4f"/>
+  <rect x="80" y="364" width="470" height="110" fill="#b98a63"/>
+  <line x1="230" y1="364" x2="230" y2="474" stroke="#8a6a4f" stroke-width="6"/>
+  <line x1="380" y1="364" x2="380" y2="474" stroke="#8a6a4f" stroke-width="6"/>
+  <rect x="300" y="300" width="110" height="40" rx="4" fill="#9aa7ad"/>
+  <circle cx="330" cy="320" r="9" fill="#5c6a70"/>
+  <circle cx="380" cy="320" r="9" fill="#5c6a70"/>
+  <rect x="460" y="300" width="70" height="40" rx="6" fill="#b0bec5"/>
+  <rect x="600" y="180" width="130" height="300" rx="8" fill="#dfe7e3" stroke="#b7c9c0" stroke-width="6"/>
+  <line x1="600" y1="270" x2="730" y2="270" stroke="#b7c9c0" stroke-width="6"/>
+  <rect x="620" y="200" width="12" height="50" rx="6" fill="#9aa7ad"/>
+  <rect x="690" y="290" width="12" height="60" rx="6" fill="#9aa7ad"/>
+  <rect x="520" y="100" width="60" height="70" rx="8" fill="#e07a5f"/>
+  <path d="M535 100c0-25 30-25 30 0" fill="none" stroke="#e07a5f" stroke-width="8"/>
+</svg>
