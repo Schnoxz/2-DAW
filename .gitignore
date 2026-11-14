@@ -22,3 +22,7 @@ Entorno Servidor/apuntes/*.md
 Entorno Servidor/apuntes/*.css
 Wordpress/apuntes/*.md
 Wordpress/apuntes/*.css
+
+# proyecto intermodular TachoAviso: vive en su propio repo privado
+# (https://github.com/Schnoxz/TachoAviso), no se versiona aquí
+Proyecto/TachoAviso/
