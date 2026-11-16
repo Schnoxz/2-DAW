@@ -1,276 +1,368 @@
-### 1. Rangos de Math.random()
+# Tema 3.1 · Objetos predefinidos del lenguaje
 
-`Math.random()` devuelve un decimal en `[0, 1)`. Para obtener enteros se usa `Math.floor(Math.random() * (max - min + 1)) + min`, y para decimales se sortea el entero, se divide por la escala y se fija la precisión con `toFixed()`.
+**Módulo:** Desarrollo Web en Entorno Cliente (DWEC) · 2º DAW
+**Unidad:** 3 · Objetos predefinidos del lenguaje
+**Tarea:** 3.1. OBJETOS PREDEFINIDOS DEL LENGUAJE (RA3 · CE 3.a)
+**Entrega:** 18/11/2026
+**Archivos:** `index.html`, `css/estilos.css`, `js/crypto-aleatorio.js`,
+`js/aleatorio.js`, `js/facturacion.js`, `js/matriculas.js`
 
-`funcionA()`: rango `[10, 20]`, 0 decimales.
+Las cuatro actividades están en una sola página con cuatro paneles. Las dos
+primeras muestran el resultado en pantalla además de en la consola; la tercera
+y la cuarta son formularios y botones reales. Todo se ha probado en Edge con
+`file://`, sin errores de consola.
 
-```js
-function funcionA() {
-  const amplitud = 10; // 20 - 10
-  const enteroBase = Math.floor(Math.random() * (amplitud + 1)) + 10;
-  return enteroBase;
-}
+---
+
+## Actividad 3.1.1 · Descifra los rangos de `Math.random()`
+
+`Math.random()` devuelve un decimal en el intervalo **semiabierto** `[0, 1)`: el
+0 puede salir, el 1 nunca. La fórmula de un entero en `[min, max]` es
+
+```
+Math.floor(Math.random() * (max - min + 1)) + min
 ```
 
-`Math.random() * 11` genera 0..10 y el `+ 10` desplaza el intervalo a 10..20.
+El `+ 1` de la amplitud es la clave: hay `max - min + 1` enteros posibles y sin
+ese `+ 1` el máximo no saldría nunca. Después, dividir entre 10, 100 o 1000 baja
+el número de escala y `toFixed()` fija los decimales.
 
-`funcionB()`: rango `[0, 1]`, 1 decimal.
+| Función | Cálculo | Rango exacto | Decimales |
+|---|---|---|---|
+| `funcionA()` | `floor(r · 11) + 10` | `[10, 20]` | 0 |
+| `funcionB()` | `floor(r · 11) / 10`, `toFixed(1)` | `[0.0, 1.0]` | 1 |
+| `funcionC()` | `(floor(r · 1001) + 500) / 100`, `toFixed(2)` | `[5.00, 15.00]` | 2 |
+| `funcionD()` | `floor(r · 6) + 1` | `[1, 6]` | 0 |
+| `funcionE()` | `(floor(r · 2001) − 1000) / 1000`, `toFixed(3)` | `[−1.000, 1.000]` | 3 |
+| `numeroA()` | `floor(r · 101)` | `[0, 100]` | 0 |
+| `numeroB()` | `floor(r · 2)` | `[0, 1]` | 0 |
+| `F()` | `floor(r · 2⁵³) / (2⁵³ − 1)` | `[0, 1]` | hasta 16, sin fijar |
 
-```js
-function funcionB() {
-  const amplitud = 10;
-  const enteroBase = Math.floor(Math.random() * (amplitud + 1));
-  return Number((enteroBase / 10).toFixed(1));
-}
+Cómo se llega a cada una:
+
+- **A:** amplitud 10 → 11 valores (`0` a `10`) y luego `+ 10`, así que va de 10 a 20.
+- **B:** los mismos 11 valores divididos entre 10 → `0.0, 0.1 … 1.0`; un decimal.
+- **C:** 1001 valores (`500` a `1500`) divididos entre 100 → de 5.00 a 15.00; dos decimales.
+- **D:** amplitud 5 → 6 valores (`0` a `5`) más 1 → de 1 a 6, como un dado.
+- **E:** 2001 valores (`−1000` a `1000`) divididos entre 1000 → de −1.000 a 1.000; tres decimales.
+- **numeroA:** `floor(r · 101)` son 101 valores, de 0 a 100 (no de 1 a 100).
+- **numeroB:** dos valores, 0 o 1; sirve para lanzar una moneda.
+- **F:** el entero llega hasta `2⁵³ − 1` y se divide entre ese mismo máximo, así
+  que el 1 sí puede salir. No usa `toFixed()`, por eso los decimales son los que
+  dé la división (hasta 16 cifras significativas).
+
+La página comprueba la tabla midiendo 20.000 tiradas de cada función:
+
+```
+funcionA()   observado [10, 20]      teórico [10, 20]
+funcionC()   observado [5, 15]       teórico [5.00, 15.00]
+funcionE()   observado [-1, 1]       teórico [-1.000, 1.000]
+F()          observado [0.0000514…, 0.9999694…]   teórico [0, 1]
 ```
 
-El entero 0..10 dividido entre 10 da 0.0, 0.1, ..., 1.0. `Number()` elimina el cero final al mostrarlo, pero la precisión sigue siendo de una décima.
+En B, C y E el mínimo y el máximo observados salen sin decimales porque
+`Number()` elimina los ceros finales: `5.00` es `5`. La **precisión** sigue
+siendo la que fija `toFixed()`.
 
-`funcionC()`: rango `[5, 15]`, 2 decimales.
+> **Trampa del enunciado:** las etiquetas `amplitud = 10` invitan a pensar que
+> el rango es 0–10. El rango lo decide `amplitud + 1` junto con el desplazamiento
+> posterior. Conviene calcularlo siempre como `max − min + 1`.
 
-```js
-function funcionC() {
-  const minEscalado = 500;
-  const maxEscalado = 1500;
-  const enteroBase =
-    Math.floor(Math.random() * (maxEscalado - minEscalado + 1)) + minEscalado;
-  return Number((enteroBase / 100).toFixed(2));
-}
-```
+![Panel 3.1.1 con la tabla de rangos y la comprobación de 20.000 tiradas](capturas/31-1-rangos.png)
 
-El entero 500..1500 dividido entre 100 da 5.00..15.00, con pasos de una centésima.
+---
 
-`funcionD()`: rango `[1, 6]`, 0 decimales.
+## Actividad 3.1.2 · Función `generarAleatorio()`
 
 ```js
-function funcionD() {
-  const amplitud = 5;
-  const enteroBase = Math.floor(Math.random() * (amplitud + 1)) + 1;
-  return enteroBase;
-}
-```
-
-`Math.random() * 6` genera 0..5 y el `+ 1` lo convierte en 1..6.
-
-`funcionE()`: rango `[-1, 1]`, 3 decimales.
-
-```js
-function funcionE() {
-  const minEscalado = -1000;
-  const maxEscalado = 1000;
-  const enteroBase =
-    Math.floor(Math.random() * (maxEscalado - minEscalado + 1)) + minEscalado;
-  return Number((enteroBase / 1000).toFixed(3));
-}
-```
-
-El entero -1000..1000 dividido entre 1000 da -1.000..1.000, con pasos de una milésima.
-
-Las funciones auxiliares del mismo bloque son más cortas:
-
-```js
-const numeroA = () => Math.floor(Math.random() * 101); // [0, 100]
-const numeroB = () => Math.floor(Math.random() * 2);   // [0, 1]
-```
-
-`numeroA` genera 0..100 y `numeroB` genera 0 o 1.
-
-`funcionF()`: rango `[0, 1]`, decimales variables.
-
-```js
-function funcionF() {
-  const maxGranEntero = 9007199254740991; // 2^53 - 1
-  const enteroAleatorio =
-    Math.floor(Math.random() * (maxGranEntero + 1));
-  return enteroAleatorio / maxGranEntero;
-}
-```
-
-No usa `toFixed`, así que no tiene un número fijo de decimales: devuelve un `double` con hasta 17 cifras significativas. Además, a diferencia de `Math.random()`, sí puede devolver exactamente 1 cuando el entero sorteado es el máximo.
-
-Resumen: A `[10, 20]` 0 decimales; B `[0, 1]` 1 decimal; C `[5, 15]` 2 decimales; D `[1, 6]` 0 decimales; E `[-1, 1]` 3 decimales; `numeroA` `[0, 100]` 0 decimales; `numeroB` `[0, 1]` 0 decimales; F `[0, 1]` decimales variables.
-
-### 2. cryptoRandomFloat y generarAleatorio
-
-El PDF define `cryptoRandomFloat()` con una errata: divide el `Uint32Array` completo entre 2^32, y eso da `NaN`. Hay que usar el primer elemento, `buffer[0]`.
-
-```js
-function cryptoRandomFloat() {
-  const buffer = new Uint32Array(1);
-  crypto.getRandomValues(buffer);
-  return buffer[0] / 4294967296; // 2^32
-}
-```
-
-Las funciones análogas a las del ejercicio anterior son las mismas fórmulas, cambiando `Math.random()` por `cryptoRandomFloat()`:
-
-```js
-const funcionAsegura = () => Math.floor(cryptoRandomFloat() * 11) + 10;
-const funcionBsegura = () => Number((Math.floor(cryptoRandomFloat() * 11) / 10).toFixed(1));
-const funcionCsegura = () =>
-  Number(((Math.floor(cryptoRandomFloat() * 1001) + 500) / 100).toFixed(2));
-const funcionDsegura = () => Math.floor(cryptoRandomFloat() * 6) + 1;
-const funcionEsegura = () =>
-  Number(((Math.floor(cryptoRandomFloat() * 2001) - 1000) / 1000).toFixed(3));
-```
-
-La función genérica queda así:
-
-```js
-/**
- * Genera un número aleatorio dentro de [min, max].
- * @param {number} [min=0] - Límite inferior.
- * @param {number} [max=100] - Límite superior.
- * @param {number} [decimales=0] - Cifras decimales del resultado.
- * @param {boolean|string} [seguro=false] - Si es true, usa cryptoRandomFloat().
- * @returns {number}
- * @throws {Error} Si min es mayor que max.
- */
-function generarAleatorio(
-  min = 0,
-  max = 100,
-  decimales = 0,
-  seguro = false
-) {
+// generarAleatorio(min, max, decimales, seguro)
+// Devuelve un número al azar dentro de [min, max]. Con decimales = 0 es un
+// entero; con decimales > 0 redondea a esa cantidad de cifras. El cuarto
+// parámetro, si vale "segura", cambia Math.random() por cryptoRandomFloat().
+// Lanza un Error si min > max o si decimales no es un entero válido.
+function generarAleatorio(min = 0, max = 100, decimales = 0, seguro = "normal") {
   if (min > max) {
-    throw new Error("El mínimo no puede ser mayor que el máximo.");
+    throw new Error(`El mínimo (${min}) no puede ser mayor que el máximo (${max}).`);
   }
 
-  const aleatorio = seguro ? cryptoRandomFloat() : Math.random();
-  return Number((min + aleatorio * (max - min)).toFixed(decimales));
+  if (!Number.isInteger(decimales) || decimales < 0) {
+    throw new Error("Los decimales tienen que ser un entero mayor o igual que 0.");
+  }
+
+  // Elijo el generador una sola vez y el resto de la función es igual para los dos
+  const aleatorio = seguro === "segura" ? cryptoRandomFloat() : Math.random();
+
+  if (decimales === 0) {
+    // Al sumar 1 a la amplitud, el máximo también puede salir
+    return Math.floor(aleatorio * (max - min + 1)) + min;
+  }
+
+  // En un intervalo continuo no se suma 1: el máximo solo saldría con r = 1,
+  // y Math.random() nunca llega a 1
+  const valor = min + aleatorio * (max - min);
+
+  // Number() es imprescindible porque toFixed() devuelve un String
+  return Number(valor.toFixed(decimales));
 }
 ```
 
-La fórmula `min + aleatorio * (max - min)` lleva el decimal de `[0, 1)` al intervalo pedido y `toFixed(decimales)` fija la precisión. El cuarto parámetro se evalúa como booleano, por eso la cadena `"segura"` del enunciado también activa el modo seguro.
+Decisiones que conviene defender:
 
-Casos de uso del enunciado:
+| Decisión | Por qué |
+|---|---|
+| Parámetros con valor por defecto | `generarAleatorio()` sin argumentos devuelve un entero de 0 a 100, como los ejemplos del tema |
+| `throw new Error` en vez de devolver `null` | El enunciado pide un error explícito; quien llama decide si lo captura con `try…catch` |
+| Comprobar `decimales` con `Number.isInteger` | `toFixed(1.5)` trunca a 1 sin avisar; es mejor rechazarlo |
+| Devolver `Number` | `Number()` convierte el texto de `toFixed()` y garantiza el tipo que pide el enunciado |
+| Dos fórmulas según los decimales | Con enteros hay que incluir el máximo (`+ 1`); con decimales el intervalo es continuo y no |
+| `seguro === "segura"` | El cuarto parámetro es opcional, así que la función sigue funcionando sin él |
+
+### El generador criptográfico
+
+```js
+// cryptoRandomFloat()
+// Genera un decimal entre 0 (incluido) y 1 (excluido) con la entropía del
+// sistema operativo en lugar del generador pseudoaleatorio del motor de JS.
+// No recibe parámetros. Devuelve un Number.
+function cryptoRandomFloat() {
+  // Uint32Array(1) reserva un entero sin signo de 32 bits, de 0 a 4.294.967.295
+  const buffer = new Uint32Array(1);
+
+  // getRandomValues() rellena el array en el sitio: no devuelve nada
+  crypto.getRandomValues(buffer);
+
+  // Se divide entre 2^32 para que el resultado caiga siempre en [0, 1).
+  // Hay que usar buffer[0]: dividir el array entero da NaN.
+  return buffer[0] / 4294967296;
+}
+```
+
+`getRandomValues()` trabaja con **arrays tipados** (`Uint32Array`, `Uint8Array`…),
+no con números sueltos. Por eso se reserva un array de un solo elemento y se
+rellena; después se lee `buffer[0]`.
+
+> **Errata del material:** el PDF del tema escribe `return buffer / 4294967296;`.
+> Eso divide el array, no el número, y devuelve `NaN`. Comprobado en Edge:
+> `new Uint32Array(1) / 4294967296` es `NaN`. La versión correcta es `buffer[0]`.
+
+### Casos de uso y pruebas
 
 ```js
 console.log("Entero [0, 100]:", generarAleatorio(0, 100));
-console.log("Coordenada GPS [0.125, 0.875] de 3 cifras:", generarAleatorio(0.125, 0.875, 3));
-console.log("Coordenada GPS [0.125, 0.875] de 3 cifras (Segura):", generarAleatorio(0.125, 0.875, 3, "segura"));
+console.log("Coordenada GPS [0.125, 0.875] de 3 cifras:",
+  generarAleatorio(0.125, 0.875, 3));
+console.log("Coordenada GPS [0.125, 0.875] de 3 cifras (Segura):",
+  generarAleatorio(0.125, 0.875, 3, "segura"));
 ```
 
-Salida de una ejecución:
+Salidas reales:
 
-```text
-Entero [0, 100]: 5
-Coordenada GPS [0.125, 0.875] de 3 cifras: 0.599
-Coordenada GPS [0.125, 0.875] de 3 cifras (Segura): 0.582
-Error esperado: El mínimo no puede ser mayor que el máximo.
+```
+Entero [0, 100]: 48
+Coordenada GPS [0.125, 0.875] de 3 cifras: 0.612
+Coordenada GPS [0.125, 0.875] de 3 cifras (Segura): 0.495
 ```
 
-La última línea sale de llamar a `generarAleatorio(10, 1)` dentro de un `try...catch`.
+Y el caso de error, capturado en la página con `try…catch`:
 
-### 3. Validador de facturación
-
-El formulario solo necesita dos campos: el precio como texto, para poder escribir comas y el símbolo €, y el IVA como número, con 21 por defecto.
-
-```html
-<form id="formulario">
-  <label for="precio">Precio sin IVA (€)</label>
-  <input id="precio" type="text" placeholder="Ej.: 1.234,56 €">
-
-  <label for="iva">Porcentaje de IVA (%)</label>
-  <input id="iva" type="number" value="21" min="0" max="100" step="0.01">
-
-  <button type="submit">Calcular</button>
-</form>
-<p id="resultado"></p>
+```
+Error capturado: El mínimo (100) no puede ser mayor que el máximo (0).
 ```
 
-El script limpia el texto, convierte, valida y calcula:
+Se han ejecutado 5.000 llamadas a `generarAleatorio(3, 7, 0)` y otras 5.000 a
+`generarAleatorio(0.125, 0.875, 3)`: todos los enteros caen en `[3, 7]`, todos
+los decimales caen en `[0.125, 0.875]` y ninguno tiene más de 3 cifras.
+
+![Panel 3.1.2 generando una coordenada con tres decimales y el generador seguro](capturas/31-2-generar.png)
+
+---
+
+## Actividad 3.1.3 · Validador de facturación
+
+El problema no es multiplicar, es **normalizar lo que escribe el usuario**. El
+campo admite `1234,56`, `1.234,56 €` o ` 12.5 `, y los tres tienen que acabar en
+el mismo número.
 
 ```js
-"use strict";
+// limpiarImporte(texto)
+// Deja el precio en un formato que Number() entienda: sin €, sin espacios y
+// con el punto como separador decimal. Devuelve un String.
+function limpiarImporte(texto) {
+  // trim() quita los espacios de los extremos; el resto desaparecen con \s
+  let limpio = texto.trim().replace(/€/g, "").replace(/\s/g, "");
 
-const formulario = document.getElementById("formulario");
-const resultado = document.getElementById("resultado");
-
-// Quita espacios y €, cambia la coma decimal por punto y convierte a Number.
-function convertirNumero(texto) {
-  let limpio = texto.trim().replace("€", "").replace(/\s/g, "");
-  if (limpio.includes(",")) {
+  if (limpio.includes(",") && limpio.includes(".")) {
+    // Si vienen los dos, el punto separa miles ("1.234,56") y la coma decimales
     limpio = limpio.replace(/\./g, "").replace(",", ".");
+  } else {
+    // Con un solo separador, la coma es la decimal ("12,50")
+    limpio = limpio.replace(",", ".");
   }
-  return Number.parseFloat(limpio);
+
+  return limpio;
 }
-
-formulario.addEventListener("submit", (evento) => {
-  evento.preventDefault();
-
-  const precio = convertirNumero(document.getElementById("precio").value);
-  const iva = convertirNumero(document.getElementById("iva").value || "21");
-
-  if (Number.isNaN(precio) || !Number.isFinite(precio) || precio <= 0) {
-    resultado.className = "error";
-    resultado.textContent = "El precio debe ser un número positivo.";
-    return;
-  }
-
-  if (Number.isNaN(iva) || !Number.isFinite(iva) || iva < 0 || iva > 100) {
-    resultado.className = "error";
-    resultado.textContent = "El IVA debe ser un número entre 0 y 100.";
-    return;
-  }
-
-  const cuota = (precio * iva) / 100;
-  const total = precio + cuota;
-
-  resultado.className = "";
-  resultado.innerHTML =
-    "Base imponible: " + precio.toFixed(2) + " €<br>" +
-    "Cuota de IVA (" + iva + " %): " + cuota.toFixed(2) + " €<br>" +
-    "Total (PVP): " + total.toFixed(2) + " €";
-});
 ```
 
-`trim()` quita los espacios de los extremos, `replace("€", "")` el símbolo y `replace(",", ".")` la coma decimal. Si el texto trae coma y puntos de miles, como `1.234,56`, los puntos se quitan antes de cambiar la coma por punto para que `parseFloat` no se corte en el primer punto.
-
-`Number.isNaN()` detecta el texto no numérico y `Number.isFinite()` descarta `Infinity`. Después se exige que el precio sea mayor que cero. La cuota es `precio * iva / 100`, el PVP es `precio + cuota`, y ambos se muestran con `toFixed(2)`.
-
-![Factura de 1.234,56 € con un 21 % de IVA](capturas/actividad-3-1-3.png)
-
-### 4. Matrículas y cripto-identificadores
-
-La matrícula se construye con cuatro dígitos y tres consonantes. El número sale de `Math.random() * 10000`, se convierte a texto y se rellena con `padStart(4, "0")`. Las letras se eligen de una cadena sin vocales, sin Ñ y sin Q.
+La validación sigue el orden que pide el enunciado:
 
 ```js
-"use strict";
+// validarFactura(base, iva)
+// Comprueba que la base sea un número real positivo y el IVA un porcentaje
+// razonable. Devuelve un String con el error, o un String vacío si todo va bien.
+function validarFactura(base, iva) {
+  // isNaN() pregunta si el valor es NaN; isFinite() descarta además Infinity
+  if (Number.isNaN(base) || !Number.isFinite(base)) {
+    return "El precio no es un número válido.";
+  }
+  if (base <= 0) {
+    return "El precio tiene que ser mayor que 0.";
+  }
+  if (Number.isNaN(iva) || !Number.isFinite(iva)) {
+    return "El porcentaje de IVA no es un número válido.";
+  }
+  if (iva < 0 || iva > 100) {
+    return "El IVA tiene que estar entre 0 y 100.";
+  }
+  return "";
+}
+```
 
-// Consonantes de la DGT: sin vocales, sin Ñ y sin Q.
-const CONSONANTES = "BCDFGHJKLMNPRSTVWXYZ";
+Detalles que se preguntan en el examen:
 
+- **`Number("")` vale 0**, no `NaN`. Si el campo se queda vacío y no se comprueba
+  aparte, la factura sale con base 0. Por eso `convertirImporte()` devuelve `NaN`
+  cuando el texto limpio está vacío.
+- **`Number.isNaN()` es estricto**: `Number.isNaN("abc")` es `false` (es un
+  string), pero `Number("abc")` sí es `NaN`, y es lo que se le pasa.
+- **`Number.isFinite()` ya descarta `NaN`**, así que la primera condición es
+  redundante… y se deja porque el enunciado pide las dos comprobaciones.
+- **`toFixed(2)` devuelve un String** para conservar los ceros (`12.50`, no
+  `12.5`). Para seguir operando hay que volver a `Number()`.
+
+Resultados comprobados en la página:
+
+| Entrada | Base | IVA | Cuota | PVP |
+|---|---|---|---|---|
+| `1.234,56 €` | 1234.56 € | 21 % | 259.26 € | 1493.82 € |
+| ` 12,5 € ` | 12.50 € | 10 % | 1.25 € | 13.75 € |
+| `abc` | — | — | — | error: «El precio no es un número válido.» |
+| vacío | — | — | — | error: «El precio no es un número válido.» |
+
+![Panel 3.1.3 con la factura de 1.234,56 € al 21 %](capturas/31-3-factura.png)
+
+---
+
+## Actividad 3.1.4 · Matrículas DGT y cripto-identificadores
+
+```js
+// Letras válidas en una matrícula española: las 20 consonantes del abecedario
+// sin la Ñ y sin la Q (que se confunden con la O y con la Ñ al leerlas).
+const CONSONANTES_DGT = "BCDFGHJKLMNPRSTVWXYZ";
+
+// generarMatricula()
+// Crea una matrícula del formato "1234 BCD": cuatro dígitos con ceros a la
+// izquierda y tres consonantes al azar. No recibe parámetros. Devuelve un String.
 function generarMatricula() {
-  const numero = Math.floor(Math.random() * 10000).toString().padStart(4, "0");
+  // El número va de 0 a 9999; padStart() completa con ceros hasta 4 cifras
+  const numero = String(generarAleatorio(0, 9999)).padStart(4, "0");
 
   let letras = "";
+
+  // Tres letras: cada una es una posición al azar de la cadena de consonantes
   for (let i = 0; i < 3; i++) {
-    letras += CONSONANTES.charAt(Math.floor(Math.random() * CONSONANTES.length));
+    const posicion = Math.floor(Math.random() * CONSONANTES_DGT.length);
+    letras += CONSONANTES_DGT.charAt(posicion);
   }
 
   return numero + " " + letras;
 }
-
-// 16 bytes = 128 bits; cada byte se escribe con dos cifras hexadecimales.
-function generarToken() {
-  const bytes = crypto.getRandomValues(new Uint8Array(16));
-  return Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join("");
-}
-
-document.getElementById("btnMatricula").addEventListener("click", () => {
-  document.getElementById("matricula").textContent = generarMatricula();
-});
-
-document.getElementById("btnCripto").addEventListener("click", () => {
-  document.getElementById("cripto").innerHTML =
-    "UUID: " + crypto.randomUUID() + "<br>" +
-    "Token: " + generarToken();
-});
 ```
 
-`padStart(4, "0")` convierte `7` en `"0007"` y deja `4821` igual. `charAt()` devuelve la consonante de la posición sorteada.
+- **`padStart(4, "0")`** rellena por la izquierda hasta 4 caracteres. Hay que
+  convertir antes el número a texto con `String()`, porque un `Number` no tiene
+  métodos de cadena.
+- **La cadena de letras** tiene 20 caracteres y ya excluye vocales, `Ñ` y `Q`.
+  Elegir una posición con `Math.floor(Math.random() * 20)` evita tener que
+  repetir el sorteo si sale una letra prohibida.
+- **`charAt(posicion)`** es equivalente a `cadena[posicion]`; se usa el método
+  porque es el que aparece en la teoría.
 
-Para los cripto-identificadores se usan las dos funciones de `crypto` de la teoría: `randomUUID()` genera un UUID v4 y `getRandomValues()` llena 16 bytes (128 bits) que se escriben en hexadecimal con `toString(16)` y `padStart(2, "0")`. `randomUUID()` necesita un contexto seguro (HTTPS o localhost); en Chrome y Edge también funciona al abrir el archivo en local.
+### Identificador seguro
 
-![Matrícula y cripto-identificadores generados](capturas/actividad-3-1-4.png)
+```js
+// generarIdentificador()
+// Devuelve un UUID v4 generado con crypto.randomUUID(). Si el navegador no lo
+// tiene (contexto no seguro), arma uno equivalente con 16 bytes aleatorios.
+function generarIdentificador() {
+  if (typeof crypto.randomUUID === "function") {
+    return crypto.randomUUID();
+  }
+
+  // Reserva: 16 bytes y cada uno en hexadecimal de dos cifras
+  const bytes = new Uint8Array(16);
+  crypto.getRandomValues(bytes);
+
+  let identificador = "";
+  for (const byte of bytes) {
+    identificador += byte.toString(16).padStart(2, "0");
+  }
+
+  return identificador;
+}
+```
+
+`crypto.randomUUID()` solo existe en **contextos seguros** (HTTPS o `localhost`;
+en Edge, también `file://`). La reserva con `getRandomValues()` cubre el caso de
+abrir la página desde un servidor sin HTTPS.
+
+Ejemplos generados:
+
+```
+3322 WXZ
+8933 HKN
+2710 GDX
+e1ca189e-7a6f-42f7-b33f-4acd9086cb91
+```
+
+Comprobado con 5.000 matrículas: todas cumplen `^\d{4} [BCDFGHJKLMNPRSTVWXYZ]{3}$`
+y el UUID cumple el patrón v4 (`4` en la tercera sección y `8`, `9`, `a` o `b`
+en la cuarta).
+
+![Panel 3.1.4 con las últimas matrículas y un identificador seguro](capturas/31-4-matriculas.png)
+
+---
+
+## Teoría del tema que no tiene actividad
+
+El enunciado repasa también `Date`, los *wrappers* y `globalThis`. No piden
+ejercicio, pero conviene tenerlo claro para la defensa:
+
+| Objeto | Idea clave |
+|---|---|
+| `Date` | Guarda milisegundos desde el 1-1-1970 UTC. El mes del constructor va de 0 a 11. `toISOString()` es el formato que se intercambia con el servidor |
+| `String` / `Number` | Los primitivos no son objetos: el motor los envuelve un instante (*autoboxing*) para poder llamar a `.toFixed()` o `.trim()`. Nunca usar `new String()`, `new Number()` ni `new Boolean()`: crean objetos y rompen `===` |
+| `globalThis` | ES2020. Apunta a `window` en el navegador, a `self` en un *worker* y a `global` en Node.js. Es la forma de escribir una variable global que funcione en los tres entornos |
+| `Math` | No se puede instanciar (`new Math()` no existe): todos sus miembros son estáticos |
+
+Dos comprobaciones rápidas de la diferencia entre primitivo y objeto:
+
+```js
+console.log(typeof 25);                 // "number"
+console.log(typeof new Number(25));     // "object"
+console.log(25 == new Number(25));      // true  (coerción)
+console.log(25 === new Number(25));     // false (distinto tipo)
+console.log(globalThis === window);     // true  (en el navegador)
+```
+
+---
+
+## Cómo probarlo
+
+1. Abrir `index.html` en el navegador (doble clic; no hace falta servidor).
+2. **3.1.1:** pulsar «Comprobar con 20.000 tiradas» y comparar con la tabla.
+3. **3.1.2:** generar con los valores por defecto, cambiar a `0.125`–`0.875` con
+   3 decimales y generador seguro, y probar el botón del error.
+4. **3.1.3:** calcular con `1.234,56 €` al 21 %, y después escribir `abc` o dejar
+   el campo vacío para ver los mensajes.
+5. **3.1.4:** generar varias matrículas y un identificador; la consola del
+   navegador debe quedar sin errores.

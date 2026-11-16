@@ -12,6 +12,13 @@ $precio = isset($_POST['precio']) ? trim($_POST['precio']) : '';
 $observaciones = isset($_POST['observaciones']) ? trim($_POST['observaciones']) : '';
 $extras = isset($_POST['extras']) ? $_POST['extras'] : [];
 
+// tipos_validos()
+// Devuelve los tipos de vivienda que admite el formulario.
+function tipos_validos()
+{
+  return ['Adosado', 'Unifamiliar', 'Piso'];
+}
+
 // En este ejercicio solo son obligatorios el tipo y el precio
 $errores = [];
 if ($tipo == '') {
@@ -21,13 +28,6 @@ if ($precio == '') {
   $errores[] = 'El precio es obligatorio.';
 } elseif (!is_numeric($precio) || $precio <= 0) {
   $errores[] = 'El precio tiene que ser un número mayor que 0.';
-}
-
-// tipos_validos()
-// Devuelve los tipos de vivienda que admite el formulario.
-function tipos_validos()
-{
-  return ['Adosado', 'Unifamiliar', 'Piso'];
 }
 
 // Si el tipo no está en la lista, tampoco vale: así no se cuela un valor

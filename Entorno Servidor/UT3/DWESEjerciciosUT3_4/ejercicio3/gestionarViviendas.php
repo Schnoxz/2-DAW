@@ -106,8 +106,9 @@ if (isset($_GET['mensaje'])) {
       <option value="">Cualquiera</option>
       <?php
       for ($i = 1; $i <= 4; $i++) {
-        echo '<option value="' . $i . '" ' . seleccionado(['dormitorios_min' => $dormitorios_min], 'dormitorios_min', $i)
-          . '>' . $i . '</option>';
+        // selected si el filtro de dormitorios coincide con esta opción
+        $marca = ($dormitorios_min == $i) ? 'selected' : '';
+        echo '<option value="' . $i . '" ' . $marca . '>' . $i . '</option>';
       }
       ?>
     </select>
