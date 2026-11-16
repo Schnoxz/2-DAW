@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Prueba de selectores - Tema 3 CSS</title>
+		<link rel="stylesheet" href="estilos.css">
+		<!-- width: 30%; <!-- porcentaje relativo a la anchura total de la pagina 
+			padding-left: 15px; <!-- Espacio entorno al elemento en pixeles 
+			margin-left: 15px; <!-- distancia absoluta en pixeles respecto elemento a la izquierda
+					otras opciones: margin-left: 5px; /* Distancia absoluta en pixeles */
+					margin-left: 2em; /* Distancia relativa al tamanno del texto */
+					Enlace: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/margin-left 
+			float: right;  float permite desplazar el elemento con el scrolling 
+			background-color: lightgray; <!-- color de fondo del elemento
+			display: inline-block; Enlace: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/display
+			vertical-align: top; Enlace: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/vertical-align
+			border: 1px dotted blue;
+			word-wrap: break-word; Enlace: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-wrap
+			text-align: center; Alineacion. Otros: right, left
+			background-color: DarkSalmon; Color de fondo del elemento
+			padding: 1rem; Espacios en torno al elemento.
+			border: 3px solid red; Grosor visibilidad color. Si solo borde inferior: border-bottom.
+			position: sticky; El elemento se desplaza con el scrolling; static esta fijo.
+		-->			
+	</head>
+	<body>
+		<header>
+			Texto ejemplo Header de body
+		</header>
+		<nav>
+			Texto ejemplo nav
+		</nav>
+		<aside>
+			<p class="clase1">Texto ejemplo aside</p> 
+			<p>Texto ejemplo aside</p>
+			<p>Texto ejemplo aside</p>
+			<p>Texto ejemplo aside</p>
+			<p>Texto ejemplo aside</p>
+			<p>Texto ejemplo aside</p>
+			<p>Texto ejemplo aside</p>
+			<p>Texto ejemplo aside</p>
+			<p>Texto ejemplo aside</p>
+			<div>
+				<p>Texto ejemplo parrafo anidado en aside (nieto): lo alcanza aside p</p>
+			</div>
+		</aside>
+		<section>
+			<h2>Texto ejemplo titulo h2 de section</h2>
+			<article>
+				<header>
+					<h3>Texto ejemplo header article</h3>
+				</header>
+				<p>Texto ejemplo cuerpo article (header + p: azul)</p>
+				<p class="clase1 clase2">Texto ejemplo cuerpo article con class="clase1 clase2"</p>
+				<p>Texto ejemplo cuerpo article</p>	
+				<p>Texto ejemplo cuerpo article</p>
+				<p>Texto ejemplo cuerpo article</p>
+				<p>Texto ejemplo cuerpo article</p>
+				<p>Texto ejemplo cuerpo article</p>
+				<p>Texto ejemplo cuerpo article</p>
+				<p>Texto ejemplo cuerpo article</p>
+				<p>Texto ejemplo cuerpo article</p>
+				<p>Texto ejemplo cuerpo article</p>
+				<p>Texto ejemplo cuerpo article</p>
+				<p>Texto ejemplo cuerpo article</p>
+				<p>Texto ejemplo cuerpo article</p>
+				<p>Texto ejemplo cuerpo article</p>
+				<p>Texto ejemplo cuerpo article</p>
+				<p>Texto ejemplo cuerpo article</p>
+				<p>Texto ejemplo cuerpo article</p>
+				<p>Texto ejemplo cuerpo article</p>
+				<p>Texto ejemplo cuerpo article</p>
+				<p>Texto ejemplo cuerpo article</p>
+				<p>Texto ejemplo cuerpo article</p>
+				<p>Texto ejemplo cuerpo article</p>
+				<p>Texto ejemplo cuerpo article</p>
+				<p>Texto ejemplo cuerpo article</p>
+				<p>Texto ejemplo cuerpo article</p>
+				<p>Texto ejemplo cuerpo article</p>
+				<p>Texto ejemplo cuerpo article</p>
+				<p>Texto ejemplo cuerpo article</p>
+				<p>Texto ejemplo cuerpo article</p>
+				<div>
+					<p>Texto ejemplo parrafo nieto del article: NO lo pinta article &gt; p</p>
+				</div>
+				<footer>
+					Texto ejemplo footer article
+				</footer>
+			</article>
+			<article>
+				<header>
+					<h3>Texto ejemplo header article</h3>
+				</header>
+					<p>Texto ejemplo cuerpo article</p>
+					<p>Texto ejemplo cuerpo article</p>
+					<p id="unico">Texto ejemplo cuerpo article con id="unico"</p>			
+				<footer>
+					Texto ejemplo footer article
+				</footer>
+			</article>
+		</section>
+	</body>
+</html>

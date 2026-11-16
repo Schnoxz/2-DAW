@@ -1,0 +1,103 @@
+/* =====================================================================
+   ACTIVIDAD 3.1 · PRUEBA DE SELECTORES
+   Hoja de estilos externa de esquema_simple_selectores.html
+   Cada regla numerada prueba un selector distinto.
+   ===================================================================== */
+
+/* ---------------- Maqueta de partida (sin cambios) ---------------- */
+aside {
+    width: 30%;
+    padding-left: 15px;
+    margin-left: 15px;
+    float: right;
+    font-style: italic;
+    background-color: lightgray;
+    display: inline-block;
+    vertical-align: top;
+    border: 1px dotted blue;
+    word-wrap: break-word;
+    position: sticky;
+    top: 0;
+}
+
+footer {
+    text-align: center;
+    padding: 3px;
+    background-color: DarkSalmon;
+    color: white;
+}
+
+nav {
+    padding: 1rem;
+    background-color: grey;
+    border: 3px solid red;
+    position: sticky;
+    top: 0;
+}
+
+/* =====================================================================
+   SELECTORES EN PRUEBA
+   ===================================================================== */
+
+/* 01 · Universal: selecciona TODOS los elementos del DOM. */
+* {
+    font-style: italic;
+}
+
+/* 02 · Etiqueta: todos los <p> de la pagina. */
+p {
+    font-family: Verdana, sans-serif;
+    color: red;
+}
+
+/* 03 · Clase: cualquier elemento con class="clase1".
+   Gana al selector de etiqueta porque la clase pesa mas. */
+.clase1 {
+    color: pink;
+}
+
+/* 04 · id: el unico elemento con id="unico".
+   Gana a etiquetas y clases. */
+#unico {
+    padding: 4px;
+    color: yellow;
+    background-color: black;
+}
+
+/* 05 · Descendiente: los <p> que estan dentro de <aside>,
+   a cualquier nivel (hijos y nietos). */
+aside p {
+    color: green;
+}
+
+/* 06 · Dos clases a la vez: class="clase1 clase2". */
+.clase1.clase2 {
+    background-color: lightgreen;
+    font-weight: bold;
+}
+
+/* 07 · Etiqueta + clase: solo los <p> que ademas tienen class="clase1". */
+p.clase1 {
+    text-transform: uppercase;
+}
+
+/* 08 · Lista de selectores: afecta a los <h2> y a los <h3>. */
+h2,
+h3 {
+    color: blue;
+    border-bottom: 2px solid blue;
+}
+
+/* 09 · Hijo: solo los <p> que son hijos DIRECTOS de <article>.
+   El parrafo metido en un <div> no lo recibe. */
+article > p {
+    margin-left: 6px;
+    padding-left: 8px;
+    border-left: 4px solid darkred;
+}
+
+/* 10 · Adyacente: el <p> que va inmediatamente despues de un <header>.
+   El segundo parrafo del article ya no lo recibe. */
+header + p {
+    color: blue;
+}
