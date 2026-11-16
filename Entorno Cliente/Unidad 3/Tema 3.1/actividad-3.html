@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Actividad 3.1.3 - Factura con IVA</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; max-width: 480px; margin: 40px auto; }
+    label, input, button { display: block; width: 100%; margin-bottom: 10px; }
+    input { padding: 6px; }
+    button { padding: 8px; }
+    #resultado { margin-top: 20px; line-height: 1.6; font-weight: bold; }
+    .error { color: #b00020; }
+  </style>
+</head>
+<body>
+  <h1>Factura con IVA</h1>
+
+  <form id="formulario">
+    <label for="precio">Precio sin IVA (€)</label>
+    <input id="precio" type="text" placeholder="Ej.: 1.234,56 €">
+
+    <label for="iva">Porcentaje de IVA (%)</label>
+    <input id="iva" type="number" value="21" min="0" max="100" step="0.01">
+
+    <button type="submit">Calcular</button>
+  </form>
+
+  <p id="resultado"></p>
+
+  <script src="actividad-3.js"></script>
+</body>
+</html>
