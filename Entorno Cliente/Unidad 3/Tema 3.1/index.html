@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.1 · Objetos predefinidos del lenguaje</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <header>
+        <h1>3.1 · Objetos predefinidos del lenguaje</h1>
+        <p class="subtitulo">DWEC · 2º DAW · Math, crypto, Date, wrappers y globalThis</p>
+        <nav>
+            <a href="#actividad-1">3.1.1 · Rangos de Math.random()</a>
+            <a href="#actividad-2">3.1.2 · generarAleatorio()</a>
+            <a href="#actividad-3">3.1.3 · Facturación</a>
+            <a href="#actividad-4">3.1.4 · Matrículas y UUID</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Actividad 3.1.1: las respuestas están en la tabla; el botón sirve
+             para comprobarlas midiendo 20.000 tiradas de cada función. -->
+        <section id="actividad-1" class="panel">
+            <h2>Actividad 3.1.1 · Descifra los rangos de Math.random()</h2>
+            <p>
+                Cada función parte de <code>Math.random()</code>, que devuelve un
+                decimal en el intervalo semiabierto <code>[0, 1)</code>. Multiplicar
+                por la amplitud y aplicar <code>Math.floor()</code> reparte los
+                valores en partes iguales; sumar el mínimo desplaza el intervalo.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Función</th>
+                        <th>Cálculo</th>
+                        <th>Rango exacto</th>
+                        <th>Decimales</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>funcionA()</td>
+                        <td>floor(r · 11) + 10</td>
+                        <td>[10, 20]</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>funcionB()</td>
+                        <td>floor(r · 11) / 10, toFixed(1)</td>
+                        <td>[0.0, 1.0]</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>funcionC()</td>
+                        <td>(floor(r · 1001) + 500) / 100, toFixed(2)</td>
+                        <td>[5.00, 15.00]</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>funcionD()</td>
+                        <td>floor(r · 6) + 1</td>
+                        <td>[1, 6]</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>funcionE()</td>
+                        <td>(floor(r · 2001) − 1000) / 1000, toFixed(3)</td>
+                        <td>[−1.000, 1.000]</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>numeroA()</td>
+                        <td>floor(r · 101)</td>
+                        <td>[0, 100]</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>numeroB()</td>
+                        <td>floor(r · 2)</td>
+                        <td>[0, 1]</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>F()</td>
+                        <td>floor(r · 2<sup>53</sup>) / (2<sup>53</sup> − 1)</td>
+                        <td>[0, 1]</td>
+                        <td>hasta 16, sin fijar</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>
+                El <code>+ 1</code> de la amplitud es lo que hace que el máximo
+                salga: sin él, <code>Math.floor()</code> nunca llegaría al
+                extremo superior. <code>toFixed()</code> fija los decimales,
+                pero devuelve un texto, por eso el resultado se vuelve a convertir
+                con <code>Number()</code>.
+            </p>
+
+            <button id="btn-medir">Comprobar con 20.000 tiradas</button>
+            <div id="salida-medir" class="visor"></div>
+        </section>
+
+        <!-- Actividad 3.1.2: formulario para probar la función única. -->
+        <section id="actividad-2" class="panel">
+            <h2>Actividad 3.1.2 · Función generarAleatorio(min, max, decimales, seguro)</h2>
+            <p>
+                Una sola función sustituye a todas las anteriores. Si
+                <code>min</code> es mayor que <code>max</code>, lanza un error con
+                <code>throw new Error</code>. Con el cuarto parámetro en
+                <code>"segura"</code> usa <code>cryptoRandomFloat()</code> en vez de
+                <code>Math.random()</code>.
+            </p>
+
+            <div class="fila">
+                <label for="min">Mínimo</label>
+                <input type="number" id="min" value="0" step="any">
+            </div>
+            <div class="fila">
+                <label for="max">Máximo</label>
+                <input type="number" id="max" value="100" step="any">
+            </div>
+            <div class="fila">
+                <label for="decimales">Decimales (0 = entero)</label>
+                <input type="number" id="decimales" value="0" min="0" max="10">
+            </div>
+            <div class="fila">
+                <label for="seguro">Generador</label>
+                <select id="seguro">
+                    <option value="normal">Math.random()</option>
+                    <option value="segura">cryptoRandomFloat()</option>
+                </select>
+            </div>
+
+            <div class="botones-accion">
+                <button id="btn-generar">Generar número</button>
+                <button id="btn-error" class="secundario">Probar el error (min &gt; max)</button>
+            </div>
+
+            <div id="salida-generar" class="visor"></div>
+            <div id="error-generar" class="error"></div>
+        </section>
+
+        <!-- Actividad 3.1.3: formulario de facturación. -->
+        <section id="actividad-3" class="panel">
+            <h2>Actividad 3.1.3 · Validador de facturación</h2>
+            <p>
+                El precio se puede escribir con comas, con puntos, con el símbolo
+                <code>€</code> o con espacios. El script limpia el texto, comprueba
+                que sea un número real positivo y calcula la cuota de IVA y el PVP
+                con dos decimales.
+            </p>
+
+            <form id="form-factura" novalidate>
+                <div class="fila">
+                    <label for="precio">Precio sin IVA</label>
+                    <input type="text" id="precio" value="1.234,56 €" autocomplete="off">
+                </div>
+                <div class="fila">
+                    <label for="iva">Porcentaje de IVA</label>
+                    <input type="text" id="iva" value="21" autocomplete="off">
+                </div>
+                <div class="botones-accion">
+                    <button type="submit">Calcular factura</button>
+                </div>
+            </form>
+
+            <div id="salida-factura" class="visor"></div>
+            <div id="error-factura" class="error"></div>
+        </section>
+
+        <!-- Actividad 3.1.4: matrículas DGT e identificadores seguros. -->
+        <section id="actividad-4" class="panel">
+            <h2>Actividad 3.1.4 · Matrículas DGT y cripto-identificadores</h2>
+            <p>
+                La matrícula lleva 4 dígitos rellenados con <code>padStart(4, "0")</code>
+                y 3 consonantes al azar, sin vocales, sin Ñ y sin Q. El identificador
+                se genera con <code>crypto.randomUUID()</code>, que obtiene la
+                entropía del sistema operativo en vez del motor de JavaScript.
+            </p>
+
+            <div class="botones-accion">
+                <button id="btn-matricula">Generar matrícula DGT</button>
+                <button id="btn-uuid" class="secundario">Generar identificador seguro</button>
+            </div>
+
+            <div id="salida-matricula" class="visor"></div>
+            <div id="error-matricula" class="error"></div>
+        </section>
+    </main>
+
+    <!-- El orden importa: el generador criptográfico se usa en aleatorio.js -->
+    <script src="js/crypto-aleatorio.js"></script>
+    <script src="js/aleatorio.js"></script>
+    <script src="js/facturacion.js"></script>
+    <script src="js/matriculas.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.1.1 · Gestor de plazos con Temporal</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <header>
+        <h1>3.1.1 · Gestor de plazos de matrícula</h1>
+        <p class="subtitulo">DWEC · 2º DAW · Actividad 3.1.8 con la API Temporal</p>
+        <nav>
+            <a href="#plazos">Plazos</a>
+            <a href="#inmutabilidad">Inmutabilidad</a>
+            <a href="#cuenta-atras">Cuenta atrás</a>
+            <a href="#tokio">Madrid → Tokio</a>
+            <a href="#date-vs-temporal">Date vs Temporal</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="panel">
+            <h2>Estado de la API</h2>
+            <p>
+                Origen de <code>Temporal</code> en este navegador:
+                <strong id="origen-temporal">comprobando…</strong>
+            </p>
+            <p class="subtitulo" id="aviso-polyfill"></p>
+        </section>
+
+        <!-- 1 y 2: fechas base y cálculo de plazos con .add() -->
+        <section id="plazos" class="panel">
+            <h2>Plazos legales de la matrícula</h2>
+            <p>
+                Publicación provisional de notas el <strong>15 de junio de 2027</strong>.
+                Las alegaciones duran 3 días naturales y la resolución definitiva
+                sale 2 semanas después del cierre de alegaciones.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Hito</th>
+                        <th>Cálculo</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody id="filas-plazos">
+                    <!-- Lo rellena js/plazos.js -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 2: demostración de que la fecha original no muta -->
+        <section id="inmutabilidad" class="panel">
+            <h2>La fecha original no cambia</h2>
+            <p>
+                <code>.add()</code> devuelve una instancia nueva; no toca la
+                variable sobre la que se llama.
+            </p>
+            <div id="prueba-inmutabilidad" class="visor"></div>
+        </section>
+
+        <!-- 3: cuenta atrás desde hoy -->
+        <section id="cuenta-atras" class="panel">
+            <h2>Cuenta atrás hasta las alegaciones</h2>
+            <p>
+                Se captura la fecha del sistema con
+                <code>Temporal.Now.plainDateISO()</code> y se mide la distancia
+                con <code>.until()</code>, en meses y días.
+            </p>
+            <div id="salida-cuenta-atras" class="visor"></div>
+        </section>
+
+        <!-- 4: proyección de la hora de apertura a otra zona -->
+        <section id="tokio" class="panel">
+            <h2>Sincronización con la sede de Tokio</h2>
+            <p>
+                La plataforma abre el 15 de junio de 2027 a las 09:00:00 en
+                Madrid. El mismo instante, visto desde Tokio, se obtiene con
+                <code>.withTimeZone()</code>.
+            </p>
+            <div id="salida-tokio" class="visor"></div>
+        </section>
+
+        <!-- Extra: cambio de hora y comparación con Date -->
+        <section id="date-vs-temporal" class="panel">
+            <h2>Cambio de hora y diferencia con Date</h2>
+            <p>
+                Temporal ajusta el desfase horario solo, y no muta las fechas
+                compartidas como hace <code>Date.setDate()</code>.
+            </p>
+            <div id="salida-dst" class="visor"></div>
+            <div id="salida-date" class="visor"></div>
+        </section>
+    </main>
+
+    <script src="js/plazos.js"></script>
+</body>
+</html>
