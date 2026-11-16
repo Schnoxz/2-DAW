@@ -3203,7 +3203,7 @@ Error: `textarea` no usa `value`; el contenido va entre las etiquetas. Correcci�
 | CSS | `apuntes\HTML\08` y `09` |
 | Página completa | `apuntes\HTML\10 - Práctica guiada, página completa.md` |
 | Ejercicios con estilos | `Tema 2 - HTML y CSS\Ejercicios de HTML con estilos\` |
-| Ocho ejemplos originales | `Diseño Interfaces Web_ HTML nivel medio_ ocho ejemplos (1).pdf` |
+| Ocho ejemplos originales | `Tema 2 - HTML y CSS\Diseño Interfaces Web_ HTML nivel medio_ ocho ejemplos (1).pdf` |
 
 ## 15.3. Correspondencia con los nueve ejercicios del curso
 
