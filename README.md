@@ -17,7 +17,7 @@
 
 | # | Módulo | Unidades | Contenido |
 |---|--------|----------|-----------|
-| 1️⃣ | **Desarrollo web en entorno cliente** | U1 · U2 · U3 | U1: arquitecturas y tecnologías sobre clientes web (temas 1 y 1.2–1.6). U2: temas 2.1–2.8 con ejercicios JS, capturas y entregas. U3: 3.1 objetos predefinidos y 3.1.1 objeto global temporal |
+| 1️⃣ | **Desarrollo web en entorno cliente** | U1 · U2 · U3 | U1: arquitecturas y tecnologías sobre clientes web (temas 1 y 1.2–1.6). U2: temas 2.1–2.8 con ejercicios JS, capturas y entregas. U3: 3.1 objetos predefinidos, 3.1.1 objeto global temporal y 3.2 arquitectura del BOM |
 | 2️⃣ | **Desarrollo web en entorno servidor** | UT1 · UT2 · UT3 | UT1: arquitecturas de desarrollo web. UT2: PHP e inserción de código (teoría, síntesis y ejercicios iniciales, para practicar y avanzado + entrega). UT3: estructuras de control, arrays, funciones y formularios. Apuntes y batería de preguntas |
 | 3️⃣ | **Diseño de interfaces Web** | Tema 0 · Tema 1 · Tema 2 · Tema 3 | Tema 0: contexto de los sistemas informáticos. Tema 1: principios de diseño + análisis y prompts. Tema 2: HTML y CSS. Tema 3: CSS y trabajo de Bootstrap. Apuntes de HTML, CSS y expresiones regulares |
 | 4️⃣ | **Despliegue de aplicaciones web** | Unidad 1 · Unidad 2 | U1: implantación de arquitecturas web, cuestionarios resueltos y tareas Apache y Tomcat. U2: configuración y administración de servidores web (cuestionario 1) |
@@ -32,7 +32,7 @@
 
 | Módulo | Acción |
 |--------|--------|
-| 🖥️ **Entorno Cliente** | **U3**: temas 3.1 y 3.1.1 (objetos predefinidos y objeto global temporal) con actividades, capturas y entregas, y guion del vídeo del 2.8 |
+| 🖥️ **Entorno Cliente** | **U3**: temas 3.1, 3.1.1 y 3.2 (objetos predefinidos, objeto global temporal y arquitectura del BOM) con actividades, capturas y entregas, y guion del vídeo del 2.8 |
 | 🐘 **Entorno Servidor** | **UT2**: teoría, síntesis, chuleta de examen y simulacro `escape_room.php`. **UT3**: práctica guiada y UT3_4 de formularios |
 | 🧩 **Wordpress** | **UD2**: teoría del panel de administración y práctica 2 de configuración y usuarios |
 | 🎨 **Diseño de interfaces Web** | **Tema 3**: notas de examen y trabajo de Bootstrap. Apuntes de expresiones regulares en el **Tema 2** |
