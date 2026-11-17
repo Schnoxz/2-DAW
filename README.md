@@ -17,14 +17,14 @@
 
 | # | Módulo | Unidades | Contenido |
 |---|--------|----------|-----------|
-| 1️⃣ | **Desarrollo web en entorno cliente** | U1 · U2 | U1: arquitecturas y tecnologías sobre clientes web (temas 1 y 1.2–1.6 con actividades, código y entregas). U2: temas 2.1–2.5 organizados en subcarpetas, con ejercicios JS, capturas y entregas |
-| 2️⃣ | **Desarrollo web en entorno servidor** | UT1 · UT2 · UT3 | UT1: arquitecturas de desarrollo web. UT2: PHP e inserción de código (ejercicios iniciales, para practicar y avanzado + entrega). UT3: estructuras de control, arrays y formularios. Apuntes y batería de preguntas |
-| 3️⃣ | **Diseño de interfaces Web** | Tema 0 · Tema 1 · Tema 2 | Tema 0: contexto de los sistemas informáticos. Tema 1: principios de diseño + análisis y prompts. Tema 2: HTML y CSS, apuntes y enunciados de actividades. Apuntes de HTML y expresiones regulares |
-| 4️⃣ | **Despliegue de aplicaciones web** | Unidad 1 | Implantación de arquitecturas web · cuestionarios (investigación y evaluación) resueltos · Tarea Apache (instalación en Debian, capturas y memoria) |
-| 5️⃣ | **Itinerario Personal para la Empleabilidad II** | U.D. 1 · U.D. 2 | U.D. 1: la búsqueda de empleo (Tareas 1–5). U.D. 2: emprendimiento e innovación (Tareas 1–5). Proyecto: Tarea 1 |
-| 6️⃣ | **Inglés** | Unit 1 | Verb Tenses: ejercicios, soluciones, writing, vocabulary y reading |
-| 7️⃣ | **Wordpress** | UD0 · UD1 | Evaluación inicial · Introducción al CMS y CDMON · práctica CDMON resuelta · test de la UD1 |
-| 8️⃣ | **Proyecto Intermodular** | Tarea 1 | Tarea 1: El equipo emprendedor |
+| 1️⃣ | **Desarrollo web en entorno cliente** | U1 · U2 · U3 | U1: arquitecturas y tecnologías sobre clientes web (temas 1 y 1.2–1.6). U2: temas 2.1–2.8 con ejercicios JS, capturas y entregas. U3: 3.1 objetos predefinidos, 3.1.1 objeto global temporal y 3.2 arquitectura del BOM |
+| 2️⃣ | **Desarrollo web en entorno servidor** | UT1 · UT2 · UT3 | UT1: arquitecturas de desarrollo web. UT2: PHP e inserción de código (teoría, síntesis y ejercicios iniciales, para practicar y avanzado + entrega). UT3: estructuras de control, arrays, funciones y formularios. Apuntes y batería de preguntas |
+| 3️⃣ | **Diseño de interfaces Web** | Tema 0 · Tema 1 · Tema 2 · Tema 3 | Tema 0: contexto de los sistemas informáticos. Tema 1: principios de diseño + análisis y prompts. Tema 2: HTML y CSS. Tema 3: CSS y trabajo de Bootstrap. Apuntes de HTML, CSS y expresiones regulares |
+| 4️⃣ | **Despliegue de aplicaciones web** | Unidad 1 · Unidad 2 | U1: implantación de arquitecturas web, cuestionarios resueltos y tareas Apache y Tomcat. U2: configuración y administración de servidores web (cuestionario 1) |
+| 5️⃣ | **Itinerario Personal para la Empleabilidad II** | U.D. 1 · U.D. 2 · U.D. 3 · U.D. 5 | U.D. 1: la búsqueda de empleo. U.D. 2: emprendimiento e innovación. U.D. 3: cliente, idea de negocio y propuesta de valor. U.D. 5: entorno y competencia. Plan de empresa y presentación |
+| 6️⃣ | **Inglés** | Unit 1 · Unit 2 · Unit 3 | Verb Tenses, Conditionals y Wish Clauses: apuntes, ejercicios, soluciones, writing, vocabulary, reading y exámenes |
+| 7️⃣ | **Wordpress** | UD0 · UD1 · UD2 | Evaluación inicial · Introducción al CMS y CDMON con la práctica 1 resuelta · UD2: panel de administración y práctica 2 |
+| 8️⃣ | **Proyecto Intermodular** | Hito 1 · Tareas 1–3 | Hito 1: propuesta e informe de empresa. Tareas 1–3: equipo, cliente e idea, y entorno y competencia |
 
 ---
 
@@ -32,14 +32,13 @@
 
 | Módulo | Acción |
 |--------|--------|
-| 🎨 **Diseño de interfaces Web** | Enunciados de las actividades nuevas del **Tema 2**: *Ejercicios de HTML con estilos*, *Trabajo etiquetas de incrustación* y *Notas de examen HTML* (cada una en su subcarpeta con su `.md`) |
-| 🎨 **Diseño de interfaces Web** | **Tema 1**: análisis del tema y prompts (`Tema1-Analisis/`) para generar apuntes y para un agente orientado a crear proyectos |
-| 🖥️ **Entorno Cliente** | **U2** reorganizada en subcarpetas (`2.1`–`2.5`) con actividades, código JS, capturas y entregas |
-| 🐘 **Entorno Servidor** | **UT3**: ejercicios de estructuras de control, arrays y formularios actualizados |
-| 📦 **Proyecto Intermodular** | **Tarea 1: El equipo emprendedor** clonada desde IPE2 (`.md` + `.pdf`) |
-| 📋 **IPE2** | **U.D. 2** (Tareas 1–5) resueltas y **Tarea 1** entregada en PDF |
-| 🧩 **Wordpress** | Test de la **UD1** (`Test_WordPress_UD1.html`) |
-| 🌐 **Despliegue** | **Tarea Apache** resuelta: instalación de Apache en Debian con capturas y memoria |
+| 🖥️ **Entorno Cliente** | **U3**: temas 3.1, 3.1.1 y 3.2 (objetos predefinidos, objeto global temporal y arquitectura del BOM) con actividades, capturas y entregas, y guion del vídeo del 2.8 |
+| 🐘 **Entorno Servidor** | **UT2**: teoría, síntesis, chuleta de examen y simulacro `escape_room.php`. **UT3**: práctica guiada y UT3_4 de formularios |
+| 🧩 **Wordpress** | **UD2**: teoría del panel de administración y práctica 2 de configuración y usuarios |
+| 🎨 **Diseño de interfaces Web** | **Tema 3**: notas de examen y trabajo de Bootstrap. Apuntes de expresiones regulares en el **Tema 2** |
+| 🌐 **Despliegue** | **Unidad 2**: cuestionario 1, y tarea 2 de Tomcat con su enunciado |
+| ✍️ **Inglés** | **Unit 2** (Conditionals) y **Unit 3** (Wish Clauses) resueltas |
+| 📦 **Proyecto Intermodular** | **Hito 1** y **Tarea 3: El entorno y la competencia** |
 
 ---
 
