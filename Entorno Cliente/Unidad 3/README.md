@@ -7,6 +7,7 @@ Docs** (enlaces oficiales de la asignatura), descargados aquí en PDF:
 |---|---|---|---|
 | 3.1. OBJETOS PREDEFINIDOS DEL LENGUAJE (assign) | 18/11/26, 0:00 | `3.1. Objetos predefinidos del lenguaje.pdf` | https://docs.google.com/document/d/1_lZXDQvWVRTh85jLGc_v6nL_1vCa53FwgVD9OVIp1U0/edit?usp=sharing |
 | 3.1.1 El Objeto Global Temporal (assign) | 19/11/26, 0:00 | `3.1.1 El Objeto Global Temporal.pdf` | https://docs.google.com/document/d/1NXxd_H8725rGF3C11LJznncD6QbttjN0TUuEmUoAE8g/edit?tab=t.0#heading=h.o0vy6l7dp657 |
+| 3.2. ARQUITECTURA Y JERARQUÍA DEL BOM (url, teoría) | — | `Tema 3.2\3.2. Arquitectura y jerarquia del BOM.pdf` | https://docs.google.com/document/d/1kqh4RebQSIRTnNVa2h2lr2ZqDyk1yDpsMS1vIIJa060/edit?usp=sharing |
 
 ## Qué pide cada una
 
@@ -35,6 +36,11 @@ inmutabilidad, DST y carga condicional del polyfill. Una actividad:
   la fecha original no muta, cuenta atrás con `Temporal.Now.plainDateISO()` +
   `.until()`, y proyección Madrid→Tokio con `.withTimeZone()`.
 
+**3.2 (BOM)** — Teoría de la arquitectura y jerarquía del Browser Object Model
+(`window`, `navigator`, `location`, `history`, `screen`, `document`). Es un
+recurso tipo enlace, no una entrega: el PDF de `Tema 3.2\` es la exportación del
+Google Doc del profesor.
+
 ## Pendiente de decidir
 
 - Qué archivos de entrega pide exactamente cada tarea (el `assign` de Moodle
@@ -48,6 +54,7 @@ inmutabilidad, DST y carga condicional del polyfill. Una actividad:
 |---|---|---|
 | 3.1 | Resuelta y verificada en navegador; pendiente de subir | `Tema 3.1\` |
 | 3.1.1 | Resuelta y verificada con Temporal nativo y con polyfill; pendiente de subir | `Tema 3.1.1\` |
+| 3.2 | Teoría descargada; no es entregable | `Tema 3.2\` |
 
 `Tema 3.1\` contiene `index.html` con las cuatro actividades, `css/`,
 `js/` (una librería por actividad), `capturas/` y la memoria
