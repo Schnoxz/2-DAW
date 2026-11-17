@@ -1,15 +1,16 @@
 // limpiarImporte(texto)
-// Deja el precio en un formato que Number() entienda: sin €, sin espacios y
-// con el punto como separador decimal. Devuelve un String.
+// Quita el € y los espacios y deja el punto como separador decimal
 function limpiarImporte(texto) {
-  // trim() quita los espacios de los extremos; el resto desaparecen con \s
+  // trim(): quita los espacios de los extremos
+  // replace(): sustituye texto; con /g cambia todas las apariciones
   let limpio = texto.trim().replace(/€/g, "").replace(/\s/g, "");
 
+  // includes(): true si el texto contiene ese carácter
   if (limpio.includes(",") && limpio.includes(".")) {
-    // Si vienen los dos, el punto separa miles ("1.234,56") y la coma decimales
+    // "1.234,56": el punto separa miles y la coma es decimal
     limpio = limpio.replace(/\./g, "").replace(",", ".");
   } else {
-    // Con un solo separador, la coma es la decimal ("12,50")
+    // "12,50": la coma es el separador decimal
     limpio = limpio.replace(",", ".");
   }
 
@@ -17,23 +18,24 @@ function limpiarImporte(texto) {
 }
 
 // convertirImporte(texto)
-// Limpia el texto y lo convierte a Number. Devuelve NaN si no es un número.
+// Convierte el texto limpio a Number; devuelve NaN si no es un número
 function convertirImporte(texto) {
   const limpio = limpiarImporte(texto);
 
-  // Number("") vale 0, así que un campo vacío hay que descartarlo antes
+  // Number("") vale 0, así que el campo vacío se descarta antes
   if (limpio === "") {
     return NaN;
   }
 
+  // Number(): pasa el texto a número (NaN si no es numérico)
   return Number(limpio);
 }
 
 // validarFactura(base, iva)
-// Comprueba que la base sea un número real positivo y el IVA un porcentaje
-// razonable. Devuelve un String con el error, o un String vacío si todo va bien.
+// Devuelve el mensaje de error o "" si todo está bien
 function validarFactura(base, iva) {
-  // isNaN() pregunta si el valor es NaN; isFinite() descarta además Infinity
+  // Number.isNaN(): true si el valor es NaN (por ejemplo, texto no numérico)
+  // Number.isFinite(): true solo con números finitos; descarta NaN e Infinity
   if (Number.isNaN(base) || !Number.isFinite(base)) {
     return "El precio no es un número válido.";
   }
@@ -54,14 +56,12 @@ function validarFactura(base, iva) {
 }
 
 // calcularFactura(base, iva)
-// Calcula la cuota de IVA y el precio de venta al público. Devuelve un objeto
-// con base, cuota y pvp, los tres ya redondeados a dos decimales como Number.
+// Devuelve base, cuota y PVP con dos decimales
 function calcularFactura(base, iva) {
   const cuota = base * iva / 100;
   const pvp = base + cuota;
 
-  // toFixed() devuelve un String para conservar los ceros finales; para volver
-  // a operar con el valor se convierte otra vez con Number()
+  // toFixed(2): dos decimales (devuelve texto); Number() lo vuelve a número
   return {
     base: Number(base.toFixed(2)),
     cuota: Number(cuota.toFixed(2)),
@@ -71,10 +71,12 @@ function calcularFactura(base, iva) {
 
 // --- Enlace con la página ---
 
+// getElementById(): busca en la página el elemento con ese id
 const formulario = document.getElementById("form-factura");
 
+// addEventListener("submit"): ejecuta el código al enviar el formulario
 formulario.addEventListener("submit", (evento) => {
-  // Sin esto, el navegador recarga la página al enviar el formulario
+  // preventDefault(): cancela el envío y evita que la página se recargue
   evento.preventDefault();
 
   const base = convertirImporte(document.getElementById("precio").value);
@@ -84,7 +86,9 @@ formulario.addEventListener("submit", (evento) => {
 
   const error = validarFactura(base, iva);
 
+  // Si hay error se muestra y no se calcula nada
   if (error !== "") {
+    // textContent: escribe el texto dentro del elemento
     salida.textContent = "";
     cajaError.textContent = error;
     return;
@@ -93,6 +97,7 @@ formulario.addEventListener("submit", (evento) => {
   const factura = calcularFactura(base, iva);
   cajaError.textContent = "";
 
+  // innerHTML: escribe HTML dentro del elemento
   salida.innerHTML =
     `<div class="resultado"><span>Base imponible</span><span>${factura.base.toFixed(2)} €</span></div>` +
     `<div class="resultado"><span>IVA (${iva} %)</span><span>${factura.cuota.toFixed(2)} €</span></div>` +

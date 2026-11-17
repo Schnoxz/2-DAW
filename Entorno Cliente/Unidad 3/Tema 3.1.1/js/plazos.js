@@ -1,31 +1,36 @@
 // --- Carga condicional del polyfill -------------------------------------
 
 // cargarScript(src)
-// Crea un <script> en el documento y espera a que termine de cargar.
-// Devuelve una Promise con la ruta; se rechaza si el archivo falla.
+// Añade un <script> al documento y espera a que cargue
 function cargarScript(src) {
+  // Promise: objeto que avisa cuando termina una tarea asíncrona
   return new Promise((resolve, reject) => {
+    // createElement(): crea un elemento nuevo
     const script = document.createElement("script");
     script.src = src;
+    // onload: se ejecuta al cargar; onerror: si falla la carga
     script.onload = () => resolve(src);
     script.onerror = () => reject(new Error("No se pudo cargar " + src));
+    // appendChild(): inserta el elemento dentro de <head>
     document.head.appendChild(script);
   });
 }
 
 // cargarTemporal()
-// Comprueba si el navegador trae Temporal de serie. Si no lo trae, carga el
-// polyfill local y, si tampoco está, el de la CDN.
-// Devuelve un String con el origen que se ha usado.
+// Usa el Temporal nativo o carga el polyfill; devuelve el origen usado
 async function cargarTemporal() {
+  // globalThis: el objeto global (window en el navegador)
   if ("Temporal" in globalThis) {
     return "nativo";
   }
 
+  // await: espera a que termine la promesa antes de seguir
   try {
+    // Primero el polyfill local (funciona sin conexión)
     await cargarScript("vendor/temporal-polyfill.global.min.js");
     return "polyfill local";
   } catch (errorLocal) {
+    // Si falla el local, se prueba la CDN
     await cargarScript("https://cdn.jsdelivr.net/npm/temporal-polyfill@1.0.8/full/global.min.js");
     return "polyfill desde la CDN";
   }
@@ -34,17 +39,17 @@ async function cargarTemporal() {
 // --- Utilidades de formato ----------------------------------------------
 
 // textoDuracion(duracion)
-// Convierte un Temporal.Duration en "X meses y Y días". Si la duración es
-// negativa, lo indica delante. Devuelve un String.
+// Pasa una Duration a texto: "X meses y Y días"
 function textoDuracion(duracion) {
+  // sign: -1 si la duración es negativa; Math.abs(): quita el signo
   const signo = duracion.sign < 0 ? "hace " : "";
   return `${signo}${Math.abs(duracion.months)} meses y ${Math.abs(duracion.days)} días`;
 }
 
 // fechaLarga(fecha)
-// Pasa una Temporal.PlainDate a texto en español ("martes, 15 de junio de 2027").
-// Devuelve un String.
+// Fecha en español, por ejemplo "martes, 15 de junio de 2027"
 function fechaLarga(fecha) {
+  // toLocaleString("es-ES", opciones): fecha escrita en español
   return fecha.toLocaleString("es-ES", {
     weekday: "long",
     day: "numeric",
@@ -56,17 +61,15 @@ function fechaLarga(fecha) {
 // --- Actividad ----------------------------------------------------------
 
 // calcularPlazos()
-// Crea las tres fechas del calendario de matrícula y comprueba que la fecha
-// de publicación no ha cambiado. Devuelve un objeto con las fechas y la prueba.
+// Crea las fechas del calendario y comprueba que la original no cambia
 function calcularPlazos() {
-  // 1. Fecha base: PlainDate no tiene hora ni zona, que es lo que necesita un
-  // calendario escolar. El mes de Temporal empieza en 1 (junio es 6)
+  // PlainDate.from(): fecha sin hora ni zona. El mes empieza en 1 (junio = 6)
   const publicacionNotas = Temporal.PlainDate.from("2027-06-15");
 
-  // 2. Alegaciones: 3 días naturales. add() devuelve una fecha nueva
+  // add(): suma una duración y devuelve una fecha nueva
   const finAlegaciones = publicacionNotas.add({ days: 3 });
 
-  // La resolución sale dos semanas después del cierre: 14 días
+  // Resolución: dos semanas después del cierre
   const resolucionDefinitiva = finAlegaciones.add({ weeks: 2 });
 
   // La fecha de partida tiene que seguir siendo la misma
@@ -76,8 +79,7 @@ function calcularPlazos() {
 }
 
 // pintarPlazos(plazos)
-// Rellena la tabla de hitos y el bloque de la prueba de inmutabilidad.
-// No devuelve nada: escribe en la página.
+// Rellena la tabla de hitos y la prueba de inmutabilidad
 function pintarPlazos(plazos) {
   const filas = [
     ["Publicación de notas", "Temporal.PlainDate.from(\"2027-06-15\")", plazos.publicacionNotas],
@@ -86,8 +88,10 @@ function pintarPlazos(plazos) {
   ];
 
   const cuerpo = document.getElementById("filas-plazos");
+  // textContent = "": vacía el contenido anterior
   cuerpo.textContent = "";
 
+  // Una fila por hito, con su cálculo y su fecha
   for (const [hito, calculo, fecha] of filas) {
     const fila = document.createElement("tr");
     for (const texto of [hito, calculo, fecha.toString()]) {
@@ -107,14 +111,13 @@ function pintarPlazos(plazos) {
 }
 
 // pintarCuentaAtras(publicacionNotas)
-// Mide el tiempo que queda desde hoy hasta la publicación de notas.
-// No devuelve nada: escribe en la página.
+// Mide lo que queda desde hoy hasta la publicación
 function pintarCuentaAtras(publicacionNotas) {
-  // Fecha del dispositivo, sin hora: el "hoy" del alumno
+  // Now.plainDateISO(): la fecha de hoy, sin hora
   const hoy = Temporal.Now.plainDateISO();
 
-  // largestUnit "months" hace que la duración se desglose en meses y días,
-  // en vez de darlo todo en días
+  // until(): diferencia entre dos fechas. largestUnit "months" la da en meses
+  // y días en vez de solo en días
   const restante = hoy.until(publicacionNotas, { largestUnit: "months" });
 
   const salida = document.getElementById("salida-cuenta-atras");
@@ -126,10 +129,9 @@ function pintarCuentaAtras(publicacionNotas) {
 }
 
 // pintarTokio()
-// Proyecta la apertura de Madrid a Tokio conservando el instante.
-// No devuelve nada: escribe en la página.
+// Muestra la misma apertura en la zona horaria de Tokio
 function pintarTokio() {
-  // ZonedDateTime guarda fecha, hora y zona: 09:00 en Madrid es un instante fijo
+  // ZonedDateTime.from(): fecha, hora y zona horaria a la vez
   const aperturaMadrid = Temporal.ZonedDateTime.from({
     timeZone: "Europe/Madrid",
     year: 2027,
@@ -140,7 +142,7 @@ function pintarTokio() {
     second: 0,
   });
 
-  // withTimeZone() cambia cómo se muestra ese mismo instante, no la hora
+  // withTimeZone(): cambia la zona, no el instante
   const aperturaTokio = aperturaMadrid.withTimeZone("Asia/Tokyo");
 
   const salida = document.getElementById("salida-tokio");
@@ -152,10 +154,9 @@ function pintarTokio() {
 }
 
 // pintarCambioDeHora()
-// Suma dos minutos justo antes del cambio al horario de verano de 2027.
-// No devuelve nada: escribe en la página.
+// Suma dos minutos justo antes del cambio al horario de verano de 2027
 function pintarCambioDeHora() {
-  // El último domingo de marzo de 2027 es el día 28: a las 02:00 se pasa a las 03:00
+  // El último domingo de marzo de 2027 es el 28: a las 02:00 pasan a las 03:00
   const antesDelCambio = Temporal.ZonedDateTime.from({
     timeZone: "Europe/Madrid",
     year: 2027,
@@ -174,30 +175,30 @@ function pintarCambioDeHora() {
 }
 
 // pintarComparacionDate()
-// Enseña la mutación de Date frente a la inmutabilidad de Temporal.
-// No devuelve nada: escribe en la página.
+// Compara la mutación de Date con la inmutabilidad de Temporal
 function pintarComparacionDate() {
-  // Con Date, setDate() modifica el propio objeto
+  // new Date(): objeto de fecha clásico; setDate(): cambia el día del propio objeto
   const fechaDate = new Date("2027-06-15T00:00:00");
   fechaDate.setDate(20);
 
-  // Con Temporal, with() devuelve otra instancia y deja intacta la original
+  // with(): devuelve una copia con el día cambiado y deja intacta la original
   const fechaTemporal = Temporal.PlainDate.from("2027-06-15");
   const nuevaFecha = fechaTemporal.with({ day: 20 });
 
+  // getDate(): devuelve el día del mes
   document.getElementById("salida-date").textContent =
     `Date: después de setDate(20) la variable vale día ${fechaDate.getDate()}\n` +
     `Temporal: fechaTemporal.day = ${fechaTemporal.day} y nuevaFecha.day = ${nuevaFecha.day}`;
 }
 
 // arrancar()
-// Carga Temporal si hace falta y pinta todas las secciones.
-// No devuelve nada: escribe en la página.
+// Carga Temporal si hace falta y pinta todas las secciones
 async function arrancar() {
   const origen = await cargarTemporal();
 
   document.getElementById("origen-temporal").textContent = origen;
 
+  // Aviso solo si se ha tenido que usar el polyfill
   if (origen !== "nativo") {
     document.getElementById("aviso-polyfill").textContent =
       "Este navegador no trae Temporal de serie: se ha cargado el polyfill. " +
@@ -212,8 +213,8 @@ async function arrancar() {
   pintarComparacionDate();
 }
 
+// catch(): recoge el error si la promesa de arrancar() falla
 arrancar().catch((error) => {
-  // Si ni el polyfill local ni la CDN responden, se avisa en pantalla
   document.getElementById("origen-temporal").textContent = "no disponible";
   document.getElementById("aviso-polyfill").textContent =
     "No se ha podido cargar Temporal: " + error.message;

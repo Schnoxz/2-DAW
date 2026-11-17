@@ -12,6 +12,9 @@ primeras muestran el resultado en pantalla además de en la consola; la tercera
 y la cuarta son formularios y botones reales. Todo se ha probado en Edge con
 `file://`, sin errores de consola.
 
+Cada actividad tiene además su carpeta `Ejercicio N\` con el código suelto
+(`script.js` y, en las dos últimas, un `index.html` independiente) y su captura.
+
 ---
 
 ## Actividad 3.1.1 · Descifra los rangos de `Math.random()`
@@ -36,7 +39,7 @@ el número de escala y `toFixed()` fija los decimales.
 | `funcionE()` | `(floor(r · 2001) − 1000) / 1000`, `toFixed(3)` | `[−1.000, 1.000]` | 3 |
 | `numeroA()` | `floor(r · 101)` | `[0, 100]` | 0 |
 | `numeroB()` | `floor(r · 2)` | `[0, 1]` | 0 |
-| `F()` | `floor(r · 2⁵³) / (2⁵³ − 1)` | `[0, 1]` | hasta 16, sin fijar |
+| `F()` | `floor(r · 2⁵³) / (2⁵³ − 1)` | `[0, 1]` | hasta 17, sin fijar |
 
 Cómo se llega a cada una:
 
@@ -49,7 +52,7 @@ Cómo se llega a cada una:
 - **numeroB:** dos valores, 0 o 1; sirve para lanzar una moneda.
 - **F:** el entero llega hasta `2⁵³ − 1` y se divide entre ese mismo máximo, así
   que el 1 sí puede salir. No usa `toFixed()`, por eso los decimales son los que
-  dé la división (hasta 16 cifras significativas).
+  dé la división (hasta 17 cifras significativas).
 
 La página comprueba la tabla midiendo 20.000 tiradas de cada función:
 
@@ -68,7 +71,7 @@ siendo la que fija `toFixed()`.
 > el rango es 0–10. El rango lo decide `amplitud + 1` junto con el desplazamiento
 > posterior. Conviene calcularlo siempre como `max − min + 1`.
 
-![Panel 3.1.1 con la tabla de rangos y la comprobación de 20.000 tiradas](capturas/31-1-rangos.png)
+![Panel 3.1.1 con la tabla de rangos y la comprobación de 20.000 tiradas](<Ejercicio 1/capturas/31-1-rangos.png>)
 
 ---
 
@@ -141,6 +144,25 @@ function cryptoRandomFloat() {
 no con números sueltos. Por eso se reserva un array de un solo elemento y se
 rellena; después se lee `buffer[0]`.
 
+### Las cinco funciones con el generador seguro
+
+La actividad pide repetir las funciones de 3.1.1 cambiando `Math.random()` por
+`cryptoRandomFloat()`. Están en `Ejercicio 2\script.js` y el cambio es directo:
+`cryptoRandomFloat()` también devuelve un decimal en `[0, 1)`, así que la fórmula
+no cambia y los rangos y los decimales son los mismos.
+
+```js
+// Las mismas funciones A-E, pero con el generador seguro
+const funcionAsegura = () => Math.floor(cryptoRandomFloat() * 11) + 10;
+const funcionBsegura = () => Number((Math.floor(cryptoRandomFloat() * 11) / 10).toFixed(1));
+const funcionCsegura = () => Number(((Math.floor(cryptoRandomFloat() * 1001) + 500) / 100).toFixed(2));
+const funcionDsegura = () => Math.floor(cryptoRandomFloat() * 6) + 1;
+const funcionEsegura = () => Number(((Math.floor(cryptoRandomFloat() * 2001) - 1000) / 1000).toFixed(3));
+```
+
+Lo único que cambia es de dónde sale la entropía, no el reparto: siguen siendo
+11, 11, 1001, 6 y 2001 valores equiprobables.
+
 > **Errata del material:** el PDF del tema escribe `return buffer / 4294967296;`.
 > Eso divide el array, no el número, y devuelve `NaN`. Comprobado en Edge:
 > `new Uint32Array(1) / 4294967296` es `NaN`. La versión correcta es `buffer[0]`.
@@ -173,7 +195,7 @@ Se han ejecutado 5.000 llamadas a `generarAleatorio(3, 7, 0)` y otras 5.000 a
 `generarAleatorio(0.125, 0.875, 3)`: todos los enteros caen en `[3, 7]`, todos
 los decimales caen en `[0.125, 0.875]` y ninguno tiene más de 3 cifras.
 
-![Panel 3.1.2 generando una coordenada con tres decimales y el generador seguro](capturas/31-2-generar.png)
+![Panel 3.1.2 generando una coordenada con tres decimales y el generador seguro](<Ejercicio 2/capturas/31-2-generar.png>)
 
 ---
 
@@ -248,7 +270,7 @@ Resultados comprobados en la página:
 | `abc` | — | — | — | error: «El precio no es un número válido.» |
 | vacío | — | — | — | error: «El precio no es un número válido.» |
 
-![Panel 3.1.3 con la factura de 1.234,56 € al 21 %](capturas/31-3-factura.png)
+![Panel 3.1.3 con la factura de 1.234,56 € al 21 %](<Ejercicio 3/capturas/31-3-factura.png>)
 
 ---
 
@@ -292,28 +314,34 @@ function generarMatricula() {
 ```js
 // generarIdentificador()
 // Devuelve un UUID v4 generado con crypto.randomUUID(). Si el navegador no lo
-// tiene (contexto no seguro), arma uno equivalente con 16 bytes aleatorios.
+// tiene (contexto no seguro), lo arma equivalente con 16 bytes aleatorios.
 function generarIdentificador() {
   if (typeof crypto.randomUUID === "function") {
     return crypto.randomUUID();
   }
 
-  // Reserva: 16 bytes y cada uno en hexadecimal de dos cifras
+  // Reserva: 16 bytes de entropía del sistema
   const bytes = new Uint8Array(16);
   crypto.getRandomValues(bytes);
 
-  let identificador = "";
-  for (const byte of bytes) {
-    identificador += byte.toString(16).padStart(2, "0");
-  }
+  // Bits de versión (4) y de variante RFC 4122: los exige un UUID v4
+  bytes[6] = (bytes[6] & 0x0f) | 0x40;
+  bytes[8] = (bytes[8] & 0x3f) | 0x80;
 
-  return identificador;
+  // Cada byte en hexadecimal de dos cifras
+  const hex = [...bytes].map((byte) => byte.toString(16).padStart(2, "0"));
+
+  // Formato 8-4-4-4-12
+  return `${hex.slice(0, 4).join("")}-${hex.slice(4, 6).join("")}-` +
+         `${hex.slice(6, 8).join("")}-${hex.slice(8, 10).join("")}-` +
+         `${hex.slice(10).join("")}`;
 }
 ```
 
 `crypto.randomUUID()` solo existe en **contextos seguros** (HTTPS o `localhost`;
 en Edge, también `file://`). La reserva con `getRandomValues()` cubre el caso de
-abrir la página desde un servidor sin HTTPS.
+abrir la página desde un servidor sin HTTPS y devuelve un UUID v4 válido: fuerza
+los bits de versión y variante que exige el estándar.
 
 Ejemplos generados:
 
@@ -328,7 +356,7 @@ Comprobado con 5.000 matrículas: todas cumplen `^\d{4} [BCDFGHJKLMNPRSTVWXYZ]{3
 y el UUID cumple el patrón v4 (`4` en la tercera sección y `8`, `9`, `a` o `b`
 en la cuarta).
 
-![Panel 3.1.4 con las últimas matrículas y un identificador seguro](capturas/31-4-matriculas.png)
+![Panel 3.1.4 con las últimas matrículas y un identificador seguro](<Ejercicio 4/capturas/31-4-matriculas.png>)
 
 ---
 
