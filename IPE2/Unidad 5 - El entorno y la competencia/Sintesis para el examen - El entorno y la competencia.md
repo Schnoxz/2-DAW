@@ -1,7 +1,7 @@
 # Síntesis para el examen — El entorno y la competencia
 
 - **Curso:** Itinerario Personal para la Empleabilidad II - DAW
-- **Unidad:** el entorno y la competencia (en Moodle aparece como **UD.4**; la carpeta del repo se llama `Unidad 5`)
+- **Unidad:** 5 — El entorno y la competencia
 - **Estado:** apuntes para el examen escrito (resumen de las Tareas 1, 2, 3 y 4)
 - **Cómo usar esto:** cada apartado responde a una pregunta del enunciado y
   termina con la aplicación a TachoAviso.

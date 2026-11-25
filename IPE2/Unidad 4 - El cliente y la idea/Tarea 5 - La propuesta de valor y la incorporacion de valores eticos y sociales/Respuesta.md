@@ -1,7 +1,7 @@
 # Tarea 5: La propuesta de valor y la incorporación de valores éticos y sociales
 
 - **Curso:** Itinerario Personal para la Empleabilidad II - DAW
-- **Unidad:** 3
+- **Unidad:** 4
 - **Estado:** respuesta breve (esencial para la libreta)
 
 ## 1. La propuesta de valor
@@ -37,4 +37,5 @@ resuelve su necesidad **mejor que la competencia**. Responde a cinco cuestiones:
 | N. Prima anual no discriminatoria con criterios publicados | Retribución justa y equitativa |
 | O. Mide ahorro energético y retorno social de sus proyectos | Valor compartido e impacto socioeconómico |
 | P. Matriz de obligaciones legales y auditoría ambiental externa | Cumplimiento normativo ambiental |
+
 

@@ -1,7 +1,7 @@
 # Tarea 1: ¿Qué estrategia de segmentación usa?
 
 - **Curso:** Itinerario Personal para la Empleabilidad II - DAW
-- **Unidad:** 3
+- **Unidad:** 4
 - **Estado:** respuesta breve (esencial para la libreta)
 
 ## 1. Clasificación de las situaciones
@@ -33,3 +33,4 @@ segmento) y **concentrada** (toda la oferta a un único nicho).
 - **Ventaja:** mensaje claro y liderazgo en el nicho con poca inversión.
 - **Riesgo:** dependo de un solo segmento; si cambia la normativa o entra un
   competidor fuerte, el negocio entero se resiente.
+

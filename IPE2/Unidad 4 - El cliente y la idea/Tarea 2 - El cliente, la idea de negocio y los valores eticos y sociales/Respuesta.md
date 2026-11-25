@@ -1,7 +1,7 @@
 # Tarea 2: El cliente, la idea de negocio y los valores éticos y sociales
 
 - **Curso:** Itinerario Personal para la Empleabilidad II - DAW
-- **Unidad:** 3
+- **Unidad:** 4
 - **Estado:** respuesta breve (esencial para la libreta)
 
 ## 1. Segmento de mercado y early adopters
@@ -73,3 +73,4 @@ en español y que no haya que instalar.
 - **Entorno local y compras sostenibles:** hosting con energía renovable,
   acuerdos con talleres y asociaciones y charla anual gratuita. Indicador: 100 %
   de proveedores con certificación ambiental y 40 autónomos formados al año.
+

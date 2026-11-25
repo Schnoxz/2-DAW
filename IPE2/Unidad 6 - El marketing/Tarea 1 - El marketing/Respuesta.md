@@ -1,7 +1,7 @@
 # Tarea 1: El marketing
 
 - **Curso:** Itinerario Personal para la Empleabilidad II - DAW
-- **Unidad:** 4 · El marketing
+- **Unidad:** 6 · El marketing
 - **Estado:** respuesta completa, con el caso de TachoAviso
 - **Enunciado:** seis preguntas de la libreta (marketing, marketing digital, estratégico y operativo, experiencial, océanos azules y mapa de posicionamiento)
 

@@ -1,7 +1,7 @@
 # Tarea 3: Fuentes de la idea de negocio
 
 - **Curso:** Itinerario Personal para la Empleabilidad II - DAW
-- **Unidad:** 3
+- **Unidad:** 4
 - **Estado:** respuesta breve (esencial para la libreta)
 
 ## 1. ¿Qué es la idea de negocio y qué cuatro aspectos cubre?
@@ -40,3 +40,4 @@ aficiones, necesidades del entorno, tendencias y modelos traídos de fuera.
 La fuente de TachoAviso es la **detección de una necesidad no cubierta**, unida
 al conocimiento del entorno (la Bahía de Algeciras y su puerto) y a mi formación
 en DAW.
+

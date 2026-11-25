@@ -1,7 +1,7 @@
 # Tarea 2: Nuestro cliente
 
 - **Curso:** Itinerario Personal para la Empleabilidad II - DAW
-- **Unidad:** 3
+- **Unidad:** 4
 - **Estado:** respuesta breve (esencial para la libreta)
 
 ## 1. Estudio del cliente objetivo
@@ -36,3 +36,4 @@ prioriza las funciones que importan y reduce el riesgo antes de lanzar.
 perfecto. Tienen una necesidad fuerte y asumen el riesgo; su opinión valida el
 negocio y genera el primer boca a boca. En mi caso, el autónomo que **ya ha
 recibido un aviso o una multa** por un plazo olvidado.
+

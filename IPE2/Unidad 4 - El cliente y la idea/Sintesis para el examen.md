@@ -1,7 +1,7 @@
-# Síntesis para el examen — Unidad 3
+# Síntesis para el examen — Unidad 4
 
 - **Curso:** Itinerario Personal para la Empleabilidad II - DAW
-- **Unidad:** 3 — Segmentación, cliente, idea de negocio y propuesta de valor
+- **Unidad:** 4 — Segmentación, cliente, idea de negocio y propuesta de valor
 - **Estado:** apuntes para el examen escrito (resumen de las Tareas 1, 2, 3, 4 y 5)
 - **Cómo usar esto:** cada apartado es una pregunta del enunciado con la respuesta
   ya condensada. Al final de cada bloque va la aplicación a TachoAviso, que es el
@@ -408,3 +408,4 @@ cuenta.
 | Precio | 4-6 €/mes, sin permanencia. |
 | Competencia | TachoTools (3-5 €/mes, analiza el pasado), software de flotas (caro), Excel y calendario (no avisan), gestoría (30-60 €/mes). |
 | Objetivo 1 año | 30-40 cuentas, 120-200 €/mes, 70 % de retención. |
+
