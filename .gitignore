@@ -26,3 +26,8 @@ Wordpress/apuntes/*.css
 # proyecto intermodular TachoAviso: vive en su propio repo privado
 # (https://github.com/Schnoxz/TachoAviso), no se versiona aquí
 Proyecto/TachoAviso/
+
+# README de cada entrega: son notas de trabajo, no se versionan.
+# El de la raiz (portada del repo) si se queda.
+**/README.md
+!/README.md
