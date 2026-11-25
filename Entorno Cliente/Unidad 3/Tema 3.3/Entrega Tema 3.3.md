@@ -1,11 +1,10 @@
 ## Cómo está organizado
 
 Cada actividad va en su propio archivo, porque la 3.3.2 necesita ser un documento
-largo de verdad y la 3.3.4 abre una ventana aparte. El `index.html` es solo un
-portal con los cuatro enlaces.
+largo de verdad y la 3.3.4 abre una ventana aparte. Son cuatro páginas sueltas,
+sin índice ni menú: se abre directamente la que se quiere ver.
 
 ```
-index.html                    portal con enlaces
 3.3.1-clases.html             cambio de aspecto de una caja
 3.3.2-scroll.html             página larga y botón «Subir al inicio»
 3.3.3-tarjeta.html            panel de control con classList
