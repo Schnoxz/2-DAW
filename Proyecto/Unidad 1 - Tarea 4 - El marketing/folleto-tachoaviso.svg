@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="850" viewBox="0 0 600 850" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="600" height="850" fill="#ffffff"/>
+
+  <!-- Cabecera -->
+  <rect width="600" height="170" fill="#0f172a"/>
+  <circle cx="80" cy="85" r="34" fill="#16a34a"/>
+  <circle cx="80" cy="85" r="26" fill="#ffffff"/>
+  <line x1="80" y1="85" x2="80" y2="68" stroke="#0f172a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="80" y1="85" x2="94" y2="92" stroke="#0f172a" stroke-width="5" stroke-linecap="round"/>
+  <text x="130" y="80" font-size="42" font-weight="bold" fill="#ffffff">TachoAviso</text>
+  <text x="132" y="112" font-size="19" fill="#86efac">Tus plazos, avisados a tiempo</text>
+
+  <!-- Titular -->
+  <text x="50" y="240" font-size="30" font-weight="bold" fill="#0f172a">¿Cuándo te caduca la tarjeta?</text>
+  <text x="50" y="282" font-size="21" fill="#334155">Una multa por un plazo olvidado se evita con un aviso a tiempo.</text>
+
+  <!-- Qué vigila -->
+  <text x="50" y="340" font-size="22" font-weight="bold" fill="#14532d">Qué vigila TachoAviso</text>
+  <g font-size="20" fill="#0f172a">
+    <text x="60" y="378">· Tarjeta del conductor</text>
+    <text x="60" y="412">· Descarga del tacógrafo (28, 56 y 90 días)</text>
+    <text x="60" y="446">· ITV del vehículo</text>
+    <text x="60" y="480">· Seguro</text>
+  </g>
+
+  <!-- Cómo funciona -->
+  <text x="50" y="536" font-size="22" font-weight="bold" fill="#14532d">Cómo funciona</text>
+  <g font-size="19" fill="#334155">
+    <text x="60" y="572">1. Das de alta el vehículo y el conductor (con alias).</text>
+    <text x="60" y="602">2. Guardas la fecha de referencia de cada plazo.</text>
+    <text x="60" y="632">3. El panel lo pinta en verde, ámbar o rojo.</text>
+    <text x="60" y="662">4. Te llega un correo a 30, 15 y 7 días del vencimiento.</text>
+  </g>
+
+  <!-- Precio -->
+  <rect x="40" y="700" width="520" height="80" rx="12" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+  <text x="60" y="733" font-size="22" font-weight="bold" fill="#14532d">Desde 4 €/mes por vehículo</text>
+  <text x="60" y="762" font-size="18" fill="#334155">Sin permanencia. Autónomo y microflota (1 a 10 vehículos).</text>
+
+  <!-- Pie -->
+  <line x1="40" y1="800" x2="560" y2="800" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="50" y="828" font-size="17" fill="#64748b">TachoAviso · Bahía de Algeciras y Campo de Gibraltar · hola@tachoaviso.es</text>
+</svg>

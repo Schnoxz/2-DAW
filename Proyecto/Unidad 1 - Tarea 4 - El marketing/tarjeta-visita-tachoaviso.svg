@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="300" viewBox="0 0 520 300" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="520" height="300" fill="#ffffff" stroke="#e2e8f0"/>
+
+  <!-- Franja de marca -->
+  <rect width="520" height="110" fill="#0f172a"/>
+  <circle cx="62" cy="55" r="26" fill="#16a34a"/>
+  <circle cx="62" cy="55" r="19" fill="#ffffff"/>
+  <line x1="62" y1="55" x2="62" y2="42" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+  <line x1="62" y1="55" x2="72" y2="60" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+  <text x="104" y="53" font-size="33" font-weight="bold" fill="#ffffff">TachoAviso</text>
+  <text x="106" y="82" font-size="15" fill="#86efac">Tus plazos, avisados a tiempo</text>
+
+  <!-- Datos de contacto -->
+  <g font-size="17" fill="#0f172a">
+    <text x="40" y="160" font-weight="bold">Equipo TachoAviso</text>
+    <text x="40" y="188" font-size="15" fill="#475569">Desarrollo y atención al cliente</text>
+    <text x="40" y="226">hola@tachoaviso.es</text>
+    <text x="40" y="254">tachoaviso.es</text>
+  </g>
+
+  <text x="480" y="250" font-size="15" fill="#16a34a" text-anchor="end" font-weight="bold">Bahía de Algeciras</text>
+</svg>

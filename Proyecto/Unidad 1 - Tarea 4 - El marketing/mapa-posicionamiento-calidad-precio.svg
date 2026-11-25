@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="640" viewBox="0 0 900 640" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="900" height="640" fill="#ffffff"/>
+
+  <!-- Ejes: precio en horizontal y calidad en vertical -->
+  <line x1="110" y1="540" x2="850" y2="540" stroke="#1e293b" stroke-width="3"/>
+  <line x1="110" y1="540" x2="110" y2="60" stroke="#1e293b" stroke-width="3"/>
+  <polygon points="850,540 838,534 838,546" fill="#1e293b"/>
+  <polygon points="110,60 104,72 116,72" fill="#1e293b"/>
+
+  <!-- Líneas medias de los dos ejes -->
+  <line x1="480" y1="60" x2="480" y2="540" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="8 8"/>
+  <line x1="110" y1="300" x2="850" y2="300" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="8 8"/>
+
+  <text x="480" y="596" font-size="20" text-anchor="middle" fill="#0f172a">Precio · de bajo a alto</text>
+  <text x="42" y="300" font-size="20" text-anchor="middle" fill="#0f172a" transform="rotate(-90 42 300)">Calidad · de baja a alta</text>
+
+  <text x="100" y="568" font-size="16" text-anchor="middle" fill="#64748b">bajo</text>
+  <text x="860" y="568" font-size="16" text-anchor="middle" fill="#64748b">alto</text>
+  <text x="128" y="52" font-size="16" fill="#64748b">alta</text>
+  <text x="128" y="530" font-size="16" fill="#64748b">baja</text>
+
+  <!-- Competencia -->
+  <circle cx="250" cy="450" r="11" fill="#94a3b8"/>
+  <text x="272" y="457" font-size="19" fill="#334155">Excel y calendario</text>
+
+  <circle cx="390" cy="380" r="11" fill="#64748b"/>
+  <text x="412" y="387" font-size="19" fill="#334155">Asesorías</text>
+
+  <circle cx="330" cy="230" r="11" fill="#0ea5e9"/>
+  <text x="352" y="237" font-size="19" fill="#0c4a6e">TachoTools</text>
+
+  <circle cx="760" cy="120" r="11" fill="#64748b"/>
+  <text x="738" y="127" font-size="19" text-anchor="end" fill="#334155">Software de flotas</text>
+
+  <!-- TachoAviso: calidad alta, precio bajo-medio -->
+  <circle cx="380" cy="140" r="15" fill="#16a34a" stroke="#ffffff" stroke-width="4"/>
+  <text x="405" y="147" font-size="21" font-weight="bold" fill="#14532d">TachoAviso</text>
+
+  <!-- Zona de calidad alta y precio contenido -->
+  <rect x="120" y="70" width="340" height="220" fill="#16a34a" opacity="0.07"/>
+</svg>
