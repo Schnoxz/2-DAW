@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.4 · Generación dinámica de textos y marcado</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%2016'%3E%3Ccircle%20cx='8'%20cy='8'%20r='7'%20fill='%2338bdf8'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <header>
+        <h1>3.4 · Generación dinámica de textos y marcado en el documento</h1>
+        <p class="subtitulo">DWEC · 2º DAW · createElement, append/prepend, textContent e innerHTML</p>
+        <nav>
+            <a href="#actividad-1">3.4.1 · Lista con createElement</a>
+            <a href="#actividad-2">3.4.2 · Añadir y reiniciar tareas</a>
+            <a href="#actividad-3">3.4.3 · Texto seguro frente a HTML</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Actividad 3.4.1 -->
+        <section class="panel" id="actividad-1">
+            <h2>Actividad 3.4.1 · Generar una lista desde cero</h2>
+            <p>
+                El botón crea una lista con los tres módulos. Ni el <code>&lt;ul&gt;</code> ni
+                los <code>&lt;li&gt;</code> existen en el HTML: se construyen en memoria con
+                <code>createElement()</code>, se les cuelga un nodo de texto con
+                <code>createTextNode()</code> y se enganchan al documento con
+                <code>appendChild()</code>.
+            </p>
+
+            <div class="botones-accion">
+                <button id="btn-generar">Generar Lista</button>
+            </div>
+
+            <!-- Aquí se inyecta la lista: en el HTML está vacío -->
+            <div id="contenedorLista"></div>
+
+            <div id="salida-lista" class="visor"></div>
+        </section>
+
+        <!-- Actividad 3.4.2 -->
+        <section class="panel" id="actividad-2">
+            <h2>Actividad 3.4.2 · Añadir al principio, al final y reiniciar</h2>
+            <p>
+                La lista ya trae una «Tarea inicial». Los botones insertan el texto del campo
+                con <code>append()</code> y <code>prepend()</code>, y
+                <code>replaceChildren()</code> sustituye todo el contenido de la lista en una
+                sola llamada.
+            </p>
+
+            <ul id="listaTareas">
+                <li>Tarea inicial</li>
+            </ul>
+
+            <div class="campo">
+                <label for="texto-tarea">Nueva tarea</label>
+                <input type="text" id="texto-tarea" placeholder="Escribe el nombre de la tarea">
+            </div>
+
+            <div class="botones-accion">
+                <button id="btn-final">Añadir al final</button>
+                <button id="btn-principio" class="secundario">Añadir al principio</button>
+                <button id="btn-reiniciar" class="secundario">Reiniciar lista</button>
+            </div>
+
+            <div id="salida-tareas" class="visor"></div>
+        </section>
+
+        <!-- Actividad 3.4.3 -->
+        <section class="panel" id="actividad-3">
+            <h2>Actividad 3.4.3 · Texto seguro frente a HTML</h2>
+            <p>
+                El mismo contenido se inserta dos veces: a la izquierda con
+                <code>textContent</code> y a la derecha con <code>innerHTML</code>. Con
+                <code>textContent</code> las etiquetas se ven tal cual, porque el navegador las
+                trata como texto. Con <code>innerHTML</code> el navegador analiza la cadena y
+                crea de verdad un <code>&lt;strong&gt;</code> y un
+                <code>&lt;span&gt;</code> con color rojo.
+            </p>
+
+            <div class="campo">
+                <label for="texto-html">Contenido a insertar</label>
+                <textarea id="texto-html" rows="3">&lt;strong&gt;Texto en Negrita&lt;/strong&gt; y &lt;span style="color:red;"&gt;Color Rojo&lt;/span&gt;</textarea>
+            </div>
+
+            <div class="botones-accion">
+                <button id="btn-seguro">Insertar como Texto Seguro</button>
+                <button id="btn-html" class="secundario">Insertar como HTML</button>
+                <button id="btn-vaciar" class="secundario">Vaciar</button>
+            </div>
+
+            <div class="rejilla-comparacion">
+                <div>
+                    <h3>textContent</h3>
+                    <div id="resultado-texto" class="caja-resultado"></div>
+                </div>
+                <div>
+                    <h3>innerHTML</h3>
+                    <div id="resultado-html" class="caja-resultado"></div>
+                </div>
+            </div>
+
+            <div id="salida-texto" class="visor"></div>
+        </section>
+    </main>
+
+    <script src="js/lista.js"></script>
+    <script src="js/tareas.js"></script>
+    <script src="js/texto.js"></script>
+</body>
+</html>

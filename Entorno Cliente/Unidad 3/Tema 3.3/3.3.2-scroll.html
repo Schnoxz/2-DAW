@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.3.2 · Subir al inicio</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%2016'%3E%3Ccircle%20cx='8'%20cy='8'%20r='7'%20fill='%2338bdf8'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <header>
+        <h1>Actividad 3.3.2 · Desplazamiento suave</h1>
+        <p class="subtitulo">Página larga a propósito. El botón flotante vuelve arriba con <code>window.scrollTo()</code>.</p>
+        <nav><a href="index.html">← Volver al índice</a></nav>
+    </header>
+
+    <main>
+        <section class="panel">
+            <h2>Por qué la página es tan larga</h2>
+            <p>
+                Para que aparezca la barra de desplazamiento vertical hace falta que el
+                contenido supere la altura de la ventana. Aquí se explica el ejercicio
+                con calma, y de paso se comprueba que el botón flotante sigue visible
+                aunque se baje hasta el final.
+            </p>
+            <p>
+                El objeto <code>window</code> guarda la posición del desplazamiento en
+                <code>scrollY</code>. Al llamar a <code>scrollTo()</code> con el
+                parámetro <code>behavior: "smooth"</code>, el navegador no salta de golpe
+                al principio: interpola la posición durante unos milisegundos y el
+                movimiento se ve fluido.
+            </p>
+            <p>
+                Si se pasara solo <code>window.scrollTo(0, 0)</code>, el salto sería
+                instantáneo. Las dos formas son válidas, pero la suave da mejor
+                sensación en una página larga y es la que pide el enunciado.
+            </p>
+            <p>
+                El botón va con <code>position: fixed</code>, así que no forma parte del
+                flujo del documento: se queda pegado a la esquina inferior derecha
+                aunque se mueva el contenido. Para que no tape texto en pantallas
+                pequeñas se le deja un margen y un tamaño contenido.
+            </p>
+            <p>
+                Un detalle de accesibilidad: el botón se puede activar con el teclado
+                porque es un <code>&lt;button&gt;</code> de verdad y no un
+                <code>div</code> con un evento. El texto «Subir al inicio» también
+                describe la acción, así que un lector de pantalla lo anuncia bien.
+            </p>
+            <p>
+                Cuando el usuario ya está arriba, el botón sigue ahí. Se podría ocultar
+                escuchando el evento <code>scroll</code> y comprobando
+                <code>window.scrollY</code>, pero el enunciado no lo pide y añadir
+                código que no se pide solo complica la entrega.
+            </p>
+            <p>
+                Este párrafo existe para seguir empujando el contenido hacia abajo.
+                Repite la misma idea con otras palabras: el desplazamiento suave es una
+                mejora visual, no un requisito funcional, y el ejercicio consiste en
+                usarlo correctamente y no en reinventarlo.
+            </p>
+            <p>
+                El visor de estado de abajo muestra la distancia recorrida al pulsar el
+                botón. Sirve para demostrar que la llamada se ha ejecutado y que la
+                posición vertical vuelve a cero.
+            </p>
+            <p>
+                Y un último párrafo para que la barra de desplazamiento tenga recorrido
+                suficiente incluso en una pantalla grande. Al final está el botón, que
+                es el que interesa.
+            </p>
+
+            <div id="salida-scroll" class="visor"></div>
+        </section>
+    </main>
+
+    <!-- Botón flotante: fuera de <main> para que no lo afecte el flujo de la página -->
+    <button id="btn-arriba" class="flotante">Subir al inicio</button>
+
+    <script src="js/scroll.js"></script>
+</body>
+</html>

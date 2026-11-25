@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.3.4 · Ventana emergente (principal)</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%2016'%3E%3Ccircle%20cx='8'%20cy='8'%20r='7'%20fill='%2338bdf8'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <header>
+        <h1>Actividad 3.3.4 · Manipular una ventana secundaria</h1>
+        <p class="subtitulo">La ventana hija se abre a 500 × 400 px y desde aquí se redimensiona, se mueve, se enfoca y se cierra.</p>
+        <nav><a href="index.html">← Volver al índice</a></nav>
+    </header>
+
+    <main>
+        <section class="panel">
+            <h2>Controles</h2>
+            <p>
+                Los botones de abajo solo funcionan con la ventana abierta. Si el
+                navegador bloquea la ventana emergente, <code>window.open()</code>
+                devuelve <code>null</code> y aquí se avisa en vez de fallar en
+                silencio.
+            </p>
+
+            <div class="botones-accion">
+                <button id="btn-abrir">Abrir ventana auxiliar</button>
+                <button id="btn-grande" class="secundario">+40 px de ancho y alto</button>
+                <button id="btn-mover" class="secundario">Bajar 30 px</button>
+                <button id="btn-foco" class="secundario">Traer al frente</button>
+                <button id="btn-cerrar" class="secundario">Cerrar</button>
+            </div>
+
+            <div id="salida-ventana" class="visor"></div>
+        </section>
+    </main>
+
+    <script src="js/ventanas.js"></script>
+</body>
+</html>

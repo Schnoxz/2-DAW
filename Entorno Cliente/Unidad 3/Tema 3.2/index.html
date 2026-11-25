@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.2 · Arquitectura y jerarquía del BOM</title>
+    <!-- Icono en línea: evita el 404 de /favicon.ico al servir la página -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='7' fill='%2338bdf8'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <header>
+        <h1>3.2 · Arquitectura y jerarquía del BOM</h1>
+        <p class="subtitulo">DWEC · 2º DAW · window, screen, navigator, location e history</p>
+        <nav>
+            <a href="#actividad-1">3.2.1 · Auditar entorno</a>
+            <a href="#actividad-2">3.2.2 · Analizador de URLs</a>
+            <a href="#actividad-3">3.2.3 · Online / Offline</a>
+            <a href="#actividad-4">3.2.4 · Autoevaluación</a>
+            <a href="#actividad-5">3.2.5 · Enrutador SPA</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Actividad 3.2.1: recopilar datos del BOM en un contenedor -->
+        <section id="actividad-1" class="panel">
+            <h2>Actividad 3.2.1 · Recopilando información visual</h2>
+            <p>
+                Todos los datos salen del objeto raíz <code>window</code> y de sus
+                propiedades. Ojo: <code>innerWidth</code> mide el área donde se pinta
+                la web y <code>screen.width</code> mide el monitor entero, así que
+                normalmente no coinciden.
+            </p>
+            <div class="botones-accion">
+                <button id="btn-auditar">Auditar Entorno</button>
+            </div>
+            <div id="salida-auditoria" class="visor"></div>
+        </section>
+
+        <!-- Actividad 3.2.2: descomponer location en sus partes -->
+        <section id="actividad-2" class="panel">
+            <h2>Actividad 3.2.2 · Analizador de URLs</h2>
+            <p>
+                <code>location</code> ya trae la URL troceada: no hace falta parsear
+                el texto a mano. Si abres este archivo con doble clic
+                (<code>file://</code>), el protocolo será <code>file:</code> y el
+                <code>hostname</code> aparecerá vacío; para ver una URL real hay que
+                servirlo con un servidor local.
+            </p>
+            <div class="botones-accion">
+                <button id="btn-analizar">Analizar URL actual</button>
+                <button id="btn-recargar" class="secundario">Recargar página</button>
+            </div>
+            <div id="salida-url" class="visor"></div>
+        </section>
+
+        <!-- Actividad 3.2.3: monitor de conectividad -->
+        <section id="actividad-3" class="panel">
+            <h2>Actividad 3.2.3 · Online / Offline</h2>
+            <p>
+                El indicador escucha <code>online</code> y <code>offline</code> de
+                <code>window</code>. Cada corte se apunta en la tabla con la hora
+                exacta que da <code>Temporal.Now.zonedDateTimeISO()</code>, y el botón
+                de emergencia usa <code>location.replace()</code> para no dejar la
+                página anterior en el historial.
+            </p>
+            <div id="estado-conexion" class="estado estado-online">Conexión estable</div>
+            <div class="botones-accion">
+                <button id="btn-soporte" class="secundario">Ir a la página de soporte</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Evento</th>
+                        <th>Fecha y hora</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-cortes">
+                    <tr>
+                        <td colspan="3" class="vacio">Todavía no se ha registrado ningún cambio.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Actividad 3.2.4: autoevaluación del tema -->
+        <section id="actividad-4" class="panel">
+            <h2>Actividad 3.2.4 · Autoevaluación</h2>
+            <p>
+                Cuatro preguntas con una sola respuesta correcta. Cada fallo resta
+                un tercio de punto, así que conviene no contestar al azar.
+            </p>
+
+            <form id="form-test">
+                <fieldset>
+                    <legend>1. ¿Qué relación existe entre window y document?</legend>
+                    <label><input type="radio" name="p1" value="a"> a) document es la raíz absoluta y window un nodo hijo.</label>
+                    <label><input type="radio" name="p1" value="b"> b) window es el objeto padre global y document una propiedad suya.</label>
+                    <label><input type="radio" name="p1" value="c"> c) Son equivalentes y sin relación jerárquica.</label>
+                    <label><input type="radio" name="p1" value="d"> d) document solo existe en Chromium.</label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>2. ¿Qué diferencia hay entre location.assign() y location.replace()?</legend>
+                    <label><input type="radio" name="p2" value="a"> a) assign() recarga y replace() usa la caché.</label>
+                    <label><input type="radio" name="p2" value="b"> b) assign() añade una entrada al historial; replace() sobrescribe la actual.</label>
+                    <label><input type="radio" name="p2" value="c"> c) replace() solo funciona con HTTPS.</label>
+                    <label><input type="radio" name="p2" value="d"> d) No hay ninguna diferencia.</label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>3. ¿Qué propiedad de screen descuenta la barra de tareas del sistema?</legend>
+                    <label><input type="radio" name="p3" value="a"> a) screen.width</label>
+                    <label><input type="radio" name="p3" value="b"> b) screen.innerWidth</label>
+                    <label><input type="radio" name="p3" value="c"> c) screen.availWidth</label>
+                    <label><input type="radio" name="p3" value="d"> d) screen.pixelDepth</label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>4. ¿Por qué history no deja leer las URLs visitadas?</legend>
+                    <label><input type="radio" name="p4" value="a"> a) Para ahorrar memoria RAM.</label>
+                    <label><input type="radio" name="p4" value="b"> b) Para proteger la privacidad y evitar el rastreo entre dominios.</label>
+                    <label><input type="radio" name="p4" value="c"> c) Porque solo funciona con peticiones POST.</label>
+                    <label><input type="radio" name="p4" value="d"> d) Porque las URLs solo se leen desde navigator.</label>
+                </fieldset>
+
+                <div class="botones-accion">
+                    <button type="submit">Corregir respuestas</button>
+                </div>
+            </form>
+
+            <div id="salida-test" class="visor"></div>
+        </section>
+
+        <!-- Actividad 3.2.5: enrutador de una sola página con History API -->
+        <section id="actividad-5" class="panel">
+            <h2>Actividad 3.2.5 · Enrutador SPA de navegación</h2>
+            <p>
+                Las tres secciones se pintan sin recargar el documento.
+                <code>pushState()</code> crea una entrada nueva en el historial y
+                <code>replaceState()</code> sobrescribe la actual: por eso cambiar de
+                filtro varias veces y pulsar «Atrás» una sola vez devuelve a
+                <code>/inicio</code>.
+            </p>
+
+            <div class="botones-accion">
+                <button id="btn-inicio">Inicio</button>
+                <button id="btn-modulos">Módulos DAW</button>
+                <button id="btn-contacto">Contacto</button>
+            </div>
+            <div class="botones-accion">
+                <button id="btn-filtro-1" class="secundario">Filtrar 1º Curso</button>
+                <button id="btn-filtro-2" class="secundario">Filtrar 2º Curso</button>
+            </div>
+
+            <main id="contenedor-vista" class="vista-spa"></main>
+        </section>
+    </main>
+
+    <!-- Polyfill de Temporal: el navegador de pruebas puede no traerlo aún -->
+    
+    <script src="js/auditoria.js"></script>
+    <script src="js/url.js"></script>
+    <script src="js/conectividad.js"></script>
+    <script src="js/autoevaluacion.js"></script>
+    <script src="js/spa.js"></script>
+</body>
+</html>
