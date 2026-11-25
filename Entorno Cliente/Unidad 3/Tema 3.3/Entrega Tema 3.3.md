@@ -1,10 +1,8 @@
 ## Cómo está organizado
 
-Las cuatro actividades van en páginas separadas, con un `index.html` que hace de
-portal para no tener que recordar las rutas. No las he metido todas en una porque
-la 3.3.2 necesita ser un documento largo de verdad, con su barra de
-desplazamiento, y la 3.3.4 abre una ventana aparte. Juntarlas habría quedado
-forzado.
+Cada actividad va en su propio archivo, porque la 3.3.2 necesita ser un documento
+largo de verdad y la 3.3.4 abre una ventana aparte. El `index.html` es solo un
+portal con los cuatro enlaces.
 
 ```
 index.html                    portal con enlaces
@@ -18,51 +16,52 @@ js/clases.js  js/scroll.js  js/tarjeta.js  js/ventanas.js
 ```
 
 El enunciado llama `principal.html` y `auxiliar.html` a los dos archivos de la
-3.3.4. Les puse el prefijo `3.3.4-` para que se ordenen juntos en la carpeta y no
-se confundan con el índice. La relación entre ellos es la misma que pide el
-ejercicio.
+3.3.4; les puse el prefijo para que se ordenen juntos en la carpeta.
+
+La 3.3.4 hay que abrirla con la carpeta servida en local (`php -S` o
+`python -m http.server`). Si se abre el HTML con doble clic, desde `file://` el
+navegador no deja redimensionar ni mover la ventana hija y lo bloquea por
+seguridad. El resto de actividades funcionan igual de las dos formas.
 
 ## Actividad 3.3.1 · Cambiar el aspecto de una caja
 
-La caja empieza con la clase `.caja-inicial`, que le da 200 × 100 px y borde rojo
+La caja arranca con la clase `.caja-inicial`, que le da 200 × 100 px y borde rojo
 sólido. **Cambiar aspecto** hace `classList.toggle("caja-grande")`: esa clase
-lleva 300 × 250 px y borde discontinuo verde, así que el mismo botón vale para
-poner y quitar. **Restablecer** hace `classList.remove("caja-grande")`, que no
-falla aunque la clase no esté puesta.
+lleva 300 × 250 px y borde discontinuo verde, así que el mismo botón pone y quita.
+**Restablecer** hace `classList.remove("caja-grande")`, que no falla aunque la
+clase no esté puesta.
 
-Debajo hay un visor que imprime `caja.className`, para ver qué clases tiene el
-elemento en cada momento. Es la forma más rápida de comprobar que no se acumulan
-clases.
+```js
+caja.classList.toggle("caja-grande");
+```
+
+La transición de tamaño y de color está en CSS, no en JavaScript: el script solo
+cambia clases.
 
 ![Caja agrandada](capturas/33-1-clases.png)
 
-La transición de tamaño y de color está en CSS, no en JavaScript. El script solo
-cambia clases.
-
 ## Actividad 3.3.2 · Subir al inicio
 
-Son nueve párrafos explicando el ejercicio, así que el contenido pasa de largo la
-altura de la ventana y aparece la barra vertical. El botón va con
-`position: fixed` en la esquina inferior derecha y se queda visible aunque bajes
-hasta el final.
+El contenido pasa de la altura de la ventana, así que sale la barra vertical. El
+botón va con `position: fixed` en la esquina inferior derecha y se queda visible
+aunque se baje hasta el final.
 
 ```js
 window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 ```
 
 `behavior: "smooth"` es lo que hace que el navegador interpole la posición en vez
-de saltar. Antes de llamar guardo `window.scrollY` para mostrar desde qué píxel
-se ha subido.
+de saltar. En la prueba se partió de 214 px de desplazamiento y la posición volvió
+a 0.
 
-![Al final de la página](capturas/33-2-scroll-abajo.png)
-
-La prueba automática partió de 174 px de desplazamiento y la posición volvió a 0.
+![Al final de la página, con el botón fijo](capturas/33-2-scroll-abajo.png)
 
 ![Después de pulsar el botón](capturas/33-2-scroll.png)
 
 ## Actividad 3.3.3 · Panel de control con classList
 
-Parto del ejemplo de clases del tema y le añado los dos apartados del enunciado.
+Se parte del ejemplo de clases del tema y se añaden los dos apartados del
+enunciado.
 
 **A) Estado de error.** Botón `#btn-error` y clase `.estado-error` en el CSS, con
 fondo `#fee2e2`, borde `#ef4444` y texto `#7f1d1d`. El error tiene que salir venga
@@ -83,52 +82,41 @@ Error**, que es el caso que fallaría con un `replace` simple.
 **B) Texto del botón de modo oscuro.** El botón hace
 `document.body.classList.toggle("modo-oscuro")` y después mira
 `classList.contains("modo-oscuro")` para decidir si pone «Modo Oscuro» o «Modo
-Claro». No guardo una variable de estado: la clase del `body` ya dice cómo está
-la página, así que el botón no se puede desincronizar.
-
-**Reiniciar** devuelve la tarjeta al principio con
-`className = "caja estado-pendiente"`, que es lo más corto para borrar todas las
-clases de golpe.
+Claro». No guardo una variable de estado: la clase del `body` ya dice cómo está la
+página, así que el botón no se puede desincronizar.
 
 ![Tarjeta reiniciada](capturas/33-3-reset.png)
 
 ## Actividad 3.3.4 · Ventana secundaria
 
-El botón **Abrir ventana auxiliar** llama a `window.open()` con la URL, un nombre
-y las opciones `width=500,height=400,resizable=yes,scrollbars=yes`. La referencia
-se guarda en una variable `let` fuera del evento, porque los demás botones la
-necesitan.
+**Abrir ventana auxiliar** llama a `window.open()` con la URL, un nombre y las
+medidas `width=500,height=400`. La referencia se guarda en una variable `let`
+fuera del evento, porque los demás botones la necesitan.
 
-| Control | Método | Qué compruebo antes |
+| Control | Método | Comprobación previa |
 |---|---|---|
-| Abrir a 500 × 400 | `window.open(url, nombre, opciones)` | que no devuelva `null` |
-| Aumentar +40 px | `resizeBy(40, 40)` | `closed` |
-| Bajar 30 px | `moveBy(0, 30)` | `closed` |
-| Traer al frente | `focus()` | `closed` |
-| Cerrar | `close()` | `closed` |
+| Abrir a 500 × 400 | `window.open(url, nombre, "width=500,height=400")` | que no devuelva `null` |
+| Aumentar +40 px | `resizeBy(40, 40)` | que siga abierta |
+| Bajar 30 px | `moveBy(0, 30)` | que siga abierta |
+| Traer al frente | `focus()` | que siga abierta |
+| Cerrar | `close()` | que siga abierta |
 
 El bloqueador de ventanas emergentes no lanza un error: devuelve `null`. Si se
 usara esa referencia sin comprobarla, el script petaría con un `TypeError` y el
 usuario no sabría por qué. Por eso hay un `if` que avisa en el visor.
 
-La segunda comprobación es `ventanaAuxiliar.closed`, porque el usuario puede
-cerrar la ventana hija a mano y entonces `resizeBy` o `moveBy` darían error sobre
-un objeto ya cerrado.
+La segunda comprobación es `closed`, porque el usuario puede cerrar la ventana
+hija a mano y entonces `resizeBy` o `moveBy` darían error sobre un objeto ya
+cerrado.
 
-![Ventana auxiliar abierta](capturas/33-4-ventana.png)
-
-En la prueba se abrió con 500 × 400, se amplió, se movió, se le mandó el foco y se
-cerró sin errores.
+![Ventana auxiliar abierta y manipulada](capturas/33-4-ventana.png)
 
 ## Comprobaciones
 
 - La caja pasa de 200 × 100 con borde rojo a 300 × 250 con borde verde discontinuo.
 - Restablecer la devuelve a 200 × 100.
-- El botón flotante sube la página de 174 px a 0.
+- El botón flotante sube la página de 214 px a 0.
 - El estado de error funciona partiendo del estado completado.
 - El texto del botón alterna entre «Modo Oscuro» y «Modo Claro».
-- La ventana auxiliar abre a 500 × 400, se redimensiona, se mueve y se cierra.
+- La ventana auxiliar abre a 500 × 400, se redimensiona, se mueve, recibe el foco y se cierra.
 - Ninguna página deja errores en consola.
-
-Las capturas están tomadas con el navegador en modo headless a 1100 × 900 y
-escala 2. Por eso el texto se ve tan nítido.

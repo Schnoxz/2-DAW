@@ -24,7 +24,7 @@ elemento.appendChild(nodoTexto);
 lista.appendChild(elemento);
 ```
 
-El orden importa. Primero se crea el `<li>` y su texto **en memoria**, después se
+El orden importa. Primero se crea el `<li>` y su texto en memoria, después se
 cuelga del `<ul>` y solo al final se monta el `<ul>` en el documento. Así el
 navegador recalcula el diseño una vez, cuando ya está todo, y no una vez por cada
 elemento.
@@ -32,8 +32,7 @@ elemento.
 ![Lista generada](capturas/34-1-lista.png)
 
 Si se pulsa dos veces no se duplica: antes de crear nada se vacía el contenedor
-con `textContent = ""`. Vaciar con `textContent` es seguro porque no interpreta la
-cadena como HTML.
+con `textContent = ""`, que no interpreta la cadena como HTML.
 
 ## Actividad 3.4.2 · append, prepend y replaceChildren
 
@@ -52,12 +51,9 @@ texto que no se ve pero ocupa sitio.
 
 `append()` y `prepend()` aceptan nodos o cadenas, pero aquí les paso un `<li>` ya
 montado para que se vea el proceso. Si se inserta un nodo que ya está en el
-documento, el navegador lo **mueve**, no lo duplica.
+documento, el navegador lo mueve, no lo duplica.
 
 ![Una tarea al principio y otra al final](capturas/34-2-tareas.png)
-
-`replaceChildren()` es la forma corta de decir «borra los hijos y pon estos». Sustituye
-al `while (lista.firstChild) { ... }` de antes y lo hace en una sola operación.
 
 ![Después de Reiniciar lista](capturas/34-2-reiniciada.png)
 
@@ -84,9 +80,9 @@ ejemplo típico de XSS. Con `textContent` la etiqueta se ve como texto y la vari
 no se crea. Con `innerHTML` el navegador intenta cargar la imagen, falla y ejecuta
 el `onerror`, así que la variable acaba en `true`.
 
-Por eso la regla que sigo en el resto de la unidad: `innerHTML` solo con cadenas que
-escribo yo en el código, y `textContent` siempre que haya un dato del usuario de
-por medio.
+Por eso la regla que sigo en el resto de la unidad: `innerHTML` solo con cadenas
+que escribo yo en el código, y `textContent` siempre que haya un dato del usuario
+de por medio.
 
 ## Comprobaciones
 
@@ -96,9 +92,6 @@ por medio.
 - Con el campo vacío no se añade ningún `<li>`.
 - «Reiniciar lista» deja un único `<li>` con «Lista reiniciada».
 - `textContent` deja 0 elementos dentro de la caja.
-- `innerHTML` crea 2 elementos y el `<span>` sale en rojo (`rgb(255, 0, 0)`).
+- `innerHTML` crea 2 elementos y el `<span>` sale en rojo.
 - La etiqueta `<img onerror>` no se ejecuta con `textContent` y sí con `innerHTML`.
 - En consola solo aparece el 404 de la imagen de prueba, que es el esperado.
-
-Las capturas están tomadas con el navegador en modo headless a 1100 × 1000 y
-escala 2.

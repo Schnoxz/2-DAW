@@ -1,13 +1,11 @@
 // Actividad 3.4.1 - Crear una lista entera desde JavaScript.
-// No se usa innerHTML en ningún momento: cada etiqueta y cada texto se crean
-// como nodos y se van colgando unos de otros.
+// No se usa innerHTML: cada etiqueta y cada texto se crean como nodos.
 
 const contenedorLista = document.getElementById("contenedorLista");
-const salidaLista = document.getElementById("salida-lista");
 
 // crearElemento(etiqueta, texto)
 // Crea un elemento con la etiqueta indicada y le mete un nodo de texto dentro.
-// Devuelve el elemento ya montado, todavía fuera del documento.
+// Devuelve el elemento montado, todavía fuera del documento.
 function crearElemento(etiqueta, texto) {
   const elemento = document.createElement(etiqueta);
   const nodoTexto = document.createTextNode(texto);
@@ -27,14 +25,11 @@ function generarLista() {
 
   const modulos = ["DWEC", "DWES", "DIW"];
   for (let i = 0; i < modulos.length; i++) {
-    const item = crearElemento("li", modulos[i]);
-    lista.appendChild(item);
+    lista.appendChild(crearElemento("li", modulos[i]));
   }
 
-  // El <ul> se monta en el documento de una sola vez, con sus hijos dentro
+  // El <ul> se monta en el documento de una vez, ya con sus hijos dentro
   contenedorLista.appendChild(lista);
-
-  salidaLista.textContent = "Lista creada con " + modulos.length + " elementos: " + modulos.join(", ") + ".";
 }
 
 document.getElementById("btn-generar").addEventListener("click", generarLista);

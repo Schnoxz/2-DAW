@@ -1,26 +1,33 @@
 // Actividad 3.3.4 - Abrir y manipular una ventana secundaria.
 
-// La referencia se guarda fuera del evento para poder usarla en los demás botones
+// La referencia se guarda fuera del evento porque los demás botones la necesitan
 let ventanaAuxiliar = null;
 
 const salida = document.getElementById("salida-ventana");
 
 // avisar(texto)
-// Muestra el mensaje en el visor de la página principal.
+// Escribe el mensaje en el visor de la página principal.
 // No devuelve nada.
 function avisar(texto) {
   salida.textContent = texto;
 }
 
-document.getElementById("btn-abrir").addEventListener("click", function () {
-  // Las medidas van en la cadena de opciones; 500x400 son de área de contenido
-  ventanaAuxiliar = window.open(
-    "3.3.4-auxiliar.html",
-    "ventanaAuxiliar",
-    "width=500,height=400,resizable=yes,scrollbars=yes"
-  );
+// abierta()
+// Comprueba que la ventana existe y que el usuario no la ha cerrado a mano.
+// Devuelve true si se puede manipular y false si ya no vale.
+function abierta() {
+  if (ventanaAuxiliar === null || ventanaAuxiliar.closed) {
+    avisar("Primero abre la ventana auxiliar.");
+    return false;
+  }
+  return true;
+}
 
-  // Un bloqueador de pop-ups devuelve null en lugar de lanzar un error
+document.getElementById("btn-abrir").addEventListener("click", function () {
+  // 500 por 400 son las medidas que pide el enunciado
+  ventanaAuxiliar = window.open("3.3.4-auxiliar.html", "ventanaAuxiliar", "width=500,height=400");
+
+  // Un bloqueador de ventanas emergentes no lanza error: devuelve null
   if (ventanaAuxiliar === null) {
     avisar("El navegador ha bloqueado la ventana emergente. Permite las ventanas para esta página y vuelve a intentarlo.");
     return;
@@ -30,8 +37,7 @@ document.getElementById("btn-abrir").addEventListener("click", function () {
 });
 
 document.getElementById("btn-grande").addEventListener("click", function () {
-  if (ventanaAuxiliar === null || ventanaAuxiliar.closed) {
-    avisar("Primero abre la ventana auxiliar.");
+  if (!abierta()) {
     return;
   }
   // resizeBy suma píxeles al tamaño actual, no lo fija
@@ -40,8 +46,7 @@ document.getElementById("btn-grande").addEventListener("click", function () {
 });
 
 document.getElementById("btn-mover").addEventListener("click", function () {
-  if (ventanaAuxiliar === null || ventanaAuxiliar.closed) {
-    avisar("Primero abre la ventana auxiliar.");
+  if (!abierta()) {
     return;
   }
   // moveBy desplaza respecto a la posición actual: solo se mueve en vertical
@@ -50,8 +55,7 @@ document.getElementById("btn-mover").addEventListener("click", function () {
 });
 
 document.getElementById("btn-foco").addEventListener("click", function () {
-  if (ventanaAuxiliar === null || ventanaAuxiliar.closed) {
-    avisar("Primero abre la ventana auxiliar.");
+  if (!abierta()) {
     return;
   }
   ventanaAuxiliar.focus();
@@ -59,8 +63,7 @@ document.getElementById("btn-foco").addEventListener("click", function () {
 });
 
 document.getElementById("btn-cerrar").addEventListener("click", function () {
-  if (ventanaAuxiliar === null || ventanaAuxiliar.closed) {
-    avisar("La ventana auxiliar ya está cerrada.");
+  if (!abierta()) {
     return;
   }
   ventanaAuxiliar.close();

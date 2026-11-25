@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3.3.2 · Subir al inicio</title>
-    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%2016'%3E%3Ccircle%20cx='8'%20cy='8'%20r='7'%20fill='%2338bdf8'/%3E%3C/svg%3E">
+    <link rel="icon" href="data:,">
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
@@ -18,59 +18,63 @@
         <section class="panel">
             <h2>Por qué la página es tan larga</h2>
             <p>
-                Para que aparezca la barra de desplazamiento vertical hace falta que el
-                contenido supere la altura de la ventana. Aquí se explica el ejercicio
-                con calma, y de paso se comprueba que el botón flotante sigue visible
-                aunque se baje hasta el final.
+                Para que aparezca la barra de desplazamiento vertical el contenido
+                tiene que pasar de la altura de la ventana. La forma más simple de
+                conseguirlo es escribir texto de sobra, y eso es lo que hay aquí.
             </p>
             <p>
-                El objeto <code>window</code> guarda la posición del desplazamiento en
-                <code>scrollY</code>. Al llamar a <code>scrollTo()</code> con el
-                parámetro <code>behavior: "smooth"</code>, el navegador no salta de golpe
-                al principio: interpola la posición durante unos milisegundos y el
-                movimiento se ve fluido.
+                El objeto <code>window</code> guarda la posición del desplazamiento
+                en <code>scrollY</code>. Al llamar a <code>scrollTo()</code> con el
+                parámetro <code>behavior: "smooth"</code>, el navegador no salta de
+                golpe al principio: interpola la posición durante unos milisegundos.
             </p>
             <p>
-                Si se pasara solo <code>window.scrollTo(0, 0)</code>, el salto sería
-                instantáneo. Las dos formas son válidas, pero la suave da mejor
-                sensación en una página larga y es la que pide el enunciado.
+                Si se pasara solo <code>window.scrollTo(0, 0)</code> el salto sería
+                instantáneo. Las dos formas funcionan, pero la suave es la que pide
+                el enunciado.
             </p>
             <p>
-                El botón va con <code>position: fixed</code>, así que no forma parte del
-                flujo del documento: se queda pegado a la esquina inferior derecha
-                aunque se mueva el contenido. Para que no tape texto en pantallas
-                pequeñas se le deja un margen y un tamaño contenido.
+                El botón va con <code>position: fixed</code>, así que no forma parte
+                del flujo del documento y se queda pegado a la esquina inferior
+                derecha aunque se mueva el contenido. Si se dejara en el flujo
+                normal, habría que bajar hasta el final para encontrarlo y el
+                ejercicio perdería el sentido.
             </p>
             <p>
-                Un detalle de accesibilidad: el botón se puede activar con el teclado
-                porque es un <code>&lt;button&gt;</code> de verdad y no un
-                <code>div</code> con un evento. El texto «Subir al inicio» también
-                describe la acción, así que un lector de pantalla lo anuncia bien.
+                Es un <code>&lt;button&gt;</code> de verdad y no un <code>div</code>
+                con un evento, así que se puede activar con el teclado y un lector
+                de pantalla lo anuncia como lo que es. El texto «Subir al inicio»
+                describe la acción, sin depender de un icono.
             </p>
             <p>
-                Cuando el usuario ya está arriba, el botón sigue ahí. Se podría ocultar
+                Cuando ya se está arriba el botón sigue visible. Se podría ocultar
                 escuchando el evento <code>scroll</code> y comprobando
                 <code>window.scrollY</code>, pero el enunciado no lo pide y añadir
                 código que no se pide solo complica la entrega.
             </p>
             <p>
-                Este párrafo existe para seguir empujando el contenido hacia abajo.
-                Repite la misma idea con otras palabras: el desplazamiento suave es una
-                mejora visual, no un requisito funcional, y el ejercicio consiste en
-                usarlo correctamente y no en reinventarlo.
+                El resto de párrafos existen para seguir empujando el contenido
+                hacia abajo y que el recorrido sea cómodo incluso en una pantalla
+                grande. Sin ellos la página no tendría barra de desplazamiento y no
+                habría nada que probar.
             </p>
             <p>
-                El visor de estado de abajo muestra la distancia recorrida al pulsar el
-                botón. Sirve para demostrar que la llamada se ha ejecutado y que la
-                posición vertical vuelve a cero.
+                Un detalle que se ve al pulsar el botón: el desplazamiento suave no
+                es instantáneo, tarda una fracción de segundo. Durante ese tiempo
+                el navegador está interpolando la posición y repintando la página,
+                pero el hilo de JavaScript sigue libre, porque no se ha pedido
+                esperar a nada.
             </p>
             <p>
-                Y un último párrafo para que la barra de desplazamiento tenga recorrido
-                suficiente incluso en una pantalla grande. Al final está el botón, que
-                es el que interesa.
+                Si la página fuera mucho más larga, el efecto sería más evidente.
+                Con este tamaño se nota lo justo para comprobar que funciona, que es
+                lo que se busca.
             </p>
-
-            <div id="salida-scroll" class="visor"></div>
+            <p>
+                Al final está el botón, que es lo que interesa de la actividad: se
+                baja hasta abajo, se pulsa y se comprueba que la página vuelve al
+                principio con movimiento continuo.
+            </p>
         </section>
     </main>
 
