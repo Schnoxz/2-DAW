@@ -5,7 +5,7 @@
 const tarjeta = document.querySelector("#tarjeta");
 const btnOscuro = document.querySelector("#btn-oscuro");
 
-// --- A) Modo oscuro con el texto del botón sincronizado ---
+// Modo oscuro con el texto del botón sincronizado
 btnOscuro.addEventListener("click", function () {
   // toggle ya sabe si la clase estaba o no, así que después se comprueba
   // el resultado con contains para decidir qué texto toca
@@ -18,12 +18,12 @@ btnOscuro.addEventListener("click", function () {
   }
 });
 
-// --- B) Ocultar y mostrar la tarjeta ---
+//  Ocultar y mostrar la tarjeta
 document.querySelector("#btn-ocultar").addEventListener("click", function () {
   tarjeta.classList.toggle("oculto");
 });
 
-// --- C) Pasar a completado ---
+// Pasar a completado
 document.querySelector("#btn-exito").addEventListener("click", function () {
   // replace cambia un estado por otro sin tocar .caja ni .resaltado
   tarjeta.classList.replace("estado-pendiente", "estado-completado");
@@ -31,7 +31,7 @@ document.querySelector("#btn-exito").addEventListener("click", function () {
   tarjeta.textContent = "Estado actual: ¡tarea completada!";
 });
 
-// --- D) Estado de error, venga de donde venga ---
+// Estado de error, venga de donde venga
 document.querySelector("#btn-error").addEventListener("click", function () {
   // Se quitan los dos estados posibles antes de poner el de error: si solo
   // se hiciera replace("estado-pendiente", ...), al estar completada no
@@ -41,7 +41,7 @@ document.querySelector("#btn-error").addEventListener("click", function () {
   tarjeta.textContent = "Estado actual: error, revisa la tarea.";
 });
 
-// --- E) Resaltar ---
+// Resaltar
 document.querySelector("#btn-borde").addEventListener("click", function () {
   if (tarjeta.classList.contains("resaltado")) {
     tarjeta.classList.remove("resaltado");
@@ -50,7 +50,7 @@ document.querySelector("#btn-borde").addEventListener("click", function () {
   }
 });
 
-// --- F) Reiniciar: deja solo las clases iniciales ---
+// Reiniciar: deja solo las clases iniciales
 document.querySelector("#btn-reset").addEventListener("click", function () {
   // className sobrescribe todas las clases de golpe, es lo más corto aquí
   tarjeta.className = "caja estado-pendiente";
