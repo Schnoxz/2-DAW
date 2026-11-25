@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="640" viewBox="0 0 900 640" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="900" height="640" fill="#ffffff"/>
+
+  <!-- Ejes -->
+  <line x1="120" y1="540" x2="850" y2="540" stroke="#1e293b" stroke-width="3"/>
+  <line x1="120" y1="540" x2="120" y2="70" stroke="#1e293b" stroke-width="3"/>
+  <polygon points="850,540 838,534 838,546" fill="#1e293b"/>
+  <polygon points="120,70 114,82 126,82" fill="#1e293b"/>
+
+  <!-- Cuadrantes -->
+  <line x1="480" y1="70" x2="480" y2="540" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="8 8"/>
+  <line x1="120" y1="305" x2="850" y2="305" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="8 8"/>
+
+  <!-- Rótulos de ejes -->
+  <text x="485" y="600" font-size="20" text-anchor="middle" fill="#0f172a">Precio · de bajo a alto</text>
+  <text x="45" y="305" font-size="20" text-anchor="middle" fill="#0f172a" transform="rotate(-90 45 305)">Especialización · de generalista a nicho</text>
+
+  <!-- Extremos -->
+  <text x="110" y="570" font-size="16" text-anchor="middle" fill="#64748b">bajo</text>
+  <text x="860" y="570" font-size="16" text-anchor="middle" fill="#64748b">alto</text>
+  <text x="140" y="62" font-size="16" fill="#64748b">alto</text>
+  <text x="140" y="532" font-size="16" fill="#64748b">bajo</text>
+
+  <!-- Competencia -->
+  <circle cx="250" cy="455" r="11" fill="#94a3b8"/>
+  <text x="272" y="462" font-size="19" fill="#334155">Excel y calendario</text>
+
+  <circle cx="400" cy="330" r="11" fill="#64748b"/>
+  <text x="422" y="337" font-size="19" fill="#334155">Asesorías</text>
+
+  <circle cx="330" cy="200" r="11" fill="#0ea5e9"/>
+  <text x="352" y="207" font-size="19" fill="#0c4a6e">TachoTools</text>
+
+  <circle cx="740" cy="140" r="11" fill="#64748b"/>
+  <text x="718" y="147" font-size="19" text-anchor="end" fill="#334155">Software de flotas</text>
+
+  <!-- TachoAviso -->
+  <circle cx="380" cy="145" r="15" fill="#16a34a" stroke="#ffffff" stroke-width="4"/>
+  <text x="405" y="152" font-size="21" font-weight="bold" fill="#14532d">TachoAviso</text>
+
+  <!-- Nota -->
+  <rect x="560" y="380" width="280" height="130" rx="10" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="580" y="412" font-size="17" fill="#334155">Zona objetivo: nicho de</text>
+  <text x="580" y="436" font-size="17" fill="#334155">transportistas autónomos,</text>
+  <text x="580" y="460" font-size="17" fill="#334155">precio bajo y foco estrecho.</text>
+  <text x="580" y="490" font-size="16" font-style="italic" fill="#64748b">No compite con las flotas</text>
+  <text x="580" y="510" font-size="16" font-style="italic" fill="#64748b">ni con el Excel.</text>
+</svg>
