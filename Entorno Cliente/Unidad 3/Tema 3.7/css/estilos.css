@@ -1,0 +1,355 @@
+/* Hoja de estilos del tema 3.7.
+   Parte de la del 3.4 para que las entregas de la unidad se parezcan.
+   Lo nuevo son la tabla del carrito, el banner de cookies y los pasos
+   del asistente de matrícula. */
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  margin: 0;
+  padding: 30px 20px 120px 20px;
+  background-color: #0f172a;
+  color: #f8fafc;
+}
+
+header,
+main {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h1 {
+  margin-bottom: 4px;
+  font-size: 1.6rem;
+}
+
+.subtitulo {
+  margin-top: 0;
+  color: #94a3b8;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 24px;
+}
+
+nav a {
+  padding: 6px 12px;
+  border: 1px solid #334155;
+  border-radius: 4px;
+  color: #38bdf8;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+nav a:hover {
+  background: #1e293b;
+}
+
+.panel {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 22px;
+  margin-bottom: 24px;
+}
+
+h2 {
+  margin-top: 0;
+  color: #38bdf8;
+  font-size: 1.2rem;
+}
+
+h3 {
+  font-size: 1rem;
+  color: #cbd5e1;
+}
+
+p {
+  line-height: 1.55;
+}
+
+code {
+  background: #0f172a;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-family: Consolas, "Courier New", monospace;
+  color: #7dd3fc;
+}
+
+.nota {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.botones-accion {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+button {
+  padding: 10px 16px;
+  background-color: #0284c7;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0369a1;
+}
+
+button.secundario {
+  background-color: #7c3aed;
+}
+
+button.secundario:hover {
+  background-color: #6d28d9;
+}
+
+button.peligro {
+  background-color: #b91c1c;
+}
+
+button.peligro:hover {
+  background-color: #991b1b;
+}
+
+/* Visor de mensajes */
+.visor {
+  margin-top: 18px;
+  padding: 14px;
+  background: #020617;
+  border-left: 4px solid #38bdf8;
+  border-radius: 4px;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+}
+
+.visor:empty {
+  display: none;
+}
+
+.visor.error {
+  border-left-color: #f87171;
+}
+
+/* Campos de texto */
+.campo {
+  margin-top: 18px;
+}
+
+.campo label {
+  display: block;
+  margin-bottom: 6px;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.campo input,
+.campo textarea,
+.campo select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  background: #020617;
+  border: 1px solid #475569;
+  border-radius: 4px;
+  color: #f8fafc;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+/* Diálogo de la actividad 3.7.2, con el mismo aspecto que los paneles */
+dialog {
+  max-width: 460px;
+  width: 90%;
+  padding: 0;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: #f8fafc;
+}
+
+dialog::backdrop {
+  background: rgba(2, 6, 23, 0.75);
+}
+
+#form-paciente {
+  padding: 22px;
+}
+
+#form-paciente h3 {
+  margin-top: 0;
+  color: #38bdf8;
+}
+
+/* Filas de campos en horizontal en pantallas anchas */
+.fila-campos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Lista de la actividad 3.7.3 */
+#listaTareasClase {
+  margin-top: 18px;
+  padding: 0;
+  list-style: none;
+}
+
+#listaTareasClase li {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  background: #020617;
+  border-left: 4px solid #22c55e;
+  border-radius: 4px;
+}
+
+/* El número ocupa siempre lo mismo para que los textos queden alineados */
+#listaTareasClase li .nota {
+  min-width: 1.6em;
+}
+
+#listaTareasClase li.vacia {
+  border-left-color: #475569;
+  color: #94a3b8;
+  justify-content: center;
+}
+
+.contador {
+  display: inline-block;
+  margin-top: 12px;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+/* Tabla del carrito 3.7.4 */
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 18px;
+}
+
+.tabla th,
+.tabla td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #334155;
+}
+
+.tabla th {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+.tabla td.numero,
+.tabla th.numero {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.tabla tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.vacio {
+  padding: 18px;
+  text-align: center;
+  color: #94a3b8;
+}
+
+.totales {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 18px;
+  padding: 14px;
+  background: #020617;
+  border-radius: 4px;
+}
+
+.totales strong {
+  color: #4ade80;
+}
+
+/* Banner RGPD de la actividad 3.7.5 */
+.banner-cookies {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  padding: 16px 24px;
+  background: #020617;
+  border-top: 3px solid #38bdf8;
+  box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.4);
+}
+
+.banner-cookies p {
+  margin: 0;
+  max-width: 520px;
+}
+
+.banner-cookies .botones-accion {
+  margin-top: 0;
+}
+
+/* El atributo hidden tiene prioridad, pero se refuerza por si el CSS lo pisa */
+[hidden] {
+  display: none !important;
+}
+
+/* Asistente de matrícula 3.7.6 */
+.paso {
+  margin-top: 18px;
+}
+
+.lista-modulos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.lista-modulos label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: #020617;
+  border: 1px solid #475569;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.resumen {
+  margin-top: 18px;
+  padding: 16px;
+  background: #020617;
+  border-left: 4px solid #4ade80;
+  border-radius: 4px;
+  line-height: 1.8;
+}
+
+/* En pantallas estrechas las columnas pasan a una sola */
+@media (max-width: 640px) {
+  .fila-campos {
+    grid-template-columns: 1fr;
+  }
+}

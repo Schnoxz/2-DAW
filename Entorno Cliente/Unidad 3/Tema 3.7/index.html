@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.7 · Persistencia y almacenamiento en el cliente</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <header>
+        <h1>3.7 · Mecanismos de persistencia y almacenamiento en el cliente</h1>
+        <p class="subtitulo">DWEC · 2º DAW · cookies, Web Storage, JSON y evento storage</p>
+        <nav>
+            <a href="#actividad-1">3.7.1 · Biblioteca de cookies</a>
+            <a href="#actividad-2">3.7.2 · Pacientes persistentes</a>
+            <a href="#actividad-3">3.7.3 · Lista de tareas</a>
+            <a href="#actividad-4">3.7.4 · Carrito multipestaña</a>
+            <a href="#actividad-5">3.7.5 · Banner RGPD</a>
+            <a href="#actividad-6">3.7.6 · Matrícula por pasos</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Actividad 3.7.1 -->
+        <section class="panel" id="actividad-1">
+            <h2>Actividad 3.7.1 · Biblioteca de cookies</h2>
+            <p>
+                Las tres funciones están en <code>utilidades-cookies.js</code>.
+                <code>setCookie()</code> codifica el valor y usa <code>max-age</code>;
+                <code>getCookie()</code> recorre la cadena de <code>document.cookie</code>;
+                y <code>deleteCookie()</code> la anula con <code>max-age=0</code>.
+            </p>
+
+            <div class="fila-campos">
+                <div class="campo">
+                    <label for="nombreCookie">Nombre</label>
+                    <input type="text" id="nombreCookie" value="alumnoActual">
+                </div>
+                <div class="campo">
+                    <label for="valorCookie">Valor</label>
+                    <input type="text" id="valorCookie" value="Javier Jiménez">
+                </div>
+            </div>
+
+            <div class="campo">
+                <label for="diasCookie">Días de validez</label>
+                <input type="number" id="diasCookie" value="7" min="1">
+            </div>
+
+            <div class="botones-accion">
+                <button id="btnGuardarCookie">Guardar cookie</button>
+                <button id="btnLeerCookie" class="secundario">Leer cookie</button>
+                <button id="btnBorrarCookie" class="peligro">Borrar cookie</button>
+            </div>
+
+            <div id="visorCookies" class="visor"></div>
+
+            <h3>document.cookie ahora mismo</h3>
+            <div id="todasLasCookies" class="visor"></div>
+        </section>
+
+        <!-- Actividad 3.7.2: la 3.5.1 con persistencia -->
+        <section class="panel" id="actividad-2">
+            <h2>Actividad 3.7.2 · Pacientes de la 3.5.1 con localStorage</h2>
+            <p>
+                La tabla de pacientes de la actividad 3.5.1 ahora se guarda en
+                <code>localStorage</code>. Al recargar, las citas siguen ahí porque
+                el array se serializa con <code>JSON.stringify()</code>.
+            </p>
+
+            <div class="botones-accion">
+                <button id="btn-abrir-modal">Nuevo paciente</button>
+            </div>
+
+            <table class="tabla" id="tabla-pacientes">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre completo</th>
+                        <th>Especialidad</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoPacientes"></tbody>
+            </table>
+
+            <div id="visorPacientes" class="visor"></div>
+
+            <dialog id="modal-paciente">
+                <form method="dialog" id="form-paciente">
+                    <h3>Nueva cita</h3>
+
+                    <div class="campo">
+                        <label for="pacienteNombre">Nombre completo</label>
+                        <input type="text" id="pacienteNombre" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="pacienteEspecialidad">Especialidad</label>
+                        <select id="pacienteEspecialidad">
+                            <option value="Cardiología">Cardiología</option>
+                            <option value="Dermatología">Dermatología</option>
+                            <option value="Traumatología">Traumatología</option>
+                            <option value="Pediatría">Pediatría</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="pacienteFecha">Fecha de cita</label>
+                        <input type="date" id="pacienteFecha" required>
+                    </div>
+
+                    <div class="botones-accion">
+                        <button type="submit">Guardar cita</button>
+                        <button type="button" id="btnCancelarPaciente" class="secundario">Cancelar</button>
+                    </div>
+                </form>
+            </dialog>
+        </section>
+
+        <!-- Actividad 3.7.3 -->
+        <section class="panel" id="actividad-3">
+            <h2>Actividad 3.7.3 · Lista de tareas de clase</h2>
+            <p>
+                El array de tareas se guarda como JSON en <code>localStorage</code>.
+                Al recargar se reconstruye con <code>JSON.parse()</code> y
+                <code>replaceChildren()</code> deja el contenedor limpio antes de pintar.
+            </p>
+
+            <div class="campo">
+                <label for="nuevaTarea">Nueva tarea</label>
+                <input type="text" id="nuevaTarea" placeholder="Práctica UD3, estudiar BOM...">
+            </div>
+
+            <div class="botones-accion">
+                <button id="btnAnadirTarea">Añadir tarea</button>
+                <button id="btnLimpiarTareas" class="peligro">Limpiar todo</button>
+            </div>
+
+            <ul id="listaTareasClase"></ul>
+            <span id="contadorTareas" class="contador"></span>
+
+            <div id="visorTareas" class="visor"></div>
+        </section>
+
+        <!-- Actividad 3.7.4 -->
+        <section class="panel" id="actividad-4">
+            <h2>Actividad 3.7.4 · Carrito reactivo multipestaña</h2>
+            <p>
+                El carrito se guarda en <code>localStorage</code> y el evento
+                <code>storage</code> avisa a las demás pestañas del mismo origen.
+                Para probarlo, abre esta página en dos pestañas y añade algo en una.
+            </p>
+
+            <div id="catalogo"></div>
+
+            <table class="tabla">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th class="numero">Precio</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoCarrito"></tbody>
+            </table>
+
+            <div class="totales">
+                <span>Artículos: <strong id="totalArticulos">0</strong></span>
+                <span>Total: <strong id="totalImporte">0.00 €</strong></span>
+            </div>
+
+            <div class="botones-accion">
+                <button id="btnVaciarCarrito" class="peligro">Vaciar carrito</button>
+            </div>
+
+            <div id="visorCarrito" class="visor"></div>
+        </section>
+
+        <!-- Actividad 3.7.5 -->
+        <section class="panel" id="actividad-5">
+            <h2>Actividad 3.7.5 · Banner de consentimiento RGPD</h2>
+            <p>
+                La cookie <code>rgpd_consentimiento</code> guarda <code>aceptado</code>
+                o <code>rechazado</code>. Al aceptar dura 30 días; al rechazar es una
+                cookie de sesión y desaparece al cerrar el navegador.
+            </p>
+
+            <p id="estadoConsentimiento" class="nota"></p>
+
+            <div class="botones-accion">
+                <button id="btnRestablecerConsentimiento" class="secundario">Restablecer consentimiento</button>
+            </div>
+        </section>
+
+        <!-- Actividad 3.7.6 -->
+        <section class="panel" id="actividad-6">
+            <h2>Actividad 3.7.6 · Asistente de matrícula en dos pasos</h2>
+            <p>
+                Cada paso se guarda en <code>sessionStorage</code>. Si recargas a
+                mitad, el script lee <code>matricula_fase</code> y vuelve a la fase
+                donde estabas.
+            </p>
+
+            <div id="paso1" class="paso">
+                <h3>Paso 1 · Datos personales</h3>
+
+                <div class="fila-campos">
+                    <div class="campo">
+                        <label for="campoNombre">Nombre</label>
+                        <input type="text" id="campoNombre">
+                    </div>
+                    <div class="campo">
+                        <label for="campoDni">DNI</label>
+                        <input type="text" id="campoDni" placeholder="12345678Z">
+                    </div>
+                </div>
+
+                <div class="botones-accion">
+                    <button id="btnSiguiente">Siguiente</button>
+                </div>
+            </div>
+
+            <div id="paso2" class="paso" hidden>
+                <h3>Paso 2 · Módulos solicitados</h3>
+
+                <div class="lista-modulos">
+                    <label><input type="checkbox" name="modulo" value="DWEC"> DWEC</label>
+                    <label><input type="checkbox" name="modulo" value="DWES"> DWES</label>
+                    <label><input type="checkbox" name="modulo" value="DIW"> DIW</label>
+                    <label><input type="checkbox" name="modulo" value="DASP"> DASP</label>
+                    <label><input type="checkbox" name="modulo" value="IPE2"> IPE2</label>
+                    <label><input type="checkbox" name="modulo" value="Inglés"> Inglés</label>
+                </div>
+
+                <div class="botones-accion">
+                    <button id="btnConfirmar">Confirmar matrícula</button>
+                    <button id="btnAtras" class="secundario">Atrás</button>
+                </div>
+            </div>
+
+            <div id="resumenFinal" class="resumen" hidden>
+                <h3>Matrícula registrada</h3>
+                <div id="cuerpoResumen"></div>
+                <div class="botones-accion">
+                    <button onclick="location.reload()">Empezar de nuevo</button>
+                </div>
+            </div>
+
+            <div id="visorMatricula" class="visor"></div>
+        </section>
+    </main>
+
+    <!-- La biblioteca de cookies va primero: las demás la usan -->
+    <script src="utilidades-cookies.js" defer></script>
+    <script src="js/cookies.js" defer></script>
+    <script src="js/pacientes.js" defer></script>
+    <script src="js/tareas.js" defer></script>
+    <script src="js/carrito.js" defer></script>
+    <script src="js/banner.js" defer></script>
+    <script src="js/matricula.js" defer></script>
+
+    <!-- El banner va al final para que no tape el contenido al cargar -->
+    <aside id="bannerCookies" class="banner-cookies" hidden>
+        <p>Esta web usa cookies propias para recordar tu decisión. Las técnicas son necesarias; las demás solo con tu permiso.</p>
+        <div class="botones-accion">
+            <button id="btnAceptarCookies">Aceptar todas</button>
+            <button id="btnRechazarCookies" class="secundario">Rechazar</button>
+        </div>
+    </aside>
+</body>
+</html>
